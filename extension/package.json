@@ -2,7 +2,7 @@
 	"name": "threadfx",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Tactile audio, confetti bursts, and interactive effects suite for Threads",
+	"description": "Tactile audio, visual particle bursts, and interactive effects suite for Threads",
 	"homepage": "https://threadfx.nmrisrl.dev",
 	"bugs": {
 		"url": "https://github.com/nmrisrl11/threadfx/issues"

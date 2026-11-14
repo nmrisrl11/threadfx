@@ -4,7 +4,6 @@ import {
 	VolumeX,
 	Sparkles,
 	Heart,
-	Zap,
 	Sliders as SlidersIcon,
 	Check,
 	ExternalLink,
@@ -56,9 +55,11 @@ export default function App() {
 			{/* Top Navigation / Brand */}
 			<header className="border-border flex items-center justify-between border-b pb-4">
 				<div className="flex items-center gap-2.5">
-					<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-[#FF2E93] to-[#7928CA] shadow-lg shadow-[#FF2E93]/20">
-						<Zap className="h-4 w-4 fill-white text-white" />
-					</div>
+					<img
+						src="/icon/48.png"
+						alt="ThreadFX"
+						className="h-8 w-8 rounded-lg object-contain shadow-lg shadow-[#FF2E93]/20"
+					/>
 					<div>
 						<h1 className="bg-gradient-to-r from-[#FF2E93] via-[#7928CA] to-[#00F5FF] bg-clip-text text-base font-bold tracking-tight text-transparent">
 							ThreadFX
@@ -180,16 +181,16 @@ export default function App() {
 					/>
 				</Card>
 
-				{/* Section 3: Visual Confetti Toggle via shadcn/ui */}
+				{/* Section 3: Visual Effects & Particle Burst Toggle */}
 				<Card className="flex items-center justify-between p-3.5">
 					<div className="flex items-center gap-2.5">
 						<div className="bg-muted flex h-7 w-7 items-center justify-center rounded-lg text-[#00F5FF]">
 							<Sparkles className="h-3.5 w-3.5" />
 						</div>
 						<div>
-							<span className="text-foreground block text-xs font-medium">Confetti on Like</span>
+							<span className="text-foreground block text-xs font-medium">Visual Effects</span>
 							<span className="text-muted-foreground block text-[10px]">
-								Neon particle explosion
+								Particle &amp; emoji bursts on like
 							</span>
 						</div>
 					</div>

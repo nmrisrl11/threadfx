@@ -21,7 +21,7 @@ _Satisfying procedural audio, visual confetti bursts, and interactive juice for 
 
 - **🔊 Zero-Latency Procedural Audio:** Synthesized mathematically on the fly using [ZzFX](https://github.com/KilledByAPixel/ZzFX) via the browser's native Web Audio API. No external `.mp3` or `.wav` files to download.
 - **✨ Custom Like Burst:** Tailored sound and particle effects that trigger when liking posts with custom emojis, stickers, or GIFs (e.g. SpongeBob, thread spool).
-- **🎉 Neon Confetti Cannons:** Electric particle explosions that burst directly from the heart icon when tapped.
+- **🎉 Visual Particle Bursts:** Dynamic particle explosions, custom emojis, and confetti effects that burst directly from the heart icon when tapped.
 - **📱 Native Chrome Side Panel:** Clean, dark-mode dashboard that stays docked to your screen while browsing Threads—no temporary popups that close when you click.
 - **🔒 Privacy-First & Minimal Permissions:** Only requests access to `threads.com` (and legacy `threads.net`) plus local storage. No tracking, no ads, and zero telemetry.
 
@@ -130,6 +130,8 @@ threadfx/
 │   │   ├── presets.ts              # Bubble Pop, 8-Bit Coin, Hype Spark, Minimal Click
 │   │   ├── storage.ts              # Type-safe chrome.storage.local synchronization
 │   │   └── utils.ts                # cn utility wrapper
+│   ├── public/
+│   │   └── icon/                   # 16, 32, 48, 96, 128px MV3 icons
 │   ├── components.json             # shadcn/ui configuration
 │   ├── package.json
 │   └── wxt.config.ts               # Minimal permissions ("sidePanel", "storage")
@@ -139,8 +141,14 @@ threadfx/
 │   │   ├── components/             # shadcn/ui components & Hero/Simulator
 │   │   ├── lib/                    # Shared zzfx.ts, presets.ts & cn utility
 │   │   ├── App.tsx                 # Hero, Like Simulator, 3-Step Install Guide
-│   │   └── index.css               # AMOLED dark design tokens
+│   │   ├── index.css               # AMOLED dark design tokens
+│   │   └── main.tsx
 │   ├── public/
+│   │   ├── icons/                  # High-res PWA & responsive browser icons (16-512px)
+│   │   ├── favicon.ico             # Multi-layer ICO (16, 32, 48px)
+│   │   ├── favicon.svg             # Razor-sharp vector tab icon
+│   │   ├── og-image.png            # 1200x630 Open Graph preview
+│   │   ├── site.webmanifest        # PWA application manifest
 │   │   └── threadfx-latest.zip     # Local fallback zip
 │   ├── components.json             # shadcn/ui configuration
 │   ├── vercel.json                 # Decoupled /download redirect for Cloudflare R2

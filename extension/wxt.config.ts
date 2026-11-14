@@ -8,7 +8,7 @@ export default defineConfig({
 	manifest: {
 		name: "ThreadFX for Threads",
 		description:
-			"Satisfying procedural audio, visual confetti bursts, and interactive effects for Threads.",
+			"Satisfying procedural audio, visual particle bursts, and interactive effects for Threads.",
 		author: "Nomer Israel",
 		homepage_url: "https://threadfx.nmrisrl.dev",
 		permissions: ["sidePanel", "storage"],

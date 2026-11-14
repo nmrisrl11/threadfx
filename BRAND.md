@@ -23,7 +23,7 @@
 
 ### Elevator Pitch
 
-> Threads introduced custom likes with emojis, stickers, and GIFs, but every interaction is completely silent. ThreadFX electrifies your feed with instant procedural sound effects, confetti bursts, sticker particle explosions, and satisfying visual juice—all running with zero bloat and zero lag.
+> Threads introduced custom likes with emojis, stickers, and GIFs, but every interaction is completely silent. ThreadFX electrifies your feed with instant procedural sound effects, visual particle bursts, custom emoji explosions, and satisfying tactile juice—all running with zero bloat and zero lag.
 
 ---
 
@@ -170,11 +170,38 @@ h6 {
 
 ---
 
-## 6. Icon & Logo Guidelines
+## 6. Icon, Logo & Asset Architecture
 
-- **Concept:** A minimalist `@` Threads loop expanding outwards into **3 acoustic reverberation waves** `)))`, glowing with a subtle `#FF2E93` neon aura.
-- **Required Sizes:**
-  - `icon-16.png`: Chrome tab / extension toolbar favicon
-  - `icon-32.png`: Windows / Retina toolbar icon
-  - `icon-48.png`: Chrome Extensions management page
-  - `icon-128.png`: High-res store banner / unpacked icon
+### Brand Mark & Concept
+
+A front-facing 3D squircle tile sculpted from dark obsidian titanium, featuring an embossed **liquid chrome Threads spiral ribbon** with **three sculptural acoustic shockwave arcs `)))`** radiating outward.
+
+### Multi-Resolution File Distribution
+
+```text
+threadfx/
+├── extension/public/icon/
+│   ├── 16.png                  # 16x16 Chrome extension toolbar favicon
+│   ├── 32.png                  # 32x32 Retina toolbar icon
+│   ├── 48.png                  # 48x48 Chrome Extensions manager tile
+│   ├── 96.png                  # 96x96 High-DPI display icon
+│   └── 128.png                 # 128x128 Chrome Web Store unpacked icon
+│
+└── website/public/
+    ├── favicon.ico             # Multi-layer ICO (16, 32, 48px)
+    ├── favicon.svg             # Razor-sharp vector tab icon
+    ├── site.webmanifest        # PWA application manifest
+    ├── og-image.png            # 1200x630 Open Graph preview
+    └── icons/
+        ├── 16.png, 32.png, 48.png, 128.png
+        ├── 180.png             # Apple Touch Icon
+        ├── 192.png             # Android home screen icon
+        ├── 512.png             # High-res master icon
+        └── 512.webp            # High-efficiency WebP variant
+
+### Edge Caching Strategy (Vercel CDN)
+Static assets and images in `website/vercel.json` are served with aggressive Cache-Control directives:
+- `/assets/(.*)`: `public, max-age=31536000, immutable` (1 year cache)
+- `/(icons|images)/(.*)`: `public, max-age=2592000, stale-while-revalidate=86400` (30 days edge cache)
+- `/(favicon.ico|favicon.svg|og-image.png|site.webmanifest)`: `public, max-age=86400, stale-while-revalidate=86400` (24 hours)
+```

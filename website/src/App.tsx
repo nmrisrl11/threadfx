@@ -68,9 +68,11 @@ export default function App() {
 			{/* Navigation */}
 			<nav className="border-border/50 mx-auto flex h-20 max-w-6xl items-center justify-between border-b px-6">
 				<div className="flex items-center gap-3">
-					<div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-[#FF2E93] to-[#7928CA] shadow-lg shadow-[#FF2E93]/20">
-						<Zap className="h-5 w-5 fill-white text-white" />
-					</div>
+					<img
+						src="/icons/48.png"
+						alt="ThreadFX"
+						className="h-9 w-9 rounded-xl object-contain shadow-lg shadow-[#FF2E93]/20"
+					/>
 					<div>
 						<span className="bg-gradient-to-r from-[#FF2E93] via-[#7928CA] to-[#00F5FF] bg-clip-text text-lg font-bold tracking-tight text-transparent">
 							ThreadFX
@@ -104,6 +106,17 @@ export default function App() {
 			{/* Hero Section */}
 			<main className="mx-auto max-w-6xl px-6 pt-16 pb-24">
 				<div className="mx-auto max-w-3xl space-y-6 text-center">
+					{/* 3D Master Hero Icon */}
+					<div className="relative mx-auto flex h-24 w-24 items-center justify-center">
+						<div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#FF2E93]/25 via-[#7928CA]/30 to-[#00F5FF]/25 blur-xl" />
+						<img
+							src="/icons/128.png"
+							alt="ThreadFX Official 3D Icon"
+							className="relative h-24 w-24 -rotate-3 rounded-2xl shadow-2xl transition-transform duration-300 select-none hover:scale-105 hover:rotate-0"
+							draggable={false}
+						/>
+					</div>
+
 					<div className="border-border bg-card text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs">
 						<span className="h-2 w-2 animate-pulse rounded-full bg-[#00F5FF]" />
 						<span>Procedural Web Audio • Zero MP3s • Manifest V3</span>
@@ -118,7 +131,7 @@ export default function App() {
 
 					<p className="text-muted-foreground mx-auto max-w-2xl text-base leading-relaxed sm:text-lg">
 						Threads introduced custom likes, but interactions remain silent. ThreadFX electrifies
-						your feed with instant procedural sound effects, neon confetti bursts, and satisfying
+						your feed with instant procedural sound effects, visual particle bursts, and satisfying
 						tactile feedback.
 					</p>
 
@@ -198,11 +211,11 @@ export default function App() {
 								/>
 							</div>
 
-							{/* Confetti Switch via shadcn/ui */}
+							{/* Visual Effects & Particle Burst Switch via shadcn/ui */}
 							<div className="border-border flex items-center justify-between rounded-xl border bg-[#0E0E0E] p-3.5">
 								<div className="flex items-center gap-2">
 									<Sparkles className="h-4 w-4 text-[#00F5FF]" />
-									<span className="text-xs font-medium">Confetti Explosions</span>
+									<span className="text-xs font-medium">Visual Particle Bursts</span>
 								</div>
 								<Switch checked={confettiActive} onCheckedChange={setConfettiActive} />
 							</div>
@@ -230,7 +243,8 @@ export default function App() {
 
 								<p className="text-sm leading-relaxed text-[#EDEDED]">
 									Testing the new custom like effects on Threads! Liking this post will now trigger
-									satisfying procedural sound effects and neon confetti. Hit the heart below! ⚡✨
+									satisfying procedural sound effects and visual particle bursts. Hit the heart
+									below! ⚡✨
 								</p>
 
 								{/* Simulated Action Bar */}

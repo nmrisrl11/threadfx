@@ -59,7 +59,7 @@ sequenceDiagram
     and Visual Pipeline
         alt Confetti is Enabled
             CS->>Canvas: Spawn particle explosion at click coordinates
-            Canvas-->>User: Renders neon confetti / spark particles
+            Canvas-->>User: Renders particle bursts and visual reactions
         end
     end
     CS->>Storage: Increment lifetime likesJuicedCount (+1)

@@ -6,7 +6,7 @@
 
 ## 1. Project Overview & Architecture
 
-**ThreadFX** is an interactive effects and tactile feedback suite for [Threads](https://threads.com). It enhances user interactions (especially custom likes) with zero-latency procedural sound effects (ZzFX), visual confetti bursts, and motion feedback.
+**ThreadFX** is an interactive effects and tactile feedback suite for [Threads](https://threads.com). It enhances user interactions (especially custom likes) with zero-latency procedural sound effects (ZzFX), visual particle bursts, and motion feedback.
 
 ### Monorepo Structure
 

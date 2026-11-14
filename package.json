@@ -2,11 +2,11 @@
 	"name": "threadfx-monorepo",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Tactile audio, confetti, and interactive effects suite for Threads",
+	"description": "Tactile audio, visual particle bursts, and interactive effects suite for Threads",
 	"keywords": [
 		"chrome-extension",
-		"confetti",
 		"effects",
+		"particles",
 		"threads",
 		"wxt",
 		"zzfx"

@@ -1,12 +1,119 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth" style="color-scheme: dark; background-color: #080808">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>website</title>
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#080808" />
+
+		<!-- Anti-FOUC dark background guarantee -->
+		<style>
+			:root,
+			html,
+			body {
+				color-scheme: dark !important;
+				background-color: #080808 !important;
+				color: #f3f5f7 !important;
+			}
+		</style>
+		<script>
+			document.documentElement.classList.add("dark");
+			document.documentElement.style.colorScheme = "dark";
+		</script>
+
+		<!-- Primary SEO Metadata -->
+		<title>ThreadFX for Threads — Satisfying Audio &amp; Visual Effects</title>
+		<meta
+			name="description"
+			content="Bring your Threads to life. Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback suite for Threads."
+		/>
+		<meta
+			name="keywords"
+			content="threadfx, threads audio, threads sound effects, threads visual effects, particle bursts, custom likes, zzfx audio, chrome extension, side panel, manifest v3, open source"
+		/>
+		<meta name="author" content="Nomer Israel (@nmrisrl)" />
+		<meta name="creator" content="Nomer Israel (@nmrisrl)" />
+		<meta name="publisher" content="ThreadFX" />
+		<link rel="canonical" href="https://threadfx.nmrisrl.dev/" />
+
+		<!-- Icons & Webmanifest -->
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/icons/32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/icons/16.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/icons/180.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+
+		<!-- Open Graph Protocol -->
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:url" content="https://threadfx.nmrisrl.dev/" />
+		<meta property="og:site_name" content="ThreadFX" />
+		<meta
+			property="og:title"
+			content="ThreadFX for Threads — Satisfying Audio &amp; Visual Effects"
+		/>
+		<meta
+			property="og:description"
+			content="Bring your Threads to life. Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback suite for Threads."
+		/>
+		<meta property="og:image" content="https://threadfx.nmrisrl.dev/og-image.png" />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta
+			property="og:image:alt"
+			content="ThreadFX — Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback for Threads"
+		/>
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@nmrisrl" />
+		<meta name="twitter:creator" content="@nmrisrl" />
+		<meta
+			name="twitter:title"
+			content="ThreadFX for Threads — Satisfying Audio &amp; Visual Effects"
+		/>
+		<meta
+			name="twitter:description"
+			content="Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback suite for Threads."
+		/>
+		<meta name="twitter:image" content="https://threadfx.nmrisrl.dev/og-image.png" />
+
+		<!-- Structured Data: Schema.org SoftwareApplication -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"@id": "https://threadfx.nmrisrl.dev/#software",
+				"name": "ThreadFX for Threads",
+				"url": "https://threadfx.nmrisrl.dev/",
+				"image": "https://threadfx.nmrisrl.dev/og-image.png",
+				"description": "Satisfying procedural audio, visual particle bursts, and interactive effects suite for Threads.",
+				"applicationCategory": "BrowserExtension",
+				"operatingSystem": "Chromium browsers (Google Chrome, Brave, Microsoft Edge, Arc)",
+				"softwareVersion": "1.0.0",
+				"offers": {
+					"@type": "Offer",
+					"price": "0.00",
+					"priceCurrency": "USD",
+					"availability": "https://schema.org/InStock"
+				},
+				"author": {
+					"@type": "Person",
+					"name": "Nomer Israel",
+					"url": "https://threads.com/@nmrisrl"
+				},
+				"downloadUrl": "https://threadfx.nmrisrl.dev/download",
+				"license": "https://github.com/nmrisrl11/threadfx/blob/main/LICENSE"
+			}
+		</script>
 	</head>
-	<body>
+
+	<body
+		class="dark"
+		style="color-scheme: dark; background-color: #080808; color: #f3f5f7; margin: 0"
+	>
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
 	</body>

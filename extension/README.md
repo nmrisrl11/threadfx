@@ -1,6 +1,6 @@
 # ThreadFX Extension (Manifest V3)
 
-> The official browser extension for [ThreadFX](https://threadfx.nmrisrl.dev) — adding procedural audio, confetti bursts, and interactive effects to [Threads](https://threads.com).
+> The official browser extension for [ThreadFX](https://threadfx.nmrisrl.dev) — adding procedural audio, visual particle bursts, and interactive effects to [Threads](https://threads.com).
 
 ---
 
@@ -10,7 +10,7 @@
 - **UI:** React 19 + TypeScript
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`)
 - **Audio Engine:** [ZzFX](https://github.com/KilledByAPixel/ZzFX) (Procedural Web Audio API synthesis)
-- **Visual FX:** `canvas-confetti`
+- **Visual FX:** `canvas-confetti` (particle bursts & celebratory reactions)
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`), Lucide React
 - **Interface:** Native Chrome Side Panel (`chrome.sidePanel`)
 

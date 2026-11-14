@@ -9,7 +9,7 @@
 - **Framework:** [Vite](https://vite.dev/) + React 19 + TypeScript
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom AMOLED dark tokens
 - **Audio Engine:** Shared in-memory `zzfx.ts` procedural synthesizer
-- **Visual Effects:** `canvas-confetti`
+- **Visual Effects:** `canvas-confetti` (particle bursts & celebratory reactions)
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Icons:** Lucide React
 - **Hosting:** Vercel (Hobby) with dual-domain fallback

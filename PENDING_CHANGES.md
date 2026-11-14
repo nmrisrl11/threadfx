@@ -11,12 +11,18 @@
 ### Added
 
 - **Self-Hosted Native Typography**: Upgraded website and extension typography to self-hosted variable typefaces—Plus Jakarta Sans for energetic geometric headlines, Inter for razor-sharp interface controls, and Geist Mono for precision latency readouts.
+- **Official 3D Brand Iconography**: Introduced our bespoke 3D liquid chrome tactile mark across the extension toolbar, Chrome Side Panel, and companion website, paired with high-performance edge caching to keep the web portal lightweight and fast.
+- **Bespoke Open Graph Social Card**: Introduced an official dark-mode social card featuring our elevated 3D metallic squircle emblem and tactile feature showcase for high-impact sharing across Threads and the web.
 
 ### Changed
+
+- **Generalized Visual Effects Identity**: Broadened copywriting and branding across the entire project from narrow "neon confetti" to "visual particle bursts and custom emoji effects" to support future emoji, sticker, and custom particle reaction bursts.
 
 ### Fixed
 
 ### Removed
+
+- **Pruned Unused Assets**: Removed legacy starter assets, orphaned template stylesheets, and duplicate icon variants to keep the repository and build distribution lean and pristine.
 
 ---
 
