@@ -59,17 +59,17 @@ export interface AppInfo {
 export const APP_INFO: AppInfo = {
 	name: "ThreadFX",
 	shortName: "ThreadFX",
-	fullName: "ThreadFX for Threads",
+	fullName: "ThreadFX — Tactile Social Effects Suite",
 	slug: "threadfx",
-	title: "ThreadFX for Threads — Satisfying Audio & Visual Effects",
-	slogan: "Tactile audio, visual bursts, and sensory feedback for Threads.",
-	tagline: "Bring your Threads to life with tactile juice.",
+	title: "ThreadFX — Tactile Effects & Interaction Suite for Social Feeds",
+	slogan: "Tactile audio, visual particle bursts, and physical feedback for social threads.",
+	tagline: "Turn silent scrolling into a rich tactile experience.",
 	description:
-		"Bring your Threads to life. Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback suite for Threads.",
+		"ThreadFX brings your social feeds to life. Zero-latency procedural audio synthesis, visual particle bursts, and tactile micro-interactions for social threads — starting with Threads.",
 	shortDescription:
-		"Satisfying procedural audio, visual particle bursts, and interactive effects for Threads.",
+		"Tactile micro-interactions, procedural audio synthesis, and visual particle bursts for social threads.",
 	keywords:
-		"threadfx, threads audio, threads sound effects, threads visual effects, particle bursts, custom likes, zzfx audio, chrome extension, side panel, manifest v3, open source",
+		"threadfx, tactile feedback, social threads, procedural audio, sound effects, particle bursts, confetti physics, custom likes, zzfx, web audio api, chrome extension, side panel, manifest v3, open source, micro-interactions",
 	themeColor: "#080808",
 	backgroundColor: "#080808",
 	appUrl: "threadfx.nmrisrl.dev",
@@ -90,7 +90,7 @@ export const APP_INFO: AppInfo = {
 	twitterSite: "@nmrisrl",
 	twitterCreator: "@nmrisrl",
 	ogImageAlt:
-		"ThreadFX — Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback for Threads",
+		"ThreadFX — Tactile micro-interactions, zero-latency procedural audio, and visual particle physics for social feeds",
 	urls: {
 		production: "https://threadfx.nmrisrl.dev",
 		fallback: "https://threadfx.vercel.app",

@@ -6,10 +6,11 @@ import {
 	Heart,
 	Volume2,
 	Check,
-	ShieldCheck,
 	ArrowRight,
 	ExternalLink,
 	Laptop,
+	Activity,
+	Layers,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { zzfx } from "@/lib/zzfx";
@@ -70,9 +71,13 @@ export default function App() {
 			<nav className="border-border/50 mx-auto flex h-20 max-w-6xl items-center justify-between border-b px-6">
 				<div className="flex items-center gap-3">
 					<img
-						src="/icons/48.png"
-						alt="ThreadFX"
-						className="h-9 w-9 rounded-xl object-contain shadow-lg shadow-[#FF2E93]/20"
+						src="/icons/128.png"
+						alt={APP_INFO.name}
+						width="36"
+						height="36"
+						className="h-9 w-9 rounded-xl object-contain shadow-lg shadow-[#FF2E93]/20 select-none"
+						loading="eager"
+						decoding="async"
 					/>
 					<div>
 						<span className="bg-gradient-to-r from-[#FF2E93] via-[#7928CA] to-[#00F5FF] bg-clip-text text-lg font-bold tracking-tight text-transparent">
@@ -111,30 +116,42 @@ export default function App() {
 					<div className="relative mx-auto flex h-24 w-24 items-center justify-center">
 						<div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#FF2E93]/25 via-[#7928CA]/30 to-[#00F5FF]/25 blur-xl" />
 						<img
-							src="/icons/128.png"
-							alt="ThreadFX Official 3D Icon"
+							src="/icons/512.png"
+							alt={`${APP_INFO.name} 3D Brand Emblem`}
+							width="96"
+							height="96"
 							className="relative h-24 w-24 -rotate-3 rounded-2xl shadow-2xl transition-transform duration-300 select-none hover:scale-105 hover:rotate-0"
 							draggable={false}
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 
 					<div className="border-border bg-card text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs">
 						<span className="h-2 w-2 animate-pulse rounded-full bg-[#00F5FF]" />
-						<span>Procedural Web Audio • Zero MP3s • Manifest V3</span>
+						<span>Procedural Audio • Particle Dynamics • Tactile Feedback</span>
 					</div>
 
 					<h1 className="text-4xl leading-tight font-extrabold tracking-tight sm:text-6xl">
-						Bring your Threads <br className="hidden sm:inline" />
+						Turn silent scrolling <br className="hidden sm:inline" />
 						<span className="bg-gradient-to-r from-[#FF2E93] via-[#7928CA] to-[#00F5FF] bg-clip-text text-transparent">
-							to life with tactile juice.
+							into a tactile experience.
 						</span>
 					</h1>
 
 					<p className="text-muted-foreground mx-auto max-w-2xl text-base leading-relaxed sm:text-lg">
-						Threads introduced custom likes, but interactions remain silent. ThreadFX electrifies
-						your feed with instant procedural sound effects, visual particle bursts, and satisfying
-						tactile feedback.
+						Modern social feeds are designed for continuous engagement, yet every interaction
+						remains flat and silent. ThreadFX electrifies your feeds with zero-latency procedural
+						sound effects, physics-driven particle bursts, and responsive micro-motion — starting
+						with Threads.
 					</p>
+
+					<div className="inline-flex items-center gap-2 pt-1 font-mono text-xs text-zinc-400">
+						<span className="inline-block h-1.5 w-1.5 rounded-full bg-[#FF2E93]" />
+						<span>Flagship Launch Platform: Threads</span>
+						<span className="text-zinc-600">•</span>
+						<span className="text-zinc-500">Multi-Platform Engine</span>
+					</div>
 
 					<div className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row">
 						<Button asChild size="lg" variant="gradient">
@@ -243,9 +260,9 @@ export default function App() {
 								</div>
 
 								<p className="text-sm leading-relaxed text-[#EDEDED]">
-									Testing the new custom like effects on Threads! Liking this post will now trigger
-									satisfying procedural sound effects and visual particle bursts. Hit the heart
-									below! ⚡✨
+									Testing tactile social interactions! Liking this post triggers zero-latency
+									procedural sound synthesis, custom particle dynamics, and responsive micro-motion.
+									Hit the heart below to test the juice! ⚡✨
 								</p>
 
 								{/* Simulated Action Bar */}
@@ -279,40 +296,88 @@ export default function App() {
 					</Card>
 				</div>
 
-				{/* Feature Grid */}
-				<div className="mt-28 grid grid-cols-1 gap-6 md:grid-cols-3">
-					<Card className="space-y-3 p-6">
-						<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#FF2E93]">
-							<Zap className="h-5 w-5" />
-						</div>
-						<h3 className="text-foreground text-base font-bold">Zero-Latency Synthesis</h3>
-						<p className="text-muted-foreground text-xs leading-relaxed">
-							Powered by ZzFX Web Audio API. Audio waveforms are calculated mathematically in under
-							15 milliseconds without downloading heavy audio files.
+				{/* Feature Suite */}
+				<div className="mt-28 space-y-8">
+					<div className="mx-auto max-w-2xl text-center">
+						<h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+							Engineered for Tactile Delight
+						</h2>
+						<p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+							Every micro-interaction is handcrafted with zero bloat, native web standards, and
+							obsessive attention to physical sensory feel.
 						</p>
-					</Card>
+					</div>
 
-					<Card className="space-y-3 p-6">
-						<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#7928CA]">
-							<Laptop className="h-5 w-5" />
-						</div>
-						<h3 className="text-foreground text-base font-bold">Native Chrome Side Panel</h3>
-						<p className="text-muted-foreground text-xs leading-relaxed">
-							Docks neatly to the right side of your browser. Stays open while you browse Threads
-							with live volume controls and real-time like stats.
-						</p>
-					</Card>
+					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+						<Card className="space-y-3 p-6 transition-colors hover:border-[#FF2E93]/40">
+							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#FF2E93]">
+								<Zap className="h-5 w-5" />
+							</div>
+							<h3 className="text-foreground text-base font-bold">Zero-Latency Audio Synthesis</h3>
+							<p className="text-muted-foreground text-xs leading-relaxed">
+								Procedural sound synthesis calculated mathematically via ZzFX and the native Web
+								Audio API in under 15ms. Zero external MP3 downloads and zero network lag.
+							</p>
+						</Card>
 
-					<Card className="space-y-3 p-6">
-						<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#00F5FF]">
-							<ShieldCheck className="h-5 w-5" />
-						</div>
-						<h3 className="text-foreground text-base font-bold">Minimal Permissions</h3>
-						<p className="text-muted-foreground text-xs leading-relaxed">
-							Only requests access to threads.com and local storage. No tracking, no background
-							analytics, and zero invasive permissions.
-						</p>
-					</Card>
+						<Card className="space-y-3 p-6 transition-colors hover:border-[#00F5FF]/40">
+							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#00F5FF]">
+								<Sparkles className="h-5 w-5" />
+							</div>
+							<h3 className="text-foreground text-base font-bold">
+								Physics-Driven Particle Bursts
+							</h3>
+							<p className="text-muted-foreground text-xs leading-relaxed">
+								Hardware-accelerated particle explosions erupting directly from the tapped element,
+								featuring customizable confetti palettes, spread angles, and velocity curves.
+							</p>
+						</Card>
+
+						<Card className="space-y-3 p-6 transition-colors hover:border-[#7928CA]/40">
+							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#7928CA]">
+								<Heart className="h-5 w-5" />
+							</div>
+							<h3 className="text-foreground text-base font-bold">Tactile Motion Feedback</h3>
+							<p className="text-muted-foreground text-xs leading-relaxed">
+								Micro-spring bounce dynamics and responsive button scaling that give digital
+								reactions the tangible satisfaction of pressing a mechanical switch.
+							</p>
+						</Card>
+
+						<Card className="space-y-3 p-6 transition-colors hover:border-[#7928CA]/40">
+							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#7928CA]">
+								<Laptop className="h-5 w-5" />
+							</div>
+							<h3 className="text-foreground text-base font-bold">Docked Native Side Panel</h3>
+							<p className="text-muted-foreground text-xs leading-relaxed">
+								A persistent Chrome Side Panel companion that stays docked to your screen. Audition
+								sound profiles, adjust playback volume, and tune particle dynamics with instant
+								sync.
+							</p>
+						</Card>
+
+						<Card className="space-y-3 p-6 transition-colors hover:border-[#FF2E93]/40">
+							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#FF2E93]">
+								<Activity className="h-5 w-5" />
+							</div>
+							<h3 className="text-foreground text-base font-bold">Lifetime Sensory Metrics</h3>
+							<p className="text-muted-foreground text-xs leading-relaxed">
+								Real-time local interaction odometer tracking lifetime likes juiced. Persists
+								securely in browser storage with zero external tracking or analytics telemetry.
+							</p>
+						</Card>
+
+						<Card className="space-y-3 p-6 transition-colors hover:border-[#00F5FF]/40">
+							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#00F5FF]">
+								<Layers className="h-5 w-5" />
+							</div>
+							<h3 className="text-foreground text-base font-bold">Modular Social Architecture</h3>
+							<p className="text-muted-foreground text-xs leading-relaxed">
+								Built with clean platform adapters—launching with deep, resilient DOM integration
+								for Threads, and engineered for upcoming expansion across modern social feeds.
+							</p>
+						</Card>
+					</div>
 				</div>
 
 				{/* 3-Step Install Guide */}

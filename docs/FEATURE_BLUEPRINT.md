@@ -147,7 +147,7 @@ Legend:
 
 ### Phase 5: Universal Multi-Platform Engine (`v2.0.0`)
 
-_(Detailed architectural specs documented in [UNIVERSAL_FX_ROADMAP.md](file:///C:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/UNIVERSAL_FX_ROADMAP.md))_
+_(Detailed architectural specs documented in [UNIVERSAL_FX_ROADMAP.md](UNIVERSAL_FX_ROADMAP.md))_
 
 - [ ] 🟡 **Modular Adapter Registry:** Refactor `content.ts` into a pluggable coordinator supporting multi-site profiles.
 - [ ] 🟡 **X (Twitter) Profile:** Zero-config support for X likes (`[data-testid="like"]`), retweets, and bookmarks.

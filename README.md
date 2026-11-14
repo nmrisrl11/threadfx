@@ -2,8 +2,9 @@
 
 <div align="center">
 
-**Bring your Threads to life.**  
-_Satisfying procedural audio, visual confetti bursts, and interactive juice for [Threads](https://threads.com)._
+**Turn silent scrolling into a tactile experience.**  
+_Zero-latency procedural audio, physics-driven particle bursts, and tactile micro-interactions for social feeds._  
+**Flagship Launch Platform:** [Threads](https://threads.com) • _Multi-Platform Architecture_
 
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-brightgreen.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
 [![Framework](https://img.shields.io/badge/Extension-WXT%20%2B%20React%2019-blue.svg)](https://wxt.dev/)
@@ -11,7 +12,7 @@ _Satisfying procedural audio, visual confetti bursts, and interactive juice for 
 [![Audio Engine](<https://img.shields.io/badge/Audio-ZzFX%20(0%20MP3s)-purple.svg>)](https://github.com/KilledByAPixel/ZzFX)
 [![License](https://img.shields.io/badge/License-MIT-black.svg)](LICENSE)
 
-[**Website & Live Demo**](https://threadfx.nmrisrl.dev) • [**Download Extension**](https://threadfx.nmrisrl.dev/download) • [**Brand Guide**](BRAND.md) • [**Architecture**](ARCHITECTURE.md) • [**Agent Guidelines**](AGENTS.md)
+[**Website & Live Demo**](https://threadfx.nmrisrl.dev) • [**Download Extension**](https://threadfx.nmrisrl.dev/download) • [**Brand Guide**](docs/BRAND.md) • [**Architecture**](docs/ARCHITECTURE.md) • [**Agent Guidelines**](AGENTS.md)
 
 </div>
 
@@ -19,11 +20,12 @@ _Satisfying procedural audio, visual confetti bursts, and interactive juice for 
 
 ## 🚀 Features
 
-- **🔊 Zero-Latency Procedural Audio:** Synthesized mathematically on the fly using [ZzFX](https://github.com/KilledByAPixel/ZzFX) via the browser's native Web Audio API. No external `.mp3` or `.wav` files to download.
-- **✨ Custom Like Burst:** Tailored sound and particle effects that trigger when liking posts with custom emojis, stickers, or GIFs (e.g. SpongeBob, thread spool).
-- **🎉 Visual Particle Bursts:** Dynamic particle explosions, custom emojis, and confetti effects that burst directly from the heart icon when tapped.
-- **📱 Native Chrome Side Panel:** Clean, dark-mode dashboard that stays docked to your screen while browsing Threads—no temporary popups that close when you click.
-- **🔒 Privacy-First & Minimal Permissions:** Only requests access to `threads.com` (and legacy `threads.net`) plus local storage. No tracking, no ads, and zero telemetry.
+- **🔊 Zero-Latency Procedural Audio Synthesis:** Synthesized mathematically on the fly using [ZzFX](https://github.com/KilledByAPixel/ZzFX) via the browser's native Web Audio API. Sub-15ms response with zero external `.mp3` or `.wav` files and zero network delay.
+- **🎆 Physics-Driven Particle Bursts:** Hardware-accelerated canvas particle explosions and confetti cascades that burst directly from the tapped element with customizable palettes, particle counts, and spread geometry.
+- **🖲️ Tactile Motion Feedback:** Micro-spring scale dynamics and responsive visual bounce effects that give flat digital interactions the physical weight and mechanical satisfaction of a tactile switch.
+- **📊 Real-Time Lifetime Sensory Metrics:** Private, local "Likes Enhanced" odometer tracking your lifetime interaction juice without sending a single byte of telemetry to any external server.
+- **📱 Docked Native Chrome Side Panel:** Clean, obsidian-chassis dashboard that stays docked to your screen while browsing—with real-time sound auditioning, live volume sliders, and particle controls with instant sync across tabs.
+- **🔒 Privacy-First & Minimal Permissions:** Only requests access to `threads.com` (and legacy `threads.net`) plus local storage. Zero background analytics, zero tracking scripts, and zero invasive permissions.
 
 ---
 
@@ -56,12 +58,13 @@ ThreadFX is architected for seamless performance across all major desktop operat
 - **macOS (Sonoma, Sequoia, and newer):** Fully supported on Chrome, Brave, Arc Browser, and Edge for Mac with native Side Panel docking and Retina-scaled particle canvas.
 - **Linux (Ubuntu, Fedora, Arch, Debian):** Fully supported on Chrome, Chromium, Brave, and Edge using Linux native PulseAudio / PipeWire through Web Audio API.
 
-### Tier 2: Future Platform Roadmap (Upcoming Releases)
+### Tier 2: Multi-Platform & Browser Roadmap
 
+- **🌐 Social Platform Adapters (Next):** Expand ThreadFX's tactile interaction suite to **Bluesky** and **X/Twitter**, leveraging our decoupled modular DOM observer architecture.
 - **🍎 Safari on macOS (Web Extension):** Convert the WXT build using Xcode’s `safari-web-extension-converter` to bring ThreadFX to native Safari desktop users.
 - **🦊 Firefox Desktop Support:** Compiling cross-browser targets (`npm run build:firefox` via WXT) to support Firefox on Windows, macOS, and Linux.
 - **📱 Mobile Chromium Browsers:** Testing unpacked loading on Android browsers that support desktop extensions (Kiwi, Orion).
-- **🎮 Web Haptic Feedback:** Exploring Gamepad / Web Haptic API integration for tactile vibration on supported controllers and trackpads.
+- **🎮 Web Haptic Feedback:** Exploring Gamepad / Web Haptic API integration for tactile vibration on supported trackpads and controllers.
 
 ---
 
@@ -149,7 +152,6 @@ threadfx/
 │   │   ├── favicon.svg             # Razor-sharp vector tab icon
 │   │   ├── og-image.png            # 1200x630 Open Graph preview
 │   │   ├── site.webmanifest        # PWA application manifest
-│   │   └── threadfx-latest.zip     # Local fallback zip
 │   ├── components.json             # shadcn/ui configuration
 │   ├── vercel.json                 # Decoupled /download redirect for Cloudflare R2
 │   └── package.json
@@ -157,9 +159,14 @@ threadfx/
 ├── data/                           # Centralized metadata & releases
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
 │   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│
+├── docs/                           # Architecture, design systems, and roadmaps
+│   ├── ARCHITECTURE.md             # System diagrams & runtime sequence
+│   ├── BRAND.md                    # Design system, color tokens, and visual voice
+│   ├── FEATURE_BLUEPRINT.md        # Feature specifications & visual wireframes
+│   └── UNIVERSAL_FX_ROADMAP.md     # Multi-platform adapter roadmap
+│
 ├── AGENTS.md                       # Technical guidelines for AI agents
-├── BRAND.md                        # Design system, color tokens, and visual voice
-├── ARCHITECTURE.md                 # System diagrams & runtime sequence
 ├── LICENSE                         # MIT License
 ├── PENDING_CHANGES.md              # Staging area for unreleased changes
 ├── skills-lock.json                # Agent skills dependency lockfile
@@ -184,8 +191,11 @@ ThreadFX includes dedicated agent skills located in `.agents/skills/` that can b
 ## 📄 Documentation Links
 
 - [**AGENTS.md**](AGENTS.md) — Technical guidelines for AI coding agents and contributors.
-- [**BRAND.md**](BRAND.md) — Design tokens, color palette, and typography system.
-- [**ARCHITECTURE.md**](ARCHITECTURE.md) — Detailed runtime lifecycle and sequence diagrams.
+- [**docs/BRAND.md**](docs/BRAND.md) — Design tokens, color palette, and typography system.
+- [**docs/ARCHITECTURE.md**](docs/ARCHITECTURE.md) — Detailed runtime lifecycle and sequence diagrams.
+- [**docs/FEATURE_BLUEPRINT.md**](docs/FEATURE_BLUEPRINT.md) — Feature specifications and sensory wireframes.
+- [**docs/UNIVERSAL_FX_ROADMAP.md**](docs/UNIVERSAL_FX_ROADMAP.md) — Multi-platform adapter expansion roadmap.
+- [**PENDING_CHANGES.md**](PENDING_CHANGES.md) — Staging area for unreleased changes and release notes.
 
 ---
 

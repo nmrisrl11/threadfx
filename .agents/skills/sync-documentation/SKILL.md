@@ -17,8 +17,8 @@ Audit and verify the consistency of these 6 core documentation files:
 | :--- | :--- | :--- |
 | **`README.md`** | Public repository overview & quickstart | Tech stack table, npm script list, monorepo structure tree, installation steps, and cross-OS support. |
 | **`AGENTS.md`** | Rules & guidelines for AI coding agents | Technical rules (ZzFX only, minimal MV3 permissions, semantic DOM targeting), storage schema, agent skills roster, and project structure. |
-| **`ARCHITECTURE.md`** | System architecture & technical specs | Component Mermaid diagram, runtime execution sequence, cross-OS audio pipeline, and Cloudflare R2 / Vercel routing. |
-| **`BRAND.md`** | Design system & brand guidelines | Color hex codes (`#080808`, `#FF2E93`, `#7928CA`, `#00F5FF`), design tokens, taglines, and tone of voice. |
+| **`docs/ARCHITECTURE.md`** | System architecture & technical specs | Component Mermaid diagram, runtime execution sequence, cross-OS audio pipeline, and Cloudflare R2 / Vercel routing. |
+| **`docs/BRAND.md`** | Design system & brand guidelines | Color hex codes (`#080808`, `#FF2E93`, `#7928CA`, `#00F5FF`), design tokens, taglines, and tone of voice. |
 | **`extension/README.md`** | Browser extension sub-package | Extension tech stack (WXT, shadcn, radix-ui, cn), permissions list, development scripts, and cross-OS status. |
 | **`website/README.md`** | Landing page sub-package | Website tech stack, npm scripts, dual-domain fallback, and Cloudflare R2 download routing. |
 
@@ -43,7 +43,7 @@ Compare the codebase against the documentation and check for these common drift 
 - Verify that `threads.com` is consistently cited as the primary domain, with `threads.net` mentioned strictly as the backward-compatible fallback.
 
 ### 5. Storage Schema Drift
-- Inspect `extension/lib/storage.ts` and ensure the `ThreadFXSettings` interface in `AGENTS.md` and `ARCHITECTURE.md` reflects any newly added settings keys.
+- Inspect `extension/lib/storage.ts` and ensure the `ThreadFXSettings` interface in `AGENTS.md` and `docs/ARCHITECTURE.md` reflects any newly added settings keys.
 
 ### 6. Directory Tree Drift
 - Compare the ASCII directory trees in `README.md` and `AGENTS.md` with the actual file system using `git status` or directory listing.

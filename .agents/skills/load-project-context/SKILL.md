@@ -45,9 +45,11 @@ Review the project's primary reference files:
 
 1. **`AGENTS.md`**: Architectural constraints, storage schema, agent skills roster, and coding standards.
 2. **`README.md`**: Tech stack overview, available npm scripts, and monorepo structure.
-3. **`ARCHITECTURE.md`**: Runtime lifecycle, like interception sequence, and audio synthesis pipeline.
-4. **`BRAND.md`**: Color palette (`#080808` canvas, `#FF2E93` neon pink, `#7928CA` violet, `#00F5FF` cyan), typography, and voice.
-5. **`extension/README.md` & `website/README.md`**: Subsystem-specific details.
+3. **`docs/ARCHITECTURE.md`**: Runtime lifecycle, like interception sequence, and audio synthesis pipeline.
+4. **`docs/BRAND.md`**: Color palette (`#080808` canvas, `#FF2E93` neon pink, `#7928CA` violet, `#00F5FF` cyan), typography, and voice.
+5. **`docs/FEATURE_BLUEPRINT.md`** & **`docs/UNIVERSAL_FX_ROADMAP.md`**: Feature designs and multi-platform roadmap.
+6. **`PENDING_CHANGES.md`**: Staging area for unreleased features and release notes.
+7. **`extension/README.md` & `website/README.md`**: Subsystem-specific details.
 
 ---
 
@@ -60,7 +62,7 @@ threadfx/
 ├── .agents/skills/                 # Agent skills & workflows
 ├── .vscode/                        # VS Code settings, tasks (schema 2.0.0), and launch configs
 ├── extension/                      # WXT Browser Extension (Manifest V3)
-│   ├── components/                 # shadcn/ui components (Button, Switch, Slider, Card, Badge)
+│   ├── components/                 # shadcn/ui components (Slider, Switch, Tabs)
 │   ├── entrypoints/
 │   │   ├── background.ts           # Service worker (openPanelOnActionClick)
 │   │   ├── content.ts              # threads.com DOM like-observer & ZzFX trigger
@@ -81,14 +83,22 @@ threadfx/
 │   │   ├── App.tsx                 # Hero, Like Simulator, 3-Step Install Guide
 │   │   └── index.css               # AMOLED dark design tokens
 │   ├── public/
-│   │   └── threadfx-latest.zip     # Local fallback zip (gitignored)
 │   ├── vercel.json                 # Decoupled /download redirect to Cloudflare R2
 │   └── package.json
 │
-├── AGENTS.md
-├── BRAND.md
-├── ARCHITECTURE.md
+├── data/                           # Centralized metadata & releases
+│   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
+│   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│
+├── docs/                           # Architecture, design systems, and roadmaps
+│   ├── ARCHITECTURE.md             # System diagrams & runtime sequence
+│   ├── BRAND.md                    # Design system, color tokens, and visual voice
+│   ├── FEATURE_BLUEPRINT.md        # Feature specifications & visual wireframes
+│   └── UNIVERSAL_FX_ROADMAP.md     # Multi-platform adapter roadmap
+│
+├── AGENTS.md                       # Technical guidelines for AI agents
 ├── LICENSE                         # MIT License
+├── PENDING_CHANGES.md              # Staging area for unreleased changes
 ├── skills-lock.json                # Agent skills lockfile
 └── package.json                    # Workspaces scripts, oxlint, and oxfmt
 ```

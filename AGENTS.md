@@ -6,7 +6,7 @@
 
 ## 1. Project Overview & Architecture
 
-**ThreadFX** is an interactive effects and tactile feedback suite for [Threads](https://threads.com). It enhances user interactions (especially custom likes) with zero-latency procedural sound effects (ZzFX), visual particle bursts, and motion feedback.
+**ThreadFX** is an interactive effects, procedural audio, and tactile feedback suite for social threads. Launching with flagship support for [Threads](https://threads.com), it enhances user interactions (especially likes and reactions) with zero-latency procedural sound effects (ZzFX), hardware-accelerated particle physics, and responsive micro-motion.
 
 ### Monorepo Structure
 
@@ -43,9 +43,14 @@ threadfx/
 ├── data/                           # Centralized metadata & releases
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
 │   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│
+├── docs/                           # Architecture, design systems, and roadmaps
+│   ├── ARCHITECTURE.md             # System diagrams & runtime sequence
+│   ├── BRAND.md                    # Design system, color tokens, and visual voice
+│   ├── FEATURE_BLUEPRINT.md        # Feature specifications & visual wireframes
+│   └── UNIVERSAL_FX_ROADMAP.md     # Multi-platform adapter roadmap
+│
 ├── AGENTS.md                       # Technical guidelines for AI agents
-├── BRAND.md                        # Design system, color tokens, and visual voice
-├── ARCHITECTURE.md                 # System diagrams & runtime sequence
 ├── LICENSE                         # MIT License
 ├── PENDING_CHANGES.md              # Staging area for unreleased changes
 ├── skills-lock.json                # Agent skills dependency lockfile

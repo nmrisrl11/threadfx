@@ -1,12 +1,12 @@
 # ARCHITECTURE.md — ThreadFX Technical Architecture
 
-> This document details the technical implementation, runtime lifecycle, audio synthesis pipeline, and infrastructure architecture for **ThreadFX**.
+> This document details the technical implementation, runtime lifecycle, audio synthesis pipeline, modular platform adapter pattern, and infrastructure architecture for **ThreadFX** (launching with flagship support for Threads).
 
 ---
 
 ## 1. System Overview & Component Diagram
 
-ThreadFX consists of two independent subsystems connected via Cloudflare R2 and shared TypeScript logic:
+ThreadFX is architected as a modular interaction engine consisting of a host-isolated Side Panel controller, zero-latency procedural Web Audio synthesis, a hardware-accelerated particle canvas, and decoupled platform DOM adapters (active flagship: `threads.com`):
 
 ```mermaid
 graph TD

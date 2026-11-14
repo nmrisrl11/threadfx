@@ -1,8 +1,8 @@
 {
 	"id": "threadfx",
-	"name": "ThreadFX for Threads",
+	"name": "ThreadFX — Tactile Social Effects Suite",
 	"short_name": "ThreadFX",
-	"description": "Satisfying procedural audio, visual particle bursts, and interactive effects suite for Threads.",
+	"description": "Tactile micro-interactions, procedural audio synthesis, and visual particle bursts for social threads.",
 	"start_url": "/",
 	"scope": "/",
 	"display": "standalone",

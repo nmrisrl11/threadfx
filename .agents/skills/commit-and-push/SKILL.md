@@ -72,7 +72,7 @@ Group the commit description points cleanly under standard responsibility headin
   - Move color utility functions to shared lib/utils.ts
 
 - Docs:
-  - Document new sound preset in README.md and BRAND.md
+  - Document new sound preset in README.md and docs/BRAND.md
   - Update AGENTS.md storage schema
 
 - Chores:

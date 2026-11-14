@@ -1,6 +1,6 @@
 # BRAND.md — ThreadFX Design System & Brand Guidelines
 
-> **ThreadFX** is the tactile effects and interactive juice suite for Threads (`threads.com`). This document defines the visual identity, design tokens, color palette, typography, and voice of the brand.
+> **ThreadFX** is the tactile effects, procedural audio, and interactive feedback suite for social threads — launching with flagship support for Threads (`threads.com`). This document defines the visual identity, design tokens, color palette, typography, and voice of the brand.
 
 ---
 
@@ -9,21 +9,22 @@
 ### Brand Name
 
 - **Full Name:** **ThreadFX**
-- **Chrome Web Store Listing Title:** `ThreadFX for Threads`
+- **Listing Title:** `ThreadFX — Tactile Social Effects Suite`
+- **Flagship Launch Target:** `Threads (threads.com)`
 
 ### Slogans & Taglines
 
 - **Primary Slogan:**  
-  ⚡ **"Bring your Threads to life."**
+  ⚡ **"Turn silent scrolling into a tactile experience."**
 - **Secondary Taglines:**
-  - _"Audio, visuals, and interactive juice for Threads."_
-  - _"Turn silent scrolling into a full sensory experience."_
-  - _"Give your Threads some punch."_
-  - _"Satisfying sounds for every like."_
+  - _"Tactile audio, visual particle bursts, and physical feedback for social threads."_
+  - _"Give your social feeds real mechanical satisfaction."_
+  - _"Zero-latency procedural sound and particle dynamics for every like."_
+  - _"Bring your social threads to life with tactile juice."_
 
 ### Elevator Pitch
 
-> Threads introduced custom likes with emojis, stickers, and GIFs, but every interaction is completely silent. ThreadFX electrifies your feed with instant procedural sound effects, visual particle bursts, custom emoji explosions, and satisfying tactile juice—all running with zero bloat and zero lag.
+> Social feeds are designed for rapid scrolling, yet every tap and interaction remains flat and silent. ThreadFX electrifies your feeds with zero-latency procedural sound synthesis, hardware-accelerated particle bursts, and responsive micro-spring physics—all docked cleanly in a native browser Side Panel with zero bloat, zero tracking, and zero external audio files. Launching with deep, resilient integration for Meta Threads, and engineered for upcoming expansion across modern social feeds.
 
 ---
 

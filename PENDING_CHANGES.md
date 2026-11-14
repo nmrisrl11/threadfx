@@ -10,6 +10,8 @@
 
 ### Added
 
+- **Bespoke 3D Speech-Thread Brand Mark**: Upgraded the official brand mark to a brushed titanium and liquid chrome continuous dialogue ribbon with three tactile metallic chat studs inside an elevated dark matte obsidian squircle.
+- **Automated Asset Processing Pipeline**: Introduced a dedicated Python pipeline (`process_logo.py`) that automates boundary unmultiplication, Lanczos downsampling across all icon tiers, multi-layer `.ico` packaging, and Open Graph card compositing.
 - **Elevated Obsidian Chassis Interface**: Redesigned the Chrome Side Panel with a floating obsidian surface, refined inset micro-shadows, and dedicated tab views for tactile audio presets and particle dynamics.
 - **Centralized Metadata Engine**: Synchronized all application titles, SEO tags, social cards, manifest properties, and companion hub descriptors from a single source of truth.
 - **Zero-Overhead Visual Performance Profiling**: Integrated developer performance telemetry via conditional Dev-only React Scan scripts to ensure silky-smooth 60fps animations and immediate tactile response without weighing down production downloads.
@@ -19,6 +21,8 @@
 
 ### Changed
 
+- **Holistic Tactile Feature Copywriting**: Overhauled copywriting and documentation across the landing page, metadata, and guides to showcase the full tactile feature suite—procedural audio synthesis, physics-driven particle bursts, tactile micro-motion, lifetime sensory odometer, and docked Side Panel dashboard.
+- **Multi-Platform Brand Positioning**: Generalized brand positioning from a narrow Threads-only extension to a modular tactile social interaction suite with Threads as the flagship launch platform, laying the architectural groundwork for multi-platform adapters (Bluesky, X).
 - **Generalized Visual Effects Identity**: Broadened copywriting and branding across the entire project from narrow "neon confetti" to "visual particle bursts and custom emoji effects" to support future emoji, sticker, and custom particle reaction bursts.
 - **Edge-to-Edge Icon Scaling & Chrome Contrast**: Re-rendered the entire extension icon and favicon suite with tight bounding crops, eliminating empty transparent margins and boosting metallic edge contrast for crisp visibility in dark browser toolbars.
 
@@ -26,6 +30,7 @@
 
 ### Removed
 
+- **Purged Orphaned Extension Components & Leftovers**: Removed dead code from earlier iterations (`controls-surface.tsx`, `card.tsx`, `badge.tsx`, `button.tsx`) and stale fallback zip files, reducing extension CSS bundle size by ~7 kB.
 - **Pruned Unused Assets**: Removed legacy starter assets, orphaned template stylesheets, and duplicate icon variants to keep the repository and build distribution lean and pristine.
 
 ---

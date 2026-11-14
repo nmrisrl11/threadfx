@@ -1,6 +1,6 @@
 # ThreadFX Extension (Manifest V3)
 
-> The official browser extension for [ThreadFX](https://threadfx.nmrisrl.dev) — adding procedural audio, visual particle bursts, and interactive effects to [Threads](https://threads.com).
+> The official browser extension for [ThreadFX](https://threadfx.nmrisrl.dev) — adding procedural audio, visual particle bursts, and tactile micro-interactions to social threads (flagship: [Threads](https://threads.com)).
 
 ---
 

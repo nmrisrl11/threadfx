@@ -1,6 +1,6 @@
 # ThreadFX Website & Landing Page
 
-> The official landing page and live interactive sound simulator for [ThreadFX](https://threadfx.nmrisrl.dev).
+> The official landing page, live interactive simulator, and documentation hub for [ThreadFX](https://threadfx.nmrisrl.dev).
 
 ---
 
