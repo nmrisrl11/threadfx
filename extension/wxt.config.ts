@@ -20,6 +20,11 @@ export default defineConfig({
 		],
 		action: {
 			default_title: "Open ThreadFX Side Panel",
+			default_icon: {
+				"16": "icon/16.png",
+				"32": "icon/32.png",
+				"48": "icon/48.png",
+			},
 		},
 	},
 	vite: () => ({

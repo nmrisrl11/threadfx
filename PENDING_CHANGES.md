@@ -17,6 +17,7 @@
 ### Changed
 
 - **Generalized Visual Effects Identity**: Broadened copywriting and branding across the entire project from narrow "neon confetti" to "visual particle bursts and custom emoji effects" to support future emoji, sticker, and custom particle reaction bursts.
+- **Edge-to-Edge Icon Scaling & Chrome Contrast**: Re-rendered the entire extension icon and favicon suite with tight bounding crops, eliminating empty transparent margins and boosting metallic edge contrast for crisp visibility in dark browser toolbars.
 
 ### Fixed
 
