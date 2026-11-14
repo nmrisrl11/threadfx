@@ -89,18 +89,18 @@ Meta obfuscates and frequently changes class names (e.g. `.x1i10hfl`).
 ### Extension Development
 ```bash
 cd extension
-pnpm install
-pnpm dev              # Launches Chrome with the extension loaded & HMR enabled
-pnpm build            # Builds output to .output/chrome-mv3
-pnpm zip              # Generates unpacked .zip package in .output/
+npm install
+npm run dev              # Launches Chrome with the extension loaded & HMR enabled
+npm run build            # Builds output to .output/chrome-mv3
+npm run zip              # Generates unpacked .zip package in .output/
 ```
 
 ### Website Development
 ```bash
 cd website
-pnpm install
-pnpm dev              # Runs local Vite dev server
-pnpm build            # Builds static distribution for Vercel
+npm install
+npm run dev              # Runs local Vite dev server
+npm run build            # Builds static distribution for Vercel
 ```
 
 ---

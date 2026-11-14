@@ -54,34 +54,29 @@ Since ThreadFX is currently distributed as an open-source unpacked package:
 
 ### Prerequisites
 * [Node.js](https://nodejs.org/) v18+ 
-* [pnpm](https://pnpm.io/) (Recommended)
+* [npm](https://docs.npmjs.com/) (Standard)
 
 ### 1. Clone & Install
 ```bash
 git clone https://github.com/nmrisrl/threadfx.git
 cd threadfx
+npm install
 ```
 
 ### 2. Run the Extension (with HMR)
 ```bash
-cd extension
-pnpm install
-pnpm dev
+npm run dev:ext
 ```
 *This command compiles the extension and automatically opens a fresh Chrome window with the extension pre-loaded and live hot-reloading enabled.*
 
 ### 3. Run the Landing Page
 ```bash
-cd website
-pnpm install
-pnpm dev
+npm run dev:web
 ```
 
 ### 4. Build Production Zip
 ```bash
-cd extension
-pnpm build
-pnpm zip
+npm run build:all
 # Output will be located in extension/.output/threadfx-<version>.zip
 ```
 

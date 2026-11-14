@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "description": "Tactile audio, confetti, and interactive effects suite for Threads",
+  "workspaces": [
+    "extension",
+    "website"
+  ],
   "scripts": {
-    "dev:ext": "pnpm --filter ./extension dev",
-    "build:ext": "pnpm --filter ./extension build",
-    "zip:ext": "pnpm --filter ./extension zip",
-    "dev:web": "pnpm --filter ./website dev",
-    "build:web": "pnpm --filter ./website build",
-    "build:all": "pnpm --filter ./extension build && pnpm --filter ./extension zip && pnpm --filter ./website build"
+    "dev:ext": "npm run dev --workspace=extension",
+    "build:ext": "npm run build --workspace=extension",
+    "zip:ext": "npm run zip --workspace=extension",
+    "dev:web": "npm run dev --workspace=website",
+    "build:web": "npm run build --workspace=website",
+    "build:all": "npm run build --workspace=extension && npm run zip --workspace=extension && npm run build --workspace=website"
   },
   "keywords": [
     "threads",
