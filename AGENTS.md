@@ -40,10 +40,13 @@ threadfx/
 │   ├── vercel.json                 # /download redirect to Cloudflare R2
 │   └── package.json
 │
+├── data/                           # Centralized metadata & releases
+│   └── changelog.ts                # Typed release notes & active version (shared via @data)
 ├── AGENTS.md                       # Technical guidelines for AI agents
 ├── BRAND.md                        # Design system, color tokens, and visual voice
 ├── ARCHITECTURE.md                 # System diagrams & runtime sequence
 ├── LICENSE                         # MIT License
+├── PENDING_CHANGES.md              # Staging area for unreleased changes
 ├── skills-lock.json                # Agent skills dependency lockfile
 └── package.json                    # Monorepo scripts with native npm workspaces
 ```

@@ -1,3 +1,4 @@
+import path from "path";
 import { defineConfig } from "wxt";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -23,5 +24,10 @@ export default defineConfig({
 	},
 	vite: () => ({
 		plugins: [tailwindcss()],
+		resolve: {
+			alias: {
+				"@data": path.resolve(import.meta.dirname, "../data"),
+			},
+		},
 	}),
 });

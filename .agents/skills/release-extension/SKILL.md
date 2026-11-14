@@ -36,7 +36,15 @@ Update the `"version"` field in lockstep:
 
 ---
 
-## Step 3: Clean Build & Zip Packaging
+## Step 3: Promote Pending Changes to Changelog
+
+1. Read staged updates from `PENDING_CHANGES.md` under `## Unreleased`.
+2. Format the release object and prepend it to `CHANGELOG_DATA` in `data/changelog.ts`.
+3. Reset `## Unreleased` in `PENDING_CHANGES.md`.
+
+---
+
+## Step 4: Clean Build & Zip Packaging
 
 Run the full monorepo build pipeline:
 
@@ -51,7 +59,7 @@ Verify the build output:
 
 ---
 
-## Step 4: Refresh Local Fallback Archive
+## Step 5: Refresh Local Fallback Archive
 
 Copy the newly built zip to `website/public/threadfx-latest.zip` as a local offline fallback (ensure it remains gitignored):
 
@@ -61,7 +69,7 @@ Copy-Item "extension\.output\threadfx-<NEW_VERSION>-chrome.zip" "website\public\
 
 ---
 
-## Step 5: Prepare GitHub Release Draft
+## Step 6: Prepare GitHub Release Draft
 
 Generate a pre-filled GitHub Release draft URL for the user:
 

@@ -23,45 +23,50 @@ The public changelog is read by everyday Threads users, creators, and community 
 
 ---
 
-## 2. Standard Structure & Entry Formatting
+## 2. Source of Truth & Lifecycle
 
-Every entry must feature a bold, engaging feature title followed by a colon and a friendly, benefit-driven description:
+ThreadFX follows a centralized two-tier changelog architecture at the monorepo root:
 
-```markdown
-### Added
-- **Feature Name:** Friendly, engaging explanation of what this brings to the user's feed, why it makes Threads more enjoyable, and how to use it.
-
-### Improved
-- **Polish / Refinement:** What feels smoother, sounds crisper, or looks cleaner.
-
-### Fixed
-- **Issue Resolution:** What friction was eliminated or what interaction now works reliably.
-
-### Removed
-- **Retired Feature:** Clear, polite note on retired settings or deprecated presets.
-```
+1. **`PENDING_CHANGES.md` (Staging Area):**
+   - Located at the monorepo root.
+   - During active development, queue user-facing updates under `## Unreleased` (`Added`, `Changed`, `Fixed`, `Removed`).
+   - Scope covers the unified ThreadFX product (in-feed extension audio/visuals, Side Panel controls, and major companion web hub capabilities).
+2. **`data/changelog.ts` (Centralized Source of Truth):**
+   - TypeScript data file at the monorepo root holding the `CHANGELOG_DATA` array.
+   - Accessible to both `website` and `extension` via the `@data` path alias.
+   - Powers release notes, What's New dialogs, and active version derivation.
 
 ---
 
-## 3. Step-by-Step Authoring Workflow
+## 3. Step-by-Step Authoring & Release Workflow
 
-### Step 1: Gather Recent Changes
-Review recent Git history and unreleased changes:
-```powershell
-git log -n 15 --oneline
+### Step 1: Review Queued Changes in `PENDING_CHANGES.md`
+Read the `## Unreleased` section of `PENDING_CHANGES.md` to review all staged bullet points.
+
+### Step 2: Craft the Release Object (`data/changelog.ts`)
+1. Create a new `ChangelogRelease` object:
+   - `version`: Target version string (e.g. `"1.1.0"`).
+   - `date`: Release date formatted as `"MMM DD, YYYY"` (e.g. `"Nov 14, 2026"`).
+   - `title`: An engaging, descriptive title capturing the main theme (e.g. `"The Neon Sound Pack & Instant Sync"`).
+   - `changes`: Array of category objects (`Added`, `Changed`, `Fixed`, `Removed`). Include only categories with items.
+2. Polish raw bullets into cohesive, benefit-focused paragraphs with a bold feature title prefix:
+   - Format: `"Feature Title: Friendly explanation of what this enables for the user and how it works."`
+3. Prepend the new release object to the beginning of the `CHANGELOG_DATA` array in `data/changelog.ts`.
+
+### Step 3: Reset `PENDING_CHANGES.md`
+Clear the entries under `## Unreleased` in `PENDING_CHANGES.md` to reset the staging area for subsequent development:
+
+```markdown
+## Unreleased
+
+### Added
+
+### Changed
+
+### Fixed
+
+### Removed
 ```
-Identify the functional changes that actually impact what users see, hear, or configure.
-
-### Step 2: Translate & Group
-Filter out developer-only chores (linter configs, build scripts, tests). Group user-impacting changes into:
-- **Added**: New sound presets, new confetti patterns, new dashboard toggles.
-- **Improved**: Volume slider ergonomics, haptic audio timing, AMOLED dark-mode contrast.
-- **Fixed**: Liking custom emojis (stickers/GIFs) that previously didn't trigger audio, side panel layout sizing on smaller displays.
-
-### Step 3: Polish Tone & Emotion
-Infuse personality! ThreadFX is about tactile joy, electric pulses, and making social interactions feel satisfying:
-- Use sensory words: *tactile, crisp, snappy, fluid, electric, vibrant, punchy, satisfying*.
-- Keep paragraphs punchy (2-3 sentences max).
 
 ---
 
