@@ -6,6 +6,7 @@ dist/
 .output/
 .wxt/
 build/
+*.zip
 
 # Logs
 npm-debug.log*
