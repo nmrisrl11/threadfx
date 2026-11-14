@@ -78,7 +78,7 @@ export default function App() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://threads.net/@nmrisrl"
+            href="https://threads.com/@nmrisrl"
             target="_blank"
             rel="noreferrer"
             className="hidden sm:flex items-center gap-1.5 text-xs text-[#8E8E93] hover:text-[#F3F5F7] transition-colors"
@@ -366,7 +366,7 @@ export default function App() {
           <span>
             Created by{' '}
             <a
-              href="https://threads.net/@nmrisrl"
+              href="https://threads.com/@nmrisrl"
               target="_blank"
               rel="noreferrer"
               className="text-[#F3F5F7] hover:underline"
@@ -378,7 +378,7 @@ export default function App() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://threads.net/@nmrisrl"
+            href="https://threads.com/@nmrisrl"
             target="_blank"
             rel="noreferrer"
             className="hover:text-[#F3F5F7] transition-colors"

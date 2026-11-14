@@ -1,32 +1,36 @@
-# React + TypeScript + Vite
+# ThreadFX Website & Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> The official landing page and live interactive sound simulator for [ThreadFX](https://threadfx.nmrisrl.dev).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
 
-## React Compiler
+* **Framework:** [Vite](https://vite.dev/) + React 19 + TypeScript
+* **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom AMOLED dark tokens
+* **Audio Engine:** Shared in-memory `zzfx.ts` procedural synthesizer
+* **Visual Effects:** `canvas-confetti`
+* **Icons:** Lucide React
+* **Hosting:** Vercel (Hobby) with dual-domain fallback
+* **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 💻 npm Development Scripts
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Run these from within the `website/` directory (or use `npm run <script>:web` from the monorepo root):
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install               # Install dependencies
+npm run dev               # Start local Vite dev server
+npm run build             # Compile static site to dist/
+npm run preview           # Preview production build locally
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 🌐 Domains & Cloudflare R2 Routing
+
+* **Production URL:** `https://threadfx.nmrisrl.dev`
+* **Vercel Fallback:** `https://threadfx.vercel.app`
+* **Decoupled Downloads:** The landing page links to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket holding `threadfx-latest.zip`.

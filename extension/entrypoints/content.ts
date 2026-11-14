@@ -5,7 +5,12 @@ import { getSettings, onSettingsChanged, incrementLikesJuiced } from '@/lib/stor
 import type { ThreadFXSettings } from '@/lib/storage';
 
 export default defineContentScript({
-  matches: ['https://*.threads.net/*', 'https://threads.net/*'],
+  matches: [
+    'https://*.threads.com/*',
+    'https://threads.com/*',
+    'https://*.threads.net/*',
+    'https://threads.net/*',
+  ],
   runAt: 'document_idle',
   main() {
     console.log('[ThreadFX] Content script loaded on Threads.');

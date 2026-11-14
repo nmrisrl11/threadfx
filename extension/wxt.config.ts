@@ -8,7 +8,12 @@ export default defineConfig({
     name: 'ThreadFX for Threads',
     description: 'Satisfying procedural audio, visual confetti bursts, and interactive effects for Threads.',
     permissions: ['sidePanel', 'storage'],
-    host_permissions: ['https://*.threads.net/*', 'https://threads.net/*'],
+    host_permissions: [
+      'https://*.threads.com/*',
+      'https://threads.com/*',
+      'https://*.threads.net/*',
+      'https://threads.net/*',
+    ],
     action: {
       default_title: 'Open ThreadFX Side Panel',
     },

@@ -10,10 +10,10 @@ ThreadFX consists of two independent subsystems connected via Cloudflare R2 and 
 
 ```mermaid
 graph TD
-    subgraph Browser["User's Browser"]
-        ThreadsTab["threads.net Web Tab"]
+    subgraph Browser["User's Browser (Windows / macOS / Linux)"]
+        ThreadsTab["threads.com Web Tab"]
         ContentScript["content.ts (DOM Observer & FX Engine)"]
-        SidePanel["sidepanel.html (React + shadcn/ui Dashboard)"]
+        SidePanel["sidepanel.html (React 19 + shadcn/ui Dashboard)"]
         ChromeStorage[("chrome.storage.local")]
         AudioCtx["Native Web Audio API (ZzFX)"]
         CanvasOverlay["Canvas Particle Overlay (#threadfx-canvas)"]
@@ -44,7 +44,7 @@ When a user likes a post on Threads (standard heart or custom like), the followi
 sequenceDiagram
     autonumber
     actor User
-    participant Threads as threads.net Feed
+    participant Threads as threads.com Feed
     participant CS as content.ts
     participant Storage as chrome.storage.local
     participant ZzFX as Web Audio (ZzFX)
@@ -115,7 +115,19 @@ To prevent Meta's minified class rotations from breaking the extension:
 
 ---
 
-## 6. Distribution & Domain Infrastructure
+## 6. Cross-OS & Multi-Platform Architecture
+
+* **OS Independence:** The core extension code interacts purely with standard W3C Web Audio API and Chrome Extension MV3 APIs, ensuring byte-for-byte identical audio synthesis across:
+  * **Windows:** DirectSound / WASAPI audio pipeline via browser.
+  * **macOS:** CoreAudio low-latency pipeline via browser.
+  * **Linux:** PulseAudio / PipeWire audio pipeline via browser.
+* **Future Targets (Planned):**
+  * **Safari Web Extension:** Converting via Xcode tools for native macOS Safari support.
+  * **Firefox Target:** Supporting Gecko engines via WXT cross-compilation.
+
+---
+
+## 7. Distribution & Domain Infrastructure
 
 ### Multi-Domain Vercel Fallback
 ```text

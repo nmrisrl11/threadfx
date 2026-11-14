@@ -1,6 +1,6 @@
 # BRAND.md — ThreadFX Design System & Brand Guidelines
 
-> **ThreadFX** is the tactile effects and interactive juice suite for Threads (`threads.net`). This document defines the visual identity, design tokens, color palette, typography, and voice of the brand.
+> **ThreadFX** is the tactile effects and interactive juice suite for Threads (`threads.com`). This document defines the visual identity, design tokens, color palette, typography, and voice of the brand.
 
 ---
 
@@ -37,7 +37,7 @@
 
 ## 3. Color Palette & Design Tokens
 
-ThreadFX uses an **AMOLED Dark** foundation designed to blend seamlessly with `threads.net`, accented with an electrifying tri-color gradient:
+ThreadFX uses an **AMOLED Dark** foundation designed to blend seamlessly with `threads.com` (and legacy `threads.net`), accented with an electrifying tri-color gradient:
 
 ### Palette Table
 

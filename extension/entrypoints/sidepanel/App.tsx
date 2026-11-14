@@ -201,7 +201,7 @@ export default function App() {
       {/* Footer Branding */}
       <footer className="pt-4 border-t border-[#262626] flex items-center justify-between text-[11px] text-[#8E8E93]">
         <a
-          href="https://threads.net/@nmrisrl"
+          href="https://threads.com/@nmrisrl"
           target="_blank"
           rel="noreferrer"
           className="hover:text-[#F3F5F7] transition-colors"
