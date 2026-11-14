@@ -386,7 +386,7 @@ export default function App() {
             Threads
           </a>
           <a
-            href="https://github.com/nmrisrl/threadfx"
+            href="https://github.com/nmrisrl11/threadfx"
             target="_blank"
             rel="noreferrer"
             className="hover:text-[#F3F5F7] transition-colors"

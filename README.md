@@ -84,7 +84,7 @@ Since ThreadFX is currently distributed as an open-source unpacked package:
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/nmrisrl/threadfx.git
+git clone https://github.com/nmrisrl11/threadfx.git
 cd threadfx
 npm install
 ```
