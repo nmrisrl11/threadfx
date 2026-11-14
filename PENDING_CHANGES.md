@@ -10,6 +10,7 @@
 
 ### Added
 
+- **Independent Tri-State Theme Switcher**: Introduced a dedicated light, dark, and system color mode controller to the Side Panel header, letting you effortlessly switch between crisp daylight clarity, deep obsidian contrast, or seamless synchronization with your operating system preferences.
 - **Bespoke 3D Speech-Thread Brand Mark**: Upgraded the official brand mark to a brushed titanium and liquid chrome continuous dialogue ribbon with three tactile metallic chat studs inside an elevated dark matte obsidian squircle.
 - **Automated Asset Processing Pipeline**: Introduced a dedicated Python pipeline (`process_logo.py`) that automates boundary unmultiplication, Lanczos downsampling across all icon tiers, multi-layer `.ico` packaging, and Open Graph card compositing.
 - **Elevated Obsidian Chassis Interface**: Redesigned the Chrome Side Panel with a floating obsidian surface, refined inset micro-shadows, and dedicated tab views for tactile audio presets and particle dynamics.

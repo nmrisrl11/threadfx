@@ -27,17 +27,19 @@ export function AudioTab() {
 			/>
 
 			{/* Volume Controls Surface */}
-			<div className="space-y-2 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+			<div className="border-border bg-surface-subtle space-y-2 rounded-xl border p-3 transition-colors">
 				<div className="flex items-center justify-between text-xs">
-					<div className="flex items-center gap-2 text-zinc-300">
+					<div className="text-foreground flex items-center gap-2">
 						{volume === 0 ? (
-							<VolumeX className="h-3.5 w-3.5 text-zinc-500" />
+							<VolumeX className="text-muted-foreground h-3.5 w-3.5" />
 						) : (
-							<Volume2 className="h-3.5 w-3.5 text-zinc-300" />
+							<Volume2 className="text-foreground h-3.5 w-3.5" />
 						)}
 						<span className="text-xs font-medium">Audition & Playback Volume</span>
 					</div>
-					<span className="font-mono text-[11px] text-zinc-400">{Math.round(volume * 100)}%</span>
+					<span className="text-muted-foreground font-mono text-[11px]">
+						{Math.round(volume * 100)}%
+					</span>
 				</div>
 
 				<Slider

@@ -1,4 +1,5 @@
 import { Switch } from "@/components/ui/switch";
+import { ThemeToggle } from "@/components/sidepanel/theme-toggle";
 import { useMasterToggle } from "@/hooks/use-settings";
 import { APP_INFO } from "@data/app";
 
@@ -15,22 +16,28 @@ export function SidepanelHeader() {
 					loading="eager"
 					decoding="async"
 				/>
-				<span className="font-heading text-sm font-semibold tracking-tight text-zinc-100">
+				<span className="font-heading text-foreground text-sm font-semibold tracking-tight">
 					{APP_INFO.name}
 				</span>
 			</div>
 
-			{/* Master Switch with Status Indicator */}
+			{/* Controls: Theme Toggle & Master Switch */}
 			<div className="flex items-center gap-2">
-				<span className="flex items-center gap-1.5 text-[11px] font-medium text-zinc-400">
-					<span
-						className={`h-1.5 w-1.5 rounded-full transition-colors ${
-							enabled ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" : "bg-zinc-600"
-						}`}
-					/>
-					{enabled ? "Active" : "Paused"}
-				</span>
-				<Switch checked={enabled} onCheckedChange={toggleEnabled} />
+				<ThemeToggle />
+				<div className="bg-border h-4 w-px" />
+				<div className="flex items-center gap-2">
+					<span className="text-muted-foreground flex items-center gap-1.5 text-[11px] font-medium">
+						<span
+							className={`h-1.5 w-1.5 rounded-full transition-colors ${
+								enabled
+									? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+									: "bg-muted-foreground/60"
+							}`}
+						/>
+						{enabled ? "Active" : "Paused"}
+					</span>
+					<Switch checked={enabled} onCheckedChange={toggleEnabled} />
+				</div>
 			</div>
 		</header>
 	);

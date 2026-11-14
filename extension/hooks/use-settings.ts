@@ -1,7 +1,7 @@
 import { useSyncExternalStore, useCallback } from "react";
 import confetti from "canvas-confetti";
 import { getSettings, saveSettings, onSettingsChanged, DEFAULT_SETTINGS } from "@/lib/storage";
-import type { ThreadFXSettings } from "@/lib/storage";
+import type { ThreadFXSettings, ThemeMode } from "@/lib/storage";
 import { zzfx } from "@/lib/zzfx";
 import type { SoundPack } from "@/lib/presets";
 import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@/lib/particles";
@@ -15,15 +15,87 @@ function notify() {
 	listeners.forEach((listener) => listener());
 }
 
+/**
+ * Applies the given theme mode to the DOM.
+ * Synchronizes <meta name="color-scheme">, document root classes, and data-theme.
+ */
+export function applyThemeToDOM(theme: ThemeMode) {
+	if (typeof document === "undefined") return;
+
+	const isSystemDark =
+		typeof window !== "undefined" && window.matchMedia
+			? window.matchMedia("(prefers-color-scheme: dark)").matches
+			: true;
+
+	const isDark = theme === "dark" || (theme === "system" && isSystemDark);
+
+	// 1. Sync <meta name="color-scheme">
+	const meta = document.querySelector('meta[name="color-scheme"]');
+	if (meta) {
+		meta.setAttribute("content", theme === "system" ? "light dark" : theme);
+	}
+
+	// 2. Sync documentElement classes and data-theme
+	const root = document.documentElement;
+	root.classList.toggle("dark", isDark);
+	root.classList.toggle("light", !isDark);
+	root.setAttribute("data-theme", isDark ? "dark" : "light");
+}
+
+// Listen to OS theme changes if theme is set to 'system'
+if (typeof window !== "undefined" && window.matchMedia) {
+	const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+	mediaQuery.addEventListener("change", () => {
+		if (currentSettings.theme === "system") {
+			applyThemeToDOM("system");
+			notify();
+		}
+	});
+}
+
+/**
+ * Initializes theme immediately to prevent any flash of un-themed content (FOUC).
+ */
+export function initTheme() {
+	let cachedTheme: ThemeMode = "system";
+	try {
+		const stored = localStorage.getItem("threadfx_theme") as ThemeMode | null;
+		if (stored === "light" || stored === "dark" || stored === "system") {
+			cachedTheme = stored;
+		}
+	} catch {
+		// Ignore local storage errors
+	}
+
+	applyThemeToDOM(cachedTheme);
+
+	if (typeof chrome !== "undefined" && chrome.storage?.local) {
+		getSettings().then((s) => {
+			if (s.theme) {
+				try {
+					localStorage.setItem("threadfx_theme", s.theme);
+				} catch {}
+				applyThemeToDOM(s.theme);
+			}
+		});
+	}
+}
+
 // Initialize from storage & subscribe to live Chrome storage changes
 if (typeof chrome !== "undefined" && chrome.storage?.local) {
 	getSettings().then((s) => {
 		currentSettings = s;
+		if (s.theme) {
+			applyThemeToDOM(s.theme);
+		}
 		notify();
 	});
 
 	onSettingsChanged((updated: ThreadFXSettings) => {
 		currentSettings = updated;
+		if (updated.theme) {
+			applyThemeToDOM(updated.theme);
+		}
 		notify();
 	});
 }
@@ -141,4 +213,19 @@ export function useParticleSettings() {
 		setSpread,
 		testConfetti,
 	};
+}
+
+// 5. Header / Global: Theme selector hook
+export function useTheme(): [ThemeMode, (theme: ThemeMode) => void] {
+	const theme = useSettingsSelector((s) => s.theme ?? "system");
+
+	const setTheme = useCallback((nextTheme: ThemeMode) => {
+		setSetting("theme", nextTheme);
+		try {
+			localStorage.setItem("threadfx_theme", nextTheme);
+		} catch {}
+		applyThemeToDOM(nextTheme);
+	}, []);
+
+	return [theme, setTheme];
 }

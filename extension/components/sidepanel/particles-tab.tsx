@@ -23,8 +23,8 @@ const PaletteCard = memo(function PaletteCard({ palette, isSelected, onSelect }:
 			onClick={handleClick}
 			className={`group relative flex flex-col justify-between rounded-xl p-2.5 text-left transition-all duration-150 active:scale-[0.98] ${
 				isSelected
-					? "border border-white/20 bg-white/[0.07] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]"
-					: "border border-white/[0.05] bg-white/[0.02] text-zinc-300 hover:border-white/[0.1] hover:bg-white/[0.04]"
+					? "border-foreground/20 bg-surface-muted text-foreground border shadow-xs"
+					: "border-border bg-surface-subtle text-muted-foreground hover:border-foreground/15 hover:bg-surface-muted hover:text-foreground border"
 			}`}
 		>
 			<div className="mb-2 flex w-full items-center justify-between">
@@ -38,15 +38,15 @@ const PaletteCard = memo(function PaletteCard({ palette, isSelected, onSelect }:
 					))}
 				</div>
 				{isSelected ? (
-					<span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white text-zinc-950">
+					<span className="bg-foreground text-background flex h-4 w-4 shrink-0 items-center justify-center rounded-full">
 						<Check className="h-2.5 w-2.5 stroke-[3]" />
 					</span>
 				) : null}
 			</div>
-			<span className="block text-xs font-semibold tracking-tight text-zinc-100">
+			<span className="text-foreground block text-xs font-semibold tracking-tight">
 				{palette.name}
 			</span>
-			<span className="mt-0.5 line-clamp-1 text-[10px] leading-snug text-zinc-400">
+			<span className="text-muted-foreground mt-0.5 line-clamp-1 text-[10px] leading-snug">
 				{palette.description}
 			</span>
 		</button>
@@ -89,14 +89,14 @@ export function ParticlesTab() {
 	return (
 		<div className="space-y-3.5">
 			{/* Master Toggle & Quick Action */}
-			<div className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+			<div className="border-border bg-surface-subtle flex items-center justify-between rounded-xl border p-3 transition-colors">
 				<div className="flex items-center gap-2.5">
-					<div className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.04] text-zinc-300">
+					<div className="border-border bg-surface-muted text-foreground flex h-7 w-7 items-center justify-center rounded-lg border">
 						<Sparkles className="h-3.5 w-3.5" />
 					</div>
 					<div>
-						<span className="block text-xs font-medium text-zinc-200">Particle Bursts</span>
-						<span className="block text-[10px] text-zinc-400">Visual feedback on like</span>
+						<span className="text-foreground block text-xs font-medium">Particle Bursts</span>
+						<span className="text-muted-foreground block text-[10px]">Visual feedback on like</span>
 					</div>
 				</div>
 
@@ -104,7 +104,7 @@ export function ParticlesTab() {
 					<button
 						type="button"
 						onClick={testConfetti}
-						className="h-6 cursor-pointer rounded-md border border-white/[0.08] bg-white/[0.06] px-2.5 text-[11px] font-medium text-zinc-300 transition-all hover:bg-white/[0.1] active:scale-95"
+						className="border-border bg-surface-muted text-foreground hover:bg-muted h-6 cursor-pointer rounded-md border px-2.5 text-[11px] font-medium transition-all active:scale-95"
 					>
 						Test Burst
 					</button>
@@ -115,8 +115,8 @@ export function ParticlesTab() {
 			{/* Palette Selection Grid */}
 			<section className="space-y-2">
 				<div className="flex items-center justify-between px-0.5">
-					<span className="text-xs font-medium text-zinc-400">Color Palette</span>
-					<span className="text-[10px] text-zinc-500">Live preview swatches</span>
+					<span className="text-muted-foreground text-xs font-medium">Color Palette</span>
+					<span className="text-muted-foreground/80 text-[10px]">Live preview swatches</span>
 				</div>
 
 				<div className="grid grid-cols-2 gap-2">
@@ -132,12 +132,14 @@ export function ParticlesTab() {
 			</section>
 
 			{/* Dynamics Sliders */}
-			<div className="divide-y divide-white/[0.05] rounded-xl border border-white/[0.06] bg-white/[0.02]">
+			<div className="divide-border border-border bg-surface-subtle divide-y rounded-xl border transition-colors">
 				{/* Particle Count / Density */}
 				<div className="space-y-2 p-3">
 					<div className="flex items-center justify-between text-xs">
-						<span className="font-medium text-zinc-300">Particle Density</span>
-						<span className="font-mono text-[11px] text-zinc-400">{confettiCount} count</span>
+						<span className="text-foreground font-medium">Particle Density</span>
+						<span className="text-muted-foreground font-mono text-[11px]">
+							{confettiCount} count
+						</span>
 					</div>
 					<Slider
 						value={countValue}
@@ -152,8 +154,10 @@ export function ParticlesTab() {
 				{/* Particle Spread */}
 				<div className="space-y-2 p-3">
 					<div className="flex items-center justify-between text-xs">
-						<span className="font-medium text-zinc-300">Burst Spread</span>
-						<span className="font-mono text-[11px] text-zinc-400">{confettiSpread}° angle</span>
+						<span className="text-foreground font-medium">Burst Spread</span>
+						<span className="text-muted-foreground font-mono text-[11px]">
+							{confettiSpread}° angle
+						</span>
 					</div>
 					<Slider
 						value={spreadValue}

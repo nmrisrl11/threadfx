@@ -2,6 +2,8 @@ import type { ConfettiPaletteId } from "./particles";
 
 // Type-safe chrome.storage helper for ThreadFX
 
+export type ThemeMode = "system" | "dark" | "light";
+
 export interface ThreadFXSettings {
 	enabled: boolean;
 	volume: number;
@@ -11,6 +13,7 @@ export interface ThreadFXSettings {
 	confettiPalette: ConfettiPaletteId;
 	confettiCount: number;
 	confettiSpread: number;
+	theme: ThemeMode;
 }
 
 export const DEFAULT_SETTINGS: ThreadFXSettings = {
@@ -22,6 +25,7 @@ export const DEFAULT_SETTINGS: ThreadFXSettings = {
 	confettiPalette: "rose",
 	confettiCount: 30,
 	confettiSpread: 55,
+	theme: "system",
 };
 
 export async function getSettings(): Promise<ThreadFXSettings> {

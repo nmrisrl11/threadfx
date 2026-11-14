@@ -17,34 +17,34 @@ export function SidepanelFooter({
 	version = APP_INFO.versionTag,
 }: SidepanelFooterProps) {
 	return (
-		<footer className="flex items-center justify-between px-1 pt-2.5 pb-0.5 text-[11px] text-zinc-500">
+		<footer className="text-muted-foreground/80 flex items-center justify-between px-1 pt-2.5 pb-0.5 text-[11px]">
 			<div className="flex items-center gap-1.5">
 				<a
 					href={threadsUrl}
 					target="_blank"
 					rel="noreferrer"
-					className="transition-colors hover:text-zinc-300"
+					className="hover:text-foreground transition-colors"
 				>
-					Built by <span className="font-medium text-zinc-400">{authorHandle}</span>
+					Built by <span className="text-muted-foreground font-medium">{authorHandle}</span>
 				</a>
 				<span>•</span>
 				<a
 					href={repoUrl}
 					target="_blank"
 					rel="noreferrer"
-					className="transition-colors hover:text-zinc-300"
+					className="hover:text-foreground transition-colors"
 				>
 					{APP_INFO.license}
 				</a>
 				<span>•</span>
-				<span className="font-mono text-zinc-500">{version}</span>
+				<span className="text-muted-foreground/80 font-mono">{version}</span>
 			</div>
 
 			<a
 				href={websiteUrl}
 				target="_blank"
 				rel="noreferrer"
-				className="flex items-center gap-1 text-zinc-400 transition-colors hover:text-zinc-200"
+				className="text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
 			>
 				<span>Website</span>
 				<ExternalLink className="h-3 w-3" />

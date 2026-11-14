@@ -192,10 +192,11 @@ State shared between `content.ts` and `sidepanel` must follow this schema:
 ```typescript
 export interface ThreadFXSettings {
 	enabled: boolean; // Master toggle (default: true)
-	volume: number; // 0.0 to 1.0 (default: 0.5)
+	volume: number; // 0.0 to 1.0 (default: 0.6)
 	soundPack: "bubble" | "retro" | "hype" | "blip"; // Active ZzFX preset
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced
+	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 }
 ```
 

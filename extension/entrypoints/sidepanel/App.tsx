@@ -8,8 +8,8 @@ import { SidepanelFooter } from "@/components/sidepanel/footer";
 
 export default function App() {
 	return (
-		<div className="flex min-h-screen flex-col justify-between bg-[#09090b] p-3.5 text-[#fafafa] select-none">
-			{/* [Header] - Directly consumes useMasterToggle() */}
+		<div className="bg-background text-foreground flex min-h-screen flex-col justify-between p-3.5 transition-colors duration-200 select-none">
+			{/* [Header] - Directly consumes useMasterToggle() and useTheme() */}
 			<SidepanelHeader />
 
 			{/* Metric Strip - Directly consumes useLikesCounter() */}
@@ -31,7 +31,7 @@ export default function App() {
 				</TabsList>
 
 				{/* Elevated Window Chassis (Antigravity Chatbox Container) */}
-				<main className="flex-1 rounded-[20px] border border-white/[0.08] bg-[#131316] p-3.5 shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.08),inset_0_-1px_1px_0_rgba(0,0,0,0.4),0_8px_24px_-4px_rgba(0,0,0,0.5)]">
+				<main className="bg-card shadow-chassis border-border flex-1 rounded-[20px] border p-3.5 transition-colors duration-200">
 					<TabsContent value="audio">
 						<AudioTab />
 					</TabsContent>
