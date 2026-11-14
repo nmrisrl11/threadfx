@@ -41,7 +41,8 @@ threadfx/
 │   └── package.json
 │
 ├── data/                           # Centralized metadata & releases
-│   └── changelog.ts                # Typed release notes & active version (shared via @data)
+│   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
+│   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
 ├── AGENTS.md                       # Technical guidelines for AI agents
 ├── BRAND.md                        # Design system, color tokens, and visual voice
 ├── ARCHITECTURE.md                 # System diagrams & runtime sequence
@@ -94,6 +95,35 @@ Meta obfuscates and frequently changes class names (e.g. `.x1i10hfl`).
 - All landing page asset links must be **relative**.
 - The download button must link to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket.
 - The public production URL is `https://threadfx.nmrisrl.dev`, with `https://threadfx.vercel.app` as the permanent fallback.
+
+### Rule 6: Avoid Barrel Files (Direct Explicit Imports)
+
+Per Vercel React Best Practices (`bundle-barrel-imports`) and WXT optimization guidelines (`bundle-split-entrypoints`):
+
+- **NEVER** create or use barrel files (`index.ts` / `index.js` re-exporting multiple siblings) in internal feature directories (`data/`, `extension/components/sidepanel/`, `extension/lib/`, etc.).
+- **ALWAYS** use direct, explicit file imports:
+  - `import { APP_INFO } from "@data/app";` (Not `@data`)
+  - `import { CHANGELOG_DATA } from "@data/changelog";` (Not `@data`)
+  - `import { SidepanelHeader } from "@/components/sidepanel/header";` (Not `@/components/sidepanel`)
+- **Why Barrel Files Harm This Monorepo:**
+  1. **Tree-Shaking Failure Across Extension Entrypoints**: Importing from a barrel in `content.ts` or `background.ts` forces the bundler to parse all re-exported modules (including Side Panel UI, audio synthesis presets, and DOM helpers), inflating bundle sizes and slowing in-feed execution.
+  2. **Build & Dev Boot Degradation**: Barrel files force Vite and TypeScript to construct broad module graphs, significantly degrading HMR speed and cold starts.
+  3. **Circular Dependency Hazards**: Re-exports across closely related modules frequently introduce subtle initialization cycles (`undefined` imports).
+  4. **Premature Abstraction**: Small directories (< 5 files) gain zero structural benefit from an extra layer of indirection.
+- **Strict Exceptions**:
+  - Pure type-only re-exports (`export type * from ...`) that are erased 100% at compile-time.
+  - Public external package entry points (when publishing an npm package).
+
+### Rule 7: No Deep Relative Imports (Enforce Path Aliases)
+
+Deep multi-level relative imports (`../../`, `../../../`) are fragile, break during file restructuring, and obscure module boundaries.
+
+- **NEVER** write deep relative traversals of 2 or more parent directories (e.g., `../../data/app`, `../../../lib/presets`).
+- **ALWAYS** use configured path aliases:
+  - `@/...` for internal project root / `src/` modules (e.g. `@/components/ui/button`, `@/lib/zzfx`).
+  - `@data/...` for shared monorepo metadata (e.g. `@data/app`, `@data/changelog`).
+- **Permitted Relative Imports**: Sibling imports (`./foo`) and single-level parent imports within the same cohesive domain (`../header` inside `components/sidepanel/`) are permitted.
+- **Enforcement**: Strictly enforced via Oxlint's `eslint/no-restricted-imports` rule in `.oxlintrc.json`. Any import pattern with 2+ parent traversal levels will fail `npm run lint`.
 
 ---
 

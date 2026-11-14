@@ -1,12 +1,10 @@
 import { Volume2, Sparkles } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import {
-	SidepanelHeader,
-	MetricStrip,
-	AudioTab,
-	ParticlesTab,
-	SidepanelFooter,
-} from "@/components/sidepanel";
+import { SidepanelHeader } from "@/components/sidepanel/header";
+import { MetricStrip } from "@/components/sidepanel/metric-strip";
+import { AudioTab } from "@/components/sidepanel/audio-tab";
+import { ParticlesTab } from "@/components/sidepanel/particles-tab";
+import { SidepanelFooter } from "@/components/sidepanel/footer";
 
 export default function App() {
 	return (

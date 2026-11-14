@@ -155,7 +155,8 @@ threadfx/
 │   └── package.json
 │
 ├── data/                           # Centralized metadata & releases
-│   └── changelog.ts                # Typed release notes & active version (shared via @data)
+│   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
+│   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
 ├── AGENTS.md                       # Technical guidelines for AI agents
 ├── BRAND.md                        # Design system, color tokens, and visual voice
 ├── ARCHITECTURE.md                 # System diagrams & runtime sequence

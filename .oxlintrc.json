@@ -5,6 +5,17 @@
 		"react/rules-of-hooks": "error",
 		"react/only-export-components": ["warn", { "allowConstantExport": true }],
 		"typescript/no-explicit-any": "error",
-		"typescript/ban-ts-comment": "error"
+		"typescript/ban-ts-comment": "error",
+		"eslint/no-restricted-imports": [
+			"error",
+			{
+				"patterns": [
+					{
+						"group": ["../*/*/*", "../*/*/*/*", "../*/*/*/*/*"],
+						"message": "Deep relative imports (2+ parent levels: '../../' or '../../../') are prohibited. Use path aliases ('@/...' or '@data/...') instead."
+					}
+				]
+			}
+		]
 	}
 }

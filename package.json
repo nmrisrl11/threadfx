@@ -25,6 +25,7 @@
 		"extension",
 		"website"
 	],
+	"type": "module",
 	"scripts": {
 		"dev:ext": "npm run dev --workspace=extension",
 		"build:ext": "npm run build --workspace=extension",

@@ -1,5 +1,6 @@
 import { Switch } from "@/components/ui/switch";
 import { useMasterToggle } from "@/hooks/use-settings";
+import { APP_INFO } from "@data/app";
 
 export function SidepanelHeader() {
 	const [enabled, toggleEnabled] = useMasterToggle();
@@ -9,15 +10,15 @@ export function SidepanelHeader() {
 			<div className="flex items-center gap-2.5">
 				<img
 					src="/icon/32.png"
-					alt="ThreadFX"
+					alt={APP_INFO.name}
 					className="h-6 w-6 shrink-0 rounded-md object-contain"
 				/>
 				<div className="flex items-center gap-1.5">
 					<span className="font-heading text-sm font-semibold tracking-tight text-zinc-100">
-						ThreadFX
+						{APP_INFO.name}
 					</span>
 					<span className="rounded border border-white/[0.06] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-zinc-500">
-						v1.0.0
+						{APP_INFO.versionTag}
 					</span>
 				</div>
 			</div>

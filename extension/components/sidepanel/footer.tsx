@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { APP_INFO } from "@data/app";
 
 interface SidepanelFooterProps {
 	authorHandle?: string;
@@ -8,10 +9,10 @@ interface SidepanelFooterProps {
 }
 
 export function SidepanelFooter({
-	authorHandle = "@nmrisrl",
-	threadsUrl = "https://threads.com/@nmrisrl",
-	repoUrl = "https://github.com/nmrisrl11/threadfx",
-	websiteUrl = "https://threadfx.nmrisrl.dev",
+	authorHandle = APP_INFO.author.handle,
+	threadsUrl = APP_INFO.author.url,
+	repoUrl = APP_INFO.urls.repository,
+	websiteUrl = APP_INFO.urls.production,
 }: SidepanelFooterProps) {
 	return (
 		<footer className="flex items-center justify-between px-1 pt-2.5 pb-0.5 text-[11px] text-zinc-500">
@@ -31,7 +32,7 @@ export function SidepanelFooter({
 					rel="noreferrer"
 					className="transition-colors hover:text-zinc-300"
 				>
-					MIT
+					{APP_INFO.license}
 				</a>
 			</div>
 

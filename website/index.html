@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="color-scheme" content="dark" />
-		<meta name="theme-color" content="#080808" />
+		<meta name="theme-color" content="%APP_THEME_COLOR%" />
 
 		<!-- Anti-FOUC dark background guarantee -->
 		<style>
@@ -22,19 +22,13 @@
 		</script>
 
 		<!-- Primary SEO Metadata -->
-		<title>ThreadFX for Threads — Satisfying Audio &amp; Visual Effects</title>
-		<meta
-			name="description"
-			content="Bring your Threads to life. Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback suite for Threads."
-		/>
-		<meta
-			name="keywords"
-			content="threadfx, threads audio, threads sound effects, threads visual effects, particle bursts, custom likes, zzfx audio, chrome extension, side panel, manifest v3, open source"
-		/>
-		<meta name="author" content="Nomer Israel (@nmrisrl)" />
-		<meta name="creator" content="Nomer Israel (@nmrisrl)" />
-		<meta name="publisher" content="ThreadFX" />
-		<link rel="canonical" href="https://threadfx.nmrisrl.dev/" />
+		<title>%APP_TITLE%</title>
+		<meta name="description" content="%APP_DESCRIPTION%" />
+		<meta name="keywords" content="%APP_KEYWORDS%" />
+		<meta name="author" content="%APP_AUTHOR%" />
+		<meta name="creator" content="%APP_CREATOR%" />
+		<meta name="publisher" content="%APP_PUBLISHER%" />
+		<link rel="canonical" href="https://%APP_URL%/" />
 
 		<!-- Icons & Webmanifest -->
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -47,52 +41,37 @@
 		<!-- Open Graph Protocol -->
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="en_US" />
-		<meta property="og:url" content="https://threadfx.nmrisrl.dev/" />
-		<meta property="og:site_name" content="ThreadFX" />
-		<meta
-			property="og:title"
-			content="ThreadFX for Threads — Satisfying Audio &amp; Visual Effects"
-		/>
-		<meta
-			property="og:description"
-			content="Bring your Threads to life. Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback suite for Threads."
-		/>
-		<meta property="og:image" content="https://threadfx.nmrisrl.dev/og-image.png" />
+		<meta property="og:url" content="https://%APP_URL%/" />
+		<meta property="og:site_name" content="%APP_NAME%" />
+		<meta property="og:title" content="%APP_TITLE%" />
+		<meta property="og:description" content="%APP_DESCRIPTION%" />
+		<meta property="og:image" content="https://%APP_URL%/og-image.png" />
 		<meta property="og:image:type" content="image/png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta
-			property="og:image:alt"
-			content="ThreadFX — Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback for Threads"
-		/>
+		<meta property="og:image:alt" content="%APP_OG_IMAGE_ALT%" />
 
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:site" content="@nmrisrl" />
-		<meta name="twitter:creator" content="@nmrisrl" />
-		<meta
-			name="twitter:title"
-			content="ThreadFX for Threads — Satisfying Audio &amp; Visual Effects"
-		/>
-		<meta
-			name="twitter:description"
-			content="Zero-latency procedural sound synthesis, visual particle bursts, and tactile feedback suite for Threads."
-		/>
-		<meta name="twitter:image" content="https://threadfx.nmrisrl.dev/og-image.png" />
+		<meta name="twitter:site" content="%TWITTER_SITE%" />
+		<meta name="twitter:creator" content="%TWITTER_CREATOR%" />
+		<meta name="twitter:title" content="%APP_TITLE%" />
+		<meta name="twitter:description" content="%APP_DESCRIPTION%" />
+		<meta name="twitter:image" content="https://%APP_URL%/og-image.png" />
 
 		<!-- Structured Data: Schema.org SoftwareApplication -->
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
 				"@type": "SoftwareApplication",
-				"@id": "https://threadfx.nmrisrl.dev/#software",
-				"name": "ThreadFX for Threads",
-				"url": "https://threadfx.nmrisrl.dev/",
-				"image": "https://threadfx.nmrisrl.dev/og-image.png",
-				"description": "Satisfying procedural audio, visual particle bursts, and interactive effects suite for Threads.",
+				"@id": "https://%APP_URL%/#software",
+				"name": "%APP_FULL_NAME%",
+				"url": "https://%APP_URL%/",
+				"image": "https://%APP_URL%/og-image.png",
+				"description": "%APP_SHORT_DESCRIPTION%",
 				"applicationCategory": "BrowserExtension",
 				"operatingSystem": "Chromium browsers (Google Chrome, Brave, Microsoft Edge, Arc)",
-				"softwareVersion": "1.0.0",
+				"softwareVersion": "%APP_VERSION%",
 				"offers": {
 					"@type": "Offer",
 					"price": "0.00",
@@ -101,13 +80,15 @@
 				},
 				"author": {
 					"@type": "Person",
-					"name": "Nomer Israel",
-					"url": "https://threads.com/@nmrisrl"
+					"name": "%AUTHOR_NAME%",
+					"url": "%AUTHOR_URL%"
 				},
-				"downloadUrl": "https://threadfx.nmrisrl.dev/download",
-				"license": "https://github.com/nmrisrl11/threadfx/blob/main/LICENSE"
+				"downloadUrl": "https://%APP_URL%/download",
+				"license": "%LICENSE_URL%"
 			}
 		</script>
+
+		%REACT_SCAN%
 	</head>
 
 	<body

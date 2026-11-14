@@ -20,6 +20,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { APP_INFO } from "@data/app";
 
 export default function App() {
 	const [selectedPack, setSelectedPack] = useState<string>("bubble");
@@ -75,27 +76,27 @@ export default function App() {
 					/>
 					<div>
 						<span className="bg-gradient-to-r from-[#FF2E93] via-[#7928CA] to-[#00F5FF] bg-clip-text text-lg font-bold tracking-tight text-transparent">
-							ThreadFX
+							{APP_INFO.name}
 						</span>
 						<Badge variant="cyber" className="ml-2 hidden sm:inline-flex">
-							v1.0.0
+							{APP_INFO.versionTag}
 						</Badge>
 					</div>
 				</div>
 
 				<div className="flex items-center gap-4">
 					<a
-						href="https://threads.com/@nmrisrl"
+						href={APP_INFO.author.url}
 						target="_blank"
 						rel="noreferrer"
 						className="text-muted-foreground hover:text-foreground hidden items-center gap-1.5 text-xs transition-colors sm:flex"
 					>
-						<span>@nmrisrl</span>
+						<span>{APP_INFO.author.handle}</span>
 						<ExternalLink className="h-3 w-3" />
 					</a>
 
 					<Button asChild size="sm" variant="gradient">
-						<a href="/download">
+						<a href={APP_INFO.urls.download}>
 							<Download className="h-4 w-4" />
 							<span>Download .zip</span>
 						</a>
@@ -372,33 +373,33 @@ export default function App() {
 			{/* Footer */}
 			<footer className="border-border text-muted-foreground mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 border-t px-6 py-10 text-xs sm:flex-row">
 				<div className="flex flex-wrap items-center gap-2">
-					<span>ThreadFX © 2026</span>
+					<span>{APP_INFO.name} © 2026</span>
 					<span>•</span>
 					<a
-						href="https://github.com/nmrisrl11/threadfx/blob/main/LICENSE"
+						href={APP_INFO.urls.license}
 						target="_blank"
 						rel="noreferrer"
 						className="hover:text-foreground transition-colors"
 					>
-						Open Source (MIT)
+						Open Source ({APP_INFO.license})
 					</a>
 					<span>•</span>
 					<span>
 						Created by{" "}
 						<a
-							href="https://threads.com/@nmrisrl"
+							href={APP_INFO.author.url}
 							target="_blank"
 							rel="noreferrer"
 							className="text-foreground font-medium hover:underline"
 						>
-							Nomer Israel (@nmrisrl)
+							{APP_INFO.author.name} ({APP_INFO.author.handle})
 						</a>
 					</span>
 				</div>
 
 				<div className="flex items-center gap-4">
 					<a
-						href="https://github.com/nmrisrl11/threadfx"
+						href={APP_INFO.urls.repository}
 						target="_blank"
 						rel="noreferrer"
 						className="hover:text-foreground transition-colors"
@@ -406,7 +407,7 @@ export default function App() {
 						GitHub
 					</a>
 					<a
-						href="https://github.com/nmrisrl11/threadfx/blob/main/LICENSE"
+						href={APP_INFO.urls.license}
 						target="_blank"
 						rel="noreferrer"
 						className="hover:text-foreground transition-colors"
@@ -414,14 +415,14 @@ export default function App() {
 						License
 					</a>
 					<a
-						href="https://threads.com/@nmrisrl"
+						href={APP_INFO.urls.threads}
 						target="_blank"
 						rel="noreferrer"
 						className="hover:text-foreground transition-colors"
 					>
 						Threads
 					</a>
-					<a href="/download" className="text-[#00F5FF] hover:underline">
+					<a href={APP_INFO.urls.download} className="text-[#00F5FF] hover:underline">
 						Download .zip
 					</a>
 				</div>
