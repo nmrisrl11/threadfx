@@ -6,13 +6,13 @@
 
 ## 🛠️ Tech Stack
 
-* **Framework:** [Vite](https://vite.dev/) + React 19 + TypeScript
-* **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom AMOLED dark tokens
-* **Audio Engine:** Shared in-memory `zzfx.ts` procedural synthesizer
-* **Visual Effects:** `canvas-confetti`
-* **Icons:** Lucide React
-* **Hosting:** Vercel (Hobby) with dual-domain fallback
-* **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution
+- **Framework:** [Vite](https://vite.dev/) + React 19 + TypeScript
+- **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom AMOLED dark tokens
+- **Audio Engine:** Shared in-memory `zzfx.ts` procedural synthesizer
+- **Visual Effects:** `canvas-confetti`
+- **Icons:** Lucide React
+- **Hosting:** Vercel (Hobby) with dual-domain fallback
+- **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution
 
 ---
 
@@ -31,6 +31,14 @@ npm run preview           # Preview production build locally
 
 ## 🌐 Domains & Cloudflare R2 Routing
 
-* **Production URL:** `https://threadfx.nmrisrl.dev`
-* **Vercel Fallback:** `https://threadfx.vercel.app`
-* **Decoupled Downloads:** The landing page links to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket holding `threadfx-latest.zip`.
+- **Production URL:** `https://threadfx.nmrisrl.dev`
+- **Vercel Fallback:** `https://threadfx.vercel.app`
+- **Decoupled Downloads:** The landing page links to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket holding `threadfx-latest.zip`.
+
+---
+
+## ⚖️ Open Source & Ownership
+
+ThreadFX is free, open-source software licensed under the **[MIT License](../LICENSE)**.  
+Created and maintained by [Nomer Israel (@nmrisrl)](https://threads.com/@nmrisrl).  
+GitHub Repository: [nmrisrl11/threadfx](https://github.com/nmrisrl11/threadfx).

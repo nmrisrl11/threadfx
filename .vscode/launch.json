@@ -1,0 +1,19 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch Chrome with ThreadFX Extension",
+			"type": "chrome",
+			"request": "launch",
+			"url": "https://threads.com",
+			"runtimeArgs": ["--load-extension=${workspaceFolder}/extension/.output/chrome-mv3"]
+		},
+		{
+			"name": "Debug Landing Page (Vite)",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://localhost:5173",
+			"webRoot": "${workspaceFolder}/website/src"
+		}
+	]
+}

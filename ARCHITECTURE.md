@@ -29,7 +29,7 @@ graph TD
     subgraph Infrastructure["Cloud & Hosting Infrastructure"]
         Vercel["Vercel Edge (threadfx.nmrisrl.dev)"]
         R2["Cloudflare R2 Bucket (threadfx-latest.zip)"]
-        
+
         Vercel -->|Redirects /download| R2
     end
 ```
@@ -84,15 +84,15 @@ Instead of fetching network `.mp3` files or managing heavy audio elements, Threa
 
 Rather than an ephemeral popup dropdown, ThreadFX operates inside Chrome's native **Side Panel**:
 
-* **Lifecycle:** Stays open and docked to the right side of the screen as the user navigates across Threads profiles, replies, and feeds.
-* **Launch Trigger:**
+- **Lifecycle:** Stays open and docked to the right side of the screen as the user navigates across Threads profiles, replies, and feeds.
+- **Launch Trigger:**
   ```typescript
   // extension/entrypoints/background.ts
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
   ```
-* **State Synchronization:**
-  * When a user changes volume or toggles confetti in the Side Panel, it calls `chrome.storage.local.set({ ... })`.
-  * `content.ts` listens to `chrome.storage.onChanged` and updates its in-memory settings cache without requiring any reload.
+- **State Synchronization:**
+  - When a user changes volume or toggles confetti in the Side Panel, it calls `chrome.storage.local.set({ ... })`.
+  - `content.ts` listens to `chrome.storage.onChanged` and updates its in-memory settings cache without requiring any reload.
 
 ---
 
@@ -104,10 +104,10 @@ To prevent Meta's minified class rotations from breaking the extension:
 2. **Semantic Target Resolution:**
    ```typescript
    function isLikeButton(target: HTMLElement): boolean {
-     const button = target.closest('[role="button"]');
-     if (!button) return false;
-     const ariaLabel = button.getAttribute('aria-label') || '';
-     return /like/i.test(ariaLabel);
+   	const button = target.closest('[role="button"]');
+   	if (!button) return false;
+   	const ariaLabel = button.getAttribute("aria-label") || "";
+   	return /like/i.test(ariaLabel);
    }
    ```
 3. **Custom Like Observer:**
@@ -117,19 +117,20 @@ To prevent Meta's minified class rotations from breaking the extension:
 
 ## 6. Cross-OS & Multi-Platform Architecture
 
-* **OS Independence:** The core extension code interacts purely with standard W3C Web Audio API and Chrome Extension MV3 APIs, ensuring byte-for-byte identical audio synthesis across:
-  * **Windows:** DirectSound / WASAPI audio pipeline via browser.
-  * **macOS:** CoreAudio low-latency pipeline via browser.
-  * **Linux:** PulseAudio / PipeWire audio pipeline via browser.
-* **Future Targets (Planned):**
-  * **Safari Web Extension:** Converting via Xcode tools for native macOS Safari support.
-  * **Firefox Target:** Supporting Gecko engines via WXT cross-compilation.
+- **OS Independence:** The core extension code interacts purely with standard W3C Web Audio API and Chrome Extension MV3 APIs, ensuring byte-for-byte identical audio synthesis across:
+  - **Windows:** DirectSound / WASAPI audio pipeline via browser.
+  - **macOS:** CoreAudio low-latency pipeline via browser.
+  - **Linux:** PulseAudio / PipeWire audio pipeline via browser.
+- **Future Targets (Planned):**
+  - **Safari Web Extension:** Converting via Xcode tools for native macOS Safari support.
+  - **Firefox Target:** Supporting Gecko engines via WXT cross-compilation.
 
 ---
 
 ## 7. Distribution & Domain Infrastructure
 
 ### Multi-Domain Vercel Fallback
+
 ```text
 https://threadfx.nmrisrl.dev (Public Branded URL)
           │
@@ -141,5 +142,5 @@ https://threadfx.nmrisrl.dev (Public Branded URL)
           └──> /download ──(307 Redirect)──> Cloudflare R2 (threadfx-latest.zip)
 ```
 
-* **Resilience:** If `threadfx.nmrisrl.dev` DNS is ever altered or disconnected, `threadfx.vercel.app` automatically serves as the working primary site with zero downtime.
-* **Bandwidth Optimization:** The extension `.zip` download is offloaded completely to **Cloudflare R2** with **$0 egress fees**, protecting Vercel bandwidth limits from viral traffic spikes.
+- **Resilience:** If `threadfx.nmrisrl.dev` DNS is ever altered or disconnected, `threadfx.vercel.app` automatically serves as the working primary site with zero downtime.
+- **Bandwidth Optimization:** The extension `.zip` download is offloaded completely to **Cloudflare R2** with **$0 egress fees**, protecting Vercel bandwidth limits from viral traffic spikes.

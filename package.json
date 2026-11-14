@@ -1,28 +1,44 @@
 {
-  "name": "threadfx-monorepo",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Tactile audio, confetti, and interactive effects suite for Threads",
-  "workspaces": [
-    "extension",
-    "website"
-  ],
-  "scripts": {
-    "dev:ext": "npm run dev --workspace=extension",
-    "build:ext": "npm run build --workspace=extension",
-    "zip:ext": "npm run zip --workspace=extension",
-    "dev:web": "npm run dev --workspace=website",
-    "build:web": "npm run build --workspace=website",
-    "build:all": "npm run build --workspace=extension && npm run zip --workspace=extension && npm run build --workspace=website"
-  },
-  "keywords": [
-    "threads",
-    "wxt",
-    "chrome-extension",
-    "zzfx",
-    "effects",
-    "confetti"
-  ],
-  "author": "Nomer Israel (@nmrisrl)",
-  "license": "MIT"
+	"name": "threadfx-monorepo",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Tactile audio, confetti, and interactive effects suite for Threads",
+	"keywords": [
+		"chrome-extension",
+		"confetti",
+		"effects",
+		"threads",
+		"wxt",
+		"zzfx"
+	],
+	"homepage": "https://threadfx.nmrisrl.dev",
+	"bugs": {
+		"url": "https://github.com/nmrisrl11/threadfx/issues"
+	},
+	"license": "MIT",
+	"author": "Nomer Israel (@nmrisrl)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nmrisrl11/threadfx.git"
+	},
+	"workspaces": [
+		"extension",
+		"website"
+	],
+	"scripts": {
+		"dev:ext": "npm run dev --workspace=extension",
+		"build:ext": "npm run build --workspace=extension",
+		"zip:ext": "npm run zip --workspace=extension",
+		"dev:web": "npm run dev --workspace=website",
+		"build:web": "npm run build --workspace=website",
+		"build:all": "npm run build --workspace=extension && npm run zip --workspace=extension && npm run build --workspace=website",
+		"lint": "oxlint .",
+		"lint:fix": "oxlint . --fix",
+		"format": "oxfmt . --write --ignore-path=.oxfmtignore",
+		"format:check": "oxfmt . --check --ignore-path=.oxfmtignore"
+	},
+	"devDependencies": {
+		"oxfmt": "^0.78.0",
+		"oxlint": "^1.93.0"
+	}
 }

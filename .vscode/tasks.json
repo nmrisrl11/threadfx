@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev:ext",
+			"isBackground": true,
+			"problemMatcher": [],
+			"label": "Extension: Dev (HMR)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "npm",
+			"script": "dev:web",
+			"isBackground": true,
+			"problemMatcher": [],
+			"label": "Website: Dev"
+		},
+		{
+			"type": "npm",
+			"script": "build:all",
+			"problemMatcher": [],
+			"label": "Build All"
+		},
+		{
+			"type": "npm",
+			"script": "lint",
+			"problemMatcher": [],
+			"label": "Lint (oxlint)"
+		},
+		{
+			"type": "npm",
+			"script": "format",
+			"problemMatcher": [],
+			"label": "Format (oxfmt)"
+		}
+	]
+}
