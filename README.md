@@ -35,7 +35,8 @@ _Satisfying procedural audio, visual confetti bursts, and interactive juice for 
 | **Extension Framework** | [WXT](https://wxt.dev/) (v0.21+)           | Modern Vite-powered browser extension framework                       |
 | **UI Framework**        | React 19 + TypeScript                      | High-performance component rendering                                  |
 | **Styling**             | Tailwind CSS v4                            | New `@theme` CSS variables & zero-config compilation                  |
-| **UI Primitives**       | Radix UI (`@radix-ui/react-slider`, etc.)  | Accessible slider and toggle components                               |
+| **UI Primitives**       | shadcn/ui + Radix UI (`radix-ui`, `cn`)    | Accessible components, custom variants, and button/slider/switch UIs  |
+| **Linter & Formatter**  | OXC (`oxlint` + `oxfmt`)                   | High-performance Rust-based JavaScript/TypeScript linter & formatter  |
 | **Audio Synthesis**     | ZzFX (< 1 KB Web Audio)                    | In-memory procedural sound synthesizer (MIT)                          |
 | **Visual FX**           | Canvas Confetti                            | Hardware-accelerated particle canvas                                  |
 | **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar                                            |
@@ -103,6 +104,8 @@ npm install
 | **`npm run build:ext`** | Compiles the extension to `.output/chrome-mv3`                               |
 | **`npm run zip:ext`**   | Generates the unpacked distribution zip in `extension/.output/`              |
 | **`npm run build:web`** | Compiles the production landing page to `website/dist/`                      |
+| **`npm run lint`**      | Runs `oxlint` across codebase with zero-warning threshold                    |
+| **`npm run format`**    | Formats entire codebase using `oxfmt`                                        |
 
 ---
 
@@ -110,7 +113,10 @@ npm install
 
 ```text
 threadfx/
+├── .agents/skills/                 # Installed agent skills (WXT, shadcn, audio, etc.)
+├── .vscode/                        # Recommended extensions, settings & task runner v2.0.0
 ├── extension/                      # WXT Browser Extension (Manifest V3)
+│   ├── components/                 # shadcn/ui components (Button, Switch, Slider, etc.)
 │   ├── entrypoints/
 │   │   ├── sidepanel/              # Native Chrome Side Panel React 19 App
 │   │   │   ├── index.html
@@ -122,23 +128,29 @@ threadfx/
 │   ├── lib/
 │   │   ├── zzfx.ts                 # Pure procedural Web Audio synthesis engine
 │   │   ├── presets.ts              # Bubble Pop, 8-Bit Coin, Hype Spark, Minimal Click
-│   │   └── storage.ts              # Type-safe chrome.storage.local synchronization
+│   │   ├── storage.ts              # Type-safe chrome.storage.local synchronization
+│   │   └── utils.ts                # cn utility wrapper
+│   ├── components.json             # shadcn/ui configuration
 │   ├── package.json
 │   └── wxt.config.ts               # Minimal permissions ("sidePanel", "storage")
 │
 ├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
+│   │   ├── components/             # shadcn/ui components & Hero/Simulator
+│   │   ├── lib/                    # Shared zzfx.ts, presets.ts & cn utility
 │   │   ├── App.tsx                 # Hero, Like Simulator, 3-Step Install Guide
-│   │   ├── lib/                    # Shared zzfx.ts & presets.ts
 │   │   └── index.css               # AMOLED dark design tokens
 │   ├── public/
 │   │   └── threadfx-latest.zip     # Local fallback zip
+│   ├── components.json             # shadcn/ui configuration
 │   ├── vercel.json                 # Decoupled /download redirect for Cloudflare R2
 │   └── package.json
 │
 ├── AGENTS.md                       # Technical guidelines for AI agents
 ├── BRAND.md                        # Design system, color tokens, and visual voice
 ├── ARCHITECTURE.md                 # System diagrams & runtime sequence
+├── LICENSE                         # MIT License
+├── skills-lock.json                # Agent skills dependency lockfile
 └── package.json                    # Monorepo scripts with native npm workspaces
 ```
 

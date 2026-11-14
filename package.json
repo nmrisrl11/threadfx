@@ -32,8 +32,8 @@
 		"dev:web": "npm run dev --workspace=website",
 		"build:web": "npm run build --workspace=website",
 		"build:all": "npm run build --workspace=extension && npm run zip --workspace=extension && npm run build --workspace=website",
-		"lint": "oxlint .",
-		"lint:fix": "oxlint . --fix",
+		"lint": "oxlint . --ignore-path=.oxlintignore",
+		"lint:fix": "oxlint . --fix --ignore-path=.oxlintignore",
 		"format": "oxfmt . --write --ignore-path=.oxfmtignore",
 		"format:check": "oxfmt . --check --ignore-path=.oxfmtignore"
 	},

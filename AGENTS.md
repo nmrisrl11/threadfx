@@ -12,7 +12,10 @@
 
 ```text
 threadfx/
+├── .agents/skills/                 # Installed agent skills (WXT, shadcn, audio, etc.)
+├── .vscode/                        # Recommended extensions, settings & tasks
 ├── extension/                      # WXT Browser Extension (Manifest V3)
+│   ├── components/                 # shadcn/ui components (Button, Switch, Slider, etc.)
 │   ├── entrypoints/
 │   │   ├── background.ts           # Service worker (sidePanel behavior)
 │   │   ├── content.ts              # threads.com DOM observer & sound trigger
@@ -24,16 +27,25 @@ threadfx/
 │   │   ├── zzfx.ts                 # Procedural audio synthesis engine
 │   │   ├── presets.ts              # Sound effect number arrays
 │   │   └── storage.ts              # Type-safe chrome.storage helpers
+│   ├── components.json             # shadcn/ui config
 │   ├── package.json
 │   └── wxt.config.ts
 │
-└── website/                        # Landing Page (Vite + React)
-    ├── src/
-    │   ├── components/             # Hero, SoundboardDemo, InstallGuide
-    │   └── App.tsx
-    ├── public/
-    ├── vercel.json                 # /download redirect to Cloudflare R2
-    └── package.json
+├── website/                        # Landing Page (Vite + React)
+│   ├── src/
+│   │   ├── components/             # Hero, SoundboardDemo, InstallGuide
+│   │   └── App.tsx
+│   ├── public/
+│   ├── components.json             # shadcn/ui config
+│   ├── vercel.json                 # /download redirect to Cloudflare R2
+│   └── package.json
+│
+├── AGENTS.md                       # Technical guidelines for AI agents
+├── BRAND.md                        # Design system, color tokens, and visual voice
+├── ARCHITECTURE.md                 # System diagrams & runtime sequence
+├── LICENSE                         # MIT License
+├── skills-lock.json                # Agent skills dependency lockfile
+└── package.json                    # Monorepo scripts with native npm workspaces
 ```
 
 ---
@@ -163,3 +175,20 @@ Whenever `sidepanel` updates settings via `chrome.storage.local.set()`, `content
   - UI icons utilize **Lucide React** (ISC License).
   - UI primitives utilize **Radix UI** (MIT License).
 - All new files and contributions must comply with the MIT License terms.
+
+---
+
+## 8. Agent Skills Ecosystem (`.agents/skills`)
+
+ThreadFX uses the open agent skills ecosystem (`skills.sh`). Skills are committed under `.agents/skills/` and tracked in `skills-lock.json`:
+
+- **`wxt-browser-extensions`** (`pproenca/dot-skills`) — WXT framework conventions and build rules.
+- **`shadcn`** (`shadcn-ui/ui`) — Modern shadcn/ui components, `radix-ui`, and Tailwind v4 tokens.
+- **`emil-design-eng`** (`emilkowalski/skills`) — Micro-interactions, spring animations, and tactile feedback.
+- **`ui-sound-design`** (`dannyjpwilliams/ui-sound-design-skill`) — UI audio ergonomics and earcon guidelines.
+- **`vercel-react-best-practices`** (`vercel-labs/agent-skills`) — React 19 performance and state management.
+- **`frontend-design`** (`anthropics/skills`) — Distinctive aesthetic craft and landing page layouts.
+- **`web-design-guidelines`** (`vercel-labs/agent-skills`) — Web interface guidelines and accessibility checks.
+- **`vite`** (`antfu/skills`) — Vite optimization and build configurations.
+
+AI agents working on this monorepo should consult these skills in `.agents/skills/` for domain-specific patterns.

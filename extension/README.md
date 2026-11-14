@@ -11,7 +11,7 @@
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`)
 - **Audio Engine:** [ZzFX](https://github.com/KilledByAPixel/ZzFX) (Procedural Web Audio API synthesis)
 - **Visual FX:** `canvas-confetti`
-- **UI Components:** `@radix-ui/react-slider`, `@radix-ui/react-switch`, Lucide React
+- **UI Components:** shadcn/ui (`radix-ui`, `cn`), Lucide React
 - **Interface:** Native Chrome Side Panel (`chrome.sidePanel`)
 
 ---

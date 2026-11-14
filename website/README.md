@@ -10,6 +10,7 @@
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom AMOLED dark tokens
 - **Audio Engine:** Shared in-memory `zzfx.ts` procedural synthesizer
 - **Visual Effects:** `canvas-confetti`
+- **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Icons:** Lucide React
 - **Hosting:** Vercel (Hobby) with dual-domain fallback
 - **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution
