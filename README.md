@@ -156,6 +156,19 @@ threadfx/
 
 ---
 
+## 🤖 Agent Workflows & Skills
+
+ThreadFX includes dedicated agent skills located in `.agents/skills/` that can be referenced by name or invoked via slash commands:
+
+- **`/load-project-context`**: Loads architecture, constraints, storage schema, and enforces asking before committing or pushing.
+- **`/commit-and-push`**: Pre-flight format/lint checks, conventional commit formatting with grouped responsibility descriptions.
+- **`/release-extension`**: Lockstep version bumping, packaging `.zip` archives, and drafting GitHub Releases.
+- **`/create-changelog`**: Authors consumer-facing, Apple-style release notes with sensory benefits and zero technical jargon.
+- **`/sync-documentation`**: Audits and updates documentation across all packages to eliminate drift.
+- **`/verify-project`**: Runs an end-to-end health check (`oxfmt`, `oxlint`, `build:all`, and version sync).
+
+---
+
 ## 📄 Documentation Links
 
 - [**AGENTS.md**](AGENTS.md) — Technical guidelines for AI coding agents and contributors.
