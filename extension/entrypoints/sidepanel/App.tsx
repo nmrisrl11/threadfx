@@ -1,4 +1,4 @@
-import { Volume2, Sparkles } from "lucide-react";
+import { Volume2Icon, SparklesIcon } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SidepanelHeader } from "@/components/sidepanel/header";
 import { MetricStrip } from "@/components/sidepanel/metric-strip";
@@ -21,11 +21,11 @@ export default function App() {
 			<Tabs defaultValue="audio" className="flex flex-1 flex-col gap-2">
 				<TabsList>
 					<TabsTrigger value="audio" className="flex items-center gap-1.5">
-						<Volume2 className="h-3.5 w-3.5" />
+						<Volume2Icon className="h-3.5 w-3.5" />
 						<span>Sound FX</span>
 					</TabsTrigger>
 					<TabsTrigger value="particles" className="flex items-center gap-1.5">
-						<Sparkles className="h-3.5 w-3.5" />
+						<SparklesIcon className="h-3.5 w-3.5" />
 						<span>Particles</span>
 					</TabsTrigger>
 				</TabsList>

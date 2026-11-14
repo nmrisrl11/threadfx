@@ -15,14 +15,18 @@ threadfx/
 ├── .agents/skills/                 # Installed agent skills (WXT, shadcn, audio, etc.)
 ├── .vscode/                        # Recommended extensions, settings & tasks
 ├── extension/                      # WXT Browser Extension (Manifest V3)
-│   ├── components/                 # shadcn/ui components (Button, Switch, Slider, etc.)
+│   ├── components/                 # UI components (sidepanel & primitives)
+│   │   ├── sidepanel/              # Header, ThemeToggle, Tabs, Audio/Particle Grids
+│   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
 │   ├── entrypoints/
 │   │   ├── background.ts           # Service worker (sidePanel behavior)
 │   │   ├── content.ts              # threads.com DOM observer & sound trigger
-│   │   └── sidepanel/              # Native Chrome Side Panel React App
+│   │   └── sidepanel/              # Native Chrome Side Panel React 19 App
 │   │       ├── index.html
-│   │       ├── main.tsx
-│   │       └── App.tsx
+│   │       ├── main.tsx            # Synchronous early theme initialization (zero-FOUC)
+│   │       ├── App.tsx             # Interactive soundboard, volume, likes counter
+│   │       └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
 │   ├── lib/
 │   │   ├── zzfx.ts                 # Procedural audio synthesis engine
 │   │   ├── presets.ts              # Sound effect number arrays
@@ -129,6 +133,18 @@ Deep multi-level relative imports (`../../`, `../../../`) are fragile, break dur
   - `@data/...` for shared monorepo metadata (e.g. `@data/app`, `@data/changelog`).
 - **Permitted Relative Imports**: Sibling imports (`./foo`) and single-level parent imports within the same cohesive domain (`../header` inside `components/sidepanel/`) are permitted.
 - **Enforcement**: Strictly enforced via Oxlint's `eslint/no-restricted-imports` rule in `.oxlintrc.json`. Any import pattern with 2+ parent traversal levels will fail `npm run lint`.
+
+### Rule 8: Lucide Icons Suffix Convention (Always Use 'Icon' Suffix)
+
+To maintain naming clarity, eliminate collisions with HTML primitives and domain entities (`Switch`, `Card`, `Badge`, `Button`, `Check`), and align with modern design system ergonomics across the author's applications (DayBook, Sulok, Gemini AI Pro):
+
+- **ALWAYS** import and name icons from `lucide-react` using the `Icon` suffix:
+  - `import { Volume2Icon, SparklesIcon, HeartIcon } from "lucide-react";`
+  - `import { SunIcon, MoonIcon, MonitorIcon } from "lucide-react";`
+  - `import { PlayIcon, CheckIcon, CircleDotIcon, ExternalLinkIcon } from "lucide-react";`
+  - `import { DownloadIcon, ArrowRightIcon, ZapIcon, LaptopIcon } from "lucide-react";`
+- **NEVER** import bare icon names without the `Icon` suffix (e.g., `import { Sun }` or `import { Heart }` is strictly prohibited).
+- **Native Availability**: Modern `lucide-react` natively exports all icon components directly with the `Icon` suffix; never alias manually unless disambiguating an external symbol.
 
 ---
 

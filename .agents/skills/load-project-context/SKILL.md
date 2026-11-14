@@ -37,6 +37,18 @@ Before reading code or making changes, internalize these core rules:
 - This environment runs on **Windows (PowerShell)**.
 - **ALWAYS** invoke npm and npx tools via `npm.cmd` and `npx.cmd` to avoid PowerShell script execution policy errors.
 
+### ⚠️ Rule 5: Avoid Barrel Files (Direct Explicit Imports)
+- **NEVER** create or use barrel files (`index.ts` / `index.js` re-exporting multiple siblings) in internal feature directories (`data/`, `extension/components/sidepanel/`, `extension/lib/`, etc.).
+- **ALWAYS** use direct, explicit file imports (e.g. `import { APP_INFO } from "@data/app"`).
+
+### ⚠️ Rule 6: No Deep Relative Imports (Enforce Path Aliases)
+- **NEVER** write deep relative traversals of 2 or more parent directories (e.g. `../../data/app`).
+- **ALWAYS** use configured path aliases (`@/...` and `@data/...`).
+
+### ⚠️ Rule 7: Lucide Icons Suffix Convention (Always Use 'Icon' Suffix)
+- **ALWAYS** import and name icons from `lucide-react` with the `Icon` suffix (e.g. `Volume2Icon`, `SparklesIcon`, `SunIcon`, `MoonIcon`, `HeartIcon`).
+- **NEVER** import bare icon names without the `Icon` suffix (e.g. `import { Sun }` is prohibited).
+
 ---
 
 ## 2. Inspect Documentation & Guidelines
@@ -111,11 +123,15 @@ Synchronized state between `content.ts` and `sidepanel`:
 
 ```typescript
 export interface ThreadFXSettings {
-  enabled: boolean;          // Master toggle (default: true)
-  volume: number;           // 0.0 to 1.0 (default: 0.5)
-  soundPack: 'bubble' | 'retro' | 'hype' | 'blip'; // Active preset
-  confettiEnabled: boolean; // Visual confetti on like (default: true)
-  likesJuicedCount: number; // Lifetime counter of likes enhanced
+	enabled: boolean; // Master toggle (default: true)
+	volume: number; // 0.0 to 1.0 (default: 0.6)
+	soundPack: "bubble" | "retro" | "hype" | "blip"; // Active preset
+	confettiEnabled: boolean; // Visual confetti on like (default: true)
+	likesJuicedCount: number; // Lifetime counter of likes enhanced
+	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
+	confettiPalette: ConfettiPaletteId; // Active confetti color palette
+	confettiCount: number; // Particle count (default: 30)
+	confettiSpread: number; // Particle spread angle (default: 55)
 }
 ```
 

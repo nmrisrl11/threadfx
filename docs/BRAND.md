@@ -41,53 +41,66 @@
 
 ## 3. Color Palette & Design Tokens
 
-ThreadFX uses an **AMOLED Dark** foundation designed to blend seamlessly with `threads.com` (and legacy `threads.net`), accented with an electrifying tri-color gradient:
+ThreadFX features a dual-theme design system: an **AMOLED Dark** foundation designed to blend seamlessly with `threads.com` (and legacy `threads.net`), and a **Clean Slate Light** mode optimized for daytime reading and high ambient light—both accented with our signature tri-color gradient.
 
-### Palette Table
+### Theme Tokens Matrix
 
-| Token Name          | Hex Code  | Role / Usage                                               |
-| :------------------ | :-------- | :--------------------------------------------------------- |
-| **`bg-canvas`**     | `#080808` | Deep void background (matches Threads web dark mode)       |
-| **`bg-card`**       | `#121212` | Elevated surface for Side Panel cards and website sections |
-| **`bg-muted`**      | `#1C1C1C` | Hover states, pill badges, and input backgrounds           |
-| **`border-subtle`** | `#262626` | Hairline border lines (standard shadcn aesthetic)          |
-| **`border-strong`** | `#383838` | Active border highlights and focused inputs                |
-| **`text-primary`**  | `#F3F5F7` | Crisp off-white foreground typography                      |
-| **`text-muted`**    | `#8E8E93` | Metadata, subtitles, and secondary labels                  |
-| **`accent-neon`**   | `#FF2E93` | Neon pulse pink (echoing the like heart)                   |
-| **`accent-violet`** | `#7928CA` | Electric violet (depth, gradients, and glowing accents)    |
-| **`accent-cyan`**   | `#00F5FF` | Hyper cyan spark (confetti highlights and particle bursts) |
+| Semantic Token                | AMOLED Dark (`.dark`)       | Clean Slate Light (`.light`) | Role / Usage                                      |
+| :---------------------------- | :-------------------------- | :--------------------------- | :------------------------------------------------ |
+| **`--background`**            | `#09090B`                   | `#FBFBFD`                    | Root canvas background                            |
+| **`--foreground`**            | `#FAFAFA`                   | `#09090B`                    | High-contrast primary text                        |
+| **`--card`**                  | `#131316`                   | `#FFFFFF`                    | Elevated surfaces, tabs, and soundboard cards     |
+| **`--card-foreground`**       | `#FAFAFA`                   | `#09090B`                    | Card title and content text                       |
+| **`--secondary` / `--muted`** | `#18181B`                   | `#F4F4F5`                    | Secondary buttons, track backgrounds, badge fills |
+| **`--muted-foreground`**      | `#A1A1AA`                   | `#71717A`                    | Metadata, subtitles, and secondary labels         |
+| **`--accent`**                | `#202024`                   | `#F4F4F5`                    | Hover states and interactive row highlights       |
+| **`--border`**                | `rgba(255, 255, 255, 0.08)` | `rgba(0, 0, 0, 0.08)`        | Hairline container borders                        |
+| **`--input`**                 | `rgba(255, 255, 255, 0.12)` | `rgba(0, 0, 0, 0.12)`        | Input outlines and slider track borders           |
+| **`--ring`**                  | `rgba(255, 255, 255, 0.2)`  | `rgba(0, 0, 0, 0.2)`         | Focus rings and tactile active boundaries         |
 
-### Signature Brand Gradients
+### Signature Brand Accents & Gradients
 
-- **Hero Text & Accent Gradient:**  
+| Accent Name         | Hex Code  | Role / Usage                                                  |
+| :------------------ | :-------- | :------------------------------------------------------------ |
+| **`accent-neon`**   | `#FF2E93` | Neon pulse pink (echoing the like heart & particle bursts)    |
+| **`accent-violet`** | `#7928CA` | Electric violet (depth, brand gradients, and glowing accents) |
+| **`accent-cyan`**   | `#00F5FF` | Hyper cyan spark (confetti highlights and particle bursts)    |
+
+- **Brand Signature Gradient:**  
   `linear-gradient(135deg, #FF2E93 0%, #7928CA 50%, #00F5FF 100%)`
 - **Subtle Glow Shadow:**  
   `0 0 24px -4px rgba(255, 46, 147, 0.25)`
 
-### Tailwind CSS Token Configuration (`tailwind.config.ts`)
+### Modern Tailwind CSS v4 & shadcn Architecture (`style.css`)
 
-```typescript
-module.exports = {
-	theme: {
-		extend: {
-			colors: {
-				canvas: "#080808",
-				card: "#121212",
-				muted: "#1C1C1C",
-				subtle: "#262626",
-				neon: "#FF2E93",
-				violet: "#7928CA",
-				cyan: "#00F5FF",
-			},
-			backgroundImage: {
-				"brand-gradient": "linear-gradient(135deg, #FF2E93 0%, #7928CA 50%, #00F5FF 100%)",
-				"subtle-radial":
-					"radial-gradient(circle at top, rgba(121, 40, 202, 0.15), transparent 70%)",
-			},
-		},
-	},
-};
+ThreadFX uses pure CSS variable mapping with zero runtime overhead or manual `dark:` overrides in JSX:
+
+```css
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-border: var(--border);
+	--color-accent: var(--accent);
+}
+```
+
+Scrollbars use native CSS `light-dark()` color resolution:
+
+```css
+::-webkit-scrollbar-thumb {
+	background: light-dark(#d4d4d8, #262626);
+	border-radius: 9999px;
+}
 ```
 
 ---

@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2Icon, VolumeXIcon } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { SoundProfileGrid } from "./sound-profile-grid";
 import { useAudioSettings } from "@/hooks/use-settings";
@@ -31,9 +31,9 @@ export function AudioTab() {
 				<div className="flex items-center justify-between text-xs">
 					<div className="text-foreground flex items-center gap-2">
 						{volume === 0 ? (
-							<VolumeX className="text-muted-foreground h-3.5 w-3.5" />
+							<VolumeXIcon className="text-muted-foreground h-3.5 w-3.5" />
 						) : (
-							<Volume2 className="text-foreground h-3.5 w-3.5" />
+							<Volume2Icon className="text-foreground h-3.5 w-3.5" />
 						)}
 						<span className="text-xs font-medium">Audition & Playback Volume</span>
 					</div>

@@ -1,15 +1,15 @@
-import { Sun, Moon, Monitor } from "lucide-react";
+import { SunIcon, MoonIcon, MonitorIcon } from "lucide-react";
 import { useTheme } from "@/hooks/use-settings";
 import type { ThemeMode } from "@/lib/storage";
 
 const THEME_OPTIONS: Array<{
 	id: ThemeMode;
 	label: string;
-	icon: typeof Sun;
+	icon: typeof SunIcon;
 }> = [
-	{ id: "light", label: "Light theme", icon: Sun },
-	{ id: "dark", label: "Dark theme", icon: Moon },
-	{ id: "system", label: "System preference", icon: Monitor },
+	{ id: "light", label: "Light theme", icon: SunIcon },
+	{ id: "dark", label: "Dark theme", icon: MoonIcon },
+	{ id: "system", label: "System preference", icon: MonitorIcon },
 ];
 
 export function ThemeToggle() {

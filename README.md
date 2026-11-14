@@ -25,26 +25,28 @@ _Zero-latency procedural audio, physics-driven particle bursts, and tactile micr
 - **🖲️ Tactile Motion Feedback:** Micro-spring scale dynamics and responsive visual bounce effects that give flat digital interactions the physical weight and mechanical satisfaction of a tactile switch.
 - **📊 Real-Time Lifetime Sensory Metrics:** Private, local "Likes Enhanced" odometer tracking your lifetime interaction juice without sending a single byte of telemetry to any external server.
 - **📱 Docked Native Chrome Side Panel:** Clean, obsidian-chassis dashboard that stays docked to your screen while browsing—with real-time sound auditioning, live volume sliders, and particle controls with instant sync across tabs.
+- **🌓 Independent Appearance Theming:** Native tri-state theme switcher (System, Dark, Light) built with modern shadcn CSS variables, instant zero-FOUC initialization, and seamless synchronization with OS preferences.
 - **🔒 Privacy-First & Minimal Permissions:** Only requests access to `threads.com` (and legacy `threads.net`) plus local storage. Zero background analytics, zero tracking scripts, and zero invasive permissions.
 
 ---
 
 ## 🛠️ Complete Tech Stack
 
-| Layer                   | Technology                                 | Details                                                               |
-| :---------------------- | :----------------------------------------- | :-------------------------------------------------------------------- |
-| **Monorepo**            | npm Workspaces                             | Unified package management across extension and website               |
-| **Extension Framework** | [WXT](https://wxt.dev/) (v0.21+)           | Modern Vite-powered browser extension framework                       |
-| **UI Framework**        | React 19 + TypeScript                      | High-performance component rendering                                  |
-| **Styling**             | Tailwind CSS v4                            | New `@theme` CSS variables & zero-config compilation                  |
-| **UI Primitives**       | shadcn/ui + Radix UI (`radix-ui`, `cn`)    | Accessible components, custom variants, and button/slider/switch UIs  |
-| **Linter & Formatter**  | OXC (`oxlint` + `oxfmt`)                   | High-performance Rust-based JavaScript/TypeScript linter & formatter  |
-| **Audio Synthesis**     | ZzFX (< 1 KB Web Audio)                    | In-memory procedural sound synthesizer (MIT)                          |
-| **Visual FX**           | Canvas Confetti                            | Hardware-accelerated particle canvas                                  |
-| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar                                            |
-| **Landing Page**        | Vite + React 19 + Tailwind CSS v4          | Interactive Threads simulator & soundboard                            |
-| **Distribution**        | Cloudflare R2                              | Direct zip downloads with $0 egress fees via `/download`              |
-| **Hosting**             | Vercel                                     | Dual-domain fallback (`threadfx.nmrisrl.dev` ⇄ `threadfx.vercel.app`) |
+| Layer                   | Technology                                 | Details                                                                |
+| :---------------------- | :----------------------------------------- | :--------------------------------------------------------------------- |
+| **Monorepo**            | npm Workspaces                             | Unified package management across extension and website                |
+| **Extension Framework** | [WXT](https://wxt.dev/) (v0.21+)           | Modern Vite-powered browser extension framework                        |
+| **UI Framework**        | React 19 + TypeScript                      | High-performance component rendering                                   |
+| **Styling**             | Tailwind CSS v4 + shadcn CSS Variables     | Dual Light/Dark theming (`system` / `dark` / `light`) & zero-FOUC sync |
+| **UI Primitives**       | shadcn/ui + Radix UI (`radix-ui`, `cn`)    | Accessible components, custom variants, and button/slider/switch UIs   |
+| **Iconography**         | Lucide React                               | Standardized explicit `Icon` suffix convention (`*Icon`)               |
+| **Linter & Formatter**  | OXC (`oxlint` + `oxfmt`)                   | High-performance Rust-based JavaScript/TypeScript linter & formatter   |
+| **Audio Synthesis**     | ZzFX (< 1 KB Web Audio)                    | In-memory procedural sound synthesizer (MIT)                           |
+| **Visual FX**           | Canvas Confetti                            | Hardware-accelerated particle canvas                                   |
+| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar                                             |
+| **Landing Page**        | Vite + React 19 + Tailwind CSS v4          | Interactive Threads simulator & soundboard                             |
+| **Distribution**        | Cloudflare R2                              | Direct zip downloads with $0 egress fees via `/download`               |
+| **Hosting**             | Vercel                                     | Dual-domain fallback (`threadfx.nmrisrl.dev` ⇄ `threadfx.vercel.app`)  |
 
 ---
 
@@ -119,15 +121,18 @@ threadfx/
 ├── .agents/skills/                 # Installed agent skills (WXT, shadcn, audio, etc.)
 ├── .vscode/                        # Recommended extensions, settings & task runner v2.0.0
 ├── extension/                      # WXT Browser Extension (Manifest V3)
-│   ├── components/                 # shadcn/ui components (Button, Switch, Slider, etc.)
+│   ├── components/                 # UI components
+│   │   ├── sidepanel/              # Header, ThemeToggle, Tabs, Audio/Particle Grids
+│   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
 │   ├── entrypoints/
 │   │   ├── sidepanel/              # Native Chrome Side Panel React 19 App
 │   │   │   ├── index.html
-│   │   │   ├── main.tsx
+│   │   │   ├── main.tsx            # Synchronous early theme initialization (zero-FOUC)
 │   │   │   ├── App.tsx             # Interactive soundboard, volume, likes counter
-│   │   │   └── style.css           # Tailwind CSS v4 design tokens
+│   │   │   └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
 │   │   ├── background.ts           # Configures openPanelOnActionClick: true
 │   │   └── content.ts              # threads.com DOM like-observer & ZzFX trigger
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
 │   ├── lib/
 │   │   ├── zzfx.ts                 # Pure procedural Web Audio synthesis engine
 │   │   ├── presets.ts              # Bubble Pop, 8-Bit Coin, Hype Spark, Minimal Click

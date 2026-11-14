@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLinkIcon } from "lucide-react";
 import { APP_INFO } from "@data/app";
 
 interface SidepanelFooterProps {
@@ -47,7 +47,7 @@ export function SidepanelFooter({
 				className="text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
 			>
 				<span>Website</span>
-				<ExternalLink className="h-3 w-3" />
+				<ExternalLinkIcon className="h-3 w-3" />
 			</a>
 		</footer>
 	);

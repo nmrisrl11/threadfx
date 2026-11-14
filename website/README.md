@@ -11,7 +11,7 @@
 - **Audio Engine:** Shared in-memory `zzfx.ts` procedural synthesizer
 - **Visual Effects:** `canvas-confetti` (particle bursts & celebratory reactions)
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
-- **Icons:** Lucide React
+- **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
 - **Hosting:** Vercel (Hobby) with dual-domain fallback
 - **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution
 

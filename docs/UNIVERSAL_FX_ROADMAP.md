@@ -352,7 +352,7 @@ If you ever decide to adopt a universal name (e.g. `JuiceFX` or `TactileFX`):
 2. **Package Workspaces:** Update `name` in `package.json`, `extension/package.json`, and `website/package.json`.
 3. **Manifest:** Update `name` and `short_name` in `wxt.config.ts`.
 4. **Domain:** Point new domain to Vercel and configure 301 redirects from `threadfx.nmrisrl.dev`.
-5. **Assets:** Swap emblem artwork and update `BRAND.md`.
+5. **Assets:** Swap emblem artwork and update `docs/BRAND.md`.
 
 ---
 

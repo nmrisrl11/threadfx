@@ -1,5 +1,5 @@
 import { memo, useMemo, useCallback } from "react";
-import { Sparkles, Check } from "lucide-react";
+import { SparklesIcon, CheckIcon } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { CONFETTI_PALETTE_LIST } from "@/lib/particles";
@@ -39,7 +39,7 @@ const PaletteCard = memo(function PaletteCard({ palette, isSelected, onSelect }:
 				</div>
 				{isSelected ? (
 					<span className="bg-foreground text-background flex h-4 w-4 shrink-0 items-center justify-center rounded-full">
-						<Check className="h-2.5 w-2.5 stroke-[3]" />
+						<CheckIcon className="h-2.5 w-2.5 stroke-[3]" />
 					</span>
 				) : null}
 			</div>
@@ -92,7 +92,7 @@ export function ParticlesTab() {
 			<div className="border-border bg-surface-subtle flex items-center justify-between rounded-xl border p-3 transition-colors">
 				<div className="flex items-center gap-2.5">
 					<div className="border-border bg-surface-muted text-foreground flex h-7 w-7 items-center justify-center rounded-lg border">
-						<Sparkles className="h-3.5 w-3.5" />
+						<SparklesIcon className="h-3.5 w-3.5" />
 					</div>
 					<div>
 						<span className="text-foreground block text-xs font-medium">Particle Bursts</span>

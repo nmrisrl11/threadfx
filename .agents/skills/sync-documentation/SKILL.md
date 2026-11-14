@@ -29,7 +29,7 @@ Audit and verify the consistency of these 6 core documentation files:
 Compare the codebase against the documentation and check for these common drift issues:
 
 ### 1. Version Drift
-- Verify that the version listed in `README.md`, `extension/entrypoints/sidepanel/App.tsx`, and `website/src/App.tsx` strictly matches `package.json`, `extension/package.json`, and `website/package.json`.
+- Verify that the version listed in `data/app.ts` (`APP_INFO.version`), `package.json`, `extension/package.json`, and `website/package.json` strictly match in lockstep.
 
 ### 2. Dependency & Tech Stack Drift
 - If new packages were added or removed in `package.json` (e.g. `shadcn`, `oxlint`, `radix-ui`), verify that:
@@ -47,6 +47,10 @@ Compare the codebase against the documentation and check for these common drift 
 
 ### 6. Directory Tree Drift
 - Compare the ASCII directory trees in `README.md` and `AGENTS.md` with the actual file system using `git status` or directory listing.
+
+### 7. Iconography & Theming Consistency
+- Verify that `ThreadFXSettings` storage schema reflects `theme: "system" | "dark" | "light"` across documentation files.
+- Verify that Lucide React icons in any new components adhere strictly to Rule 8 with the `*Icon` suffix convention.
 
 ---
 

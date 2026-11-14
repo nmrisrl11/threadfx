@@ -98,8 +98,8 @@ Legend:
 #### 🎨 Visual Particle Customization
 
 - [ ] 🟢 **Emoji Reaction Bursts:** Toggle between classic geometric spark particles and floating emojis (❤️, 🔥, 🎉, 🚀, 💎) using `canvas-confetti` shape rendering.
-- [ ] 🟢 **Curated Color Palettes:** User-selectable particle themes (Neon Pulse, Threads Classic, Monochrome Diamond, Sunset Gold).
-- [ ] 🟡 **Custom Particle Count & Spread Slider:** Allow users to choose between subtle (10 particles) and explosive (60 particles) reaction bursts.
+- [x] 🟢 **Curated Color Palettes:** User-selectable particle themes (Neon Pulse, Threads Classic, Cyberpunk, AMOLED White, Sunset Gold).
+- [x] 🟢 **Custom Particle Count & Spread Sliders:** Allow users to choose between subtle (10 particles) and explosive (60 particles) reaction bursts with adjustable spread.
 
 #### 🔊 Expanded Threads In-Feed Interactions
 
@@ -113,7 +113,7 @@ Legend:
 
 - [ ] 🟢 **Audio Mute Shortcut:** Global toggle key (`Alt+Shift+M`) to instantly mute/unmute FX without opening the Side Panel.
 - [ ] 🟡 **Smart Audio Ducking:** Automatically suppress or lower SFX volume if an active video post on Threads is currently playing audio.
-- [ ] 🟢 **Theme Appearance Control:** 3-way toggle in Side Panel (`Auto / Match Threads`, `AMOLED Dark`, `Clean Light`).
+- [x] 🟢 **Theme Appearance Control:** Native 3-way toggle in Side Panel (`Auto / Match OS`, `Dark`, `Light`) with zero-FOUC and modern shadcn CSS variables.
 
 ---
 

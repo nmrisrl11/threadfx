@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import {
-	Zap,
-	Download,
-	Sparkles,
-	Heart,
-	Volume2,
-	Check,
-	ArrowRight,
-	ExternalLink,
-	Laptop,
-	Activity,
-	Layers,
+	ZapIcon,
+	DownloadIcon,
+	SparklesIcon,
+	HeartIcon,
+	Volume2Icon,
+	CheckIcon,
+	ArrowRightIcon,
+	ExternalLinkIcon,
+	LaptopIcon,
+	ActivityIcon,
+	LayersIcon,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { zzfx } from "@/lib/zzfx";
@@ -97,12 +97,12 @@ export default function App() {
 						className="text-muted-foreground hover:text-foreground hidden items-center gap-1.5 text-xs transition-colors sm:flex"
 					>
 						<span>{APP_INFO.author.handle}</span>
-						<ExternalLink className="h-3 w-3" />
+						<ExternalLinkIcon className="h-3 w-3" />
 					</a>
 
 					<Button asChild size="sm" variant="gradient">
 						<a href={APP_INFO.urls.download}>
-							<Download className="h-4 w-4" />
+							<DownloadIcon className="h-4 w-4" />
 							<span>Download .zip</span>
 						</a>
 					</Button>
@@ -156,7 +156,7 @@ export default function App() {
 					<div className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row">
 						<Button asChild size="lg" variant="gradient">
 							<a href="/download">
-								<Download className="h-4 w-4" />
+								<DownloadIcon className="h-4 w-4" />
 								<span>Download ThreadFX (Free Unpacked)</span>
 							</a>
 						</Button>
@@ -164,7 +164,7 @@ export default function App() {
 						<Button asChild size="lg" variant="outline">
 							<a href="#install-guide">
 								<span>Install Guide</span>
-								<ArrowRight className="h-4 w-4" />
+								<ArrowRightIcon className="h-4 w-4" />
 							</a>
 						</Button>
 					</div>
@@ -201,7 +201,7 @@ export default function App() {
 											>
 												<div className="mb-1 flex items-center justify-between">
 													<span className="text-lg">{pack.icon}</span>
-													{isSelected && <Check className="h-3.5 w-3.5 text-[#FF2E93]" />}
+													{isSelected && <CheckIcon className="h-3.5 w-3.5 text-[#FF2E93]" />}
 												</div>
 												<div className="text-foreground text-xs font-bold">{pack.name}</div>
 											</button>
@@ -214,7 +214,7 @@ export default function App() {
 							<div className="border-border space-y-2 rounded-xl border bg-[#0E0E0E] p-3.5">
 								<div className="flex items-center justify-between text-xs">
 									<div className="text-muted-foreground flex items-center gap-1.5">
-										<Volume2 className="h-4 w-4 text-[#FF2E93]" />
+										<Volume2Icon className="h-4 w-4 text-[#FF2E93]" />
 										<span>Volume</span>
 									</div>
 									<span className="text-foreground font-mono">{Math.round(volume * 100)}%</span>
@@ -232,7 +232,7 @@ export default function App() {
 							{/* Visual Effects & Particle Burst Switch via shadcn/ui */}
 							<div className="border-border flex items-center justify-between rounded-xl border bg-[#0E0E0E] p-3.5">
 								<div className="flex items-center gap-2">
-									<Sparkles className="h-4 w-4 text-[#00F5FF]" />
+									<SparklesIcon className="h-4 w-4 text-[#00F5FF]" />
 									<span className="text-xs font-medium">Visual Particle Bursts</span>
 								</div>
 								<Switch checked={confettiActive} onCheckedChange={setConfettiActive} />
@@ -271,7 +271,7 @@ export default function App() {
 										onClick={handleSimulatedLike}
 										className="group flex cursor-pointer items-center gap-2 transition-transform active:scale-125"
 									>
-										<Heart
+										<HeartIcon
 											className={`h-6 w-6 transition-all ${
 												isLiked
 													? "scale-110 fill-[#FF2E93] text-[#FF2E93] drop-shadow-[0_0_12px_#FF2E93]"
@@ -311,7 +311,7 @@ export default function App() {
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						<Card className="space-y-3 p-6 transition-colors hover:border-[#FF2E93]/40">
 							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#FF2E93]">
-								<Zap className="h-5 w-5" />
+								<ZapIcon className="h-5 w-5" />
 							</div>
 							<h3 className="text-foreground text-base font-bold">Zero-Latency Audio Synthesis</h3>
 							<p className="text-muted-foreground text-xs leading-relaxed">
@@ -322,7 +322,7 @@ export default function App() {
 
 						<Card className="space-y-3 p-6 transition-colors hover:border-[#00F5FF]/40">
 							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#00F5FF]">
-								<Sparkles className="h-5 w-5" />
+								<SparklesIcon className="h-5 w-5" />
 							</div>
 							<h3 className="text-foreground text-base font-bold">
 								Physics-Driven Particle Bursts
@@ -335,7 +335,7 @@ export default function App() {
 
 						<Card className="space-y-3 p-6 transition-colors hover:border-[#7928CA]/40">
 							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#7928CA]">
-								<Heart className="h-5 w-5" />
+								<HeartIcon className="h-5 w-5" />
 							</div>
 							<h3 className="text-foreground text-base font-bold">Tactile Motion Feedback</h3>
 							<p className="text-muted-foreground text-xs leading-relaxed">
@@ -346,7 +346,7 @@ export default function App() {
 
 						<Card className="space-y-3 p-6 transition-colors hover:border-[#7928CA]/40">
 							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#7928CA]">
-								<Laptop className="h-5 w-5" />
+								<LaptopIcon className="h-5 w-5" />
 							</div>
 							<h3 className="text-foreground text-base font-bold">Docked Native Side Panel</h3>
 							<p className="text-muted-foreground text-xs leading-relaxed">
@@ -358,7 +358,7 @@ export default function App() {
 
 						<Card className="space-y-3 p-6 transition-colors hover:border-[#FF2E93]/40">
 							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#FF2E93]">
-								<Activity className="h-5 w-5" />
+								<ActivityIcon className="h-5 w-5" />
 							</div>
 							<h3 className="text-foreground text-base font-bold">Lifetime Sensory Metrics</h3>
 							<p className="text-muted-foreground text-xs leading-relaxed">
@@ -369,7 +369,7 @@ export default function App() {
 
 						<Card className="space-y-3 p-6 transition-colors hover:border-[#00F5FF]/40">
 							<div className="bg-muted flex h-10 w-10 items-center justify-center rounded-xl text-[#00F5FF]">
-								<Layers className="h-5 w-5" />
+								<LayersIcon className="h-5 w-5" />
 							</div>
 							<h3 className="text-foreground text-base font-bold">Modular Social Architecture</h3>
 							<p className="text-muted-foreground text-xs leading-relaxed">

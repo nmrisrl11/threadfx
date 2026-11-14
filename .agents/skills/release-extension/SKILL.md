@@ -31,8 +31,7 @@ Update the `"version"` field in lockstep:
 2. **Browser Extension:** `extension/package.json` line 3 ➡️ `"version": "<NEW_VERSION>"`
    *(WXT automatically injects this version into `manifest.json` and uses it to name the zip package)*
 3. **Website App:** `website/package.json` line 3 ➡️ `"version": "<NEW_VERSION>"`
-4. **Website Navbar Badge:** Update the version pill in `website/src/App.tsx` (e.g. `v<NEW_VERSION>`)
-5. **Side Panel Footer:** Update the version label in `extension/entrypoints/sidepanel/App.tsx` (e.g. `v<NEW_VERSION> • Manifest V3`)
+4. **Central Metadata:** Update `APP_INFO.version` and `APP_INFO.versionTag` in `data/app.ts` (which automatically propagates to both the website navbar badge and the sidepanel footer via `@data/app`).
 
 ---
 

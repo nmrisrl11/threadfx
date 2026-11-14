@@ -94,6 +94,33 @@ Rather than an ephemeral popup dropdown, ThreadFX operates inside Chrome's nativ
   - When a user changes volume or toggles confetti in the Side Panel, it calls `chrome.storage.local.set({ ... })`.
   - `content.ts` listens to `chrome.storage.onChanged` and updates its in-memory settings cache without requiring any reload.
 
+### 4.1. Storage Schema & Dual Theming Architecture
+
+State shared across extension components follows the typed `ThreadFXSettings` schema in `extension/lib/storage.ts`:
+
+```typescript
+export interface ThreadFXSettings {
+	enabled: boolean; // Master toggle (default: true)
+	volume: number; // 0.0 to 1.0 (default: 0.6)
+	soundPack: "bubble" | "retro" | "hype" | "blip"; // Active ZzFX preset
+	confettiEnabled: boolean; // Visual confetti on like (default: true)
+	likesJuicedCount: number; // Lifetime counter of likes enhanced
+	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
+	confettiPalette: ConfettiPaletteId; // Active confetti color palette
+	confettiCount: number; // Particle count (default: 30)
+	confettiSpread: number; // Particle spread angle (default: 55)
+}
+```
+
+#### Dual Light/Dark Theming Engine
+
+The Side Panel features an independent, zero-latency tri-state theme switcher:
+
+1. **Zero-FOUC Early Initialization:** In `sidepanel/main.tsx`, `initTheme()` reads cached `localStorage` and applies theme classes synchronously before React renders, eliminating any flash of unstyled content.
+2. **Modern shadcn CSS Variables Architecture:** All Side Panel components utilize semantic classes (`bg-background`, `text-foreground`, `bg-card`, `border-border`, `text-muted-foreground`) decoupled from hardcoded utility overrides.
+3. **Tailwind CSS v4 `@theme` Integration:** Theme modes switch at the root level in `style.css` using `@custom-variant dark (&:is(.dark *))` and CSS variable definitions (`:root`, `.dark`, `.light`, and `@media (prefers-color-scheme: dark)`).
+4. **Live OS Media Query Sync:** When set to `"system"`, a `matchMedia("(prefers-color-scheme: dark)")` listener dynamically updates the UI when the user's OS changes theme.
+
 ---
 
 ## 5. Resilient DOM Detection Strategy

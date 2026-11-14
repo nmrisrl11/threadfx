@@ -22,6 +22,9 @@
 
 ### Changed
 
+- **Modern shadcn CSS Variables Architecture**: Migrated Side Panel styling to Tailwind CSS v4 CSS variables (`@import "shadcn/tailwind.css"` and `@custom-variant dark`), decoupling all UI components from hardcoded `dark:` utility overrides, trimming ~7.3 kB from the CSS bundle, and providing automatic zero-friction theming across light and dark palettes.
+- **Centralized Project Documentation Directory**: Reorganized project architecture, brand design systems, sensory wireframes, and multi-platform roadmaps from the root folder into a dedicated `docs/` directory (`docs/ARCHITECTURE.md`, `docs/BRAND.md`, `docs/FEATURE_BLUEPRINT.md`, `docs/UNIVERSAL_FX_ROADMAP.md`), keeping the monorepo root pristine.
+- **Standardized Lucide Iconography Convention**: Enforced a strict architectural rule requiring all Lucide React icons to use the explicit 'Icon' suffix (e.g. Volume2Icon, SparklesIcon, HeartIcon), preventing naming collisions with interface primitives and harmonizing codebase ergonomics.
 - **Holistic Tactile Feature Copywriting**: Overhauled copywriting and documentation across the landing page, metadata, and guides to showcase the full tactile feature suite—procedural audio synthesis, physics-driven particle bursts, tactile micro-motion, lifetime sensory odometer, and docked Side Panel dashboard.
 - **Multi-Platform Brand Positioning**: Generalized brand positioning from a narrow Threads-only extension to a modular tactile social interaction suite with Threads as the flagship launch platform, laying the architectural groundwork for multi-platform adapters (Bluesky, X).
 - **Generalized Visual Effects Identity**: Broadened copywriting and branding across the entire project from narrow "neon confetti" to "visual particle bursts and custom emoji effects" to support future emoji, sticker, and custom particle reaction bursts.

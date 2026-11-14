@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react";
-import { Play, Check, CircleDot } from "lucide-react";
+import { PlayIcon, CheckIcon, CircleDotIcon } from "lucide-react";
 import { SOUND_PACK_LIST } from "@/lib/presets";
 import type { SoundPack } from "@/lib/presets";
 
@@ -33,15 +33,15 @@ const SoundPackCard = memo(function SoundPackCard({
 		>
 			<div className="mb-2 flex w-full items-center justify-between">
 				<div className="text-muted-foreground group-hover:text-foreground flex items-center gap-1.5 transition-colors">
-					<CircleDot className="h-3.5 w-3.5" />
+					<CircleDotIcon className="h-3.5 w-3.5" />
 				</div>
 				{isSelected ? (
 					<span className="bg-foreground text-background flex h-4 w-4 shrink-0 items-center justify-center rounded-full">
-						<Check className="h-2.5 w-2.5 stroke-[3]" />
+						<CheckIcon className="h-2.5 w-2.5 stroke-[3]" />
 					</span>
 				) : (
 					<span className="text-muted-foreground group-hover:text-foreground transition-colors">
-						<Play className="h-3 w-3 fill-current opacity-60" />
+						<PlayIcon className="h-3 w-3 fill-current opacity-60" />
 					</span>
 				)}
 			</div>
