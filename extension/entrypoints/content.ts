@@ -1,6 +1,7 @@
 import confetti from "canvas-confetti";
 import { zzfx } from "@/lib/zzfx";
 import { SOUND_PACKS, DEFAULT_SOUND_PACK } from "@/lib/presets";
+import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@/lib/particles";
 import { getSettings, onSettingsChanged, incrementLikesJuiced } from "@/lib/storage";
 import type { ThreadFXSettings } from "@/lib/storage";
 
@@ -16,11 +17,11 @@ export default defineContentScript({
 		console.log("[ThreadFX] Content script loaded on Threads.");
 
 		let settings: ThreadFXSettings;
-		getSettings().then((s) => {
+		getSettings().then((s: ThreadFXSettings) => {
 			settings = s;
 		});
 
-		onSettingsChanged((updated) => {
+		onSettingsChanged((updated: ThreadFXSettings) => {
 			settings = updated;
 		});
 
@@ -59,8 +60,10 @@ export default defineContentScript({
 		function handleLikeAction(button: Element) {
 			// 1. Audio FX Pipeline
 			try {
-				const pack = SOUND_PACKS[settings.soundPack] || SOUND_PACKS[DEFAULT_SOUND_PACK];
-				zzfx(settings.volume, ...pack.params);
+				const pack = SOUND_PACKS[settings.soundPack] ?? SOUND_PACKS[DEFAULT_SOUND_PACK];
+				if (pack) {
+					zzfx(settings.volume, ...pack.params);
+				}
 			} catch (err) {
 				console.warn("[ThreadFX] Sound trigger error:", err);
 			}
@@ -72,16 +75,20 @@ export default defineContentScript({
 					const originX = (rect.left + rect.width / 2) / window.innerWidth;
 					const originY = (rect.top + rect.height / 2) / window.innerHeight;
 
+					const palette =
+						CONFETTI_PALETTES[settings.confettiPalette] ??
+						CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE];
+
 					confetti({
-						particleCount: 25,
-						spread: 50,
+						particleCount: settings.confettiCount ?? 30,
+						spread: settings.confettiSpread ?? 50,
 						startVelocity: 25,
 						ticks: 120,
 						origin: {
 							x: Math.max(0, Math.min(1, originX)),
 							y: Math.max(0, Math.min(1, originY)),
 						},
-						colors: ["#FF2E93", "#7928CA", "#00F5FF", "#FFFFFF"],
+						colors: palette ? palette.colors : ["#FFFFFF", "#F43F5E", "#FF2E93", "#E4E4E7"],
 						disableForReducedMotion: false,
 					});
 				} catch (err) {

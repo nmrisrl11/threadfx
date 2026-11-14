@@ -42,3 +42,5 @@ export const SOUND_PACKS: Record<string, SoundPack> = {
 };
 
 export const DEFAULT_SOUND_PACK = "bubble";
+
+export const SOUND_PACK_LIST: readonly SoundPack[] = Object.values(SOUND_PACKS);

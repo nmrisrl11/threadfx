@@ -1,4 +1,4 @@
-import * as React from "react";
+import type { ComponentProps } from "react";
 import { Slider as SliderPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ function Slider({
 	max = 1,
 	step = 0.05,
 	...props
-}: React.ComponentProps<typeof SliderPrimitive.Root>) {
+}: ComponentProps<typeof SliderPrimitive.Root>) {
 	return (
 		<SliderPrimitive.Root
 			data-slot="slider"
@@ -27,13 +27,16 @@ function Slider({
 		>
 			<SliderPrimitive.Track
 				data-slot="slider-track"
-				className="bg-secondary relative h-1.5 w-full grow overflow-hidden rounded-full"
+				className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-white/[0.08]"
 			>
-				<SliderPrimitive.Range data-slot="slider-range" className="bg-primary absolute h-full" />
+				<SliderPrimitive.Range
+					data-slot="slider-range"
+					className="bg-foreground absolute h-full rounded-full"
+				/>
 			</SliderPrimitive.Track>
 			<SliderPrimitive.Thumb
 				data-slot="slider-thumb"
-				className="border-primary/50 focus-visible:ring-ring block size-4 rounded-full border bg-white shadow transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+				className="block size-3.5 rounded-full bg-white shadow-sm transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none active:scale-95 disabled:pointer-events-none disabled:opacity-50"
 			/>
 		</SliderPrimitive.Root>
 	);

@@ -1,3 +1,5 @@
+import type { ConfettiPaletteId } from "./particles";
+
 // Type-safe chrome.storage helper for ThreadFX
 
 export interface ThreadFXSettings {
@@ -6,6 +8,9 @@ export interface ThreadFXSettings {
 	soundPack: "bubble" | "retro" | "hype" | "blip";
 	confettiEnabled: boolean;
 	likesJuicedCount: number;
+	confettiPalette: ConfettiPaletteId;
+	confettiCount: number;
+	confettiSpread: number;
 }
 
 export const DEFAULT_SETTINGS: ThreadFXSettings = {
@@ -14,6 +19,9 @@ export const DEFAULT_SETTINGS: ThreadFXSettings = {
 	soundPack: "bubble",
 	confettiEnabled: true,
 	likesJuicedCount: 0,
+	confettiPalette: "rose",
+	confettiCount: 30,
+	confettiSpread: 55,
 };
 
 export async function getSettings(): Promise<ThreadFXSettings> {
@@ -21,8 +29,8 @@ export async function getSettings(): Promise<ThreadFXSettings> {
 		return DEFAULT_SETTINGS;
 	}
 	return new Promise((resolve) => {
-		chrome.storage.local.get(DEFAULT_SETTINGS, (items) => {
-			resolve(items as ThreadFXSettings);
+		chrome.storage.local.get(DEFAULT_SETTINGS as unknown as Record<string, unknown>, (items) => {
+			resolve(items as unknown as ThreadFXSettings);
 		});
 	});
 }
@@ -32,7 +40,7 @@ export async function saveSettings(settings: Partial<ThreadFXSettings>): Promise
 		return;
 	}
 	return new Promise((resolve) => {
-		chrome.storage.local.set(settings, () => {
+		chrome.storage.local.set(settings as unknown as Record<string, unknown>, () => {
 			resolve();
 		});
 	});
