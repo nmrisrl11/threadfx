@@ -1,0 +1,24 @@
+{
+  "name": "threadfx-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tactile audio, confetti, and interactive effects suite for Threads",
+  "scripts": {
+    "dev:ext": "pnpm --filter extension dev",
+    "build:ext": "pnpm --filter extension build",
+    "zip:ext": "pnpm --filter extension zip",
+    "dev:web": "pnpm --filter website dev",
+    "build:web": "pnpm --filter website build",
+    "build:all": "pnpm --filter extension build && pnpm --filter extension zip && pnpm --filter website build"
+  },
+  "keywords": [
+    "threads",
+    "wxt",
+    "chrome-extension",
+    "zzfx",
+    "effects",
+    "confetti"
+  ],
+  "author": "Nomer Israel (@nmrisrl)",
+  "license": "MIT"
+}

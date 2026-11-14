@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/download",
+      "destination": "https://pub-threadfx.r2.dev/threadfx-latest.zip",
+      "permanent": false
+    }
+  ]
+}
