@@ -91,17 +91,61 @@ module.exports = {
 
 ---
 
-## 4. Typography Hierarchy
+## 4. Typography Hierarchy & Font System
 
-- **Headings:** **Geist Sans** (or **Plus Jakarta Sans**)
-  - Weight: `700` (Bold) or `800` (Extra Bold)
-  - Tracking: `-0.03em` (Tight, modern letter spacing)
-- **Body & UI Elements:** **Inter** (or **Geist Sans**)
-  - Weight: `400` (Regular) and `500` (Medium)
-  - Clean, highly readable at 12px–14px inside the Side Panel.
-- **Numbers, Latency & Audio Specs:** **Geist Mono** (or **JetBrains Mono**)
-  - Weight: `500` (Medium)
-  - Used for: `< 15ms latency`, `ZzFX parameters`, and live stats like `24 likes juiced`.
+ThreadFX employs self-hosted variable font packages via `@fontsource-variable/*` across both the website and the Chrome Extension Side Panel. This guarantees **zero CSP violations in Manifest V3**, **zero remote network latency**, and **identical pixel-level rendering** across macOS, Windows, and Linux.
+
+### Typeface Roles
+
+1. **Headings & Display (`--font-heading`):** **Plus Jakarta Sans Variable**
+   - Package: `@fontsource-variable/plus-jakarta-sans`
+   - Weight: `700` (Bold) or `800` (Extra Bold)
+   - Tracking: `-0.03em` / `tracking-tight`
+   - Rationale: A geometric neo-grotesque with warm, modern curves that shares aesthetic DNA with Threads' **Instagram Sans**, infusing high energy into brand headlines and card titles.
+
+2. **Body & UI Elements (`--font-sans`):** **Inter Variable**
+   - Package: `@fontsource-variable/inter`
+   - Weight: `400` (Regular) and `500` (Medium)
+   - Rationale: The industry benchmark for dense, razor-sharp UI controls, slider values, and settings descriptions at 11px–14px inside the docked Side Panel.
+
+3. **Data, Latency & Audio Specs (`--font-mono`):** **Geist Mono Variable**
+   - Package: `@fontsource-variable/geist-mono`
+   - Weight: `500` (Medium)
+   - Rationale: High-precision tabular monospaced glyphs used for latency badges (`< 15ms`), ZzFX parameter arrays (`[1.2, 0, 420...]`), volume percentages, and the live likes counter.
+
+### Tailwind CSS v4 Theme Integration
+
+Both `website/src/index.css` and `extension/entrypoints/sidepanel/style.css` configure typography via `@theme inline`:
+
+```css
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/geist-mono";
+
+@theme inline {
+	--font-sans:
+		"Inter Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-heading:
+		"Plus Jakarta Sans Variable", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-mono:
+		"Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+body {
+	font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+}
+```
 
 ---
 

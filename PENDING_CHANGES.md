@@ -10,6 +10,8 @@
 
 ### Added
 
+- **Self-Hosted Native Typography**: Upgraded website and extension typography to self-hosted variable typefaces—Plus Jakarta Sans for energetic geometric headlines, Inter for razor-sharp interface controls, and Geist Mono for precision latency readouts.
+
 ### Changed
 
 ### Fixed
