@@ -7,6 +7,7 @@ import { memo, useCallback, useMemo } from "react";
 interface SoundPackCardProps {
 	pack: SoundPack;
 	isSelected: boolean;
+	hotkeyIndex?: number;
 	onSelect: (packId: SoundPackId) => void;
 	onPreview: (pack: SoundPack) => void;
 }
@@ -14,6 +15,7 @@ interface SoundPackCardProps {
 const SoundPackCard = memo(function SoundPackCard({
 	pack,
 	isSelected,
+	hotkeyIndex,
 	onSelect,
 	onPreview,
 }: SoundPackCardProps) {
@@ -34,9 +36,16 @@ const SoundPackCard = memo(function SoundPackCard({
 			)}
 		>
 			<div className="mb-2 flex w-full items-center justify-between">
-				<span className="text-muted-foreground/60 font-mono text-[10px] tracking-tight">
-					{pack.frequency}Hz
-				</span>
+				<div className="flex items-center gap-1.5">
+					<span className="text-muted-foreground/60 font-mono text-[10px] tracking-tight">
+						{pack.frequency}Hz
+					</span>
+					{hotkeyIndex !== undefined && (
+						<kbd className="border-border/60 bg-surface-subtle text-muted-foreground/50 rounded border px-1 py-0.5 font-mono text-[9px] leading-none">
+							{hotkeyIndex}
+						</kbd>
+					)}
+				</div>
 				<div className="flex h-4 w-4 shrink-0 items-center justify-center">
 					{isSelected ? (
 						<span className="bg-foreground text-background flex h-4 w-4 items-center justify-center rounded-full">
@@ -80,15 +89,20 @@ export const SoundProfileGrid = memo(function SoundProfileGrid({
 	return (
 		<div className="@container/grid">
 			<div className="grid grid-cols-2 gap-2 @[440px]/grid:grid-cols-3 @[640px]/grid:grid-cols-4">
-				{filteredPacks.map((pack) => (
-					<SoundPackCard
-						key={pack.id}
-						pack={pack}
-						isSelected={selectedPackId === pack.id}
-						onSelect={onSelectPack}
-						onPreview={onPreviewPack}
-					/>
-				))}
+				{filteredPacks.map((pack) => {
+					const packIndex = SOUND_PACK_LIST.findIndex((p) => p.id === pack.id);
+					const hotkeyIndex = packIndex >= 0 && packIndex < 8 ? packIndex + 1 : undefined;
+					return (
+						<SoundPackCard
+							key={pack.id}
+							pack={pack}
+							isSelected={selectedPackId === pack.id}
+							hotkeyIndex={hotkeyIndex}
+							onSelect={onSelectPack}
+							onPreview={onPreviewPack}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);

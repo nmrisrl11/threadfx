@@ -86,6 +86,17 @@ export const DEFAULT_SOUND_PACK: SoundPackId = "bubble";
 
 export const SOUND_PACK_LIST: readonly SoundPack[] = Object.values(SOUND_PACKS);
 
+/**
+ * Procedural audio parameters for specialized in-feed interactions.
+ * Zero external audio files required. Synthesized via ZzFX / Web Audio API.
+ */
+export const INTERACTION_SOUNDS = {
+	unlike: [0.6, 0, 360, 0.005, 0.02, 0.06, 0, 0, -140, 0.015],
+	repost: [0.9, 0.02, 580, 0.01, 0.06, 0.16, 0, 0, 290, 0.03],
+	bookmark: [0.85, 0.01, 720, 0.005, 0.04, 0.12, 1, 0, 180, 0.02],
+	publish: [1.0, 0.02, 520, 0.01, 0.08, 0.22, 1, 0, 340, 0.025],
+} as const;
+
 export const SOUND_CATEGORIES: { id: "all" | SoundCategory; label: string }[] = [
 	{ id: "all", label: "All" },
 	{ id: "tactile", label: "Tactile" },

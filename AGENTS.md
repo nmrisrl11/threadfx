@@ -31,6 +31,7 @@ threadfx/
 │   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage helpers
+│   │   ├── threads-detector.ts     # Domain-isolated Threads action classifier & vector path fingerprinting
 │   │   └── utils.ts                # cn utility wrapper
 │   ├── components.json             # shadcn/ui config
 │   ├── package.json

@@ -107,21 +107,29 @@ export interface ThreadFXSettings {
 - **Docked Particle Horizon Monitor (`particle-dock-monitor.tsx`):** Pinned bottom dock with hardware-grade emerald status LED (matching the Sound FX spectrum monitor and header "Active" indicator), active palette/emoji badges, 24-point horizon particle trajectory visualization, and a 1-click "Trigger Burst ▶" button synchronized with live pulses.
 - **Footer Version Cleanup:** Removed redundant version string from the footer (`footer.tsx`), keeping version anchored exclusively in the top header.
 
+### 🎯 In-Feed Action Precision & Interactivity Expansion
+
+- **Dedicated Threads Action Classifier (`threads-detector.ts`):** Extracted DOM event classification into a domain-isolated module following SRP. Replaced fragile `d*="M12"` substring matching with exact vector Bézier anchor fingerprinting (`M16.792` for outline heart, `M18 2.084` for filled heart, `M12 21.35` for standard heart) paired with explicit negative guards. Completely eliminated false-positive audio/confetti triggers on Reply, Repost, Share, More options, Navigation, and like counter links.
+- **Precision In-Feed Social Interactivity Suite (`content.ts` & `data/presets.ts`):**
+  - **Unlike Soft Retreat:** Gentle descending sine tone (`360Hz` -> `220Hz`) on unlike, offering tactile confirmation without confetti or stat increments.
+  - **Repost Audio Chime & Emerald Sparks:** Uplifting dual-harmonic chime (`580Hz` -> `870Hz`) and subtle 20-particle emerald/cyan burst on Repost.
+  - **Bookmark / Save Sparkle:** Crisp tactile triangle chime (`720Hz` -> `900Hz`) and 16-particle golden sparkle on Bookmark.
+  - **Post Published Fanfare:** Celebratory double chime and 45-particle fanfare upon publishing a post from the composer.
+- **Soundboard Keyboard Hotkeys (Keys 1–8):** Pressing number keys `1` through `8` in the Side Panel or companion simulator instantly selects and auditions the sound pack, with visual keycap badges rendered on each sound card.
+- **Synchronized Companion Web Simulator (`website/`):** Brought landing page interactive simulator to 100% feature parity with the extension—supporting live Pitch Modulation (0.5x–2.0x), dual-mode Particle Selector (6 palettes or custom emoji bursts), and interactive like & repost reactions.
+
 ---
 
-## 5. Next Focus: In-Feed Interaction Expansion & Web Companion Sync
+## 5. Next Focus & Backlog
 
 Next sprint milestones to tackle from `docs/FEATURE_BLUEPRINT.md`:
 
-1. **Expanded In-Feed Social Interactivity (`content.ts`):**
-   - **Unlike Soft Blip / Retreat:** Gentle descending tone or quiet retraction when unliking.
-   - **Repost / Quote Audio Chime:** Detect clicks on the Repost button (`[aria-label*="Repost" i]`) and trigger an uplifting chime.
-   - **Bookmark / Save Feedback:** Audio and particle sparkle when bookmarking a thread for later.
-   - **Post Published Celebratory Pop:** Celebrate posting a thread with a confetti fanfare.
-2. **Companion Landing Page Synchronization (`website/`):**
-   - Update landing page interactive soundboard/simulator to reflect the 6 new palettes and expanded 8 sound presets.
-3. **Soundboard Keyboard Hotkeys:**
-   - Number keys (`1` through `8`) audition corresponding sound profiles when the Side Panel is focused.
+1. **Global Keyboard Audio Mute Shortcut:**
+   - Shortcut key (`Alt+Shift+M`) to toggle master audio on/off across active tabs without opening the Side Panel.
+2. **Smart Audio Ducking:**
+   - Automatically suppress or soften SFX when an in-feed video on Threads is actively playing audio.
+3. **Engagement Milestones:**
+   - Celebratory visual fanfare on milestone likes (10th, 50th, 100th, 500th like).
 
 ---
 

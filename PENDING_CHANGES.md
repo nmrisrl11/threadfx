@@ -10,6 +10,13 @@
 
 ### Added
 
+- **Precision In-Feed Social Interactivity Suite**:
+  - **Soft Retreat Tone on Unlike**: Added a gentle, quiet descending tone when unliking a post, providing tactile confirmation of retraction with zero visual distraction or metric inflation.
+  - **Uplifting Repost Chime & Emerald Sparks**: Tapping Repost plays a bright, dual-harmonic chime accompanied by a subtle burst of crisp emerald sparks.
+  - **Sparkling Bookmark / Save Feedback**: Saving or bookmarking a thread triggers a warm, tactile chime and golden sparkles.
+  - **Post Published Celebratory Pop**: Publishing a thread rewards the author with an uplifting celebratory chime and multi-color confetti fanfare.
+- **Soundboard Keyboard Hotkeys (Keys 1–8)**: Press number keys `1` through `8` in the Side Panel or companion web simulator to instantly switch sound profiles and audition audio, featuring clean visual keycap indicators on each card.
+- **Synchronized Companion Web Simulator**: Upgraded the landing page interactive simulator to full feature parity with the extension, featuring live pitch modulation (0.5x–2.0x), dual-mode particle selection across all 6 signature palettes and express emoji bursts, and interactive like & repost buttons.
 - **Custom Emoji Reaction Bursts**: Introduced live emoji particle bursts that explode directly from the heart icon when liking posts on Threads, rendered at high fidelity via canvas vector synthesis.
 - **Headless Frimousse Emoji Picker Integration**: Integrated the official shadcn-compatible Frimousse emoji picker component into an accessible popover drawer, offering instant search and access to over 3,000+ Unicode emojis.
 - **Quick-Tap Reaction Strip**: Added an instant-access row of favorite reaction presets (`❤️`, `🔥`, `✨`, `🎉`, `⚡`, `🚀`, `💎`, `💯`) for one-tap switching and instant live audition bursts.
@@ -54,6 +61,7 @@
 
 ### Fixed
 
+- **Eliminated False-Positive In-Feed Button Triggers**: Re-engineered DOM action detection on Threads with a dedicated action classifier. Replaced fragile substring matching with exact vector path fingerprinting and negative guards, ensuring that audio effects and particle bursts only trigger on genuine Likes/Reactions, and never on Reply, Repost, Share, More options, Navigation, or like count links.
 - **Eliminated Layout Shifts on Active / Selected State Changes**: Removed active scaling transforms (`active:scale`), dynamic ring properties, and box-shadow shifts across palette cards, emoji reactions, and mode toggle buttons, standardizing on smooth `transition-colors duration-150` with constant border geometry to match the rock-solid visual stability of Sound FX cards.
 
 ### Removed

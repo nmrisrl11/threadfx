@@ -126,22 +126,27 @@ The Side Panel features an independent, zero-latency tri-state theme switcher:
 
 ---
 
-## 5. Resilient DOM Detection Strategy
+## 5. Resilient DOM Detection & Action Classifier Strategy
 
-To prevent Meta's minified class rotations from breaking the extension:
+To prevent Meta's minified class rotations from breaking the extension and eliminate false triggers on unrelated interactive buttons:
 
-1. **Top-Level Event Delegation:** `content.ts` listens to `document.body` for `click` events rather than attaching individual listeners to every post.
-2. **Semantic Target Resolution:**
-   ```typescript
-   function isLikeButton(target: HTMLElement): boolean {
-   	const button = target.closest('[role="button"]');
-   	if (!button) return false;
-   	const ariaLabel = button.getAttribute("aria-label") || "";
-   	return /like/i.test(ariaLabel);
-   }
-   ```
-3. **Custom Like Observer:**
-   A `MutationObserver` watches `main[role="main"]` specifically for newly inserted image overlays (`img[src*="giphy"]`, animated SVGs, or custom sticker nodes) that pop up directly over the heart button when a custom like triggers.
+1. **Top-Level Capture Event Delegation:** `content.ts` attaches a single capture-phase listener to `document` (`document.addEventListener("click", handler, true)`), intercepting interaction events reliably before SPA frameworks can stop propagation.
+2. **Domain-Isolated Classifier (`threads-detector.ts`):** All DOM analysis, label normalization, and vector fingerprinting are encapsulated in `classifyThreadAction(target)`, returning a discriminated union (`like`, `unlike`, `repost`, `bookmark`, `publish`) or `null`.
+3. **Exact Vector Bézier Anchor Fingerprinting:**
+   - **Meta Outline Heart:** `d.includes("16.792")` (`M16.792 3.904A4.989...`)
+   - **Meta Filled (Liked) Heart:** `d.includes("18 2.084")` or `d.includes("13.916")`
+   - **Generic Standard Heart:** `d.includes("21.35")` (`M12 21.35...`)
+   - Avoids collision-prone substring checks (like `d*="M12"`) that match common 24×24 icon grids.
+4. **Strict Negative Guards:** Explicitly filters out non-target interactive elements:
+   - Action bar buttons: `reply`, `comment`, `share`, `send`, `copy link`
+   - Header / overflow controls: `more options`, `more`
+   - Media controls: `audio`, `video`, `mute`, `unmute`, `play`, `pause`, `volume`
+   - App shell: `home`, `search`, `activity`, `profile`, `create`, `navigation`
+   - Like count links / modals: `/^\d+[\s,.]*likes?$/i`, `"view likes"`, `"see likes"`
+   - Plain text buttons: `follow`, `following`, `cancel`
+5. **State Discrimination (Like vs Unlike):**
+   - Detects active liked state via accessible labels (`unlike`, `liked`, `descurtir`, `ya no me gusta`), `aria-pressed="true"`, filled heart paths, or Meta's signature `#FF3040` (`rgb(255, 48, 64)`) red fill/color tokens.
+   - Routes unlike actions to quiet soft retreat tones without particle or odometer distractions.
 
 ---
 

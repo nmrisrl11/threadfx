@@ -4,8 +4,8 @@ import { SoundProfileHeader } from "@/components/sidepanel/sound-fx/sound-profil
 import { WaveformMonitor } from "@/components/sidepanel/sound-fx/waveform-monitor";
 import { useAudioSettings } from "@/hooks/use-settings";
 import type { SoundCategory } from "@data/presets";
-import { DEFAULT_SOUND_PACK, SOUND_PACKS } from "@data/presets";
-import { useCallback, useState } from "react";
+import { DEFAULT_SOUND_PACK, SOUND_PACK_LIST, SOUND_PACKS } from "@data/presets";
+import { useCallback, useEffect, useState } from "react";
 
 export function SoundFxTab() {
 	const [activeCategory, setActiveCategory] = useState<"all" | SoundCategory>("all");
@@ -18,6 +18,33 @@ export function SoundFxTab() {
 		if (defaultPack) {
 			previewSound(defaultPack);
 		}
+	}, [setSoundPack, previewSound]);
+
+	// Hotkey Audition Listener: Keys 1 through 8
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			const target = e.target as HTMLElement | null;
+			if (
+				target instanceof HTMLInputElement ||
+				target instanceof HTMLTextAreaElement ||
+				target?.isContentEditable
+			) {
+				return;
+			}
+
+			const num = parseInt(e.key, 10);
+			if (num >= 1 && num <= 8) {
+				const targetPack = SOUND_PACK_LIST[num - 1];
+				if (targetPack) {
+					e.preventDefault();
+					setSoundPack(targetPack.id);
+					previewSound(targetPack);
+				}
+			}
+		};
+
+		window.addEventListener("keydown", handleKeyDown);
+		return () => window.removeEventListener("keydown", handleKeyDown);
 	}, [setSoundPack, previewSound]);
 
 	return (

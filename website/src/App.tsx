@@ -4,9 +4,17 @@ import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { APP_INFO } from "@data/app";
-import { CONFETTI_PALETTES } from "@data/particles";
+import type { BurstMode, ConfettiPaletteId } from "@data/particles";
+import {
+	CONFETTI_PALETTES,
+	CONFETTI_PALETTE_LIST,
+	DEFAULT_BURST_MODE,
+	DEFAULT_CONFETTI_PALETTE,
+	DEFAULT_EMOJI,
+	QUICK_EMOJIS,
+} from "@data/particles";
 import type { SoundPack, SoundPackId } from "@data/presets";
-import { SOUND_PACKS } from "@data/presets";
+import { INTERACTION_SOUNDS, SOUND_PACKS, SOUND_PACK_LIST, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
 import {
@@ -18,18 +26,56 @@ import {
 	HeartIcon,
 	LaptopIcon,
 	LayersIcon,
+	MessageCircleIcon,
+	RepeatIcon,
+	Share2Icon,
+	SlidersIcon,
 	SparklesIcon,
 	Volume2Icon,
 	ZapIcon,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function App() {
 	const [selectedPack, setSelectedPack] = useState<SoundPackId>("bubble");
 	const [volume, setVolume] = useState<number>(0.5);
+	const [pitch, setPitch] = useState<number>(1.0);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const [likeCount, setLikeCount] = useState<number>(24);
+	const [repostCount, setRepostCount] = useState<number>(4);
 	const [confettiActive, setConfettiActive] = useState<boolean>(true);
+	const [burstMode, setBurstMode] = useState<BurstMode>(DEFAULT_BURST_MODE);
+	const [selectedPalette, setSelectedPalette] =
+		useState<ConfettiPaletteId>(DEFAULT_CONFETTI_PALETTE);
+	const [selectedEmoji, setSelectedEmoji] = useState<string>(DEFAULT_EMOJI);
+
+	// Keyboard hotkeys 1 through 8 to audition sound packs
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			const target = e.target as HTMLElement | null;
+			if (
+				target instanceof HTMLInputElement ||
+				target instanceof HTMLTextAreaElement ||
+				target?.isContentEditable
+			) {
+				return;
+			}
+
+			const num = parseInt(e.key, 10);
+			if (num >= 1 && num <= 8) {
+				const targetPack = SOUND_PACK_LIST[num - 1];
+				if (targetPack) {
+					e.preventDefault();
+					setSelectedPack(targetPack.id);
+					const pitched = applyPitch(targetPack.params, pitch);
+					zzfx(volume, ...pitched);
+				}
+			}
+		};
+
+		window.addEventListener("keydown", handleKeyDown);
+		return () => window.removeEventListener("keydown", handleKeyDown);
+	}, [volume, pitch]);
 
 	const handleSimulatedLike = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const nextState = !isLiked;
@@ -37,30 +83,78 @@ export default function App() {
 		setLikeCount((prev) => (nextState ? prev + 1 : prev - 1));
 
 		if (nextState) {
-			// 1. Play procedural ZzFX audio
+			// 1. Play procedural ZzFX audio with pitch
 			const pack = SOUND_PACKS[selectedPack] || SOUND_PACKS.bubble;
-			zzfx(volume, ...pack.params);
+			const pitched = applyPitch(pack.params, pitch, 0.03);
+			zzfx(volume, ...pitched);
 
-			// 2. Trigger Confetti
+			// 2. Trigger Confetti / Emoji
 			if (confettiActive) {
 				const rect = e.currentTarget.getBoundingClientRect();
 				const x = (rect.left + rect.width / 2) / window.innerWidth;
 				const y = (rect.top + rect.height / 2) / window.innerHeight;
 
-				confetti({
-					particleCount: 35,
-					spread: 60,
-					origin: { x, y },
-					colors: CONFETTI_PALETTES.neon.colors,
-					disableForReducedMotion: false,
-				});
+				if (burstMode === "emoji" && selectedEmoji) {
+					const emojiShape = confetti.shapeFromText({
+						text: selectedEmoji,
+						scalar: 1.8,
+					});
+					confetti({
+						particleCount: 30,
+						spread: 55,
+						startVelocity: 25,
+						ticks: 120,
+						shapes: [emojiShape],
+						scalar: 1.8,
+						flat: true,
+						origin: { x, y },
+						disableForReducedMotion: false,
+					});
+				} else {
+					const palette = CONFETTI_PALETTES[selectedPalette] || CONFETTI_PALETTES.rose;
+					confetti({
+						particleCount: 35,
+						spread: 60,
+						startVelocity: 25,
+						ticks: 120,
+						origin: { x, y },
+						colors: palette.colors,
+						disableForReducedMotion: false,
+					});
+				}
 			}
+		} else {
+			// Retraction: gentle descending tone, zero particles
+			const pitched = applyPitch([...INTERACTION_SOUNDS.unlike], pitch);
+			zzfx(volume, ...pitched);
+		}
+	};
+
+	const handleSimulatedRepost = (e: React.MouseEvent<HTMLButtonElement>) => {
+		setRepostCount((prev) => prev + 1);
+		const pitched = applyPitch([...INTERACTION_SOUNDS.repost], pitch);
+		zzfx(volume, ...pitched);
+
+		if (confettiActive) {
+			const rect = e.currentTarget.getBoundingClientRect();
+			const x = (rect.left + rect.width / 2) / window.innerWidth;
+			const y = (rect.top + rect.height / 2) / window.innerHeight;
+			confetti({
+				particleCount: 20,
+				spread: 45,
+				startVelocity: 20,
+				ticks: 90,
+				origin: { x, y },
+				colors: ["#10B981", "#34D399", "#00F5FF", "#FFFFFF"],
+				disableForReducedMotion: false,
+			});
 		}
 	};
 
 	const testSound = (pack: SoundPack) => {
 		setSelectedPack(pack.id);
-		zzfx(volume, ...pack.params);
+		const pitched = applyPitch(pack.params, pitch);
+		zzfx(volume, ...pitched);
 	};
 
 	return (
@@ -176,34 +270,45 @@ export default function App() {
 					<div className="mb-8 text-center">
 						<h2 className="text-2xl font-bold tracking-tight">Interactive Like Simulator</h2>
 						<p className="text-muted-foreground mt-1 text-sm">
-							Select a sound pack and click the heart on the Threads post below to test it live!
+							Select a procedural sound pack and particle palette, or hit keys 1–8 to audition!
 						</p>
 					</div>
 
 					<Card className="grid grid-cols-1 gap-6 p-6 shadow-2xl sm:p-8 md:grid-cols-12">
 						{/* Control Column */}
-						<div className="md:border-border space-y-6 md:col-span-5 md:border-r md:pr-6">
+						<div className="md:border-border space-y-5 md:col-span-6 md:border-r md:pr-6">
+							{/* 1. Choose Sound Pack */}
 							<div>
-								<span className="text-muted-foreground mb-3 block text-xs font-semibold tracking-wider uppercase">
-									1. Choose Sound Pack
-								</span>
+								<div className="mb-2.5 flex items-center justify-between">
+									<span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+										1. Choose Sound Profile
+									</span>
+									<span className="text-muted-foreground/60 font-mono text-[10px]">
+										Hotkeys [1-8]
+									</span>
+								</div>
 								<div className="grid grid-cols-2 gap-2">
-									{Object.values(SOUND_PACKS).map((pack) => {
+									{SOUND_PACK_LIST.map((pack, index) => {
 										const isSelected = selectedPack === pack.id;
 										return (
 											<button
 												key={pack.id}
 												onClick={() => testSound(pack)}
-												className={`rounded-xl border p-3 text-left transition-all ${
+												className={`cursor-pointer rounded-xl border p-2.5 text-left transition-colors duration-150 ${
 													isSelected
 														? "border-[#FF2E93] bg-[#181818] shadow-md shadow-[#FF2E93]/15"
 														: "border-border bg-[#0E0E0E] hover:border-[#383838]"
 												}`}
 											>
 												<div className="mb-1 flex items-center justify-between">
-													<span className="text-muted-foreground/60 font-mono text-[10px]">
-														{pack.frequency}Hz
-													</span>
+													<div className="flex items-center gap-1.5">
+														<span className="text-muted-foreground/60 font-mono text-[10px]">
+															{pack.frequency}Hz
+														</span>
+														<kbd className="border-border/60 text-muted-foreground/50 rounded border px-1 py-0.5 font-mono text-[9px] leading-none">
+															{index + 1}
+														</kbd>
+													</div>
 													{isSelected && <CheckIcon className="h-3.5 w-3.5 text-[#FF2E93]" />}
 												</div>
 												<div className="text-foreground text-xs font-bold">{pack.name}</div>
@@ -213,39 +318,150 @@ export default function App() {
 								</div>
 							</div>
 
-							{/* Volume Slider via shadcn/ui */}
-							<div className="border-border space-y-2 rounded-xl border bg-[#0E0E0E] p-3.5">
-								<div className="flex items-center justify-between text-xs">
-									<div className="text-muted-foreground flex items-center gap-1.5">
-										<Volume2Icon className="h-4 w-4 text-[#FF2E93]" />
-										<span>Volume</span>
+							{/* Dual Channel Dynamics: Volume & Pitch Sliders */}
+							<div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+								{/* Volume Slider */}
+								<div className="border-border space-y-2 rounded-xl border bg-[#0E0E0E] p-3">
+									<div className="flex items-center justify-between text-xs">
+										<div className="text-muted-foreground flex items-center gap-1.5">
+											<Volume2Icon className="h-3.5 w-3.5 text-[#FF2E93]" />
+											<span>Volume</span>
+										</div>
+										<span className="text-foreground font-mono text-[11px]">
+											{Math.round(volume * 100)}%
+										</span>
 									</div>
-									<span className="text-foreground font-mono">{Math.round(volume * 100)}%</span>
+									<Slider
+										value={[volume]}
+										min={0}
+										max={1}
+										step={0.05}
+										onValueChange={(vals: number[]) => setVolume(vals[0])}
+										className="w-full"
+									/>
 								</div>
-								<Slider
-									value={[volume]}
-									min={0}
-									max={1}
-									step={0.05}
-									onValueChange={(vals: number[]) => setVolume(vals[0])}
-									className="w-full"
-								/>
+
+								{/* Pitch Slider */}
+								<div className="border-border space-y-2 rounded-xl border bg-[#0E0E0E] p-3">
+									<div className="flex items-center justify-between text-xs">
+										<div className="text-muted-foreground flex items-center gap-1.5">
+											<SlidersIcon className="h-3.5 w-3.5 text-[#00F5FF]" />
+											<span>Pitch</span>
+										</div>
+										<span className="text-foreground font-mono text-[11px]">
+											{pitch.toFixed(2)}x
+										</span>
+									</div>
+									<Slider
+										value={[pitch]}
+										min={0.5}
+										max={2.0}
+										step={0.05}
+										onValueChange={(vals: number[]) => setPitch(vals[0])}
+										className="w-full"
+									/>
+								</div>
 							</div>
 
-							{/* Visual Effects & Particle Burst Switch via shadcn/ui */}
-							<div className="border-border flex items-center justify-between rounded-xl border bg-[#0E0E0E] p-3.5">
-								<div className="flex items-center gap-2">
-									<SparklesIcon className="h-4 w-4 text-[#00F5FF]" />
-									<span className="text-xs font-medium">Visual Particle Bursts</span>
+							{/* Visual Effects & Particle Dynamics */}
+							<div className="border-border space-y-3 rounded-xl border bg-[#0E0E0E] p-3.5">
+								<div className="flex items-center justify-between">
+									<div className="flex items-center gap-2">
+										<SparklesIcon className="h-4 w-4 text-[#00F5FF]" />
+										<span className="text-xs font-semibold">Particle Bursts</span>
+									</div>
+									<Switch checked={confettiActive} onCheckedChange={setConfettiActive} />
 								</div>
-								<Switch checked={confettiActive} onCheckedChange={setConfettiActive} />
+
+								{confettiActive && (
+									<div className="space-y-3 pt-1">
+										{/* Segmented Mode Selector */}
+										<div className="border-border/60 bg-muted/40 grid grid-cols-2 rounded-lg border p-0.5 text-xs">
+											<button
+												type="button"
+												onClick={() => setBurstMode("palette")}
+												className={`cursor-pointer rounded-md py-1 text-center font-medium transition-colors ${
+													burstMode === "palette"
+														? "bg-card text-foreground shadow-xs"
+														: "text-muted-foreground hover:text-foreground"
+												}`}
+											>
+												Color Palettes
+											</button>
+											<button
+												type="button"
+												onClick={() => setBurstMode("emoji")}
+												className={`cursor-pointer rounded-md py-1 text-center font-medium transition-colors ${
+													burstMode === "emoji"
+														? "bg-card text-foreground shadow-xs"
+														: "text-muted-foreground hover:text-foreground"
+												}`}
+											>
+												Emoji Reactions
+											</button>
+										</div>
+
+										{burstMode === "palette" ? (
+											<div className="grid grid-cols-3 gap-1.5">
+												{CONFETTI_PALETTE_LIST.map((p) => {
+													const isSelected = selectedPalette === p.id;
+													return (
+														<button
+															key={p.id}
+															type="button"
+															onClick={() => setSelectedPalette(p.id)}
+															className={`cursor-pointer rounded-lg border p-1.5 text-left transition-colors ${
+																isSelected
+																	? "border-[#00F5FF] bg-[#181818]"
+																	: "border-border/60 bg-background/50 hover:border-border"
+															}`}
+														>
+															<div className="mb-1 flex gap-1">
+																{p.colors.slice(0, 3).map((c, i) => (
+																	<span
+																		key={i}
+																		className="h-2 w-2 rounded-full border border-black/20"
+																		style={{ backgroundColor: c }}
+																	/>
+																))}
+															</div>
+															<span className="text-foreground block truncate text-[10px] font-medium">
+																{p.name}
+															</span>
+														</button>
+													);
+												})}
+											</div>
+										) : (
+											<div className="grid grid-cols-4 gap-1.5">
+												{QUICK_EMOJIS.map((emoji) => {
+													const isSelected = selectedEmoji === emoji;
+													return (
+														<button
+															key={emoji}
+															type="button"
+															onClick={() => setSelectedEmoji(emoji)}
+															className={`flex h-8 cursor-pointer items-center justify-center rounded-lg border text-base transition-colors ${
+																isSelected
+																	? "border-[#FF2E93] bg-[#181818]"
+																	: "border-border/60 bg-background/50 hover:border-border"
+															}`}
+														>
+															{emoji}
+														</button>
+													);
+												})}
+											</div>
+										)}
+									</div>
+								)}
 							</div>
 						</div>
 
 						{/* Simulated Threads Post Column */}
-						<div className="flex flex-col justify-center md:col-span-7">
+						<div className="flex flex-col justify-center md:col-span-6">
 							<span className="text-muted-foreground mb-3 block text-xs font-semibold tracking-wider uppercase">
-								2. Click the Heart to Test
+								2. Tap Post Reactions to Test Live
 							</span>
 
 							<div className="bg-canvas border-border space-y-4 rounded-2xl border p-5 sm:p-6">
@@ -263,19 +479,22 @@ export default function App() {
 								</div>
 
 								<p className="text-sm leading-relaxed text-[#EDEDED]">
-									Testing tactile social interactions! Liking this post triggers zero-latency
-									procedural sound synthesis, custom particle dynamics, and responsive micro-motion.
-									Hit the heart below to test the juice!
+									Testing tactile social interactions! Liking or reposting this thread triggers
+									zero-latency procedural sound synthesis, custom particle dynamics, and responsive
+									micro-motion. Try tapping the heart or repost below!
 								</p>
 
 								{/* Simulated Action Bar */}
 								<div className="border-border flex items-center gap-6 border-t pt-2">
+									{/* Like Heart Button */}
 									<button
+										type="button"
 										onClick={handleSimulatedLike}
-										className="group flex cursor-pointer items-center gap-2 transition-transform active:scale-125"
+										className="group flex cursor-pointer items-center gap-2 transition-transform active:scale-110"
+										aria-label={isLiked ? "Unlike" : "Like"}
 									>
 										<HeartIcon
-											className={`h-6 w-6 transition-all ${
+											className={`h-5 w-5 transition-all ${
 												isLiked
 													? "scale-110 fill-[#FF2E93] text-[#FF2E93] drop-shadow-[0_0_12px_#FF2E93]"
 													: "text-muted-foreground group-hover:text-foreground"
@@ -290,9 +509,28 @@ export default function App() {
 										</span>
 									</button>
 
-									<span className="text-muted-foreground text-xs">💬 18</span>
-									<span className="text-muted-foreground text-xs">🔁 4</span>
-									<span className="text-muted-foreground text-xs">↗ 12</span>
+									{/* Reply Button */}
+									<div className="text-muted-foreground flex items-center gap-1.5 text-xs">
+										<MessageCircleIcon className="h-4 w-4" />
+										<span className="font-mono">18</span>
+									</div>
+
+									{/* Repost Button */}
+									<button
+										type="button"
+										onClick={handleSimulatedRepost}
+										className="group text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-1.5 text-xs transition-colors"
+										aria-label="Repost"
+									>
+										<RepeatIcon className="h-4 w-4 transition-transform group-hover:rotate-45" />
+										<span className="font-mono">{repostCount}</span>
+									</button>
+
+									{/* Share Button */}
+									<div className="text-muted-foreground flex items-center gap-1.5 text-xs">
+										<Share2Icon className="h-4 w-4" />
+										<span className="font-mono">12</span>
+									</div>
 								</div>
 							</div>
 						</div>

@@ -141,6 +141,7 @@ threadfx/
 │   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage.local synchronization
+│   │   ├── threads-detector.ts     # Dedicated action classifier & vector path fingerprinting
 │   │   └── utils.ts                # cn utility wrapper
 │   ├── public/
 │   │   └── icon/                   # 16, 32, 48, 96, 128px MV3 icons
