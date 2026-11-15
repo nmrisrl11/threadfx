@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 15, 2026 (9:10 PM +08:00)  
+> **Last Synchronized:** November 15, 2026 (9:34 PM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Staged & ready for user commit approval (`npm run lint` passes with 0 errors/warnings, `npm run build:all` passes cleanly).
+> **Working Tree Status:** Clean working tree — 100% synchronized with `origin/main` (latest commit `751756e`). All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
 ---
 
@@ -68,6 +68,9 @@ export interface ThreadFXSettings {
 	selectedEmoji: string; // Active custom reaction emoji (default: "❤️")
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 }
+
+// Bounded LRU post cache stored under a separate top-level key for atomic read/write:
+// Key: "threadfx_juiced_post_ids" => string[] (max 1,000 permalink post IDs)
 ```
 
 ---
@@ -144,6 +147,10 @@ export interface ThreadFXSettings {
   - **Responsive Container Queries for Dock Telemetry:** Replaced viewport-based `sm:` media queries on dock monitors with container-aware `@container/dock` rules (`@[360px]/dock:inline` and `@[300px]/dock:flex`), ensuring badges and technical readouts scale gracefully even in narrow side panels.
   - **Purpose-Built Particle Stage Dock:** Removed the confusing 24-band vertical audio waveform equalizer from the Particles tab. Replaced it with a sleek, compact Particle Stage dock displaying live palette color beads, active emoji reaction badges, `{count}p · {spread}° arc` telemetry, and a tactile "Trigger Burst ▶" button.
   - **Zero Technical Jargon Copywriting:** Purged developer jargon ("Offline MV3", "client-side quota", "deduplication cache") across the Storage tab, standardizing on friendly, Apple-grade copy ("On-Device Storage", "100% Private", "Enhanced Posts Memory"). Removed the redundant top refresh button in favor of the docked footer sync action.
+- **Documentation Synchronization & Production Release Prep:**
+  - Audited all project documentation across `AGENTS.md`, `README.md`, `extension/README.md`, and `docs/ARCHITECTURE.md`, eliminating directory tree and schema drift.
+  - Confirmed 0 lint errors/warnings with `oxlint` across 61 files with 121 rules, formatted 92 files with `oxfmt`, and compiled/packaged `threadfx-1.0.0-chrome.zip` (1.26 MB) alongside the website.
+  - Pushed commit [`751756e`](https://github.com/nmrisrl11/threadfx/commit/751756e) to `origin/main`.
 
 ---
 
