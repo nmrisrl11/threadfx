@@ -26,12 +26,22 @@ export interface UpdateState {
 	error: string | null;
 }
 
+export function resolveDownloadUrl(url?: string): string {
+	if (!url || url === "/download") {
+		return `${APP_INFO.urls.production}/download`;
+	}
+	if (url.startsWith("http://") || url.startsWith("https://")) {
+		return url;
+	}
+	return `${APP_INFO.urls.production}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
 const DEFAULT_UPDATE_STATE: UpdateState = {
 	currentVersion: APP_INFO.version,
 	latestVersion: APP_INFO.version,
 	hasUpdate: false,
 	releaseDate: null,
-	downloadUrl: APP_INFO.urls.download,
+	downloadUrl: resolveDownloadUrl(APP_INFO.urls.download),
 	releaseNotesUrl: APP_INFO.urls.releases,
 	highlights: [],
 	lastCheckedAt: 0,
@@ -110,6 +120,7 @@ export function useUpdateCheck() {
 					...cached,
 					currentVersion: APP_INFO.version,
 					hasUpdate: hasNewer,
+					downloadUrl: resolveDownloadUrl(cached.downloadUrl || APP_INFO.urls.download),
 				}));
 
 				// If cache is older than CHECK_INTERVAL_MS, perform a quiet background revalidation
@@ -122,7 +133,7 @@ export function useUpdateCheck() {
 								latestVersion: remote.version,
 								hasUpdate: hasRemoteNewer,
 								releaseDate: remote.releaseDate || null,
-								downloadUrl: remote.downloadUrl || APP_INFO.urls.download,
+								downloadUrl: resolveDownloadUrl(remote.downloadUrl || APP_INFO.urls.download),
 								releaseNotesUrl: remote.releaseNotesUrl || APP_INFO.urls.releases,
 								highlights: Array.isArray(remote.highlights) ? remote.highlights : [],
 								lastCheckedAt: now,
@@ -144,7 +155,7 @@ export function useUpdateCheck() {
 							latestVersion: remote.version,
 							hasUpdate: hasRemoteNewer,
 							releaseDate: remote.releaseDate || null,
-							downloadUrl: remote.downloadUrl || APP_INFO.urls.download,
+							downloadUrl: resolveDownloadUrl(remote.downloadUrl || APP_INFO.urls.download),
 							releaseNotesUrl: remote.releaseNotesUrl || APP_INFO.urls.releases,
 							highlights: Array.isArray(remote.highlights) ? remote.highlights : [],
 							lastCheckedAt: now,
@@ -157,6 +168,30 @@ export function useUpdateCheck() {
 					.catch(() => {});
 			}
 		});
+
+		const handleStorageChange = (
+			changes: { [key: string]: chrome.storage.StorageChange },
+			areaName: string,
+		) => {
+			if (areaName === "local" && changes[UPDATE_STORAGE_KEY]?.newValue) {
+				const updated = changes[UPDATE_STORAGE_KEY].newValue as UpdateState;
+				setState((prev) => ({
+					...prev,
+					...updated,
+					downloadUrl: resolveDownloadUrl(updated.downloadUrl || APP_INFO.urls.download),
+				}));
+			}
+		};
+
+		if (typeof chrome !== "undefined" && chrome.storage?.onChanged) {
+			chrome.storage.onChanged.addListener(handleStorageChange);
+		}
+
+		return () => {
+			if (typeof chrome !== "undefined" && chrome.storage?.onChanged) {
+				chrome.storage.onChanged.removeListener(handleStorageChange);
+			}
+		};
 	}, []);
 
 	const checkForUpdate = useCallback(async (): Promise<void> => {
@@ -172,7 +207,7 @@ export function useUpdateCheck() {
 				latestVersion: remote.version,
 				hasUpdate: hasNewer,
 				releaseDate: remote.releaseDate || null,
-				downloadUrl: remote.downloadUrl || APP_INFO.urls.download,
+				downloadUrl: resolveDownloadUrl(remote.downloadUrl || APP_INFO.urls.download),
 				releaseNotesUrl: remote.releaseNotesUrl || APP_INFO.urls.releases,
 				highlights: Array.isArray(remote.highlights) ? remote.highlights : [],
 				lastCheckedAt: now,

@@ -16,7 +16,7 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & tasks
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components (sidepanel & primitives)
-│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
+│   │   ├── sidepanel/              # Shared chrome (Header, UpdateBanner, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
 │   │   │   ├── particles/          # Tab coordinator, palettes grid, physics sliders, particle stage dock
 │   │   │   └── data/               # Tab coordinator, capacity meter, itemized breakdown, actions, update card, dock monitor

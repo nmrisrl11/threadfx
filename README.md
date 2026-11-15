@@ -137,10 +137,10 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & task runner v2.0.0
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components
-│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
+│   │   ├── sidepanel/              # Shared chrome (Header, UpdateBanner, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
 │   │   │   ├── particles/          # Tab coordinator, palettes grid, physics sliders, particle stage dock
-│   │   │   └── data/               # Tab coordinator, capacity meter, itemized breakdown, actions, dock monitor
+│   │   │   └── data/               # Tab coordinator, capacity meter, itemized breakdown, actions, update card, dock monitor
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, Popover, etc.)
 │   ├── entrypoints/
 │   │   ├── sidepanel/              # Native Chrome Side Panel React 19 App
@@ -151,7 +151,7 @@ threadfx/
 │   │   │   └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
 │   │   ├── background.ts           # Configures openPanelOnActionClick & Alt+Shift+T shortcut toggling
 │   │   └── content.ts              # threads.com DOM like-observer & ZzFX trigger
-│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useStorageTelemetry, useActiveTabStatus
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useStorageTelemetry, useActiveTabStatus, useUpdateCheck
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage.local synchronization
 │   │   ├── threads-detector.ts     # Dedicated action classifier & vector path fingerprinting

@@ -16,8 +16,8 @@
 - **Anti-Farming Shield:** Post permalink fingerprinting and 1,000ms velocity cadence throttling protecting user feeds and stats
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
-- **Interface:** Native Chrome Side Panel (`chrome.sidePanel`) with 3-tab layout (`Sound FX`, `Particles`, `Storage`) and global `Alt+Shift+T` toggle shortcut
-- **Storage Telemetry:** Real-time client quota and byte allocation metrics via React 19 `useSyncExternalStore`
+- **Interface:** Native Chrome Side Panel (`chrome.sidePanel`) with 3-tab layout (`Sound FX`, `Particles`, `Storage`), ambient `UpdateBanner`, and global `Alt+Shift+T` toggle shortcut
+- **Storage Telemetry & Versioning:** Real-time client quota and byte allocation metrics via React 19 `useSyncExternalStore`, and zero-overhead update tracking via `useUpdateCheck`
 
 ---
 
