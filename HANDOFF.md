@@ -4,6 +4,7 @@
 >
 > **Last Synchronized:** November 15, 2026 (3:00 PM +08:00)  
 > **Active Branch:** `main`  
+> **Last Commit:** `5fe19ac` (`feat(milestones): elevate sensory progression, add toggle shortcut, and purify core metadata`)  
 > **Working Tree Status:** Clean (`origin/main` up to date, 0 uncommitted changes, passes `npm run build:all`).
 
 ---
