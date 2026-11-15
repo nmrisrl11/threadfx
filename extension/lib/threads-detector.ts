@@ -11,6 +11,7 @@ export type ThreadActionType = "like" | "unlike" | "repost" | "bookmark" | "publ
 export interface ThreadAction {
 	type: ThreadActionType;
 	button: Element;
+	postId?: string | null;
 }
 
 interface SvgHeartInfo {
@@ -295,6 +296,56 @@ function isExplicitNonLikeButton(label: string, text: string): boolean {
 }
 
 /**
+ * Extracts a unique post identifier (slug/code) from a Threads post element or URL.
+ * Inspects immediate post containers, timestamp permalinks, and page URLs.
+ */
+export function getThreadPostId(button: Element): string | null {
+	// 1. Search outward for the immediate post card container
+	const container = button.closest(
+		'article, div[data-pressable-container="true"], div[data-virtualized-item="true"]',
+	);
+
+	if (container) {
+		const postLink = container.querySelector<HTMLAnchorElement>(
+			'a[href*="/post/"], a[href*="/t/"]',
+		);
+		if (postLink) {
+			const href = postLink.getAttribute("href") || postLink.href || "";
+			const match = href.match(/\/(?:post|t)\/([A-Za-z0-9_-]+)/);
+			if (match?.[1]) {
+				return match[1];
+			}
+		}
+	}
+
+	// 2. Upward traversal fallback (up to 8 parent levels) to locate post permalink anchor
+	let parent: Element | null = button.parentElement;
+	let depth = 0;
+	while (parent && depth < 8 && parent !== document.body) {
+		const postLink = parent.querySelector<HTMLAnchorElement>('a[href*="/post/"], a[href*="/t/"]');
+		if (postLink) {
+			const href = postLink.getAttribute("href") || postLink.href || "";
+			const match = href.match(/\/(?:post|t)\/([A-Za-z0-9_-]+)/);
+			if (match?.[1]) {
+				return match[1];
+			}
+		}
+		parent = parent.parentElement;
+		depth++;
+	}
+
+	// 3. Page URL fallback: If on a dedicated post permalink view (e.g. threads.com/@user/post/XYZ)
+	if (typeof window !== "undefined" && window.location) {
+		const match = window.location.pathname.match(/\/(?:post|t)\/([A-Za-z0-9_-]+)/);
+		if (match?.[1]) {
+			return match[1];
+		}
+	}
+
+	return null;
+}
+
+/**
  * Classifies a clicked DOM target into a discrete ThreadAction or returns null.
  */
 export function classifyThreadAction(target: HTMLElement | null): ThreadAction | null {
@@ -326,7 +377,7 @@ export function classifyThreadAction(target: HTMLElement | null): ThreadAction |
 				l === "转发",
 		)
 	) {
-		return { type: "repost", button };
+		return { type: "repost", button, postId: getThreadPostId(button) };
 	}
 
 	// 2. Detect Save / Bookmark Action
@@ -343,7 +394,7 @@ export function classifyThreadAction(target: HTMLElement | null): ThreadAction |
 				l === "收藏",
 		)
 	) {
-		return { type: "bookmark", button };
+		return { type: "bookmark", button, postId: getThreadPostId(button) };
 	}
 
 	// 3. Detect Post / Publish Action in Composer
@@ -353,7 +404,7 @@ export function classifyThreadAction(target: HTMLElement | null): ThreadAction |
 			button.closest("form") !== null ||
 			button.closest('div[data-pressable-container="true"]') !== null)
 	) {
-		return { type: "publish", button };
+		return { type: "publish", button, postId: null };
 	}
 
 	// 4. Reject Explicit Non-Like Elements (Reply, Share, More, Audio, Like Counts, Navigation)
@@ -379,9 +430,9 @@ export function classifyThreadAction(target: HTMLElement | null): ThreadAction |
 	// 6. Check for Active / Retraction (Unlike) State
 	const isAlreadyLiked = hasUnlikeLabel || isAriaPressed || heartInfo.isFilledHeart || isRed;
 	if (isAlreadyLiked) {
-		return { type: "unlike", button };
+		return { type: "unlike", button, postId: getThreadPostId(button) };
 	}
 
 	// 7. Confirmed Like Action!
-	return { type: "like", button };
+	return { type: "like", button, postId: getThreadPostId(button) };
 }

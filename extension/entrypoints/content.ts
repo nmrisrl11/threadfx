@@ -1,9 +1,12 @@
 import type { ThreadFXSettings } from "@/lib/storage";
 import {
 	DEFAULT_SETTINGS,
+	JUICED_POSTS_STORAGE_KEY,
+	getJuicedPostIds,
 	getSettings,
 	incrementLikesJuiced,
 	onSettingsChanged,
+	recordJuicedPost,
 } from "@/lib/storage";
 import { classifyThreadAction } from "@/lib/threads-detector";
 import { isMilestoneHit } from "@data/milestones";
@@ -39,6 +42,25 @@ export default defineContentScript({
 			settings = updated;
 		});
 
+		// Synchronized in-memory set of juiced post IDs for zero-latency dedup lookups
+		const juicedPostIds = new Set<string>();
+		getJuicedPostIds().then((ids) => {
+			ids.forEach((id) => juicedPostIds.add(id));
+		});
+
+		// Synchronize juiced post set across all open Threads tabs
+		if (typeof chrome !== "undefined" && chrome.storage?.onChanged) {
+			chrome.storage.onChanged.addListener((changes, areaName) => {
+				if (areaName === "local" && changes[JUICED_POSTS_STORAGE_KEY]) {
+					const updatedList = changes[JUICED_POSTS_STORAGE_KEY].newValue;
+					if (Array.isArray(updatedList)) {
+						juicedPostIds.clear();
+						updatedList.forEach((id: string) => juicedPostIds.add(id));
+					}
+				}
+			});
+		}
+
 		// Respond to side panel active status pings
 		if (typeof chrome !== "undefined" && chrome.runtime?.onMessage) {
 			chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
@@ -71,6 +93,12 @@ export default defineContentScript({
 		let lastActionTime = 0;
 		let lastActionButton: Element | null = null;
 
+		// Velocity guard: Enforce a minimum interval (1000ms) between odometer increments
+		// Rapid clicks still receive full audio/confetti tactile feedback, but do not increment
+		// the gamification counter or trigger Meta's community protection rate limits.
+		let lastJuicedLikeTime = 0;
+		const JUICED_VELOCITY_COOLDOWN_MS = 1000;
+
 		// Top-level click listener using event delegation in capture phase
 		document.addEventListener(
 			"click",
@@ -94,7 +122,7 @@ export default defineContentScript({
 
 				switch (action.type) {
 					case "like":
-						handleLikeAction(action.button);
+						handleLikeAction(action.button, action.postId);
 						break;
 					case "unlike":
 						handleUnlikeAction();
@@ -113,7 +141,7 @@ export default defineContentScript({
 			true,
 		);
 
-		function handleLikeAction(button: Element) {
+		function handleLikeAction(button: Element, postId?: string | null) {
 			// 1. Audio FX Pipeline: Active sound pack with micro-pitch jitter (±3%)
 			try {
 				const pack = SOUND_PACKS[settings.soundPack] ?? SOUND_PACKS[DEFAULT_SOUND_PACK];
@@ -166,14 +194,43 @@ export default defineContentScript({
 				}
 			}
 
-			// 3. Stats Increment & Milestone Celebrations
-			incrementLikesJuiced()
-				.then((nextCount) => {
-					if (isMilestoneHit(nextCount)) {
-						handleMilestoneCelebration(button);
-					}
-				})
-				.catch(() => {});
+			// 3. Smart Juicer Guardrails: Cadence Gate & Unique Post Deduplication
+			// Prevents farming by liking/unliking the same post, and protects the user
+			// from triggering Meta's 24-hour community protection action blocks.
+			const now = Date.now();
+			if (now - lastJuicedLikeTime < JUICED_VELOCITY_COOLDOWN_MS) {
+				// Too fast (autoclicker or rapid toggling): tactile FX played, but odometer is shielded
+				return;
+			}
+
+			if (postId) {
+				if (juicedPostIds.has(postId)) {
+					// Post already juiced: tactile FX played, but odometer does not increment again
+					return;
+				}
+
+				// Mark as juiced in memory immediately to guard against rapid duplicate clicks
+				juicedPostIds.add(postId);
+				lastJuicedLikeTime = now;
+
+				recordJuicedPost(postId)
+					.then((result) => {
+						if (result.recorded && isMilestoneHit(result.nextCount)) {
+							handleMilestoneCelebration(button);
+						}
+					})
+					.catch(() => {});
+			} else {
+				// Fallback if post ID couldn't be extracted: enforce cadence cooldown
+				lastJuicedLikeTime = now;
+				incrementLikesJuiced()
+					.then((nextCount) => {
+						if (isMilestoneHit(nextCount)) {
+							handleMilestoneCelebration(button);
+						}
+					})
+					.catch(() => {});
+			}
 		}
 
 		function handleMilestoneCelebration(button: Element) {

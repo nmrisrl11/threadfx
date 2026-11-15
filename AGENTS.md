@@ -18,7 +18,8 @@ threadfx/
 │   ├── components/                 # UI components (sidepanel & primitives)
 │   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
-│   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
+│   │   │   ├── particles/          # Tab coordinator, palettes grid, physics sliders, particle stage dock
+│   │   │   └── data/               # Tab coordinator, capacity meter, itemized breakdown, actions, dock monitor
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, Popover, etc.)
 │   ├── entrypoints/
 │   │   ├── background.ts           # Service worker (sidePanel behavior & shortcut toggling)
@@ -28,7 +29,7 @@ threadfx/
 │   │       ├── main.tsx            # Synchronous early theme initialization (zero-FOUC)
 │   │       ├── App.tsx             # Interactive soundboard, volume, likes counter
 │   │       └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
-│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useActiveTabStatus
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useStorageTelemetry, useActiveTabStatus
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage helpers
 │   │   ├── threads-detector.ts     # Domain-isolated Threads action classifier & vector path fingerprinting
@@ -173,9 +174,10 @@ To ensure code maintainability, prevent monolithic bloat, and maintain razor-sha
 - **Strict Domain Foldering**: Feature components must live inside their dedicated domain directory:
   - `extension/components/sidepanel/sound-fx/` — Solely audio-related UI (header, grid, cards, channel strips, waveform monitor).
   - `extension/components/sidepanel/particles/` — Solely particle & reaction-related UI (header, mode toggle, palettes grid, emoji card, physics strips, dock monitor).
+  - `extension/components/sidepanel/data/` — Solely storage telemetry and data management UI (header, capacity meter, itemized breakdown, actions, dock monitor).
   - `extension/components/ui/` — Solely reusable, domain-agnostic UI primitives (`slider.tsx`, `switch.tsx`, `tabs.tsx`, `popover.tsx`, `emoji-picker.tsx`).
 - **Cohesive Component Roles**:
-  1. **Root Coordinators (`sound-fx-tab.tsx`, `particles-tab.tsx`)**: Own overall layout orchestration (pinned header, scrollable body, docked bottom monitor). They contain **zero** inline complex JSX markup and delegate all domain tasks to specialized child components.
+  1. **Root Coordinators (`sound-fx-tab.tsx`, `particles-tab.tsx`, `data-tab.tsx`)**: Own overall layout orchestration (pinned header, scrollable body, docked bottom monitor). They contain **zero** inline complex JSX markup and delegate all domain tasks to specialized child components.
   2. **Context Headers (`sound-profile-header.tsx`, `particle-header.tsx`)**: Own section titles, contextual reset buttons, and master toggle switches.
   3. **Presentational Grids & Cards (`*-grid.tsx`, `*-card.tsx`)**: Grids only map data collections; individual cards solely present single items, handle hover/press states (`active:scale-[0.98]`), and emit selection/preview events.
   4. **Domain Sub-Controllers (`particle-emoji-card.tsx`)**: Encapsulate sub-domain features (active preview, quick reaction presets, and popover catalog triggering) without leaking state to parent coordinators.
@@ -279,6 +281,9 @@ export interface ThreadFXSettings {
 	selectedEmoji: string; // Active custom reaction emoji (default: "❤️")
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 }
+
+// Bounded LRU post cache stored under a separate top-level key for atomic read/write:
+// Key: "threadfx_juiced_post_ids" => string[] (max 1,000 permalink post IDs)
 ```
 
 Whenever `sidepanel` updates settings via `chrome.storage.local.set()`, `content.ts` receives the update immediately via `chrome.storage.onChanged`.

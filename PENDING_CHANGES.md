@@ -10,6 +10,8 @@
 
 ### Added
 
+- **Interactive Data & Storage Management Hub**: Added a dedicated "Storage" chassis tab to the Side Panel, featuring real-time visual capacity gauges, used vs. available storage tracking, granular slice breakdowns (anti-farming post cache, sound presets, and progression stats), and safe two-step management actions to clear post history or reset preferences without affecting your lifetime milestone achievements.
+- **Smart Juicer Anti-Farming Shield**: Added intelligent post-deduplication and velocity protection to the sensory odometer. Liking and unliking the same post retains 100% of its tactile audio and visual particle feedback without artificially inflating your lifetime like tally or milestone progress, safeguarding your account from social platform rate limits.
 - **7 Symmetrical 3D Sensory Achievement Badges**: Introduced bespoke transparent 3D medals for each milestone tier (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) rendered in ultra-sharp WebP, featuring an interactive collector popover shelf and inspectable badge previews right from the Side Panel metric strip.
 - **Global Side Panel Toggle Shortcut (`Alt+Shift+T`)**: Effortlessly open and close the Side Panel from anywhere in your browser using `Alt+Shift+T` (or `Escape` when focused), paired with an explicit one-click close trigger in the top header.
 - **Sensory Juicer Milestones & Gamified Tiers**: Elevated the lifetime like counter into a rich progression system with seven sensory ranks (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`). Crossing a milestone unlocks celebratory victory fanfares and explosive fireworks confetti in your feed, with an interactive milestone badge in the Side Panel tracking your journey.
@@ -50,6 +52,8 @@
 
 ### Changed
 
+- **Purpose-Built Particle Stage Dock**: Replaced the fake 24-band audio waveform equalizer on the Particles tab with a dedicated, compact Particle Stage dock that directly reflects what particles do—featuring live chromatic palette swatches, active reaction emoji previews, real-time particle count and spread arc telemetry, and an instant-action "Trigger Burst" audition trigger.
+- **Consumer-Grade Copywriting Across Storage Hub**: Eliminated all technical jargon (such as "Offline MV3", "client-side storage quota", and "deduplication cache") in favor of clear, accessible copywriting ("On-Device Storage", "100% Private", "Enhanced Posts Memory"), and removed the redundant top refresh button in favor of the docked footer sync action.
 - **2-Column Balanced Emoji Suite Architecture**: Restructured the emoji reaction configuration card into a balanced dual-column chassis on wide side panels (`@[520px]/emoji-card:grid-cols-2`), pairing the active preview badge and catalog browser on the left with a dedicated 4x2 quick reactions grid on the right, eliminating empty voids and aligning with the 2-column physics sliders below.
 - **Removed Redundant Emoji Card Audition Trigger**: Streamlined the active reaction emoji hero by eliminating the duplicate "Audition ▶" action button, keeping the interface uncluttered while retaining instant click-to-test feedback directly on the primary emoji badge and docked monitor.
 - **Eliminated Footer Version Redundancy**: Removed the duplicate `• v1.0.0` version string from the Side Panel footer, preserving a clean `Built by @nmrisrl • MIT` layout with the primary version badge anchored prominently in the top header.

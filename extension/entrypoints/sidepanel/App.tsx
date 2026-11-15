@@ -1,3 +1,4 @@
+import { DataTab } from "@/components/sidepanel/data/data-tab";
 import { SidepanelFooter } from "@/components/sidepanel/footer";
 import { SidepanelHeader } from "@/components/sidepanel/header";
 import { MetricStrip } from "@/components/sidepanel/metric-strip";
@@ -6,7 +7,7 @@ import { PlatformStandbyBanner } from "@/components/sidepanel/platform-standby-b
 import { SoundFxTab } from "@/components/sidepanel/sound-fx/sound-fx-tab";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useActiveTabStatus } from "@/hooks/use-active-tab-status";
-import { SparklesIcon, Volume2Icon } from "lucide-react";
+import { DatabaseIcon, SparklesIcon, Volume2Icon } from "lucide-react";
 import { useEffect } from "react";
 
 export default function App() {
@@ -68,14 +69,27 @@ export default function App() {
 			{/* Tabs System - Mode controller outside the elevated chassis */}
 			<Tabs defaultValue="audio" className="flex min-h-0 flex-1 flex-col gap-2">
 				<div className="shrink-0">
-					<TabsList>
-						<TabsTrigger value="audio" className="flex items-center gap-1.5">
-							<Volume2Icon className="h-3.5 w-3.5" />
-							<span>Sound FX</span>
+					<TabsList className="grid-cols-3">
+						<TabsTrigger
+							value="audio"
+							className="flex items-center justify-center gap-1.5 px-2 py-1.5 text-[11px] font-medium sm:text-xs"
+						>
+							<Volume2Icon className="h-3.5 w-3.5 shrink-0" />
+							<span className="truncate">Sound FX</span>
 						</TabsTrigger>
-						<TabsTrigger value="particles" className="flex items-center gap-1.5">
-							<SparklesIcon className="h-3.5 w-3.5" />
-							<span>Particles</span>
+						<TabsTrigger
+							value="particles"
+							className="flex items-center justify-center gap-1.5 px-2 py-1.5 text-[11px] font-medium sm:text-xs"
+						>
+							<SparklesIcon className="h-3.5 w-3.5 shrink-0" />
+							<span className="truncate">Particles</span>
+						</TabsTrigger>
+						<TabsTrigger
+							value="data"
+							className="flex items-center justify-center gap-1.5 px-2 py-1.5 text-[11px] font-medium sm:text-xs"
+						>
+							<DatabaseIcon className="h-3.5 w-3.5 shrink-0" />
+							<span className="truncate">Storage</span>
 						</TabsTrigger>
 					</TabsList>
 				</div>
@@ -94,6 +108,13 @@ export default function App() {
 						className="flex min-h-0 flex-1 flex-col outline-none data-[state=inactive]:hidden"
 					>
 						<ParticlesTab />
+					</TabsContent>
+
+					<TabsContent
+						value="data"
+						className="flex min-h-0 flex-1 flex-col outline-none data-[state=inactive]:hidden"
+					>
+						<DataTab />
 					</TabsContent>
 				</main>
 			</Tabs>

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import type { BurstMode, ConfettiPalette, ConfettiPaletteId } from "@data/particles";
 import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
 import { PlayIcon } from "lucide-react";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 
 interface ParticleDockMonitorProps {
 	selectedPaletteId: ConfettiPaletteId;
@@ -15,15 +15,6 @@ interface ParticleDockMonitorProps {
 	onTriggerBurst: () => void;
 }
 
-// 24 simulated particle nodes across the horizon arc
-const NUM_PARTICLES = 24;
-
-// Base resting amplitudes across the particle horizon
-const RESTING_AMPLITUDES = [
-	0.18, 0.22, 0.28, 0.35, 0.42, 0.5, 0.58, 0.65, 0.72, 0.78, 0.82, 0.85, 0.85, 0.82, 0.78, 0.72,
-	0.65, 0.58, 0.5, 0.42, 0.35, 0.28, 0.22, 0.18,
-];
-
 export const ParticleDockMonitor = memo(function ParticleDockMonitor({
 	selectedPaletteId,
 	burstMode,
@@ -34,173 +25,103 @@ export const ParticleDockMonitor = memo(function ParticleDockMonitor({
 	onTriggerBurst,
 }: ParticleDockMonitorProps) {
 	const [isPulsing, setIsPulsing] = useState(false);
-	const [dynamicAmplitudes, setDynamicAmplitudes] = useState<number[]>(() =>
-		RESTING_AMPLITUDES.map((val) => val * 0.28),
-	);
 
 	const activePalette: ConfettiPalette = useMemo(
 		() => CONFETTI_PALETTES[selectedPaletteId] ?? CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE],
 		[selectedPaletteId],
 	);
 
-	// Listen for live particle pulses (both in-panel tests and in-feed likes)
+	// Listen for live particle pulses (both in-panel auditions and in-feed likes)
 	useEffect(() => {
 		return subscribeParticlePulse(() => {
 			setIsPulsing(true);
-
-			// Generate lively particle peak trajectories scaled by particle density
-			const densityScale = Math.min(1.2, Math.max(0.6, confettiCount / 30));
-			const peaks = RESTING_AMPLITUDES.map((curve) => {
-				const randomJitter = 0.7 + Math.random() * 0.6;
-				return Math.min(1, Math.max(0.2, curve * randomJitter * densityScale));
-			});
-			setDynamicAmplitudes(peaks);
-
-			// Decay back to resting state
-			const timer = setTimeout(() => {
-				setIsPulsing(false);
-				setDynamicAmplitudes(RESTING_AMPLITUDES.map((val) => val * 0.28));
-			}, 480);
-
+			const timer = setTimeout(() => setIsPulsing(false), 350);
 			return () => clearTimeout(timer);
 		});
-	}, [confettiCount]);
-
-	const handleClick = useCallback(() => {
-		onTriggerBurst();
-	}, [onTriggerBurst]);
+	}, []);
 
 	return (
-		<div className="@container/monitor">
-			<div
-				role="button"
-				tabIndex={0}
-				onClick={handleClick}
-				onKeyDown={(e) => {
-					if (e.key === "Enter" || e.key === " ") {
-						e.preventDefault();
-						handleClick();
-					}
-				}}
-				className="group border-border bg-surface-subtle hover:border-foreground/20 hover:bg-surface-muted relative cursor-pointer overflow-hidden rounded-xl border p-3 transition-colors duration-200 select-none"
-			>
-				{/* Top Header Row */}
-				<div className="mb-2.5 flex items-center justify-between gap-2">
-					<div className="flex min-w-0 flex-1 items-center gap-2">
-						{/* Hardware Status LED (Emerald green matching Sound FX monitor & header) */}
-						<span className="relative flex h-2 w-2 shrink-0">
-							<span
-								className={cn(
-									"absolute inline-flex h-full w-full rounded-full transition-opacity duration-150",
-									isPulsing
-										? "animate-ping bg-emerald-400 opacity-75"
-										: confettiEnabled
-											? "bg-emerald-500/30 opacity-0"
-											: "bg-zinc-500/30 opacity-0",
-								)}
-							/>
-							<span
-								className={cn(
-									"relative inline-flex h-2 w-2 rounded-full transition-colors duration-200",
-									isPulsing
-										? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
-										: confettiEnabled
-											? "bg-emerald-500/70"
-											: "bg-muted-foreground/40",
-								)}
-							/>
-						</span>
-
-						{/* Active Palette Name or Emoji Glyph Badge */}
-						<div className="flex min-w-0 flex-1 items-center gap-1.5">
-							{burstMode === "emoji" ? (
-								<>
-									<span className="border-border/80 bg-surface-muted flex size-5 shrink-0 items-center justify-center rounded-md border text-xs">
-										{selectedEmoji}
-									</span>
-									<span className="text-foreground truncate text-xs font-semibold tracking-tight">
-										Emoji Reaction
-									</span>
-								</>
-							) : (
-								<>
-									<span className="text-foreground truncate text-xs font-semibold tracking-tight">
-										{activePalette.name}
-									</span>
-
-									{/* Mini Swatches */}
-									<div className="flex shrink-0 items-center gap-0.5">
-										{activePalette.colors.slice(0, 4).map((c, i) => (
-											<span
-												key={i}
-												className="inline-block size-1.5 rounded-full border border-black/30"
-												style={{ backgroundColor: c }}
-											/>
-										))}
-									</div>
-								</>
+		<div className="@container/dock">
+			<div className="border-border bg-card/80 flex items-center justify-between rounded-xl border px-3 py-2 text-xs shadow-xs backdrop-blur-xs transition-colors select-none">
+				{/* Left: Hardware Status Indicator & Active Style */}
+				<div className="flex min-w-0 items-center gap-2">
+					{/* Status LED */}
+					<span className="relative flex h-2 w-2 shrink-0">
+						<span
+							className={cn(
+								"absolute inline-flex h-full w-full rounded-full transition-opacity duration-150",
+								isPulsing ? "animate-ping bg-emerald-400 opacity-75" : "opacity-0",
 							)}
-
-							<span className="text-muted-foreground/70 hidden shrink-0 font-mono text-[10px] @[340px]/monitor:inline">
-								{confettiCount}p · {confettiSpread}°
-							</span>
-						</div>
-					</div>
-
-					{/* Center status for wide viewports */}
-					<div className="text-muted-foreground/50 hidden items-center gap-1.5 font-mono text-[9px] tracking-wider uppercase @[520px]/monitor:flex">
-						<span className="h-1 w-1 rounded-full bg-emerald-400/80" />
-						<span>
-							{burstMode === "emoji" ? "Canvas Emoji Viewport" : "Canvas Palette Viewport"}
-						</span>
-					</div>
-
-					{/* Tap to test hint */}
-					<div className="text-muted-foreground group-hover:text-foreground flex shrink-0 items-center gap-1 font-mono text-[10px] transition-colors">
-						<span>Trigger Burst</span>
-						<PlayIcon className="h-2.5 w-2.5 fill-current opacity-70 group-hover:opacity-100" />
-					</div>
-				</div>
-
-				{/* Particle Burst Horizon Surface */}
-				<div className="relative flex h-8 w-full items-end justify-between gap-[3px] px-0.5">
-					{Array.from({ length: NUM_PARTICLES }).map((_, idx) => {
-						const amp = dynamicAmplitudes[idx] ?? 0.25;
-						const color =
-							activePalette.colors[idx % activePalette.colors.length] ?? activePalette.colors[0];
-
-						return (
-							<div
-								key={idx}
-								className={cn(
-									"flex-1 rounded-full transition-all duration-150 ease-out",
-									!isPulsing && "opacity-50",
-									!confettiEnabled && "opacity-30 grayscale",
-								)}
-								style={{
-									height: `${Math.round(amp * 100)}%`,
-									backgroundColor: color,
-									minHeight: "4px",
-									transformOrigin: "bottom",
-									transitionProperty: "height, opacity",
-								}}
-							/>
-						);
-					})}
-				</div>
-
-				{/* Bottom subtle metadata label */}
-				<div className="border-border/40 text-muted-foreground/60 mt-2 flex items-center justify-between border-t pt-1.5 font-mono text-[9px]">
-					<span>PARTICLE MONITOR</span>
-					<span className="hidden @[440px]/monitor:inline">
-						{!confettiEnabled
-							? "BURSTS MUTED"
-							: burstMode === "emoji"
-								? "EMOJI BURST"
-								: "PALETTE OVERLAY"}
+						/>
+						<span
+							className={cn(
+								"relative inline-flex h-2 w-2 rounded-full transition-colors duration-200",
+								isPulsing
+									? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+									: confettiEnabled
+										? "bg-emerald-500"
+										: "bg-muted-foreground/40",
+							)}
+						/>
 					</span>
-					<span>HARDWARE ACCEL</span>
+
+					{/* Active Palette Swatches or Emoji Reaction Badge */}
+					<div className="flex min-w-0 items-center gap-1.5">
+						{burstMode === "emoji" ? (
+							<div className="flex min-w-0 items-center gap-1.5">
+								<span
+									className={cn(
+										"border-border/80 bg-surface-muted flex size-5 shrink-0 items-center justify-center rounded-md border text-xs transition-transform duration-150",
+										isPulsing && "scale-125",
+									)}
+								>
+									{selectedEmoji}
+								</span>
+								<span className="text-foreground truncate text-[11px] font-medium">
+									Emoji Burst
+								</span>
+							</div>
+						) : (
+							<div className="flex min-w-0 items-center gap-1.5">
+								<span className="text-foreground max-w-[85px] truncate text-[11px] font-medium @[360px]/dock:max-w-[120px]">
+									{activePalette.name}
+								</span>
+
+								{/* Mini Swatches */}
+								<div
+									className={cn(
+										"flex shrink-0 items-center gap-0.5 transition-transform duration-150",
+										isPulsing && "scale-110",
+									)}
+								>
+									{activePalette.colors.slice(0, 4).map((c, i) => (
+										<span
+											key={i}
+											className="inline-block size-2 rounded-full border border-black/20"
+											style={{ backgroundColor: c }}
+										/>
+									))}
+								</div>
+							</div>
+						)}
+					</div>
+
+					{/* Center: Live Physics Telemetry Pill (Responsive container query) */}
+					<div className="border-border/60 text-muted-foreground hidden shrink-0 items-center gap-1 border-l pl-2 font-mono text-[10px] @[320px]/dock:flex">
+						<span>{confettiEnabled ? `${confettiCount}p · ${confettiSpread}° arc` : "Muted"}</span>
+					</div>
 				</div>
+
+				{/* Right: Tactile Trigger Burst Button */}
+				<button
+					type="button"
+					onClick={onTriggerBurst}
+					title="Test active particle burst"
+					className="border-border/80 hover:bg-accent text-foreground flex shrink-0 cursor-pointer items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-[10px] font-medium transition-colors duration-150 active:scale-[0.98]"
+				>
+					<PlayIcon className="h-2.5 w-2.5 fill-current opacity-80" />
+					<span>Trigger Burst</span>
+				</button>
 			</div>
 		</div>
 	);

@@ -13,9 +13,11 @@
 - **Audio Engine:** [ZzFX](https://github.com/KilledByAPixel/ZzFX) (Procedural Web Audio API synthesis via `@data/zzfx` & `@data/presets`)
 - **Visual FX:** `canvas-confetti` (particle bursts & celebratory reactions via `@data/particles`)
 - **Juicer Milestones:** Procedural progression tiers & sensory ranks via `@data/milestones`
+- **Anti-Farming Shield:** Post permalink fingerprinting and 1,000ms velocity cadence throttling protecting user feeds and stats
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
-- **Interface:** Native Chrome Side Panel (`chrome.sidePanel`) with global `Alt+Shift+T` toggle shortcut
+- **Interface:** Native Chrome Side Panel (`chrome.sidePanel`) with 3-tab layout (`Sound FX`, `Particles`, `Storage`) and global `Alt+Shift+T` toggle shortcut
+- **Storage Telemetry:** Real-time client quota and byte allocation metrics via React 19 `useSyncExternalStore`
 
 ---
 
@@ -38,6 +40,9 @@ export interface ThreadFXSettings {
 	selectedEmoji: string; // Active custom reaction emoji (default: "❤️")
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 }
+
+// Bounded LRU post cache stored under a separate top-level key for atomic read/write:
+// Key: "threadfx_juiced_post_ids" => string[] (max 1,000 permalink post IDs)
 ```
 
 ---

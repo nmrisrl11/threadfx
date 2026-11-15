@@ -62,7 +62,12 @@ sequenceDiagram
             Canvas-->>User: Renders particle bursts and visual reactions
         end
     end
-    CS->>Storage: Increment lifetime likesJuicedCount (+1)
+    alt Smart Juicer Anti-Farming Shield Passes
+        Note over CS,Storage: Verify permalink post ID uniqueness & 1000ms cadence
+        CS->>Storage: Increment lifetime likesJuicedCount (+1) & record post ID
+    else Duplicate Post or Cadence Violation
+        Note over CS: Sensory FX play; odometer increment skipped to prevent farming
+    end
 ```
 
 ---
@@ -124,6 +129,9 @@ export interface ThreadFXSettings {
 	selectedEmoji: string; // Active custom reaction emoji (default: "❤️")
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 }
+
+// Anti-farming deduplication cache stored under dedicated key (bounded 1,000-post LRU):
+// Key: "threadfx_juiced_post_ids" => string[]
 ```
 
 #### Dual Light/Dark Theming Engine

@@ -28,7 +28,9 @@ _Zero-latency procedural audio, physics-driven particle bursts, and tactile micr
 - **🎆 Physics-Driven Particle Bursts:** Hardware-accelerated canvas particle explosions and confetti cascades that burst directly from the tapped element with customizable palettes, particle counts, and spread geometry.
 - **🖲️ Tactile Motion Feedback:** Micro-spring scale dynamics and responsive visual bounce effects that give flat digital interactions the physical weight and mechanical satisfaction of a tactile switch.
 - **📊 Real-Time Lifetime Sensory Metrics:** Private, local "Likes Enhanced" odometer tracking your lifetime interaction juice without sending a single byte of telemetry to any external server.
-- **📱 Docked Native Chrome Side Panel:** Clean, obsidian-chassis dashboard that stays docked to your screen while browsing—with real-time sound auditioning, live volume sliders, and particle controls with instant sync across tabs.
+- **📱 Docked Native Chrome Side Panel:** Clean, obsidian-chassis dashboard that stays docked to your screen while browsing—with real-time sound auditioning, live volume sliders, particle controls, and dedicated storage telemetry across tabs.
+- **💾 Transparent Storage & Data Management:** Real-time capacity meter tracking client-side quota usage and itemized byte allocation with safe two-step history reset and local data clearing.
+- **🛡️ Smart Juicer Anti-Farming Shield:** Post permalink fingerprinting and 1,000ms velocity cadence throttling preventing repetitive like/unlike stat manipulation while keeping user feeds safe from rate limits.
 - **🌓 Independent Appearance Theming:** Native tri-state theme switcher (System, Dark, Light) built with modern shadcn CSS variables, instant zero-FOUC initialization, and seamless synchronization with OS preferences.
 - **🔒 Privacy-First & Minimal Permissions:** Only requests access to `threads.com` (and legacy `threads.net`) plus local storage. Zero background analytics, zero tracking scripts, and zero invasive permissions.
 
@@ -129,7 +131,8 @@ threadfx/
 │   ├── components/                 # UI components
 │   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
-│   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
+│   │   │   ├── particles/          # Tab coordinator, palettes grid, physics sliders, particle stage dock
+│   │   │   └── data/               # Tab coordinator, capacity meter, itemized breakdown, actions, dock monitor
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, Popover, etc.)
 │   ├── entrypoints/
 │   │   ├── sidepanel/              # Native Chrome Side Panel React 19 App
@@ -139,7 +142,7 @@ threadfx/
 │   │   │   └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
 │   │   ├── background.ts           # Configures openPanelOnActionClick & Alt+Shift+T shortcut toggling
 │   │   └── content.ts              # threads.com DOM like-observer & ZzFX trigger
-│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useActiveTabStatus
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useStorageTelemetry, useActiveTabStatus
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage.local synchronization
 │   │   ├── threads-detector.ts     # Dedicated action classifier & vector path fingerprinting
