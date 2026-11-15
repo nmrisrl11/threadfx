@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 15, 2026 (11:26 PM +08:00)  
+> **Last Synchronized:** November 16, 2026 (12:30 AM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Clean working tree — 100% synchronized with `origin/main` (latest commit `1ee0585`). All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
+> **Working Tree Status:** Clean working tree — 100% synchronized with `origin/main` (latest commit `41985c2`). All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
 ---
 
@@ -18,7 +18,7 @@ ThreadFX is an open-source interactive effects, procedural audio, and tactile fe
 | **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                  |
 | **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                      |
 | **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                              |
-| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (880 KB, includes 7 WebP badges, Frimousse emojis & fonts)  |
+| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (882 KB, includes 7 WebP badges, Frimousse emojis & fonts)  |
 | **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Static build in `website/dist/`                       |
 | **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**) |
 | **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (6 palettes + vector emoji reaction bursts)      |
@@ -77,6 +77,15 @@ export interface ThreadFXSettings {
 
 ## 4. Completed Milestones (Recent Session Recap)
 
+### 🔔 In-App Release Notification & Header Architecture Elevation
+
+- **Abstracted `UpdateBanner` Component (`update-banner.tsx`):** Extracted update alert row from `header.tsx` into a dedicated, SRP-compliant component that returns `null` when no update is ready or when dismissed for the session.
+- **Zero Color Noise & Visual Discipline:** Purged all distracting bright amber (`text-amber-500`) and neon pink tints across update alerts, the Storage tab, and `VersionUpdateCard`. Standardized on calm, hardware-grade monochrome tokens (`border-border`, `bg-card/60`, `text-muted-foreground`, `text-foreground`).
+- **Header Layout Collision Fix:** Re-engineered `header.tsx` with explicit `shrink-0` bounds on global power controls and close buttons, preventing layout breakage or clipped buttons on narrow 320px Side Panels.
+- **Absolute URL Resolution (`resolveDownloadUrl`):** Fixed relative `/download` links in extension context that caused Chrome `ERR_FILE_NOT_FOUND` (`chrome-extension://.../download`), ensuring all extension download links resolve directly to the production web endpoint (`https://threadfx.nmrisrl.dev/download`).
+- **Reactive Multi-Consumer Store Synchronization:** Subscribed `useUpdateCheck` to `chrome.storage.onChanged` for live, real-time synchronization across header, tab triggers, and the Storage tab without requiring unmounts or reloads.
+- **`VersionUpdateCard` Elevation (`version-update-card.tsx`):** Standardized card padding (`p-3.5`), radius (`rounded-xl`), and button interaction feedback (`active:scale-[0.98]`) to match sibling `DataActionsCard` and `StorageMeterCard`.
+
 ### 🔊 Sound FX Tab Elevation & Modularization
 
 - **Modular Directory:** Created `extension/components/sidepanel/sound-fx/` and deleted monolithic root files.
@@ -93,7 +102,7 @@ export interface ThreadFXSettings {
 
 ### 🎨 Header & Metric Strip Layout Hierarchy
 
-- **Tier 1 (Header):** Brand name + version pill on left; dedicated master hardware toggle pill with live emerald indicator on right.
+- **Tier 1 (Header):** Brand name + version pill on left; dedicated master hardware toggle pill with live emerald indicator and close button on right.
 - **Tier 2 (Metric Strip):** Neutral heart icon (`text-muted-foreground`) with lifetime counter on left; ambient tri-state theme switcher (`System`, `Dark`, `Light`) on right.
 
 ### 🌟 Particles Tab Modernization & Elevation
@@ -108,7 +117,6 @@ export interface ThreadFXSettings {
 - **Pinned Context Header (`particle-header.tsx`):** Pinned `Particle Bursts` section title, contextual `↺ Reset` buttons for both palettes and emojis, and master burst FX toggle switch.
 - **Adaptive 2-Channel Physics Strip (`particle-physics-strip.tsx` & `particle-slider-card.tsx`):** Reusable slider cards for Particle Density (10–60) and Burst Spread (30°–90°) with real-time value text, reference scale ticks, and individual reset buttons.
 - **Docked Particle Horizon Monitor (`particle-dock-monitor.tsx`):** Pinned bottom dock with hardware-grade emerald status LED (matching the Sound FX spectrum monitor and header "Active" indicator), active palette/emoji badges, 24-point horizon particle trajectory visualization, and a 1-click "Trigger Burst ▶" button synchronized with live pulses.
-- **Footer Version Cleanup:** Removed redundant version string from the footer (`footer.tsx`), keeping version anchored exclusively in the top header.
 
 ### 🎯 In-Feed Action Precision & Interactivity Expansion
 
@@ -119,65 +127,35 @@ export interface ThreadFXSettings {
   - **Bookmark / Save Sparkle:** Crisp tactile triangle chime (`720Hz` -> `900Hz`) and 16-particle golden sparkle on Bookmark.
   - **Post Published Fanfare:** Celebratory double chime and 45-particle fanfare upon publishing a post from the composer.
 - **Soundboard Keyboard Hotkeys (Keys 1–8):** Pressing number keys `1` through `8` in the Side Panel or companion simulator instantly selects and auditions the sound pack, with visual keycap badges rendered on each sound card.
-- **Synchronized Companion Web Simulator (`website/`):** Brought landing page interactive simulator to 100% feature parity with the extension—supporting live Pitch Modulation (0.5x–2.0x), dual-mode Particle Selector (6 palettes or custom emoji bursts), and interactive like & repost reactions.
 - **Side Panel Toggle Shortcut & Lifecycle (`wxt.config.ts` & `background.ts`):** Registered manifest command `toggle-sidepanel` (`Alt+Shift+T` / `Escape`) using `chrome.commands.onCommand` for trusted user-gesture side panel opening and bi-directional background port tracking to seamlessly toggle (open when closed, close when open), plus an explicit `X` close trigger in `header.tsx`.
 - **Sensory Juicer Milestones & 3D WebP Badges (`milestones.ts`, `milestones-popover.tsx`, `metric-strip.tsx`):**
   - Generated and processed 7 bespoke, 100% symmetrical, 3D achievement badges (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) into high-DPI transparent WebPs (`milestone-1.webp` through `milestone-7.webp`) in `extension/public/badges/` and `website/public/badges/`.
-  - Declared `web_accessible_resources` in `wxt.config.ts` for instant browser rendering and layout stability.
   - Implemented `MilestonesPopover` with active milestone badge in `MetricStrip`, dynamic progress bar, 7-badge collector shelf with locked silhouettes, and interactive preview inspection card.
-- **In-Feed Action Hardening & Meta Sentry Resilience (`threads-detector.ts` & `content.ts`):**
-  - Upgraded action classifier with multi-viewport vector anchor recognition (supporting both 24×24 and 48×48 SVG viewports: `M34.6 3.1`, `M18 2.084`, `13.916`, `17.3 1.55`).
-  - Added computed style color inspection for Meta's red like tokens (`#FF3040` / `#ED4956` / `rgb(255, 48, 64)`).
-  - Enforced `event.isTrusted` checks and a 400ms button debounce shield to prevent rapid synthetic event duplication and optimistic rollback glitches during server-side rate limits (`SentryBlockAccess`).
-- **Ambient Platform Standby Awareness (`use-active-tab-status.ts` & `platform-standby-banner.tsx`):** Added real-time tab domain detection with extensible multi-platform status (`isSupportedPlatform`, `activePlatform`, `isThreadsActive`) that smoothly switches header status between `Active` (on Threads) and `Standby` (on other sites), presenting a helpful standby card with a 1-click `Open Threads ↗` launcher while preserving full soundboard audition capabilities.
 - **Smart Juicer Anti-Farming Shield & Rate Limit Guard (`threads-detector.ts`, `storage.ts`, `content.ts`):**
-  - **Permalink Post ID Extractor (`getThreadPostId`):** Extracts unique post permalink slugs (`/@username/post/C...` or `/t/...`) via container querying, parent traversal, and pathname fallbacks.
-  - **Bounded LRU Registry (`recordJuicedPost`):** Maintains a rolling cache of up to 1,000 recently juiced post IDs in `chrome.storage.local` (~15 KB footprint) paired with an in-memory `Set` for zero-latency lookups and cross-tab synchronization.
-  - **Tactile vs. Odometer Decoupling:** Re-liking a previously liked or unliked post delivers 100% of the tactile procedural audio and confetti burst for immediate physical feedback, but shields the `likesJuicedCount` odometer and milestone unlocks from duplicate increments.
-  - **Velocity Cadence Limiter (1,000ms):** Shields against autoclickers and rapid like/unlike toggling, protecting users from triggering Meta's 24-hour community protection action blocks (`Try again in 24 hours`).
+  - Maintains a rolling cache of up to 1,000 recently juiced post IDs in `chrome.storage.local` paired with an in-memory `Set`. Re-liking delivers 100% tactile audio and confetti feedback, but shields the odometer and milestone unlocks from duplicate increments.
+  - 1,000ms velocity cadence limiter protects accounts from triggering Meta rate limits.
 - **Interactive Data Management & Storage Hub (`data-tab.tsx`, `use-storage-telemetry.ts`):**
-  - **3-Tab Mode Controller (`App.tsx`):** Added a third dedicated "Storage" chassis tab alongside Sound FX and Particles (`grid-cols-3` segmented tabs).
-  - **Real-Time Storage Telemetry (`storage.ts` & `use-storage-telemetry.ts`):** Reactive `useSyncExternalStore` hook tracking live bytes in use (`chrome.storage.local.getBytesInUse`), remaining space, and quota percentages with zero re-render cascade warnings.
-  - **Storage Capacity Progress Gauge (`storage-meter-card.tsx`):** Visual progress bar displaying used bytes (e.g. `16.4 KB`), remaining capacity (e.g. `9.98 MB`), and an "Optimal" health status badge.
-  - **Granular Storage Breakdown (`storage-breakdown-card.tsx`):** Itemized telemetry cards for the Post Deduplication Cache, App Settings & Presets, and Lifetime Progression Odometer.
-  - **Safe Two-Step Data Actions (`data-actions-card.tsx`):** Emil Kowalski-inspired inline confirmation controls to safely clear juiced post history (enabling re-liking on Threads), reset settings to defaults, or reset the juicer odometer without accidental triggers.
-  - **Docked Storage Status Monitor (`data-dock-monitor.tsx`):** Pinned bottom dock with emerald status indicator, available capacity readouts, and a one-click "Sync ↺" button.
-- **UI & Telemetry Polish (`particle-dock-monitor.tsx`, `data-header.tsx`, `storage-meter-card.tsx`, `data-actions-card.tsx`):**
-  - **Zero Layout Shift (CLS = 0.00) on Data Actions:** Re-engineered the confirmation action rows in `data-actions-card.tsx` with fixed `w-[118px]` button slots and compact `XIcon` cancel buttons, ensuring rock-solid layout stability with zero text wrapping or row expansion.
-  - **Responsive Container Queries for Dock Telemetry:** Replaced viewport-based `sm:` media queries on dock monitors with container-aware `@container/dock` rules (`@[360px]/dock:inline` and `@[300px]/dock:flex`), ensuring badges and technical readouts scale gracefully even in narrow side panels.
-  - **Purpose-Built Particle Stage Dock:** Removed the confusing 24-band vertical audio waveform equalizer from the Particles tab. Replaced it with a sleek, compact Particle Stage dock displaying live palette color beads, active emoji reaction badges, `{count}p · {spread}° arc` telemetry, and a tactile "Trigger Burst ▶" button.
-  - **Zero Technical Jargon Copywriting:** Purged developer jargon ("Offline MV3", "client-side quota", "deduplication cache") across the Storage tab, standardizing on friendly, Apple-grade copy ("On-Device Storage", "100% Private", "Enhanced Posts Memory"). Removed the redundant top refresh button in favor of the docked footer sync action.
-- **Package Footprint Optimization & Asset Cleanup:**
-  - Substituted bloated `@fontsource-variable/*` default imports with targeted `fonts.css` pulling only Latin & Latin-Extended subsets across extension and website, pruning 11 unused foreign language font files.
-  - Removed unused 240 KB 512px icon from `extension/public/icon/` in favor of crisp 128px assets for the 28px header slot.
-  - Upgraded landing page hero emblem to lightweight WebP (`512.webp`), saving 218 KB on initial web page load.
-  - Slashed zipped extension archive by 30% from 1.26 MB to **880.20 KB** (1.26 MB uncompressed).
-- **Security Architecture & Edge Caching Hardening:**
-  - Authored `docs/SECURITY_AND_DISTRIBUTION.md` detailing 0/70 clean VirusTotal score, Chromium sideloading developer mode policies, browser reputation heuristics, and the standard `-chrome` suffix naming convention.
-  - Hardened `website/vercel.json` edge caching: added 30-day stale-while-revalidate caching for 3D milestone badges in `/badges/`, 1-year immutable caching for hashed bundles, instant HTML revalidation, and baseline HTTP security headers (`nosniff`, `SAMEORIGIN`, `strict-origin-when-cross-origin`).
-- **In-App Release Notification & Landing Page Gamification Suite:**
-  - Built zero-overhead `useUpdateCheck()` with 12h revalidation against `version.json` on Vercel Edge, featuring semver comparison and local storage caching.
-  - Added ambient header notification pill with `SparklesIcon` and dedicated `VersionUpdateCard` in Storage tab with a 10-second reload walkthrough.
-  - Drafted 7-tier 3D milestone showcase (`JUICER_MILESTONES`) and seamless upgrade card on companion landing page.
-- **Documentation Synchronization & Production Release Prep:**
-  - Audited all project documentation across `AGENTS.md`, `README.md`, `extension/README.md`, and `docs/ARCHITECTURE.md`, eliminating directory tree, asset, and schema drift.
-  - Confirmed 0 lint errors/warnings with `oxlint` across 63 files with 121 rules, formatted 97 files with `oxfmt`, and compiled/packaged `threadfx-1.0.0-chrome.zip` (882 KB) alongside the website.
+  - Dedicated "Storage" chassis tab with real-time capacity progress meter, itemized breakdown (Post Memory, Settings, Milestones), and safe 2-step data action buttons.
 
 ---
 
-## 5. Next Focus & Backlog
+## 5. Next Focus: Landing Page Development (`website/`)
 
-Next sprint milestones and discussion agenda:
+The next conversation session will focus on elevating and polishing the **ThreadFX Landing Page (`website/`)**:
 
-### 🏆 Priority Focus: Landing Page Badge Showcase & Soundboard Integration
-
-1. **Mirror Gamification Badges on Companion Website:**
-   - Display the 7 milestone badges interactively on the landing page soundboard demo (`website/src/components/SoundboardDemo.tsx`).
-   - Showcase milestone unlock celebrations directly in the web simulator.
-2. **Global Keyboard Audio Mute Shortcut (`Alt+Shift+M`):**
-   - Instant shortcut to toggle master audio output across all active tabs without opening the Side Panel.
-3. **Smart Audio Ducking:**
-   - Automatically suppress or soften procedural SFX when in-feed Threads videos or audio tracks are actively playing.
+1. **Interactive 7-Tier Sensory Milestone Showcase:**
+   - Display the 7 transparent 3D WebP achievement medals (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) on the web portal.
+   - Interactive rank inspection card with unlocked status and sensory milestones.
+2. **Companion Web Simulator Enhancement (`website/src/components/SoundboardDemo.tsx`):**
+   - Verify full feature parity with the extension: 8 procedural sound presets, pitch modulation slider (0.5x–2.0x), dual-mode particle selector (6 palettes + custom emoji bursts), and keyboard hotkeys (1–8).
+   - Add milestone progression previews to simulator likes.
+3. **Seamless Unpacked Installation & Upgrade Guide:**
+   - Visual step-by-step installation card explaining how to load unpacked extensions in 10 seconds.
+   - Seamless upgrade walkthrough explaining how to extract and reload without losing on-device settings or milestones.
+4. **Hero & Design Engineering Polish:**
+   - Distinctive typography using Plus Jakarta Sans, Inter, and Geist Mono.
+   - Hardware-grade dark mode aesthetic following `docs/BRAND.md`.
+   - Clean, verified `/download` routing resolving to Cloudflare R2.
 
 ---
 
@@ -203,15 +181,12 @@ npm.cmd run build:all
 - **Agent Guidelines:** [`AGENTS.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/AGENTS.md)
 - **Staged Release Notes:** [`PENDING_CHANGES.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/PENDING_CHANGES.md)
 - **Root README:** [`README.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/README.md)
-- **Master Feature Blueprint:** [`docs/FEATURE_BLUEPRINT.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/docs/FEATURE_BLUEPRINT.md)
+- **Website App Entry:** [`website/src/App.tsx`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/website/src/App.tsx)
+- **Website Vercel Config:** [`website/vercel.json`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/website/vercel.json)
 - **Central App Metadata:** [`data/app.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/app.ts)
 - **Central Juicer Milestones:** [`data/milestones.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/milestones.ts)
 - **Central Particle Presets:** [`data/particles.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/particles.ts)
 - **Central Sound Presets:** [`data/presets.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/presets.ts)
-- **Data Tab Coordinator:** [`extension/components/sidepanel/data/data-tab.tsx`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/extension/components/sidepanel/data/data-tab.tsx)
-- **Particles Tab Coordinator:** [`extension/components/sidepanel/particles/particles-tab.tsx`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/extension/components/sidepanel/particles/particles-tab.tsx)
-- **Emoji Card Controller:** [`extension/components/sidepanel/particles/particle-emoji-card.tsx`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/extension/components/sidepanel/particles/particle-emoji-card.tsx)
-- **Sound FX Tab Coordinator:** [`extension/components/sidepanel/sound-fx/sound-fx-tab.tsx`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/extension/components/sidepanel/sound-fx/sound-fx-tab.tsx)
-- **Extension Settings Store:** [`extension/hooks/use-settings.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/extension/hooks/use-settings.ts)
 - **Design Tokens:** [`docs/BRAND.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/docs/BRAND.md)
 - **Architecture & Sequence:** [`docs/ARCHITECTURE.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/docs/ARCHITECTURE.md)
+- **Security & Distribution:** [`docs/SECURITY_AND_DISTRIBUTION.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/docs/SECURITY_AND_DISTRIBUTION.md)
