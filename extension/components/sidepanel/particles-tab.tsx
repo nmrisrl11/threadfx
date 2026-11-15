@@ -1,10 +1,10 @@
-import { memo, useMemo, useCallback } from "react";
-import { SparklesIcon, CheckIcon } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { CONFETTI_PALETTE_LIST } from "@/lib/particles";
-import type { ConfettiPalette, ConfettiPaletteId } from "@/lib/particles";
 import { useParticleSettings } from "@/hooks/use-settings";
+import type { ConfettiPalette, ConfettiPaletteId } from "@data/particles";
+import { CONFETTI_PALETTE_LIST } from "@data/particles";
+import { CheckIcon, SparklesIcon } from "lucide-react";
+import { memo, useCallback, useMemo } from "react";
 
 interface PaletteCardProps {
 	palette: ConfettiPalette;

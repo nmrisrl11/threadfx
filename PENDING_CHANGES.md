@@ -22,6 +22,7 @@
 
 ### Changed
 
+- **Centralized Shared Core, Audio Synthesis, and Particle Engines**: Unified sound presets (`@data/presets`), particle physics palettes (`@data/particles`), and procedural Web Audio synthesis engines (`@data/zzfx`) into a single shared core (`data/`), eliminating duplicate logic across the extension and companion website.
 - **Modern shadcn CSS Variables Architecture**: Migrated Side Panel styling to Tailwind CSS v4 CSS variables (`@import "shadcn/tailwind.css"` and `@custom-variant dark`), decoupling all UI components from hardcoded `dark:` utility overrides, trimming ~7.3 kB from the CSS bundle, and providing automatic zero-friction theming across light and dark palettes.
 - **Centralized Project Documentation Directory**: Reorganized project architecture, brand design systems, sensory wireframes, and multi-platform roadmaps from the root folder into a dedicated `docs/` directory (`docs/ARCHITECTURE.md`, `docs/BRAND.md`, `docs/FEATURE_BLUEPRINT.md`, `docs/UNIVERSAL_FX_ROADMAP.md`), keeping the monorepo root pristine.
 - **Standardized Lucide Iconography Convention**: Enforced a strict architectural rule requiring all Lucide React icons to use the explicit 'Icon' suffix (e.g. Volume2Icon, SparklesIcon, HeartIcon), preventing naming collisions with interface primitives and harmonizing codebase ergonomics.

@@ -1,5 +1,6 @@
 // ZzFX - Zuper Zmall Zound Zupplier - Micro Edition (MIT License)
 // Procedural Web Audio API sound synthesis without any external audio files.
+// Centralized procedural audio synthesis engine for ThreadFX.
 
 let zzfxContext: AudioContext | null = null;
 

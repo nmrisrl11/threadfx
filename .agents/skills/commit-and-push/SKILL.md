@@ -61,7 +61,7 @@ Group the commit description points cleanly under standard responsibility headin
 
 ```text
 - Feats:
-  - Add new sound preset parameter array in extension/lib/presets.ts
+  - Add new sound preset parameter array in data/presets.ts
   - Add preset test buttons to Side Panel UI
 
 - Fixes:

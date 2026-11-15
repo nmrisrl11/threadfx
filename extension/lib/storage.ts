@@ -1,4 +1,5 @@
-import type { ConfettiPaletteId } from "./particles";
+import type { ConfettiPaletteId } from "@data/particles";
+import type { SoundPackId } from "@data/presets";
 
 // Type-safe chrome.storage helper for ThreadFX
 
@@ -7,7 +8,7 @@ export type ThemeMode = "system" | "dark" | "light";
 export interface ThreadFXSettings {
 	enabled: boolean;
 	volume: number;
-	soundPack: "bubble" | "retro" | "hype" | "blip";
+	soundPack: SoundPackId;
 	confettiEnabled: boolean;
 	likesJuicedCount: number;
 	confettiPalette: ConfettiPaletteId;

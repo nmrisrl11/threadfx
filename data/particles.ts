@@ -1,4 +1,5 @@
 // ThreadFX Particle/Confetti Preset Palettes
+// Centralized configuration shared between extension and landing website.
 
 export type ConfettiPaletteId = "rose" | "monochrome" | "neon" | "amber";
 

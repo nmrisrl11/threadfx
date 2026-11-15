@@ -92,7 +92,8 @@ Legend:
 
 #### 🔄 Architecture & Presets Centralization
 
-- [ ] 🟢 **Centralize Presets to `@data/presets`:** Move presets to root `data/presets.ts` so `extension` and `website` share a single source of truth without code duplication.
+- [x] 🟢 **Centralize Presets to `@data/presets`:** Move presets to root `data/presets.ts` so `extension` and `website` share a single source of truth without code duplication.
+- [x] 🟢 **Centralize Particles & ZzFX Engine to `@data/particles` & `@data/zzfx`:** Unify confetti palette configurations and the procedural Web Audio synthesis engine across all workspaces.
 - [ ] 🟢 **Sound Pitch & Speed Modifiers:** Sliders in the Side Panel to adjust playback pitch (0.5x–2.0x) on top of active presets.
 
 #### 🎨 Visual Particle Customization

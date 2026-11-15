@@ -96,17 +96,17 @@ Rather than an ephemeral popup dropdown, ThreadFX operates inside Chrome's nativ
 
 ### 4.1. Storage Schema & Dual Theming Architecture
 
-State shared across extension components follows the typed `ThreadFXSettings` schema in `extension/lib/storage.ts`:
+State shared across extension components follows the typed `ThreadFXSettings` schema in `extension/lib/storage.ts` (with presets and palettes imported from `@data/presets` and `@data/particles`):
 
 ```typescript
 export interface ThreadFXSettings {
 	enabled: boolean; // Master toggle (default: true)
 	volume: number; // 0.0 to 1.0 (default: 0.6)
-	soundPack: "bubble" | "retro" | "hype" | "blip"; // Active ZzFX preset
+	soundPack: SoundPackId; // Active ZzFX preset from @data/presets
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
-	confettiPalette: ConfettiPaletteId; // Active confetti color palette
+	confettiPalette: ConfettiPaletteId; // Active confetti color palette from @data/particles
 	confettiCount: number; // Particle count (default: 30)
 	confettiSpread: number; // Particle spread angle (default: 55)
 }

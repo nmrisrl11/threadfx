@@ -1,30 +1,31 @@
-import React, { useState } from "react";
-import {
-	ZapIcon,
-	DownloadIcon,
-	SparklesIcon,
-	HeartIcon,
-	Volume2Icon,
-	CheckIcon,
-	ArrowRightIcon,
-	ExternalLinkIcon,
-	LaptopIcon,
-	ActivityIcon,
-	LayersIcon,
-} from "lucide-react";
-import confetti from "canvas-confetti";
-import { zzfx } from "@/lib/zzfx";
-import { SOUND_PACKS } from "@/lib/presets";
-import type { SoundPack } from "@/lib/presets";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { APP_INFO } from "@data/app";
+import { CONFETTI_PALETTES } from "@data/particles";
+import type { SoundPack, SoundPackId } from "@data/presets";
+import { SOUND_PACKS } from "@data/presets";
+import { zzfx } from "@data/zzfx";
+import confetti from "canvas-confetti";
+import {
+	ActivityIcon,
+	ArrowRightIcon,
+	CheckIcon,
+	DownloadIcon,
+	ExternalLinkIcon,
+	HeartIcon,
+	LaptopIcon,
+	LayersIcon,
+	SparklesIcon,
+	Volume2Icon,
+	ZapIcon,
+} from "lucide-react";
+import React, { useState } from "react";
 
 export default function App() {
-	const [selectedPack, setSelectedPack] = useState<string>("bubble");
+	const [selectedPack, setSelectedPack] = useState<SoundPackId>("bubble");
 	const [volume, setVolume] = useState<number>(0.6);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const [likeCount, setLikeCount] = useState<number>(24);
@@ -50,7 +51,7 @@ export default function App() {
 					particleCount: 35,
 					spread: 60,
 					origin: { x, y },
-					colors: ["#FF2E93", "#7928CA", "#00F5FF", "#FFFFFF"],
+					colors: CONFETTI_PALETTES.neon.colors,
 					disableForReducedMotion: false,
 				});
 			}

@@ -10,8 +10,8 @@
 - **UI:** React 19 + TypeScript
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) + modern shadcn CSS variables architecture
 - **Theming:** Independent tri-state theme switcher (`system`, `dark`, `light`) with zero-FOUC early initialization
-- **Audio Engine:** [ZzFX](https://github.com/KilledByAPixel/ZzFX) (Procedural Web Audio API synthesis)
-- **Visual FX:** `canvas-confetti` (particle bursts & celebratory reactions)
+- **Audio Engine:** [ZzFX](https://github.com/KilledByAPixel/ZzFX) (Procedural Web Audio API synthesis via `@data/zzfx` & `@data/presets`)
+- **Visual FX:** `canvas-confetti` (particle bursts & celebratory reactions via `@data/particles`)
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
 - **Interface:** Native Chrome Side Panel (`chrome.sidePanel`)
@@ -26,11 +26,11 @@ Shared state between the Chrome Side Panel and the `threads.com` content script:
 export interface ThreadFXSettings {
 	enabled: boolean; // Master toggle (default: true)
 	volume: number; // 0.0 to 1.0 (default: 0.6)
-	soundPack: "bubble" | "retro" | "hype" | "blip"; // Active ZzFX preset
+	soundPack: SoundPackId; // Active ZzFX preset from @data/presets
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
-	confettiPalette: ConfettiPaletteId; // Active confetti color palette
+	confettiPalette: ConfettiPaletteId; // Active confetti color palette from @data/particles
 	confettiCount: number; // Particle count (default: 30)
 	confettiSpread: number; // Particle spread angle (default: 55)
 }

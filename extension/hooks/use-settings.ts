@@ -1,11 +1,11 @@
-import { useSyncExternalStore, useCallback } from "react";
+import type { ThemeMode, ThreadFXSettings } from "@/lib/storage";
+import { DEFAULT_SETTINGS, getSettings, onSettingsChanged, saveSettings } from "@/lib/storage";
+import type { ConfettiPaletteId } from "@data/particles";
+import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
+import type { SoundPack, SoundPackId } from "@data/presets";
+import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
-import { getSettings, saveSettings, onSettingsChanged, DEFAULT_SETTINGS } from "@/lib/storage";
-import type { ThreadFXSettings, ThemeMode } from "@/lib/storage";
-import { zzfx } from "@/lib/zzfx";
-import type { SoundPack } from "@/lib/presets";
-import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@/lib/particles";
-import type { ConfettiPaletteId } from "@/lib/particles";
+import { useCallback, useSyncExternalStore } from "react";
 
 // Module-level external store state
 let currentSettings: ThreadFXSettings = DEFAULT_SETTINGS;
@@ -143,7 +143,7 @@ export function useAudioSettings() {
 	const soundPack = useSettingsSelector((s) => s.soundPack);
 	const volume = useSettingsSelector((s) => s.volume);
 
-	const setSoundPack = useCallback((packId: SoundPack["id"]) => {
+	const setSoundPack = useCallback((packId: SoundPackId) => {
 		setSetting("soundPack", packId);
 	}, []);
 

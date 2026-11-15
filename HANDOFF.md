@@ -12,20 +12,20 @@
 
 ThreadFX is an open-source interactive effects, procedural audio, and tactile feedback suite for social feeds, launching with flagship desktop support for **Meta Threads** (`threads.com`).
 
-| Property | Value |
-| :--- | :--- |
-| **Monorepo Version** | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`) |
-| **Flagship Target** | [Threads](https://threads.com) (`threads.net` legacy fallback) |
-| **Extension Framework** | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3 |
-| **Extension UI** | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript |
-| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (752.4 kB, self-hosted fonts included) |
-| **Website** | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Static build in `website/dist/` |
-| **Audio Synthesis** | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**) |
-| **Particle Physics** | Viewport canvas confetti via `canvas-confetti` (custom palettes, count, spread) |
-| **Linter / Formatter** | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings |
-| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`) |
-| **Distribution** | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`$0` egress) |
-| **Author / Maintainer** | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License |
+| Property                  | Value                                                                                           |
+| :------------------------ | :---------------------------------------------------------------------------------------------- |
+| **Monorepo Version**      | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`)            |
+| **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                  |
+| **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                      |
+| **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                              |
+| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (752.4 kB, self-hosted fonts included)                      |
+| **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Static build in `website/dist/`                       |
+| **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**) |
+| **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (custom palettes, count, spread)                 |
+| **Linter / Formatter**    | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings                                           |
+| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`)                 |
+| **Distribution**          | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`$0` egress)                |
+| **Author / Maintainer**   | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License                           |
 
 ---
 
@@ -68,6 +68,7 @@ export interface ThreadFXSettings {
 ## 4. Current State of Recent Features (Completed)
 
 ### 🌓 Independent Tri-State Theming & Modern shadcn Architecture
+
 - **Theme Switcher:** Added `theme-toggle.tsx` in the Side Panel header supporting `System`, `Dark`, and `Light`.
 - **Zero-FOUC Initialization:** `sidepanel/main.tsx` executes `initTheme()` synchronously before React mounts, checking `localStorage` cache for instant theme rendering without flash.
 - **Modern shadcn CSS Variables:** Migrated Side Panel styling to Tailwind CSS v4 CSS variables (`@import "shadcn/tailwind.css"` and `@custom-variant dark (&:is(.dark *))`).
@@ -75,10 +76,12 @@ export interface ThreadFXSettings {
 - **Live OS Media Query Sync:** When set to `"system"`, a `matchMedia("(prefers-color-scheme: dark)")` listener dynamically updates the UI when the user's OS changes theme.
 
 ### 🎨 Lucide Icons Suffix Standardization (Rule 8)
+
 - Enforced Rule 8 across all 8 component files in `extension/` and `website/src/App.tsx`.
 - 100% of Lucide icons now use the `*Icon` suffix, preventing name collisions with UI primitives.
 
 ### 📁 Centralized Documentation in `docs/`
+
 - Reorganized docs into a clean dedicated folder:
   - `docs/ARCHITECTURE.md` (System diagrams, sequence flows, Web Audio pipeline, theming architecture)
   - `docs/BRAND.md` (Dual-mode token matrix for AMOLED Dark & Clean Slate Light, typography, brand assets)
@@ -87,33 +90,45 @@ export interface ThreadFXSettings {
 - Clean root markdown files: `README.md`, `AGENTS.md`, `PENDING_CHANGES.md`, `LICENSE`, `HANDOFF.md`.
 
 ### 🤖 Synchronized Workflow Skills (`.agents/skills/`)
+
 - `load-project-context/SKILL.md`: Updated with full storage schema, Rules 5–8.
 - `sync-documentation/SKILL.md`: Includes theming and iconography drift audits.
 - `release-extension/SKILL.md`: Clarified `@data/app` version propagation.
 - `commit-and-push/SKILL.md`: Enforces mandatory approval gate before any commit/push.
 
+### 🔄 Centralized Shared Core, Audio Synthesis, and Particle Engines
+
+- **Centralized Presets (`@data/presets`):** Sound preset configurations moved to `data/presets.ts`, shared directly across extension and landing page.
+- **Centralized Particles (`@data/particles`):** Confetti palette presets, defaults, and types moved to `data/particles.ts`. Website simulator now consumes real palette data instead of hardcoded hex values.
+- **Centralized Audio Synthesis (`@data/zzfx`):** Single source of truth for the procedural Web Audio synthesis engine (`data/zzfx.ts`), removing duplicate code and enabling unified acoustic upgrades.
+- **Zero Drift:** All duplicate local copies in `extension/lib/` and `website/src/lib/` purged.
+
 ---
 
-## 5. Immediate Next Steps for Tomorrow
+## 5. Immediate Next Steps: Elevating the Sound FX Tab
 
-### Task 1: Open Graph Social Card (Ready to Finalize)
-The user has an online social card generator open with:
-- **Credit:** `Built by @nmrisrl`
-- **Ghost Text:** `threadfx`
-- **Title (Option 1 - Recommended):**  
-  `Turn silent scrolling into a tactile experience with procedural audio, particle bursts, and micro-motion.`
-- **Logo:** Keep default blue circle in generator, download image, and place in `temp-process-logo-here/`.
-- **Action:** Composite our bespoke 3D liquid chrome squircle emblem over the blue sphere using Python (matching our earlier pixel-perfect composite pipeline).
+From our active discussion and blueprint analysis of the Side Panel Sound FX tab (which currently has substantial unused vertical space):
 
-### Task 2: Centralize Sound Presets to `@data/presets`
-- `presets.ts` is currently duplicated across `extension/lib/presets.ts` and `website/src/lib/presets.ts`.
-- Move presets to `data/presets.ts` so both workspaces import from `@data/presets` (matching `@data/app` and `@data/changelog`).
+### 1. Expanded Procedural Presets (2x3 Grid)
 
-### Task 3: In-Feed Interaction Expansion (from `docs/FEATURE_BLUEPRINT.md`)
-- **Emoji Reaction Bursts:** Option to burst emojis (`❤️`, `🔥`, `🎉`, `🚀`, `💎`) using `canvas-confetti` shape rendering.
-- **Sound Pitch & Speed Modifiers:** Sliders in the Side Panel to adjust playback pitch (0.5x–2.0x).
-- **Unlike Soft Descending Blip:** Play a gentle descending pop when unliking a post.
-- **Keyboard Shortcuts:** `Alt+Shift+M` global mute shortcut.
+- Add 2 new tactile sound presets in `data/presets.ts`:
+  - **Wood Tap (ASMR):** Warm, organic hollow wooden clack.
+  - **Neon Zap:** High-tech sci-fi electric chirp.
+
+### 2. Acoustic Dynamics & Modifiers
+
+- Grouped sliders card under the sound profile grid:
+  - **Volume:** Existing 0%–100% control.
+  - **Pitch Modulation Slider:** 0.5x to 2.0x playback pitch shift, dynamically altering root frequency in `@data/zzfx`.
+
+### 3. Interaction Sound Triggers
+
+- **Unlike Audio Feedback:** Toggle to play a subtle descending tone when retracting a like.
+- **Organic Pitch Jitter:** Toggle ±3% pitch variation to avoid machine-gun repetition during fast scrolling.
+
+### 4. Live Audio Waveform / Pulse Indicator
+
+- Compact reactive visualizer pulse indicating live playback and audition feedback.
 
 ---
 

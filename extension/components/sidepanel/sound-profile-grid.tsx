@@ -1,12 +1,12 @@
+import type { SoundPack, SoundPackId } from "@data/presets";
+import { SOUND_PACK_LIST } from "@data/presets";
+import { CheckIcon, CircleDotIcon, PlayIcon } from "lucide-react";
 import { memo, useCallback } from "react";
-import { PlayIcon, CheckIcon, CircleDotIcon } from "lucide-react";
-import { SOUND_PACK_LIST } from "@/lib/presets";
-import type { SoundPack } from "@/lib/presets";
 
 interface SoundPackCardProps {
 	pack: SoundPack;
 	isSelected: boolean;
-	onSelect: (packId: SoundPack["id"]) => void;
+	onSelect: (packId: SoundPackId) => void;
 	onPreview: (pack: SoundPack) => void;
 }
 
@@ -56,8 +56,8 @@ const SoundPackCard = memo(function SoundPackCard({
 });
 
 interface SoundProfileGridProps {
-	selectedPackId: SoundPack["id"];
-	onSelectPack: (packId: SoundPack["id"]) => void;
+	selectedPackId: SoundPackId;
+	onSelectPack: (packId: SoundPackId) => void;
 	onPreviewPack: (pack: SoundPack) => void;
 }
 

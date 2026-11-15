@@ -1,9 +1,9 @@
-import confetti from "canvas-confetti";
-import { zzfx } from "@/lib/zzfx";
-import { SOUND_PACKS, DEFAULT_SOUND_PACK } from "@/lib/presets";
-import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@/lib/particles";
-import { getSettings, onSettingsChanged, incrementLikesJuiced } from "@/lib/storage";
 import type { ThreadFXSettings } from "@/lib/storage";
+import { getSettings, incrementLikesJuiced, onSettingsChanged } from "@/lib/storage";
+import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
+import { DEFAULT_SOUND_PACK, SOUND_PACKS } from "@data/presets";
+import { zzfx } from "@data/zzfx";
+import confetti from "canvas-confetti";
 
 export default defineContentScript({
 	matches: [

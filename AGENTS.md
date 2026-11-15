@@ -28,9 +28,8 @@ threadfx/
 │   │       └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
 │   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
 │   ├── lib/
-│   │   ├── zzfx.ts                 # Procedural audio synthesis engine
-│   │   ├── presets.ts              # Sound effect number arrays
-│   │   └── storage.ts              # Type-safe chrome.storage helpers
+│   │   ├── storage.ts              # Type-safe chrome.storage helpers
+│   │   └── utils.ts                # cn utility wrapper
 │   ├── components.json             # shadcn/ui config
 │   ├── package.json
 │   └── wxt.config.ts
@@ -44,9 +43,12 @@ threadfx/
 │   ├── vercel.json                 # /download redirect to Cloudflare R2
 │   └── package.json
 │
-├── data/                           # Centralized metadata & releases
+├── data/                           # Centralized shared core, audio, palettes & metadata
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
-│   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│   ├── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
+│   ├── particles.ts                # Confetti palettes & particle dynamics (shared via @data/particles)
+│   └── zzfx.ts                     # Procedural Web Audio synthesis engine (shared via @data/zzfx)
 │
 ├── docs/                           # Architecture, design systems, and roadmaps
 │   ├── ARCHITECTURE.md             # System diagrams & runtime sequence
@@ -69,7 +71,7 @@ threadfx/
 
 - **NEVER** import or fetch loose `.mp3`, `.wav`, or `.ogg` files in the core extension.
 - All sound effects **MUST** be synthesized procedurally using `ZzFX` or the native browser `Web Audio API` (`AudioContext`).
-- Sound presets are stored as compact numeric parameter arrays in `extension/lib/presets.ts`.
+- Sound presets are stored as compact numeric parameter arrays in `data/presets.ts`.
 
 ### Rule 2: Minimal Manifest V3 Permissions
 

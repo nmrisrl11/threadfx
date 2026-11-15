@@ -23,7 +23,7 @@ Before reading code or making changes, internalize these core rules:
 ### ⚠️ Rule 2: Zero External Audio Files
 - **NEVER** import, download, or fetch loose `.mp3`, `.wav`, or `.ogg` files in the extension.
 - All sound effects **MUST** be synthesized procedurally in-memory using `ZzFX` or the native browser `Web Audio API` (`AudioContext`).
-- Sound presets are stored as numeric parameter arrays in `extension/lib/presets.ts`.
+- Sound presets are stored as numeric parameter arrays in `data/presets.ts`.
 
 ### ⚠️ Rule 3: Resilient DOM Targeting on Threads
 - Meta obfuscates classes (e.g. `.x1i10hfl`). **NEVER** use minified class names for DOM queries.
@@ -80,8 +80,6 @@ threadfx/
 │   │   ├── content.ts              # threads.com DOM like-observer & ZzFX trigger
 │   │   └── sidepanel/              # Native Chrome Side Panel React 19 App
 │   ├── lib/
-│   │   ├── zzfx.ts                 # Procedural audio synthesis engine (< 1 KB)
-│   │   ├── presets.ts              # Preset parameter arrays
 │   │   ├── storage.ts              # Type-safe chrome.storage.local helpers
 │   │   └── utils.ts                # cn utility wrapper
 │   ├── components.json             # shadcn/ui configuration
@@ -91,16 +89,19 @@ threadfx/
 ├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
 │   │   ├── components/             # shadcn/ui components & Hero/Simulator
-│   │   ├── lib/                    # Shared zzfx.ts, presets.ts, and utils.ts
+│   │   ├── lib/                    # Shared cn utility wrapper
 │   │   ├── App.tsx                 # Hero, Like Simulator, 3-Step Install Guide
 │   │   └── index.css               # AMOLED dark design tokens
 │   ├── public/
 │   ├── vercel.json                 # Decoupled /download redirect to Cloudflare R2
 │   └── package.json
 │
-├── data/                           # Centralized metadata & releases
+├── data/                           # Centralized shared core, audio, palettes & metadata
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
-│   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│   ├── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
+│   ├── particles.ts                # Confetti palettes & particle dynamics (shared via @data/particles)
+│   └── zzfx.ts                     # Procedural Web Audio synthesis engine (shared via @data/zzfx)
 │
 ├── docs/                           # Architecture, design systems, and roadmaps
 │   ├── ARCHITECTURE.md             # System diagrams & runtime sequence

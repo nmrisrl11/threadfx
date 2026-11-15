@@ -134,8 +134,6 @@ threadfx/
 │   │   └── content.ts              # threads.com DOM like-observer & ZzFX trigger
 │   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
 │   ├── lib/
-│   │   ├── zzfx.ts                 # Pure procedural Web Audio synthesis engine
-│   │   ├── presets.ts              # Bubble Pop, 8-Bit Coin, Hype Spark, Minimal Click
 │   │   ├── storage.ts              # Type-safe chrome.storage.local synchronization
 │   │   └── utils.ts                # cn utility wrapper
 │   ├── public/
@@ -147,7 +145,7 @@ threadfx/
 ├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
 │   │   ├── components/             # shadcn/ui components & Hero/Simulator
-│   │   ├── lib/                    # Shared zzfx.ts, presets.ts & cn utility
+│   │   ├── lib/                    # Shared cn utility wrapper
 │   │   ├── App.tsx                 # Hero, Like Simulator, 3-Step Install Guide
 │   │   ├── index.css               # AMOLED dark design tokens
 │   │   └── main.tsx
@@ -157,13 +155,16 @@ threadfx/
 │   │   ├── favicon.svg             # Razor-sharp vector tab icon
 │   │   ├── og-image.png            # 1200x630 Open Graph preview
 │   │   ├── site.webmanifest        # PWA application manifest
-│   ├── components.json             # shadcn/ui configuration
+│   │   ├── components.json         # shadcn/ui configuration
 │   ├── vercel.json                 # Decoupled /download redirect for Cloudflare R2
 │   └── package.json
 │
-├── data/                           # Centralized metadata & releases
+├── data/                           # Centralized shared core, audio, palettes & metadata
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
-│   └── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│   ├── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
+│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
+│   ├── particles.ts                # Confetti palettes & particle dynamics (shared via @data/particles)
+│   └── zzfx.ts                     # Procedural Web Audio synthesis engine (shared via @data/zzfx)
 │
 ├── docs/                           # Architecture, design systems, and roadmaps
 │   ├── ARCHITECTURE.md             # System diagrams & runtime sequence

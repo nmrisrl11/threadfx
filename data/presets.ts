@@ -1,15 +1,17 @@
 // ThreadFX Sound Presets (Numeric parameter arrays for ZzFX)
-// Zero external audio files required.
+// Zero external audio files required. Procedural Web Audio API synthesis.
+
+export type SoundPackId = "bubble" | "retro" | "hype" | "blip";
 
 export interface SoundPack {
-	id: "bubble" | "retro" | "hype" | "blip";
+	id: SoundPackId;
 	name: string;
 	description: string;
 	icon: string;
 	params: (number | undefined)[];
 }
 
-export const SOUND_PACKS: Record<string, SoundPack> = {
+export const SOUND_PACKS: Record<SoundPackId, SoundPack> = {
 	bubble: {
 		id: "bubble",
 		name: "Bubble Pop",
@@ -41,6 +43,6 @@ export const SOUND_PACKS: Record<string, SoundPack> = {
 	},
 };
 
-export const DEFAULT_SOUND_PACK = "bubble";
+export const DEFAULT_SOUND_PACK: SoundPackId = "bubble";
 
 export const SOUND_PACK_LIST: readonly SoundPack[] = Object.values(SOUND_PACKS);
