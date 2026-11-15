@@ -1,3 +1,4 @@
+import { classifyThreadAction } from "@/lib/threads-detector";
 import type { ThreadFXSettings } from "@/lib/storage";
 import {
 	DEFAULT_SETTINGS,
@@ -5,7 +6,7 @@ import {
 	incrementLikesJuiced,
 	onSettingsChanged,
 } from "@/lib/storage";
-import { classifyThreadAction } from "@/lib/threads-detector";
+import { isMilestoneHit } from "@data/milestones";
 import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
 import { DEFAULT_SOUND_PACK, INTERACTION_SOUNDS, SOUND_PACKS, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
@@ -29,6 +30,24 @@ export default defineContentScript({
 
 		onSettingsChanged((updated: ThreadFXSettings) => {
 			settings = updated;
+		});
+
+		// Respond to side panel active status pings
+		if (typeof chrome !== "undefined" && chrome.runtime?.onMessage) {
+			chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+				if (message?.type === "PING_THREADFX") {
+					sendResponse({ active: true, domain: "threads.com" });
+				}
+				return true;
+			});
+		}
+
+		// In-feed keyboard shortcut listener to toggle side panel (Alt+Shift+T)
+		window.addEventListener("keydown", (e: KeyboardEvent) => {
+			if (e.altKey && e.shiftKey && (e.key === "T" || e.key === "t" || e.code === "KeyT")) {
+				e.preventDefault();
+				chrome.runtime.sendMessage({ type: "TOGGLE_SIDEPANEL" }).catch(() => {});
+			}
 		});
 
 		function getNormalizedOrigin(element: Element): { x: number; y: number } {
@@ -125,8 +144,41 @@ export default defineContentScript({
 				}
 			}
 
-			// 3. Stats Increment
-			incrementLikesJuiced().catch(() => {});
+			// 3. Stats Increment & Milestone Celebrations
+			incrementLikesJuiced()
+				.then((nextCount) => {
+					if (isMilestoneHit(nextCount)) {
+						handleMilestoneCelebration(button);
+					}
+				})
+				.catch(() => {});
+		}
+
+		function handleMilestoneCelebration(button: Element) {
+			// Celebratory milestone victory chime + grand fireworks confetti
+			try {
+				const pitched = applyPitch([...INTERACTION_SOUNDS.publish], settings.pitch ?? 1.0);
+				zzfx(settings.volume ?? 0.5, ...pitched);
+			} catch (err) {
+				console.warn("[ThreadFX] Milestone fanfare error:", err);
+			}
+
+			if (settings.confettiEnabled) {
+				try {
+					const origin = getNormalizedOrigin(button);
+					confetti({
+						particleCount: 55,
+						spread: 90,
+						startVelocity: 32,
+						ticks: 150,
+						origin,
+						colors: ["#FF2E93", "#7928CA", "#00F5FF", "#FBBF24", "#10B981", "#FFFFFF"],
+						disableForReducedMotion: false,
+					});
+				} catch (err) {
+					console.warn("[ThreadFX] Milestone confetti error:", err);
+				}
+			}
 		}
 
 		function handleUnlikeAction() {

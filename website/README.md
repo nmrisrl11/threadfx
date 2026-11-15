@@ -10,6 +10,7 @@
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom AMOLED dark tokens
 - **Audio Engine:** Shared in-memory procedural synthesizer via `@data/zzfx` & `@data/presets`
 - **Visual Effects:** `canvas-confetti` (particle bursts & celebratory reactions via `@data/particles`)
+- **Juicer Milestones:** Procedural progression tiers & sensory ranks via `@data/milestones`
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
 - **Hosting:** Vercel (Hobby) with dual-domain fallback

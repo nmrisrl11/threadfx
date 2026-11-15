@@ -10,6 +10,9 @@
 
 ### Added
 
+- **Global Side Panel Toggle Shortcut (`Alt+Shift+T`)**: Effortlessly open and close the Side Panel from anywhere in your browser using `Alt+Shift+T` (or `Escape` when focused), paired with an explicit one-click close trigger in the top header.
+- **Sensory Juicer Milestones & Gamified Tiers**: Elevated the lifetime like counter into a rich progression system with seven sensory ranks (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`). Crossing a milestone unlocks celebratory victory fanfares and explosive fireworks confetti in your feed, with an interactive milestone badge in the Side Panel tracking your journey.
+- **Ambient Platform Standby Notification**: When opening the Side Panel while browsing non-Threads websites, a hardware-grade standby banner informs you that in-feed FX activate automatically on `threads.com`, complete with a one-click "Open Threads" launcher while keeping the soundboard and particle physics fully playable.
 - **Precision In-Feed Social Interactivity Suite**:
   - **Soft Retreat Tone on Unlike**: Added a gentle, quiet descending tone when unliking a post, providing tactile confirmation of retraction with zero visual distraction or metric inflation.
   - **Uplifting Repost Chime & Emerald Sparks**: Tapping Repost plays a bright, dual-harmonic chime accompanied by a subtle burst of crisp emerald sparks.

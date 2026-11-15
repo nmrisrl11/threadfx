@@ -16,19 +16,19 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & tasks
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components (sidepanel & primitives)
-│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, Footer)
+│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, StandbyBanner, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
 │   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
 │   ├── entrypoints/
-│   │   ├── background.ts           # Service worker (sidePanel behavior)
+│   │   ├── background.ts           # Service worker (sidePanel behavior & shortcut toggling)
 │   │   ├── content.ts              # threads.com DOM observer & sound trigger
 │   │   └── sidepanel/              # Native Chrome Side Panel React 19 App
 │   │       ├── index.html
 │   │       ├── main.tsx            # Synchronous early theme initialization (zero-FOUC)
 │   │       ├── App.tsx             # Interactive soundboard, volume, likes counter
 │   │       └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
-│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useActiveTabStatus
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage helpers
 │   │   ├── threads-detector.ts     # Domain-isolated Threads action classifier & vector path fingerprinting
@@ -49,8 +49,9 @@ threadfx/
 ├── data/                           # Centralized shared core, audio, palettes & metadata
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
 │   ├── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
-│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
+│   ├── milestones.ts               # Gamified juicer ranks & milestone thresholds (shared via @data/milestones)
 │   ├── particles.ts                # Confetti palettes & particle dynamics (shared via @data/particles)
+│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
 │   └── zzfx.ts                     # Procedural Web Audio synthesis engine (shared via @data/zzfx)
 │
 ├── docs/                           # Architecture, design systems, and roadmaps

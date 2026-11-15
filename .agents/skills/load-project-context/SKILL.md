@@ -115,8 +115,9 @@ threadfx/
 ├── data/                           # Centralized shared core, audio, palettes & metadata
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
 │   ├── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
-│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
+│   ├── milestones.ts               # Gamified juicer ranks & milestone thresholds (shared via @data/milestones)
 │   ├── particles.ts                # Confetti palettes & particle dynamics (shared via @data/particles)
+│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
 │   └── zzfx.ts                     # Procedural Web Audio synthesis engine (shared via @data/zzfx)
 │
 ├── docs/                           # Architecture, design systems, and roadmaps

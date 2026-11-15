@@ -2,9 +2,8 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 15, 2026 (2:00 PM +08:00)  
+> **Last Synchronized:** November 15, 2026 (3:00 PM +08:00)  
 > **Active Branch:** `main`  
-> **Last Commit:** `a8c3a31` (`feat(particles): introduce custom emoji reaction bursts and modularize particles chassis`)  
 > **Working Tree Status:** Clean (`origin/main` up to date, 0 uncommitted changes, passes `npm run build:all`).
 
 ---
@@ -117,19 +116,35 @@ export interface ThreadFXSettings {
   - **Post Published Fanfare:** Celebratory double chime and 45-particle fanfare upon publishing a post from the composer.
 - **Soundboard Keyboard Hotkeys (Keys 1–8):** Pressing number keys `1` through `8` in the Side Panel or companion simulator instantly selects and auditions the sound pack, with visual keycap badges rendered on each sound card.
 - **Synchronized Companion Web Simulator (`website/`):** Brought landing page interactive simulator to 100% feature parity with the extension—supporting live Pitch Modulation (0.5x–2.0x), dual-mode Particle Selector (6 palettes or custom emoji bursts), and interactive like & repost reactions.
+- **Side Panel Toggle Shortcut & Lifecycle (`wxt.config.ts` & `background.ts`):** Registered manifest command `toggle-sidepanel` (`Alt+Shift+T` / `Escape`) using `chrome.commands.onCommand` for trusted user-gesture side panel opening and bi-directional background port tracking to seamlessly toggle (open when closed, close when open), plus an explicit `X` close trigger in `header.tsx`.
+- **Sensory Juicer Milestones & Tiers (`milestones.ts` & `metric-strip.tsx`):** Abstracted sensory milestones and tier calculation logic into `data/milestones.ts` (`@data/milestones`), preserving `data/app.ts` as pure constant metadata. Elevated the lifetime like counter into a 7-tier tactile milestone progression system (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) featuring victory fanfare audio bursts in-feed upon reaching thresholds, with a non-intrusive tooltip on the rank badge in the Side Panel.
+- **Ambient Platform Standby Awareness (`use-active-tab-status.ts` & `platform-standby-banner.tsx`):** Added real-time tab domain detection with extensible multi-platform status (`isSupportedPlatform`, `activePlatform`, `isThreadsActive`) that smoothly switches header status between `Active` (on Threads) and `Standby` (on other sites), presenting a helpful standby card with a 1-click `Open Threads ↗` launcher while preserving full soundboard audition capabilities.
 
 ---
 
 ## 5. Next Focus & Backlog
 
-Next sprint milestones to tackle from `docs/FEATURE_BLUEPRINT.md`:
+Next sprint milestones and discussion agenda:
 
-1. **Global Keyboard Audio Mute Shortcut:**
-   - Shortcut key (`Alt+Shift+M`) to toggle master audio on/off across active tabs without opening the Side Panel.
+### 🏆 Priority Focus: Gamification Custom Badges & Visual Polish
+
+In the upcoming conversation, we will design and implement bespoke, high-craft visual badges for the sensory progression suite:
+
+1. **Bespoke Hardware-Grade Tier Emblems:**
+   - Elevate the 7 sensory ranks (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) beyond simple Lucide icons into custom geometric vector medallions.
+   - Use layered SVG vector geometry with metallic gradient sheens, subtle dual-tone foil reflections, and theme-adaptive glow tokens (strictly zero external raster images, maintaining 100% vector fidelity).
+2. **Elevated Metric Strip & Progress Visualization:**
+   - Enhance `metric-strip.tsx` with a refined micro-progress bar or circular meter indicating exact progress to the next sensory rank (e.g. `18 / 25 to Silver Juicer`).
+   - Add an interactive badge inspection popover/modal showcasing all unlocked sensory medallions, locked silhouettes, and their sound/particle milestone rewards.
+3. **Synchronized Companion Web Hub:**
+   - Mirror the gamification badge component in the landing page soundboard demo (`website/src/components/SoundboardDemo.tsx`), letting visitors preview the tiered badges interactively.
+
+### 📋 Feature Backlog (From `docs/FEATURE_BLUEPRINT.md`)
+
+1. **Global Keyboard Audio Mute Shortcut (`Alt+Shift+M`):**
+   - Instant shortcut to toggle master audio output across all active tabs without opening the Side Panel.
 2. **Smart Audio Ducking:**
-   - Automatically suppress or soften SFX when an in-feed video on Threads is actively playing audio.
-3. **Engagement Milestones:**
-   - Celebratory visual fanfare on milestone likes (10th, 50th, 100th, 500th like).
+   - Automatically suppress or soften procedural SFX when in-feed Threads videos or audio tracks are actively playing.
 
 ---
 
@@ -157,6 +172,7 @@ npm.cmd run build:all
 - **Root README:** [`README.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/README.md)
 - **Master Feature Blueprint:** [`docs/FEATURE_BLUEPRINT.md`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/docs/FEATURE_BLUEPRINT.md)
 - **Central App Metadata:** [`data/app.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/app.ts)
+- **Central Juicer Milestones:** [`data/milestones.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/milestones.ts)
 - **Central Particle Presets:** [`data/particles.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/particles.ts)
 - **Central Sound Presets:** [`data/presets.ts`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/data/presets.ts)
 - **Particles Tab Coordinator:** [`extension/components/sidepanel/particles/particles-tab.tsx`](file:///c:/Users/NOMER%20ISRAEL/OneDrive/Desktop/Projects/threadfx/extension/components/sidepanel/particles/particles-tab.tsx)

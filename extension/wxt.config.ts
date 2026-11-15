@@ -13,11 +13,20 @@ export default defineConfig({
 		permissions: ["sidePanel", "storage"],
 		host_permissions: APP_INFO.platform.supportedUrls,
 		action: {
-			default_title: `Open ${APP_INFO.name} Side Panel`,
+			default_title: `Toggle ${APP_INFO.name} Side Panel`,
 			default_icon: {
 				"16": "icon/16.png",
 				"32": "icon/32.png",
 				"48": "icon/48.png",
+			},
+		},
+		commands: {
+			"toggle-sidepanel": {
+				suggested_key: {
+					default: "Alt+Shift+T",
+					mac: "Alt+Shift+T",
+				},
+				description: `Toggle ${APP_INFO.name} Side Panel`,
 			},
 		},
 	},

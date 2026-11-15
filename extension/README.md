@@ -12,9 +12,10 @@
 - **Theming:** Independent tri-state theme switcher (`system`, `dark`, `light`) with zero-FOUC early initialization
 - **Audio Engine:** [ZzFX](https://github.com/KilledByAPixel/ZzFX) (Procedural Web Audio API synthesis via `@data/zzfx` & `@data/presets`)
 - **Visual FX:** `canvas-confetti` (particle bursts & celebratory reactions via `@data/particles`)
+- **Juicer Milestones:** Procedural progression tiers & sensory ranks via `@data/milestones`
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
-- **Interface:** Native Chrome Side Panel (`chrome.sidePanel`)
+- **Interface:** Native Chrome Side Panel (`chrome.sidePanel`) with global `Alt+Shift+T` toggle shortcut
 
 ---
 

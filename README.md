@@ -47,7 +47,8 @@ _Zero-latency procedural audio, physics-driven particle bursts, and tactile micr
 | **Linter & Formatter**  | OXC (`oxlint` + `oxfmt`)                   | High-performance Rust-based JavaScript/TypeScript linter & formatter   |
 | **Audio Synthesis**     | ZzFX (< 1 KB Web Audio)                    | In-memory procedural sound synthesizer (MIT)                           |
 | **Visual FX**           | Canvas Confetti                            | Hardware-accelerated particle canvas                                   |
-| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar                                             |
+| **Progression Engine**  | Procedural Juicer Milestones               | 7 sensory ranks, lifetime odometer, and victory fanfare audio          |
+| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar with global `Alt+Shift+T` toggle shortcut   |
 | **Landing Page**        | Vite + React 19 + Tailwind CSS v4          | Interactive Threads simulator & soundboard                             |
 | **Distribution**        | Cloudflare R2                              | Direct zip downloads with $0 egress fees via `/download`               |
 | **Hosting**             | Vercel                                     | Dual-domain fallback (`threadfx.nmrisrl.dev` ⇄ `threadfx.vercel.app`)  |
@@ -126,7 +127,7 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & task runner v2.0.0
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components
-│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, Footer)
+│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, StandbyBanner, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
 │   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
@@ -136,9 +137,9 @@ threadfx/
 │   │   │   ├── main.tsx            # Synchronous early theme initialization (zero-FOUC)
 │   │   │   ├── App.tsx             # Interactive soundboard, volume, likes counter
 │   │   │   └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
-│   │   ├── background.ts           # Configures openPanelOnActionClick: true
+│   │   ├── background.ts           # Configures openPanelOnActionClick & Alt+Shift+T shortcut toggling
 │   │   └── content.ts              # threads.com DOM like-observer & ZzFX trigger
-│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useActiveTabStatus
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage.local synchronization
 │   │   ├── threads-detector.ts     # Dedicated action classifier & vector path fingerprinting
@@ -169,8 +170,9 @@ threadfx/
 ├── data/                           # Centralized shared core, audio, palettes & metadata
 │   ├── app.ts                      # Centralized app metadata & info (shared via @data/app)
 │   ├── changelog.ts                # Typed release notes & active version (shared via @data/changelog)
-│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
+│   ├── milestones.ts               # Gamified juicer ranks & milestone thresholds (shared via @data/milestones)
 │   ├── particles.ts                # Confetti palettes & particle dynamics (shared via @data/particles)
+│   ├── presets.ts                  # Procedural sound presets (shared via @data/presets)
 │   └── zzfx.ts                     # Procedural Web Audio synthesis engine (shared via @data/zzfx)
 │
 ├── docs/                           # Architecture, design systems, and roadmaps

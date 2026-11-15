@@ -85,14 +85,25 @@ Instead of fetching network `.mp3` files or managing heavy audio elements, Threa
 Rather than an ephemeral popup dropdown, ThreadFX operates inside Chrome's native **Side Panel**:
 
 - **Lifecycle:** Stays open and docked to the right side of the screen as the user navigates across Threads profiles, replies, and feeds.
-- **Launch Trigger:**
+- **Launch & Toggle Triggers:**
   ```typescript
   // extension/entrypoints/background.ts
+  // 1. Toolbar action click opens side panel
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+
+  // 2. Global keyboard shortcut (Alt+Shift+T) toggles side panel open/closed
+  chrome.commands.onCommand.addListener(async (command) => {
+  	if (command === "toggle-sidepanel") {
+  		// Toggle logic using background port lifecycle & chrome.sidePanel.open({ windowId })
+  	}
+  });
   ```
 - **State Synchronization:**
   - When a user changes volume or toggles confetti in the Side Panel, it calls `chrome.storage.local.set({ ... })`.
   - `content.ts` listens to `chrome.storage.onChanged` and updates its in-memory settings cache without requiring any reload.
+- **Sensory Progression Engine:**
+  - `data/milestones.ts` calculates real-time juicer tiers (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`).
+  - Crossing milestone thresholds triggers celebratory audio fanfares in-feed, while the Side Panel displays rank telemetry and progress tooltips without disruptive click triggers.
 
 ### 4.1. Storage Schema & Dual Theming Architecture
 
