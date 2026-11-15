@@ -43,7 +43,7 @@
     - **Safe Import Flow:** Users paste a code, the engine validates/clamps values to safe acoustic thresholds (preventing hearing hazards or extreme spikes), plays an immediate preview, and allows setting it as temporary active sound or saving to "My Presets".
     - **Viral Threads Distribution:** Users can post their sound codes directly in thread replies for one-click import by other ThreadFX users.
 - **Visual FX & Particle Customization Roadmap:**
-  - **Level 1 (Palettes & Physics - v1.0 Launch):** Curated palettes (Soft Rose, Silver Minimal, Cyber Neon, Warm Gold) with Particle Density (10–60) and Spread Angle (30°–90°) sliders.
+  - **Level 1 (Palettes & Physics - v1.0 Launch):** Curated palettes (Soft Rose, Silver Minimal, Cyber Neon, Warm Gold, Mint Aurora, Sunset Coral) with Particle Density (10–60) and Spread Angle (30°–90°) sliders.
   - **Level 2 (Emoji Reaction Bursts - v1.1):** Option to burst customizable floating emojis instead of round particles using `canvas-confetti` shape rendering.
   - **Level 3 (Particle Lab & Palette Codes - v1.1):**
     - **Custom Palette Builder:** Color picker supporting 2–6 custom hex tones, gravity, and particle velocity controls.
@@ -101,11 +101,11 @@ Legend:
 
 - [x] 🟢 **Centralize Presets to `@data/presets`:** Move presets to root `data/presets.ts` so `extension` and `website` share a single source of truth without code duplication.
 - [x] 🟢 **Centralize Particles & ZzFX Engine to `@data/particles` & `@data/zzfx`:** Unify confetti palette configurations and the procedural Web Audio synthesis engine across all workspaces.
-- [ ] 🟢 **Sound Pitch & Speed Modifiers:** Sliders in the Side Panel to adjust playback pitch (0.5x–2.0x) on top of active presets.
+- [x] 🟢 **Sound Pitch & Speed Modifiers:** Sliders in the Side Panel to adjust playback pitch (0.5x–2.0x) on top of active presets.
 
 #### 🎨 Visual Particle Customization
 
-- [ ] 🟢 **Emoji Reaction Bursts:** Toggle between classic geometric spark particles and floating emojis (❤️, 🔥, 🎉, 🚀, 💎) using `canvas-confetti` shape rendering.
+- [x] 🟢 **Emoji Reaction Bursts:** Toggle between classic geometric spark particles and floating emojis (❤️, 🔥, 🎉, 🚀, 💎) using `canvas-confetti` shape rendering.
 - [x] 🟢 **Curated Color Palettes:** User-selectable particle themes (Neon Pulse, Threads Classic, Cyberpunk, AMOLED White, Sunset Gold).
 - [x] 🟢 **Custom Particle Count & Spread Sliders:** Allow users to choose between subtle (10 particles) and explosive (60 particles) reaction bursts with adjustable spread.
 

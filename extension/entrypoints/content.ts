@@ -115,22 +115,43 @@ export default defineContentScript({
 					const originX = (rect.left + rect.width / 2) / window.innerWidth;
 					const originY = (rect.top + rect.height / 2) / window.innerHeight;
 
-					const palette =
-						CONFETTI_PALETTES[settings.confettiPalette] ??
-						CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE];
+					if (settings.burstMode === "emoji" && settings.selectedEmoji) {
+						const emojiShape = confetti.shapeFromText({
+							text: settings.selectedEmoji,
+							scalar: 1.8,
+						});
+						confetti({
+							particleCount: settings.confettiCount ?? 30,
+							spread: settings.confettiSpread ?? 55,
+							startVelocity: 25,
+							ticks: 120,
+							shapes: [emojiShape],
+							scalar: 1.8,
+							flat: true,
+							origin: {
+								x: Math.max(0, Math.min(1, originX)),
+								y: Math.max(0, Math.min(1, originY)),
+							},
+							disableForReducedMotion: false,
+						});
+					} else {
+						const palette =
+							CONFETTI_PALETTES[settings.confettiPalette] ??
+							CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE];
 
-					confetti({
-						particleCount: settings.confettiCount ?? 30,
-						spread: settings.confettiSpread ?? 50,
-						startVelocity: 25,
-						ticks: 120,
-						origin: {
-							x: Math.max(0, Math.min(1, originX)),
-							y: Math.max(0, Math.min(1, originY)),
-						},
-						colors: palette ? palette.colors : ["#FFFFFF", "#F43F5E", "#FF2E93", "#E4E4E7"],
-						disableForReducedMotion: false,
-					});
+						confetti({
+							particleCount: settings.confettiCount ?? 30,
+							spread: settings.confettiSpread ?? 55,
+							startVelocity: 25,
+							ticks: 120,
+							origin: {
+								x: Math.max(0, Math.min(1, originX)),
+								y: Math.max(0, Math.min(1, originY)),
+							},
+							colors: palette ? palette.colors : ["#FFFFFF", "#F43F5E", "#FF2E93", "#E4E4E7"],
+							disableForReducedMotion: false,
+						});
+					}
 				} catch (err) {
 					console.warn("[ThreadFX] Confetti trigger error:", err);
 				}

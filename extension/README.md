@@ -30,10 +30,12 @@ export interface ThreadFXSettings {
 	pitch: number; // Pitch multiplier 0.5x to 2.0x (default: 1.0)
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced
-	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 	confettiPalette: ConfettiPaletteId; // Active confetti color palette from @data/particles
 	confettiCount: number; // Particle count (default: 30)
 	confettiSpread: number; // Particle spread angle (default: 55)
+	burstMode: BurstMode; // Active burst mode ("palette" | "emoji")
+	selectedEmoji: string; // Active custom reaction emoji (default: "❤️")
+	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 }
 ```
 

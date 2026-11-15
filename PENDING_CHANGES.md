@@ -10,6 +10,14 @@
 
 ### Added
 
+- **Custom Emoji Reaction Bursts**: Introduced live emoji particle bursts that explode directly from the heart icon when liking posts on Threads, rendered at high fidelity via canvas vector synthesis.
+- **Headless Frimousse Emoji Picker Integration**: Integrated the official shadcn-compatible Frimousse emoji picker component into an accessible popover drawer, offering instant search and access to over 3,000+ Unicode emojis.
+- **Quick-Tap Reaction Strip**: Added an instant-access row of favorite reaction presets (`❤️`, `🔥`, `✨`, `🎉`, `⚡`, `🚀`, `💎`, `💯`) for one-tap switching and instant live audition bursts.
+- **Dual Particle Mode Controller**: Introduced a sleek segmented mode toggle in the Side Panel allowing users to effortlessly switch between classic geometric color palettes and expressive custom emoji reaction bursts.
+- **Curated 6-Palette Particle Suite**: Expanded the visual particle library with two new radiant palettes—`Mint Aurora` (crisp emerald and cyan glow) and `Sunset Coral` (warm peach and vibrant sunset tones)—delivering vibrant chromatic variety to suit any aesthetic or mood.
+- **Elevated Particles Chassis Experience**: Re-architected the Particles tab with a fixed top context header, responsive 2-column palette cards with spring press micro-motion, and a dedicated master bursts toggle switch.
+- **Adaptive Particle Physics Strip**: Streamlined Particle Density (10–60 particles) and Burst Spread (30°–90° arc) into a balanced dual-channel physics strip featuring real-time telemetry readouts and individual one-click reset buttons.
+- **Docked Particle Horizon Monitor**: Introduced an interactive particle monitor permanently docked at the bottom of the chassis, featuring live swatch readouts, a responsive hardware status indicator, dynamic horizon trajectory animation, and a one-click "Trigger Burst" audition button.
 - **Pitch Modulation Controller**: Introduced an acoustic pitch multiplier slider (0.5x to 2.0x) that dynamically shifts the tone of any sound preset with instant live audition, a quick reset button, and real-time frequency calculations.
 - **Expanded 8-Preset Sound Library**: Introduced two new signature procedural sound profiles—`Water Drop` (pure resonant acoustic droplet chime) and `Sub Thump` (deep 808 low-frequency tactile kick)—delivering balanced acoustic variety and perfect rectangular symmetry across both compact and widened side panels.
 - **Organic Micro-Pitch Jitter**: Injected subtle procedural pitch variance (±3%) into consecutive likes on Threads, eliminating the repetitive "machine-gun" effect during rapid scrolling and making every like feel lively and physical.
@@ -31,6 +39,10 @@
 
 ### Changed
 
+- **2-Column Balanced Emoji Suite Architecture**: Restructured the emoji reaction configuration card into a balanced dual-column chassis on wide side panels (`@[520px]/emoji-card:grid-cols-2`), pairing the active preview badge and catalog browser on the left with a dedicated 4x2 quick reactions grid on the right, eliminating empty voids and aligning with the 2-column physics sliders below.
+- **Removed Redundant Emoji Card Audition Trigger**: Streamlined the active reaction emoji hero by eliminating the duplicate "Audition ▶" action button, keeping the interface uncluttered while retaining instant click-to-test feedback directly on the primary emoji badge and docked monitor.
+- **Eliminated Footer Version Redundancy**: Removed the duplicate `• v1.0.0` version string from the Side Panel footer, preserving a clean `Built by @nmrisrl • MIT` layout with the primary version badge anchored prominently in the top header.
+- **Unified Hardware Status Telemetry Across Dock Monitors**: Harmonized the particle horizon dock monitor with the acoustic waveform monitor by switching its status indicator to hardware-grade emerald green (`#10b981`), providing calm, cohesive visual telemetry when bursts are active and eliminating distracting magenta flicker.
 - **Centralized Shared Core, Audio Synthesis, and Particle Engines**: Unified sound presets (`@data/presets`), particle physics palettes (`@data/particles`), and procedural Web Audio synthesis engines (`@data/zzfx`) into a single shared core (`data/`), eliminating duplicate logic across the extension and companion website.
 - **Modern shadcn CSS Variables Architecture**: Migrated Side Panel styling to Tailwind CSS v4 CSS variables (`@import "shadcn/tailwind.css"` and `@custom-variant dark`), decoupling all UI components from hardcoded `dark:` utility overrides, trimming ~7.3 kB from the CSS bundle, and providing automatic zero-friction theming across light and dark palettes.
 - **Centralized Project Documentation Directory**: Reorganized project architecture, brand design systems, sensory wireframes, and multi-platform roadmaps from the root folder into a dedicated `docs/` directory (`docs/ARCHITECTURE.md`, `docs/BRAND.md`, `docs/FEATURE_BLUEPRINT.md`, `docs/UNIVERSAL_FX_ROADMAP.md`), keeping the monorepo root pristine.
@@ -41,6 +53,8 @@
 - **Edge-to-Edge Icon Scaling & Chrome Contrast**: Re-rendered the entire extension icon and favicon suite with tight bounding crops, eliminating empty transparent margins and boosting metallic edge contrast for crisp visibility in dark browser toolbars.
 
 ### Fixed
+
+- **Eliminated Layout Shifts on Active / Selected State Changes**: Removed active scaling transforms (`active:scale`), dynamic ring properties, and box-shadow shifts across palette cards, emoji reactions, and mode toggle buttons, standardizing on smooth `transition-colors duration-150` with constant border geometry to match the rock-solid visual stability of Sound FX cards.
 
 ### Removed
 

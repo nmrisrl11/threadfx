@@ -33,6 +33,7 @@
 		"canvas-confetti": "^1.9.4",
 		"class-variance-authority": "^0.7.1",
 		"cn": "^0.5.2",
+		"frimousse": "^0.4.0",
 		"lucide-react": "^1.72.0",
 		"radix-ui": "^1.8.1",
 		"react": "^19.2.4",

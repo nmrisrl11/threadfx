@@ -1,6 +1,10 @@
-# ⚡ ThreadFX
-
 <div align="center">
+
+<a href="https://threadfx.nmrisrl.dev">
+  <img src="extension/public/icon/512.png" alt="ThreadFX Logo" width="108" height="108" />
+</a>
+
+# ThreadFX
 
 **Turn silent scrolling into a tactile experience.**  
 _Zero-latency procedural audio, physics-driven particle bursts, and tactile micro-interactions for social feeds._  

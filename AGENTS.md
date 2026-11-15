@@ -157,7 +157,47 @@ To prevent generic, unpolished AI slop and uphold ThreadFX's sleek, hardware-gra
 - **NEVER** use emojis in UI components, buttons, tabs, preset cards, badges, settings panels, or user-facing copywriting.
 - **NEVER** use emojis in runtime data structures, preset metadata, or UI labels.
 - **ALWAYS** use crisp, semantic Lucide React icons (following Rule 8) or clean typographic hierarchy (`font-mono`, frequency readouts, etc.) for visual distinction.
-- **Strict Exception**: Markdown documentation files (e.g., `README.md`) may use tasteful emojis for top-level section headers only, but never in copy exposed to extension or web users.
+- **Strict Exception**: Markdown documentation files (e.g., `README.md`) may use tasteful emojis for top-level section headers only, but never in copy exposed to extension or web users. (In-feed canvas particle bursts rendering actual emoji glyphs via `canvas-confetti.shapeFromText` are allowed, provided the Side Panel picker buttons themselves use clean Lucide icons and typographic labels).
+
+### Rule 10: Single Responsibility Principle (SRP — Modular, Domain-Isolated Architecture)
+
+To ensure code maintainability, prevent monolithic bloat, and maintain razor-sharp focus across every layer of the monorepo:
+
+- **Single Reason to Change**: Every component, module, file, and custom hook must have exactly one well-defined responsibility. If a file handles data fetching/store synchronization, UI rendering, complex sub-mode switching, and animation telemetry simultaneously, it violates SRP and must be split.
+- **Strict Domain Foldering**: Feature components must live inside their dedicated domain directory:
+  - `extension/components/sidepanel/sound-fx/` — Solely audio-related UI (header, grid, cards, channel strips, waveform monitor).
+  - `extension/components/sidepanel/particles/` — Solely particle & reaction-related UI (header, mode toggle, palettes grid, emoji card, physics strips, dock monitor).
+  - `extension/components/ui/` — Solely reusable, domain-agnostic UI primitives (`slider.tsx`, `switch.tsx`, `tabs.tsx`, `popover.tsx`, `emoji-picker.tsx`).
+- **Cohesive Component Roles**:
+  1. **Root Coordinators (`sound-fx-tab.tsx`, `particles-tab.tsx`)**: Own overall layout orchestration (pinned header, scrollable body, docked bottom monitor). They contain **zero** inline complex JSX markup and delegate all domain tasks to specialized child components.
+  2. **Context Headers (`sound-profile-header.tsx`, `particle-header.tsx`)**: Own section titles, contextual reset buttons, and master toggle switches.
+  3. **Presentational Grids & Cards (`*-grid.tsx`, `*-card.tsx`)**: Grids only map data collections; individual cards solely present single items, handle hover/press states (`active:scale-[0.98]`), and emit selection/preview events.
+  4. **Domain Sub-Controllers (`particle-emoji-card.tsx`)**: Encapsulate sub-domain features (active preview, quick reaction presets, and popover catalog triggering) without leaking state to parent coordinators.
+  5. **Docked Monitors (`waveform-monitor.tsx`, `particle-dock-monitor.tsx`)**: Solely own telemetry readouts, status LEDs, and one-click audition triggers.
+  6. **Fine-Grained Custom Store Hooks (`use-settings.ts`)**: Isolate state subscription selectors via `useSyncExternalStore` (`useMasterToggle`, `useLikesCounter`, `useAudioSettings`, `useParticleSettings`, `useTheme`) so components only re-render when their specific slice of state mutates.
+
+### Rule 11: Don't Repeat Yourself (DRY — Shared Core & Parametric Primitives)
+
+To prevent code duplication, eliminate configuration drift, and ensure changes in one place propagate everywhere:
+
+- **Centralized Monorepo Single Source of Truth (`data/`)**:
+  - Never duplicate sound presets, confetti palettes, app metadata, changelogs, or procedural audio engines across `extension` and `website`.
+  - All shared configuration lives in `data/` and must be consumed via the `@data/...` path alias.
+- **Parametric Control Primitives**:
+  - When similar interaction patterns occur across features (e.g. Volume slider vs Pitch slider vs Particle Density vs Burst Spread), extract a parameterized, reusable primitive (`audio-channel-card.tsx`, `particle-slider-card.tsx`) instead of repeating markup.
+  - Standardize ticks (`ticks: [string, string, string]`), live value readouts, reset triggers, and icon slots across all slider channel cards.
+- **Foundational UI Primitives (`components/ui/`)**:
+  - Never hand-roll custom switches, sliders, popovers, or tab bars inside feature files. Always wrap accessible primitives (`radix-ui`, `frimousse`) in `components/ui/` with standardized Tailwind CSS variables and export them for monorepo-wide use.
+- **Unified Event & Telemetry Architecture**:
+  - Event listener and notification patterns (e.g. `subscribeAudioPulse` / `emitAudioPulse`, `subscribeParticlePulse` / `emitParticlePulse`) must follow identical subscription signatures, ensuring consistent behavior across auditions, preview bursts, and in-feed likes.
+
+### Rule 12: Mandatory Approval Gate (Ask Before Commit & Push)
+
+To maintain complete human oversight and clean version history:
+
+- **NEVER** run `git commit` or `git push` autonomously or without explicit user instruction.
+- Always run all quality gates first (`npm run lint`, `npm run format`, `npm run build:all`).
+- Present the staged diff summary and proposed conventional commit title (`type(scope): description`), and **pause** for the user's explicit confirmation before running Git commands.
 
 ---
 
@@ -226,6 +266,11 @@ export interface ThreadFXSettings {
 	pitch: number; // Pitch multiplier 0.5x to 2.0x (default: 1.0)
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced
+	confettiPalette: ConfettiPaletteId; // Active confetti color palette (default: "rose")
+	confettiCount: number; // Particle count 10 to 60 (default: 30)
+	confettiSpread: number; // Particle spread angle 30 to 90 (default: 55)
+	burstMode: "palette" | "emoji"; // Active burst mode (default: "palette")
+	selectedEmoji: string; // Active custom reaction emoji (default: "❤️")
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")
 }
 ```

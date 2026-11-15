@@ -1,12 +1,11 @@
-import { ExternalLinkIcon } from "lucide-react";
 import { APP_INFO } from "@data/app";
+import { ExternalLinkIcon } from "lucide-react";
 
 interface SidepanelFooterProps {
 	authorHandle?: string;
 	threadsUrl?: string;
 	repoUrl?: string;
 	websiteUrl?: string;
-	version?: string;
 }
 
 export function SidepanelFooter({
@@ -14,7 +13,6 @@ export function SidepanelFooter({
 	threadsUrl = APP_INFO.author.url,
 	repoUrl = APP_INFO.urls.repository,
 	websiteUrl = APP_INFO.urls.production,
-	version = APP_INFO.versionTag,
 }: SidepanelFooterProps) {
 	return (
 		<footer className="text-muted-foreground/80 flex items-center justify-between px-1 pt-2.5 pb-0.5 text-[11px]">
@@ -36,8 +34,6 @@ export function SidepanelFooter({
 				>
 					{APP_INFO.license}
 				</a>
-				<span>•</span>
-				<span className="text-muted-foreground/80 font-mono">{version}</span>
 			</div>
 
 			<a

@@ -1,7 +1,14 @@
 import type { ThemeMode, ThreadFXSettings } from "@/lib/storage";
 import { DEFAULT_SETTINGS, getSettings, onSettingsChanged, saveSettings } from "@/lib/storage";
-import type { ConfettiPaletteId } from "@data/particles";
-import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
+import type { BurstMode, ConfettiPalette, ConfettiPaletteId } from "@data/particles";
+import {
+	CONFETTI_PALETTES,
+	DEFAULT_BURST_MODE,
+	DEFAULT_CONFETTI_PALETTE,
+	DEFAULT_EMOJI,
+	DEFAULT_PARTICLE_COUNT,
+	DEFAULT_PARTICLE_SPREAD,
+} from "@data/particles";
 import type { SoundPack, SoundPackId } from "@data/presets";
 import { SOUND_PACKS, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
@@ -13,6 +20,7 @@ let currentSettings: ThreadFXSettings = DEFAULT_SETTINGS;
 let lastLikesCount = 0;
 const listeners = new Set<() => void>();
 const audioPulseListeners = new Set<(pack: SoundPack) => void>();
+const particlePulseListeners = new Set<(palette: ConfettiPalette) => void>();
 
 export function subscribeAudioPulse(listener: (pack: SoundPack) => void) {
 	audioPulseListeners.add(listener);
@@ -23,6 +31,17 @@ export function subscribeAudioPulse(listener: (pack: SoundPack) => void) {
 
 export function emitAudioPulse(pack: SoundPack) {
 	audioPulseListeners.forEach((listener) => listener(pack));
+}
+
+export function subscribeParticlePulse(listener: (palette: ConfettiPalette) => void) {
+	particlePulseListeners.add(listener);
+	return () => {
+		particlePulseListeners.delete(listener);
+	};
+}
+
+export function emitParticlePulse(palette: ConfettiPalette) {
+	particlePulseListeners.forEach((listener) => listener(palette));
 }
 
 function notify() {
@@ -111,6 +130,11 @@ if (typeof chrome !== "undefined" && chrome.storage?.local) {
 			lastLikesCount = updated.likesJuicedCount;
 			const pack = SOUND_PACKS[updated.soundPack] || SOUND_PACKS.bubble;
 			emitAudioPulse(pack);
+			const palette =
+				CONFETTI_PALETTES[updated.confettiPalette] || CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE];
+			if (palette) {
+				emitParticlePulse(palette);
+			}
 		}
 		currentSettings = updated;
 		if (updated.theme) {
@@ -200,6 +224,8 @@ export function useParticleSettings() {
 	const confettiPalette = useSettingsSelector((s) => s.confettiPalette);
 	const confettiCount = useSettingsSelector((s) => s.confettiCount);
 	const confettiSpread = useSettingsSelector((s) => s.confettiSpread);
+	const burstMode = useSettingsSelector((s) => s.burstMode ?? DEFAULT_BURST_MODE);
+	const selectedEmoji = useSettingsSelector((s) => s.selectedEmoji ?? DEFAULT_EMOJI);
 
 	const toggleConfetti = useCallback((enabled: boolean) => {
 		setSetting("confettiEnabled", enabled);
@@ -217,18 +243,79 @@ export function useParticleSettings() {
 		setSetting("confettiSpread", spread);
 	}, []);
 
-	const testConfetti = useCallback(() => {
+	const setBurstMode = useCallback((mode: BurstMode) => {
+		setSetting("burstMode", mode);
+	}, []);
+
+	const setSelectedEmoji = useCallback((emoji: string) => {
+		setSetting("selectedEmoji", emoji);
+	}, []);
+
+	const previewPalette = useCallback((palette: ConfettiPalette) => {
+		confetti({
+			particleCount: currentSettings.confettiCount ?? DEFAULT_PARTICLE_COUNT,
+			spread: currentSettings.confettiSpread ?? DEFAULT_PARTICLE_SPREAD,
+			origin: { y: 0.75 },
+			colors: palette.colors,
+			disableForReducedMotion: false,
+		});
+		emitParticlePulse(palette);
+	}, []);
+
+	const previewEmoji = useCallback((emoji: string) => {
+		const shape = confetti.shapeFromText({ text: emoji, scalar: 1.8 });
+		confetti({
+			particleCount: currentSettings.confettiCount ?? DEFAULT_PARTICLE_COUNT,
+			spread: currentSettings.confettiSpread ?? DEFAULT_PARTICLE_SPREAD,
+			origin: { y: 0.75 },
+			shapes: [shape],
+			scalar: 1.8,
+			flat: true,
+			disableForReducedMotion: false,
+		});
 		const palette =
 			CONFETTI_PALETTES[currentSettings.confettiPalette] ??
 			CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE];
+		if (palette) {
+			emitParticlePulse(palette);
+		}
+	}, []);
 
-		confetti({
-			particleCount: currentSettings.confettiCount ?? 30,
-			spread: currentSettings.confettiSpread ?? 55,
-			origin: { y: 0.75 },
-			colors: palette ? palette.colors : ["#FFFFFF", "#F43F5E", "#FF2E93", "#E4E4E7"],
-			disableForReducedMotion: false,
-		});
+	const testConfetti = useCallback(() => {
+		if (currentSettings.burstMode === "emoji" && currentSettings.selectedEmoji) {
+			const shape = confetti.shapeFromText({
+				text: currentSettings.selectedEmoji,
+				scalar: 1.8,
+			});
+			confetti({
+				particleCount: currentSettings.confettiCount ?? DEFAULT_PARTICLE_COUNT,
+				spread: currentSettings.confettiSpread ?? DEFAULT_PARTICLE_SPREAD,
+				origin: { y: 0.75 },
+				shapes: [shape],
+				scalar: 1.8,
+				flat: true,
+				disableForReducedMotion: false,
+			});
+		} else {
+			const palette =
+				CONFETTI_PALETTES[currentSettings.confettiPalette] ??
+				CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE];
+
+			confetti({
+				particleCount: currentSettings.confettiCount ?? DEFAULT_PARTICLE_COUNT,
+				spread: currentSettings.confettiSpread ?? DEFAULT_PARTICLE_SPREAD,
+				origin: { y: 0.75 },
+				colors: palette ? palette.colors : ["#FFFFFF", "#F43F5E", "#FF2E93", "#E4E4E7"],
+				disableForReducedMotion: false,
+			});
+		}
+
+		const palette =
+			CONFETTI_PALETTES[currentSettings.confettiPalette] ??
+			CONFETTI_PALETTES[DEFAULT_CONFETTI_PALETTE];
+		if (palette) {
+			emitParticlePulse(palette);
+		}
 	}, []);
 
 	return {
@@ -236,10 +323,16 @@ export function useParticleSettings() {
 		confettiPalette,
 		confettiCount,
 		confettiSpread,
+		burstMode,
+		selectedEmoji,
 		toggleConfetti,
 		setPalette,
 		setCount,
 		setSpread,
+		setBurstMode,
+		setSelectedEmoji,
+		previewPalette,
+		previewEmoji,
 		testConfetti,
 	};
 }

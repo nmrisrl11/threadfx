@@ -53,7 +53,17 @@ Before reading code or making changes, internalize these core rules:
 - **NEVER** use emojis in UI components, buttons, tabs, preset cards, badges, settings panels, or user-facing copywriting.
 - **NEVER** use emojis in runtime data structures, preset metadata, or UI labels.
 - **ALWAYS** use crisp, semantic Lucide React icons (following Rule 7) or clean typographic hierarchy (`font-mono`, frequency readouts, etc.) for visual distinction.
-- **Strict Exception**: Markdown documentation files (e.g., `README.md`) may use tasteful emojis for top-level section headers only, but never in copy exposed to extension or web users.
+- **Strict Exception**: Markdown documentation files (e.g., `README.md`) may use tasteful emojis for top-level section headers only, but never in copy exposed to extension or web users. (In-feed canvas particle bursts rendering actual emoji glyphs via `canvas-confetti.shapeFromText` are allowed, provided the Side Panel picker buttons themselves use clean Lucide icons and typographic labels).
+
+### ⚠️ Rule 9: Single Responsibility Principle (SRP — Modular, Domain-Isolated Architecture)
+- **Single Reason to Change**: Every component, module, file, and custom hook must have exactly one well-defined responsibility.
+- **Domain Foldering**: Separate audio (`sound-fx/`), particles (`particles/`), and primitives (`components/ui/`).
+- **Cohesive Roles**: Root coordinators only handle layout; chassis headers manage titles and resets; grids map collections; cards present single items; sub-controllers encapsulate feature logic; docked monitors own telemetry and live auditions; store hooks isolate selectors via `useSyncExternalStore`.
+
+### ⚠️ Rule 10: Don't Repeat Yourself (DRY — Shared Core & Parametric Primitives)
+- **Centralized Single Source of Truth**: All shared configs (presets, palettes, app info, changelogs, procedural engines) live in `data/` and must be imported via `@data/...`.
+- **Parametric Primitives**: Parameterize repeating patterns into reusable channel cards (`audio-channel-card.tsx`, `particle-slider-card.tsx`) with standardized ticks, value readouts, and reset triggers.
+- **Standard UI Primitives**: Always wrap foundational UI primitives (`radix-ui`, `frimousse`) in `components/ui/` (`slider.tsx`, `switch.tsx`, `tabs.tsx`, `popover.tsx`, `emoji-picker.tsx`) rather than hand-rolling duplicate markup.
 
 ---
 

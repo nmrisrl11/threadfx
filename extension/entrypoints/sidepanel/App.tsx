@@ -45,7 +45,7 @@ export default function App() {
 
 					<TabsContent
 						value="particles"
-						className="flex min-h-0 flex-1 flex-col overflow-y-auto pr-0.5 outline-none data-[state=inactive]:hidden"
+						className="flex min-h-0 flex-1 flex-col outline-none data-[state=inactive]:hidden"
 					>
 						<ParticlesTab />
 					</TabsContent>

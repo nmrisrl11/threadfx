@@ -1,4 +1,5 @@
-import type { ConfettiPaletteId } from "@data/particles";
+import type { BurstMode, ConfettiPaletteId } from "@data/particles";
+import { DEFAULT_BURST_MODE, DEFAULT_EMOJI } from "@data/particles";
 import type { SoundPackId } from "@data/presets";
 
 // Type-safe chrome.storage helper for ThreadFX
@@ -15,6 +16,8 @@ export interface ThreadFXSettings {
 	confettiPalette: ConfettiPaletteId;
 	confettiCount: number;
 	confettiSpread: number;
+	burstMode: BurstMode;
+	selectedEmoji: string;
 	theme: ThemeMode;
 }
 
@@ -28,6 +31,8 @@ export const DEFAULT_SETTINGS: ThreadFXSettings = {
 	confettiPalette: "rose",
 	confettiCount: 30,
 	confettiSpread: 55,
+	burstMode: DEFAULT_BURST_MODE,
+	selectedEmoji: DEFAULT_EMOJI,
 	theme: "system",
 };
 
