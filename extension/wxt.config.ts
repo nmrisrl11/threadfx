@@ -1,6 +1,6 @@
+import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { defineConfig } from "wxt";
-import tailwindcss from "@tailwindcss/vite";
 import { APP_INFO } from "../data/app";
 
 // See https://wxt.dev/api/reference/wxt/interfaces/inlineconfig.html
@@ -12,6 +12,12 @@ export default defineConfig({
 		homepage_url: APP_INFO.urls.production,
 		permissions: ["sidePanel", "storage"],
 		host_permissions: APP_INFO.platform.supportedUrls,
+		web_accessible_resources: [
+			{
+				resources: ["badges/*.webp"],
+				matches: APP_INFO.platform.supportedUrls,
+			},
+		],
 		action: {
 			default_title: `Toggle ${APP_INFO.name} Side Panel`,
 			default_icon: {

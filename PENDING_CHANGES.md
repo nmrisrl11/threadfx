@@ -10,6 +10,7 @@
 
 ### Added
 
+- **7 Symmetrical 3D Sensory Achievement Badges**: Introduced bespoke transparent 3D medals for each milestone tier (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) rendered in ultra-sharp WebP, featuring an interactive collector popover shelf and inspectable badge previews right from the Side Panel metric strip.
 - **Global Side Panel Toggle Shortcut (`Alt+Shift+T`)**: Effortlessly open and close the Side Panel from anywhere in your browser using `Alt+Shift+T` (or `Escape` when focused), paired with an explicit one-click close trigger in the top header.
 - **Sensory Juicer Milestones & Gamified Tiers**: Elevated the lifetime like counter into a rich progression system with seven sensory ranks (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`). Crossing a milestone unlocks celebratory victory fanfares and explosive fireworks confetti in your feed, with an interactive milestone badge in the Side Panel tracking your journey.
 - **Ambient Platform Standby Notification**: When opening the Side Panel while browsing non-Threads websites, a hardware-grade standby banner informs you that in-feed FX activate automatically on `threads.com`, complete with a one-click "Open Threads" launcher while keeping the soundboard and particle physics fully playable.
@@ -64,6 +65,7 @@
 
 ### Fixed
 
+- **In-Feed Interaction State Resilience**: Hardened Threads like and unlike action classification with multi-viewport vector anchor recognition (supporting both 24×24 and 48×48 SVG viewports), computed color detection for active red hearts, 400ms rapid-click debouncing, and trusted user event isolation to prevent false-positive trigger loops during server rate limiting.
 - **Eliminated False-Positive In-Feed Button Triggers**: Re-engineered DOM action detection on Threads with a dedicated action classifier. Replaced fragile substring matching with exact vector path fingerprinting and negative guards, ensuring that audio effects and particle bursts only trigger on genuine Likes/Reactions, and never on Reply, Repost, Share, More options, Navigation, or like count links.
 - **Eliminated Layout Shifts on Active / Selected State Changes**: Removed active scaling transforms (`active:scale`), dynamic ring properties, and box-shadow shifts across palette cards, emoji reactions, and mode toggle buttons, standardizing on smooth `transition-colors duration-150` with constant border geometry to match the rock-solid visual stability of Sound FX cards.
 

@@ -2,10 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 15, 2026 (3:00 PM +08:00)  
+> **Last Synchronized:** November 15, 2026 (4:15 PM +08:00)  
 > **Active Branch:** `main`  
-> **Last Commit:** `5fe19ac` (`feat(milestones): elevate sensory progression, add toggle shortcut, and purify core metadata`)  
-> **Working Tree Status:** Clean (`origin/main` up to date, 0 uncommitted changes, passes `npm run build:all`).
+> **Working Tree Status:** Staged & ready for user commit approval (`npm run lint` passes with 0 errors/warnings, `npm run build:all` passes cleanly).
 
 ---
 
@@ -13,20 +12,21 @@
 
 ThreadFX is an open-source interactive effects, procedural audio, and tactile feedback suite for social feeds, launching with flagship desktop support for **Meta Threads** (`threads.com`).
 
-| Property                  | Value                                                                                             |
-| :------------------------ | :------------------------------------------------------------------------------------------------ |
-| **Monorepo Version**      | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`)              |
-| **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                    |
-| **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                        |
-| **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                                |
-| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (787.8 kB, includes Frimousse 3K+ emojis & self-hosted fonts) |
-| **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Static build in `website/dist/`                         |
-| **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**)   |
-| **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (6 palettes + vector emoji reaction bursts)        |
-| **Linter / Formatter**    | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings                                             |
-| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`)                   |
-| **Distribution**          | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`$0` egress)                  |
-| **Author / Maintainer**   | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License                             |
+| Property                  | Value                                                                                           |
+| :------------------------ | :---------------------------------------------------------------------------------------------- |
+| **Monorepo Version**      | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`)            |
+| **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                  |
+| **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                      |
+| **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                              |
+| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (1.25 MB, includes 7 WebP badges, Frimousse emojis & fonts) |
+| **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Static build in `website/dist/`                       |
+| **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**) |
+| **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (6 palettes + vector emoji reaction bursts)      |
+| **Progression Engine**    | 7 Sensory ranks with 3D WebP achievement badges, lifetime odometer, and victory fanfares        |
+| **Linter / Formatter**    | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings                                           |
+| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`)                 |
+| **Distribution**          | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`$0` egress)                |
+| **Author / Maintainer**   | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License                           |
 
 ---
 
@@ -118,7 +118,14 @@ export interface ThreadFXSettings {
 - **Soundboard Keyboard Hotkeys (Keys 1–8):** Pressing number keys `1` through `8` in the Side Panel or companion simulator instantly selects and auditions the sound pack, with visual keycap badges rendered on each sound card.
 - **Synchronized Companion Web Simulator (`website/`):** Brought landing page interactive simulator to 100% feature parity with the extension—supporting live Pitch Modulation (0.5x–2.0x), dual-mode Particle Selector (6 palettes or custom emoji bursts), and interactive like & repost reactions.
 - **Side Panel Toggle Shortcut & Lifecycle (`wxt.config.ts` & `background.ts`):** Registered manifest command `toggle-sidepanel` (`Alt+Shift+T` / `Escape`) using `chrome.commands.onCommand` for trusted user-gesture side panel opening and bi-directional background port tracking to seamlessly toggle (open when closed, close when open), plus an explicit `X` close trigger in `header.tsx`.
-- **Sensory Juicer Milestones & Tiers (`milestones.ts` & `metric-strip.tsx`):** Abstracted sensory milestones and tier calculation logic into `data/milestones.ts` (`@data/milestones`), preserving `data/app.ts` as pure constant metadata. Elevated the lifetime like counter into a 7-tier tactile milestone progression system (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) featuring victory fanfare audio bursts in-feed upon reaching thresholds, with a non-intrusive tooltip on the rank badge in the Side Panel.
+- **Sensory Juicer Milestones & 3D WebP Badges (`milestones.ts`, `milestones-popover.tsx`, `metric-strip.tsx`):**
+  - Generated and processed 7 bespoke, 100% symmetrical, 3D achievement badges (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) into high-DPI transparent WebPs (`milestone-1.webp` through `milestone-7.webp`) in `extension/public/badges/` and `website/public/badges/`.
+  - Declared `web_accessible_resources` in `wxt.config.ts` for instant browser rendering and layout stability.
+  - Implemented `MilestonesPopover` with active milestone badge in `MetricStrip`, dynamic progress bar, 7-badge collector shelf with locked silhouettes, and interactive preview inspection card.
+- **In-Feed Action Hardening & Meta Sentry Resilience (`threads-detector.ts` & `content.ts`):**
+  - Upgraded action classifier with multi-viewport vector anchor recognition (supporting both 24×24 and 48×48 SVG viewports: `M34.6 3.1`, `M18 2.084`, `13.916`, `17.3 1.55`).
+  - Added computed style color inspection for Meta's red like tokens (`#FF3040` / `#ED4956` / `rgb(255, 48, 64)`).
+  - Enforced `event.isTrusted` checks and a 400ms button debounce shield to prevent rapid synthetic event duplication and optimistic rollback glitches during server-side rate limits (`SentryBlockAccess`).
 - **Ambient Platform Standby Awareness (`use-active-tab-status.ts` & `platform-standby-banner.tsx`):** Added real-time tab domain detection with extensible multi-platform status (`isSupportedPlatform`, `activePlatform`, `isThreadsActive`) that smoothly switches header status between `Active` (on Threads) and `Standby` (on other sites), presenting a helpful standby card with a 1-click `Open Threads ↗` launcher while preserving full soundboard audition capabilities.
 
 ---
@@ -127,24 +134,14 @@ export interface ThreadFXSettings {
 
 Next sprint milestones and discussion agenda:
 
-### 🏆 Priority Focus: Gamification Custom Badges & Visual Polish
+### 🏆 Priority Focus: Landing Page Badge Showcase & Soundboard Integration
 
-In the upcoming conversation, we will design and implement bespoke, high-craft visual badges for the sensory progression suite:
-
-1. **Bespoke Hardware-Grade Tier Emblems:**
-   - Elevate the 7 sensory ranks (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) beyond simple Lucide icons into custom geometric vector medallions.
-   - Use layered SVG vector geometry with metallic gradient sheens, subtle dual-tone foil reflections, and theme-adaptive glow tokens (strictly zero external raster images, maintaining 100% vector fidelity).
-2. **Elevated Metric Strip & Progress Visualization:**
-   - Enhance `metric-strip.tsx` with a refined micro-progress bar or circular meter indicating exact progress to the next sensory rank (e.g. `18 / 25 to Silver Juicer`).
-   - Add an interactive badge inspection popover/modal showcasing all unlocked sensory medallions, locked silhouettes, and their sound/particle milestone rewards.
-3. **Synchronized Companion Web Hub:**
-   - Mirror the gamification badge component in the landing page soundboard demo (`website/src/components/SoundboardDemo.tsx`), letting visitors preview the tiered badges interactively.
-
-### 📋 Feature Backlog (From `docs/FEATURE_BLUEPRINT.md`)
-
-1. **Global Keyboard Audio Mute Shortcut (`Alt+Shift+M`):**
+1. **Mirror Gamification Badges on Companion Website:**
+   - Display the 7 milestone badges interactively on the landing page soundboard demo (`website/src/components/SoundboardDemo.tsx`).
+   - Showcase milestone unlock celebrations directly in the web simulator.
+2. **Global Keyboard Audio Mute Shortcut (`Alt+Shift+M`):**
    - Instant shortcut to toggle master audio output across all active tabs without opening the Side Panel.
-2. **Smart Audio Ducking:**
+3. **Smart Audio Ducking:**
    - Automatically suppress or soften procedural SFX when in-feed Threads videos or audio tracks are actively playing.
 
 ---

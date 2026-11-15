@@ -16,10 +16,10 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & tasks
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components (sidepanel & primitives)
-│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, StandbyBanner, Footer)
+│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
 │   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
-│   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
+│   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, Popover, etc.)
 │   ├── entrypoints/
 │   │   ├── background.ts           # Service worker (sidePanel behavior & shortcut toggling)
 │   │   ├── content.ts              # threads.com DOM observer & sound trigger
@@ -33,6 +33,9 @@ threadfx/
 │   │   ├── storage.ts              # Type-safe chrome.storage helpers
 │   │   ├── threads-detector.ts     # Domain-isolated Threads action classifier & vector path fingerprinting
 │   │   └── utils.ts                # cn utility wrapper
+│   ├── public/
+│   │   ├── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
+│   │   └── icon/                   # 16, 32, 48, 96, 128px MV3 icons
 │   ├── components.json             # shadcn/ui config
 │   ├── package.json
 │   └── wxt.config.ts
@@ -42,6 +45,7 @@ threadfx/
 │   │   ├── components/             # Hero, SoundboardDemo, InstallGuide
 │   │   └── App.tsx
 │   ├── public/
+│   │   └── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
 │   ├── components.json             # shadcn/ui config
 │   ├── vercel.json                 # /download redirect to Cloudflare R2
 │   └── package.json

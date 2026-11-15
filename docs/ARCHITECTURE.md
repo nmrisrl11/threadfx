@@ -145,10 +145,13 @@ To prevent Meta's minified class rotations from breaking the extension and elimi
 2. **Domain-Isolated Classifier (`threads-detector.ts`):** All DOM analysis, label normalization, and vector fingerprinting are encapsulated in `classifyThreadAction(target)`, returning a discriminated union (`like`, `unlike`, `repost`, `bookmark`, `publish`) or `null`.
 3. **Exact Vector Bézier Anchor Fingerprinting:**
    - **Meta Outline Heart:** `d.includes("16.792")` (`M16.792 3.904A4.989...`)
-   - **Meta Filled (Liked) Heart:** `d.includes("18 2.084")` or `d.includes("13.916")`
+   - **Meta Filled (Liked) Heart:** `d.includes("34.6 3.1")` (48×48 viewport), `d.includes("18 2.084")` (24×24 viewport), `d.includes("17.3 1.55")`, or `d.includes("13.916")`
    - **Generic Standard Heart:** `d.includes("21.35")` (`M12 21.35...`)
    - Avoids collision-prone substring checks (like `d*="M12"`) that match common 24×24 icon grids.
-4. **Strict Negative Guards:** Explicitly filters out non-target interactive elements:
+4. **Strict Negative Guards & Event Debouncing:**
+   - Enforces `event.isTrusted === true` to filter out synthetic internal dispatches.
+   - Applies a 400ms button cooldown debounce to prevent rapid double-triggering.
+   - Explicitly filters out non-target interactive elements:
    - Action bar buttons: `reply`, `comment`, `share`, `send`, `copy link`
    - Header / overflow controls: `more options`, `more`
    - Media controls: `audio`, `video`, `mute`, `unmute`, `play`, `pause`, `volume`
@@ -156,7 +159,7 @@ To prevent Meta's minified class rotations from breaking the extension and elimi
    - Like count links / modals: `/^\d+[\s,.]*likes?$/i`, `"view likes"`, `"see likes"`
    - Plain text buttons: `follow`, `following`, `cancel`
 5. **State Discrimination (Like vs Unlike):**
-   - Detects active liked state via accessible labels (`unlike`, `liked`, `descurtir`, `ya no me gusta`), `aria-pressed="true"`, filled heart paths, or Meta's signature `#FF3040` (`rgb(255, 48, 64)`) red fill/color tokens.
+   - Detects active liked state via accessible labels (`unlike`, `liked`, `descurtir`, `ya no me gusta`), `aria-pressed="true"`, filled heart paths, or Meta's signature red color (`#FF3040` / `#ED4956` / `rgb(255, 48, 64)` / `rgb(237, 73, 86)`) via attribute and `window.getComputedStyle` inspection.
    - Routes unlike actions to quiet soft retreat tones without particle or odometer distractions.
 
 ---

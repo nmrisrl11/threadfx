@@ -1,4 +1,3 @@
-import { classifyThreadAction } from "@/lib/threads-detector";
 import type { ThreadFXSettings } from "@/lib/storage";
 import {
 	DEFAULT_SETTINGS,
@@ -6,6 +5,7 @@ import {
 	incrementLikesJuiced,
 	onSettingsChanged,
 } from "@/lib/storage";
+import { classifyThreadAction } from "@/lib/threads-detector";
 import { isMilestoneHit } from "@data/milestones";
 import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
 import { DEFAULT_SOUND_PACK, INTERACTION_SOUNDS, SOUND_PACKS, applyPitch } from "@data/presets";
@@ -21,6 +21,13 @@ export default defineContentScript({
 	],
 	runAt: "document_idle",
 	main() {
+		// Prevent duplicate script execution or listener accumulation in the same tab
+		const SCRIPT_GUARD = "__THREADFX_CONTENT_LOADED__";
+		if ((window as unknown as Record<string, boolean>)[SCRIPT_GUARD]) {
+			return;
+		}
+		(window as unknown as Record<string, boolean>)[SCRIPT_GUARD] = true;
+
 		console.log("[ThreadFX] Content script loaded on Threads.");
 
 		let settings: ThreadFXSettings = DEFAULT_SETTINGS;
@@ -60,15 +67,30 @@ export default defineContentScript({
 			};
 		}
 
+		// Track action timing to debounce synthetic duplicate events on the same interactive target
+		let lastActionTime = 0;
+		let lastActionButton: Element | null = null;
+
 		// Top-level click listener using event delegation in capture phase
 		document.addEventListener(
 			"click",
 			(event: MouseEvent) => {
+				// Ignore untrusted or synthetic events
+				if (!event.isTrusted) return;
 				if (!settings || !settings.enabled) return;
 
 				const target = event.target as HTMLElement | null;
 				const action = classifyThreadAction(target);
 				if (!action) return;
+
+				// Debounce duplicate clicks on the same action button (cooldown: 400ms)
+				const now = Date.now();
+				if (action.button === lastActionButton && now - lastActionTime < 400) {
+					return;
+				}
+
+				lastActionTime = now;
+				lastActionButton = action.button;
 
 				switch (action.type) {
 					case "like":

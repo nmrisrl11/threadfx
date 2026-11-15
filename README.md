@@ -127,10 +127,10 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & task runner v2.0.0
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components
-│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, StandbyBanner, Footer)
+│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
 │   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
-│   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
+│   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, Popover, etc.)
 │   ├── entrypoints/
 │   │   ├── sidepanel/              # Native Chrome Side Panel React 19 App
 │   │   │   ├── index.html
@@ -145,6 +145,7 @@ threadfx/
 │   │   ├── threads-detector.ts     # Dedicated action classifier & vector path fingerprinting
 │   │   └── utils.ts                # cn utility wrapper
 │   ├── public/
+│   │   ├── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
 │   │   └── icon/                   # 16, 32, 48, 96, 128px MV3 icons
 │   ├── components.json             # shadcn/ui configuration
 │   ├── package.json
@@ -158,6 +159,7 @@ threadfx/
 │   │   ├── index.css               # AMOLED dark design tokens
 │   │   └── main.tsx
 │   ├── public/
+│   │   ├── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
 │   │   ├── icons/                  # High-res PWA & responsive browser icons (16-512px)
 │   │   ├── favicon.ico             # Multi-layer ICO (16, 32, 48px)
 │   │   ├── favicon.svg             # Razor-sharp vector tab icon

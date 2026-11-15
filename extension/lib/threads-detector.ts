@@ -24,46 +24,120 @@ interface SvgHeartInfo {
  */
 function getSvgHeartInfo(button: Element): SvgHeartInfo {
 	const paths = button.querySelectorAll("svg path");
+	let hasOutlineHeart = false;
+	let hasFilledHeart = false;
+
 	for (const path of paths) {
 		const d = path.getAttribute("d") || "";
 
 		// 1. Meta / Threads / Instagram Outline Heart:
-		// Distinctive anchor: M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122...
+		// Distinctive anchors: M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122...
 		if (d.includes("16.792") || (d.includes("3.904") && d.includes("4.989"))) {
-			return { isHeart: true, isFilledHeart: false };
+			hasOutlineHeart = true;
 		}
 
 		// 2. Meta / Threads / Instagram Filled (Liked) Heart:
-		// Distinctive anchor: M18 2.084c-3.26 0-6 2.05-6 4.33... or ...13.916...
-		if (d.includes("18 2.084") || d.includes("13.916") || d.includes("2.084c")) {
-			return { isHeart: true, isFilledHeart: true };
+		// Distinctive anchors:
+		// - 48x48 viewport: M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6...
+		// - 24x24 viewport: M18 2.084c-3.26 0-6 2.05-6 4.33... or M17.3 1.55... or 13.916
+		if (
+			d.includes("34.6 3.1") ||
+			d.includes("M34.6") ||
+			d.includes("18 2.084") ||
+			d.includes("13.916") ||
+			d.includes("2.084c") ||
+			d.includes("17.3 1.55")
+		) {
+			hasFilledHeart = true;
 		}
 
 		// 3. Generic standard heart path (Material / Lucide / FontAwesome fallback):
-		// Distinctive anchor: M12 21.35l-1.45-1.32C5.4 15.36...
 		if (d.includes("21.35") || (d.startsWith("M12") && d.includes("15.36"))) {
-			return { isHeart: true, isFilledHeart: false };
+			hasOutlineHeart = true;
 		}
+	}
+
+	// Filled heart always takes precedence if detected on the element
+	if (hasFilledHeart) {
+		return { isHeart: true, isFilledHeart: true };
+	}
+	if (hasOutlineHeart) {
+		return { isHeart: true, isFilledHeart: false };
 	}
 	return { isHeart: false, isFilledHeart: false };
 }
 
 /**
+ * Checks whether an RGB or Hex color string represents the signature red used for likes.
+ * Meta uses #FF3040 / rgb(255, 48, 64) and #ED4956 / rgb(237, 73, 86).
+ */
+function isRedColor(colorStr: string): boolean {
+	if (!colorStr) return false;
+	const m = colorStr.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+	if (m && m[1] && m[2] && m[3]) {
+		const r = parseInt(m[1], 10);
+		const g = parseInt(m[2], 10);
+		const b = parseInt(m[3], 10);
+		return r > 180 && g < 110 && b < 120;
+	}
+	const hex = colorStr.toLowerCase();
+	return (
+		hex.includes("ff3040") ||
+		hex.includes("ed4956") ||
+		hex.includes("fe0034") ||
+		hex.includes("ff0034")
+	);
+}
+
+/**
  * Checks whether an element contains the signature red color used by Meta for active likes.
- * Threads/Instagram uses #FF3040 / rgb(255, 48, 64).
+ * Inspects HTML attributes, inline styles, and computed styles (for CSS variable classes).
  */
 function hasRedLikeColor(button: Element): boolean {
-	return (
+	// 1. Direct attribute and inline style inspection
+	const hasAttrRed =
 		button.querySelector('svg[color*="255, 48, 64"]') !== null ||
+		button.querySelector('svg[color*="237, 73, 86"]') !== null ||
 		button.querySelector('svg[style*="255, 48, 64"]') !== null ||
+		button.querySelector('svg[style*="237, 73, 86"]') !== null ||
 		button.querySelector('svg path[fill*="255, 48, 64"]') !== null ||
+		button.querySelector('svg path[fill*="237, 73, 86"]') !== null ||
 		button.querySelector('svg[color*="rgb(255,"]') !== null ||
+		button.querySelector('svg[color*="rgb(237,"]') !== null ||
 		button.querySelector('svg[style*="rgb(255,"]') !== null ||
+		button.querySelector('svg[style*="rgb(237,"]') !== null ||
 		button.querySelector('svg path[fill*="rgb(255,"]') !== null ||
+		button.querySelector('svg path[fill*="rgb(237,"]') !== null ||
 		button.querySelector('svg[color*="#ff3040" i]') !== null ||
+		button.querySelector('svg[color*="#ed4956" i]') !== null ||
 		button.querySelector('svg[style*="#ff3040" i]') !== null ||
-		button.querySelector('svg path[fill*="#ff3040" i]') !== null
-	);
+		button.querySelector('svg[style*="#ed4956" i]') !== null ||
+		button.querySelector('svg path[fill*="#ff3040" i]') !== null ||
+		button.querySelector('svg path[fill*="#ed4956" i]') !== null;
+
+	if (hasAttrRed) return true;
+
+	// 2. Computed style inspection (resolves dynamic Tailwind / CSS variable colors)
+	try {
+		const svg = button.querySelector("svg");
+		if (svg && typeof window !== "undefined" && window.getComputedStyle) {
+			const cs = window.getComputedStyle(svg);
+			if (isRedColor(cs.color) || isRedColor(cs.fill)) {
+				return true;
+			}
+			const path = svg.querySelector("path");
+			if (path) {
+				const pathCs = window.getComputedStyle(path);
+				if (isRedColor(pathCs.fill) || isRedColor(pathCs.color)) {
+					return true;
+				}
+			}
+		}
+	} catch {
+		// Ignore any computed style access errors
+	}
+
+	return false;
 }
 
 /**
@@ -231,44 +305,50 @@ export function classifyThreadAction(target: HTMLElement | null): ThreadAction |
 	if (!button) return null;
 
 	// Extract accessible names from button, nested SVG, title tag, and text content
-	const buttonAria = button.getAttribute("aria-label") || "";
+	const buttonAria = (button.getAttribute("aria-label") || "").trim().toLowerCase();
 	const svg = button.querySelector("svg");
-	const svgAria = svg?.getAttribute("aria-label") || "";
-	const titleText = button.querySelector("svg title")?.textContent || "";
-	const textContent = (button as HTMLElement).innerText?.trim() || "";
+	const svgAria = (svg?.getAttribute("aria-label") || "").trim().toLowerCase();
+	const titleText = (button.querySelector("svg title")?.textContent || "").trim().toLowerCase();
+	const textContent = ((button as HTMLElement).innerText || "").trim().toLowerCase();
 
-	const primaryLabel = (buttonAria || svgAria || titleText).trim().toLowerCase();
+	const allLabels = [buttonAria, svgAria, titleText].filter(Boolean);
 	const cleanText = textContent.toLowerCase();
 
 	// 1. Detect Repost / Quote Action
 	if (
-		primaryLabel === "repost" ||
-		primaryLabel.startsWith("repost") ||
-		primaryLabel === "quote" ||
-		primaryLabel.startsWith("quote") ||
-		primaryLabel.includes("republicar") ||
-		primaryLabel === "转发"
+		allLabels.some(
+			(l) =>
+				l === "repost" ||
+				l.startsWith("repost") ||
+				l === "quote" ||
+				l.startsWith("quote") ||
+				l.includes("republicar") ||
+				l === "转发",
+		)
 	) {
 		return { type: "repost", button };
 	}
 
 	// 2. Detect Save / Bookmark Action
 	if (
-		primaryLabel === "save" ||
-		primaryLabel.startsWith("save ") ||
-		primaryLabel === "bookmark" ||
-		primaryLabel.startsWith("bookmark") ||
-		primaryLabel === "saved" ||
-		primaryLabel.includes("guardar") ||
-		primaryLabel.includes("salvar") ||
-		primaryLabel === "收藏"
+		allLabels.some(
+			(l) =>
+				l === "save" ||
+				l.startsWith("save ") ||
+				l === "bookmark" ||
+				l.startsWith("bookmark") ||
+				l === "saved" ||
+				l.includes("guardar") ||
+				l.includes("salvar") ||
+				l === "收藏",
+		)
 	) {
 		return { type: "bookmark", button };
 	}
 
 	// 3. Detect Post / Publish Action in Composer
 	if (
-		(cleanText === "post" || cleanText === "publicar" || primaryLabel === "post") &&
+		(cleanText === "post" || cleanText === "publicar" || allLabels.includes("post")) &&
 		(button.closest('[role="dialog"]') !== null ||
 			button.closest("form") !== null ||
 			button.closest('div[data-pressable-container="true"]') !== null)
@@ -277,16 +357,18 @@ export function classifyThreadAction(target: HTMLElement | null): ThreadAction |
 	}
 
 	// 4. Reject Explicit Non-Like Elements (Reply, Share, More, Audio, Like Counts, Navigation)
-	if (isExplicitNonLikeButton(primaryLabel, cleanText)) {
+	if (allLabels.some((l) => isExplicitNonLikeButton(l, cleanText))) {
 		return null;
 	}
 
 	// 5. Inspect Heart Vector Signatures and Visual State
 	const heartInfo = getSvgHeartInfo(button);
 	const isRed = hasRedLikeColor(button);
-	const hasLikeLabel = isLikeLabel(primaryLabel);
-	const hasUnlikeLabel = isUnlikeLabel(primaryLabel);
-	const isAriaPressed = button.getAttribute("aria-pressed") === "true";
+	const hasLikeLabel = allLabels.some((l) => isLikeLabel(l));
+	const hasUnlikeLabel = allLabels.some((l) => isUnlikeLabel(l));
+	const isAriaPressed =
+		button.getAttribute("aria-pressed") === "true" ||
+		button.querySelector('[aria-pressed="true"]') !== null;
 
 	// Validate whether this element is genuinely a Like/Heart action target
 	const isLikeTarget = heartInfo.isHeart || hasLikeLabel || hasUnlikeLabel || isRed;
