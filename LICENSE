@@ -19,3 +19,18 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+### Trademark, Brand & Proprietary Visual Assets Policy
+
+While the underlying source code, configuration, and procedural algorithms of this project are open source under the MIT License above, the following items are NOT covered by the MIT License and remain the exclusive intellectual property of Nomer Israel:
+
+1. **Brand Names, Trademarks & Identity:**
+   The names "ThreadFX", "ThreadFX — Tactile Social Effects Suite", associated logos, logomarks, typography arrangements, and official domain names (including `threadfx.nmrisrl.dev` and `threadfx.vercel.app`) are trademarks. You may not use these marks in connection with any derivative work, fork, or distributed package in a way that suggests endorsement, affiliation, or official status by the original author.
+
+2. **Proprietary Artwork & 3D Milestone Badges:**
+   All bespoke 3D rendered achievement badges located in `extension/public/badges/` and `website/public/badges/` (`milestone-1.webp` through `milestone-7.webp`), official icon artwork (`public/icon/`), and promotional graphics are proprietary creative works. They may not be redistributed, sold, or used in commercial products, competing browser extensions, or applications without explicit written permission.
+
+3. **Distribution on Extension Marketplaces:**
+   You are welcome to fork, learn from, modify, and run this extension locally for personal use or community contributions. However, redistributing an unmodified or minimally modified build to the Chrome Web Store, Firefox Add-ons, Microsoft Edge Add-ons, or other public extension marketplaces under the name "ThreadFX" or using the official brand identity, icons, or badges is strictly prohibited.

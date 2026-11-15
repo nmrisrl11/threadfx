@@ -52,6 +52,8 @@
 
 ### Changed
 
+- **MIT License with Brand & Trademark Reservation**: Clarified open-source licensing model by adding an explicit Trademark, Brand & Proprietary Visual Assets policy to the MIT License. Preserves full open-source freedom for the codebase while legally protecting the "ThreadFX" name, official icons, and handcrafted 3D milestone badges from unauthorized Chrome Web Store clones.
+
 - **Purpose-Built Particle Stage Dock**: Replaced the fake 24-band audio waveform equalizer on the Particles tab with a dedicated, compact Particle Stage dock that directly reflects what particles do—featuring live chromatic palette swatches, active reaction emoji previews, real-time particle count and spread arc telemetry, and an instant-action "Trigger Burst" audition trigger.
 - **Consumer-Grade Copywriting Across Storage Hub**: Eliminated all technical jargon (such as "Offline MV3", "client-side storage quota", and "deduplication cache") in favor of clear, accessible copywriting ("On-Device Storage", "100% Private", "Enhanced Posts Memory"), and removed the redundant top refresh button in favor of the docked footer sync action.
 - **2-Column Balanced Emoji Suite Architecture**: Restructured the emoji reaction configuration card into a balanced dual-column chassis on wide side panels (`@[520px]/emoji-card:grid-cols-2`), pairing the active preview badge and catalog browser on the left with a dedicated 4x2 quick reactions grid on the right, eliminating empty voids and aligning with the 2-column physics sliders below.

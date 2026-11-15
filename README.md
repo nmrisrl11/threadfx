@@ -221,10 +221,12 @@ ThreadFX includes dedicated agent skills located in `.agents/skills/` that can b
 
 ## ⚖️ Open Source & License
 
-ThreadFX is 100% free and open-source software distributed under the terms of the **[MIT License](LICENSE)**.
+ThreadFX is 100% free and open-source software distributed under the terms of the **[MIT License](LICENSE)** with a **Trademark & Proprietary Visual Assets Reservation**:
+
+- **Source Code & Procedural Engines:** 100% open source under the permissive [MIT License](LICENSE). You are free to inspect, modify, fork, and build upon the code.
+- **Brand Names & Trademarks:** The names "ThreadFX", brand mark, official domain names, and identity are trademarks of Nomer Israel.
+- **Visual Assets & 3D Badges:** The bespoke 3D WebP achievement badges (`milestone-1.webp` through `milestone-7.webp`) and official icons are proprietary artwork and may not be used in competing extensions, commercial packages, or unauthorized Web Store re-publications.
 
 - **Author & Maintainer:** [Nomer Israel (@nmrisrl)](https://threads.com/@nmrisrl)
 - **Repository:** [https://github.com/nmrisrl11/threadfx](https://github.com/nmrisrl11/threadfx)
 - **Issue Tracker:** [https://github.com/nmrisrl11/threadfx/issues](https://github.com/nmrisrl11/threadfx/issues)
-
-You are free to use, inspect, modify, and distribute this software for personal or commercial use in accordance with the MIT License terms.

@@ -85,6 +85,5 @@ npm run build:firefox     # Compiles Firefox MV2/MV3 build
 
 ## ⚖️ Open Source & Ownership
 
-ThreadFX is free, open-source software licensed under the **[MIT License](../LICENSE)**.  
-Created and maintained by [Nomer Israel (@nmrisrl)](https://threads.com/@nmrisrl).  
+ThreadFX is free, open-source software licensed under the **[MIT License](../LICENSE)** with Trademark and Proprietary Artwork Reservation. Source code is open under MIT; brand names, official icons, and 3D achievement badges remain the proprietary creative property of [Nomer Israel (@nmrisrl)](https://threads.com/@nmrisrl).  
 GitHub Repository: [nmrisrl11/threadfx](https://github.com/nmrisrl11/threadfx).

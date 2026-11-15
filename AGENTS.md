@@ -292,7 +292,9 @@ Whenever `sidepanel` updates settings via `chrome.storage.local.set()`, `content
 
 ## 7. Open Source & Licensing
 
-- **License:** ThreadFX is open-source software distributed under the **MIT License**.
+- **License:** ThreadFX is open-source software distributed under the **MIT License** with **Trademark, Brand & Proprietary Visual Assets Reservation** (see `LICENSE`).
+  - Underlying source code and procedural engines are free and open-source under MIT.
+  - The name "ThreadFX", brand assets, official icons, and 3D WebP achievement badges in `public/badges/` remain the exclusive proprietary creative property of Nomer Israel and may not be used in competing extensions, commercial distributions, or unauthorized Chrome Web Store clones.
 - **Author & Ownership:** Created and maintained by **Nomer Israel (@nmrisrl)**.
 - **Upstream Attribution:**
   - Procedural audio utilizes Frank Force's **ZzFX** (MIT License).
