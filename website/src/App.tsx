@@ -13,6 +13,7 @@ import {
 	DEFAULT_EMOJI,
 	QUICK_EMOJIS,
 } from "@data/particles";
+import { JUICER_MILESTONES } from "@data/milestones";
 import type { SoundPack, SoundPackId } from "@data/presets";
 import { INTERACTION_SOUNDS, SOUND_PACKS, SOUND_PACK_LIST, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
@@ -27,10 +28,13 @@ import {
 	LaptopIcon,
 	LayersIcon,
 	MessageCircleIcon,
+	RefreshCwIcon,
 	RepeatIcon,
 	Share2Icon,
+	ShieldCheckIcon,
 	SlidersIcon,
 	SparklesIcon,
+	TrophyIcon,
 	Volume2Icon,
 	ZapIcon,
 } from "lucide-react";
@@ -621,6 +625,57 @@ export default function App() {
 					</div>
 				</div>
 
+				{/* Gamification & Sensory Milestones Showcase */}
+				<div id="milestones" className="mt-28 space-y-8">
+					<div className="mx-auto max-w-2xl text-center">
+						<div className="border-border bg-card text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs">
+							<TrophyIcon className="h-3.5 w-3.5 text-[#FF2E93]" />
+							<span>Gamified Sensory Progression</span>
+						</div>
+						<h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+							Ascend the Juicer Ranks
+						</h2>
+						<p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+							Every like enhanced feeds your private, on-device sensory odometer. Unlock celebratory
+							victory fanfares, explosive confetti fireworks, and bespoke 3D medals as your journey
+							progresses.
+						</p>
+					</div>
+
+					<div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+						{JUICER_MILESTONES.map((milestone) => (
+							<Card
+								key={milestone.level}
+								className="group flex flex-col items-center p-4 text-center transition-all duration-200 hover:-translate-y-1 hover:border-[#FF2E93]/40"
+							>
+								<div className="relative mb-3 flex h-16 w-16 items-center justify-center">
+									<div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#FF2E93]/20 via-[#7928CA]/20 to-[#00F5FF]/20 opacity-0 blur-md transition-opacity group-hover:opacity-100" />
+									<img
+										src={`/badges/${milestone.badgeFile}`}
+										alt={`${milestone.title} 3D Medal`}
+										width="56"
+										height="56"
+										className="relative h-14 w-14 object-contain transition-transform duration-200 select-none group-hover:scale-110"
+										loading="lazy"
+										decoding="async"
+										draggable={false}
+									/>
+								</div>
+								<span className="text-muted-foreground font-mono text-[10px] uppercase">
+									Rank {milestone.level}
+								</span>
+								<h3 className="text-foreground mt-0.5 text-xs font-bold">{milestone.rank}</h3>
+								<div className="mt-2 inline-flex items-center rounded-full bg-zinc-900/80 px-2 py-0.5 font-mono text-[9px] text-[#00F5FF]">
+									{milestone.threshold} Likes
+								</div>
+								<p className="text-muted-foreground/80 mt-2 line-clamp-2 text-[10px] leading-snug">
+									{milestone.description}
+								</p>
+							</Card>
+						))}
+					</div>
+				</div>
+
 				{/* 3-Step Install Guide */}
 				<div id="install-guide" className="mx-auto mt-28 max-w-3xl space-y-8">
 					<div className="space-y-2 text-center">
@@ -671,6 +726,29 @@ export default function App() {
 									unzipped folder. Open Threads and enjoy!
 								</p>
 							</div>
+						</div>
+					</div>
+
+					{/* Seamless Upgrades Callout Card */}
+					<div className="border-border bg-card/60 flex flex-col gap-4 rounded-xl border p-5 sm:flex-row sm:items-center sm:justify-between">
+						<div className="flex items-start gap-3.5">
+							<div className="bg-muted flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[#00F5FF]">
+								<RefreshCwIcon className="h-4 w-4" />
+							</div>
+							<div>
+								<h4 className="text-foreground text-sm font-bold">Seamless Updates (10 Seconds)</h4>
+								<p className="text-muted-foreground mt-0.5 text-xs leading-relaxed">
+									When an update is released, simply extract the new archive over your existing
+									folder and click the reload icon (
+									<RefreshCwIcon className="inline h-2.5 w-2.5 align-baseline" />) on
+									chrome://extensions.
+								</p>
+							</div>
+						</div>
+
+						<div className="border-border bg-muted/50 text-muted-foreground flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 font-mono text-[10px]">
+							<ShieldCheckIcon className="h-3.5 w-3.5 text-emerald-400" />
+							<span>Zero Data Loss</span>
 						</div>
 					</div>
 				</div>

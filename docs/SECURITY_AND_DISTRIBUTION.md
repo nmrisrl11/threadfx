@@ -94,6 +94,15 @@ Before installing any unpacked release:
 5. Click **Load unpacked** and select the extracted folder containing `manifest.json`.
 6. Pin **ThreadFX** to your browser toolbar and start browsing [threads.com](https://threads.com).
 
+### Seamless Updates for Unpacked Installations (10 Seconds, Zero Data Loss)
+
+Because unpacked extensions run from a local directory path, updating to a new version does **not** require removing the extension or resetting user settings:
+
+1. **Keep a Fixed Installation Directory:** Store ThreadFX in a permanent directory (such as `Documents/ThreadFX/` or `extensions/threadfx/`).
+2. **Download & Overwrite:** When an update notification appears in the Side Panel header or Storage tab, download the latest `threadfx-<version>-chrome.zip` and extract its contents directly over your existing ThreadFX directory, replacing all files.
+3. **Reload in Extensions Manager:** Navigate to `chrome://extensions/` and click the circular **Reload icon (`↻`)** on the ThreadFX card.
+4. **100% Data Preservation:** All user volume settings, active sound presets, lifetime like counts, and unlocked 3D milestone badges are stored in Chrome's dedicated extension database (`chrome.storage.local`) and remain completely intact across file overwrites.
+
 ---
 
 ## 5. Extension Archive Naming Standard

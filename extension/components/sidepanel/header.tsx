@@ -1,8 +1,9 @@
 import { Switch } from "@/components/ui/switch";
 import { useMasterToggle } from "@/hooks/use-settings";
+import { useUpdateCheck } from "@/hooks/use-update-check";
 import { cn } from "@/lib/utils";
 import { APP_INFO } from "@data/app";
-import { XIcon } from "lucide-react";
+import { ArrowUpRightIcon, SparklesIcon, XIcon } from "lucide-react";
 
 interface SidepanelHeaderProps {
 	isThreadsActive?: boolean;
@@ -10,6 +11,7 @@ interface SidepanelHeaderProps {
 
 export function SidepanelHeader({ isThreadsActive = true }: SidepanelHeaderProps) {
 	const [enabled, toggleEnabled] = useMasterToggle();
+	const { hasUpdate, latestVersion, downloadUrl } = useUpdateCheck();
 
 	const isLive = enabled && isThreadsActive;
 	const isStandby = enabled && !isThreadsActive;
@@ -33,6 +35,19 @@ export function SidepanelHeader({ isThreadsActive = true }: SidepanelHeaderProps
 					<span className="text-muted-foreground/60 font-mono text-[9px] tracking-wide uppercase">
 						v{APP_INFO.version}
 					</span>
+					{hasUpdate && (
+						<a
+							href={downloadUrl}
+							target="_blank"
+							rel="noreferrer"
+							title={`New release v${latestVersion} available. Click to download.`}
+							className="border-accent-neon/40 bg-accent-neon/10 text-accent-neon hover:bg-accent-neon/20 hover:border-accent-neon/60 inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5 font-mono text-[9px] font-medium transition-colors"
+						>
+							<SparklesIcon className="h-2 w-2 animate-pulse" />
+							<span>v{latestVersion}</span>
+							<ArrowUpRightIcon className="h-2 w-2" />
+						</a>
+					)}
 				</div>
 			</div>
 

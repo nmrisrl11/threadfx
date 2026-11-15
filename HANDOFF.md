@@ -2,7 +2,7 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 15, 2026 (11:15 PM +08:00)  
+> **Last Synchronized:** November 15, 2026 (11:26 PM +08:00)  
 > **Active Branch:** `main`  
 > **Working Tree Status:** Clean working tree — 100% synchronized with `origin/main` (latest commit `1cafb57`). All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
@@ -155,9 +155,13 @@ export interface ThreadFXSettings {
 - **Security Architecture & Edge Caching Hardening:**
   - Authored `docs/SECURITY_AND_DISTRIBUTION.md` detailing 0/70 clean VirusTotal score, Chromium sideloading developer mode policies, browser reputation heuristics, and the standard `-chrome` suffix naming convention.
   - Hardened `website/vercel.json` edge caching: added 30-day stale-while-revalidate caching for 3D milestone badges in `/badges/`, 1-year immutable caching for hashed bundles, instant HTML revalidation, and baseline HTTP security headers (`nosniff`, `SAMEORIGIN`, `strict-origin-when-cross-origin`).
+- **In-App Release Notification & Landing Page Gamification Suite:**
+  - Built zero-overhead `useUpdateCheck()` with 12h revalidation against `version.json` on Vercel Edge, featuring semver comparison and local storage caching.
+  - Added ambient header notification pill with `SparklesIcon` and dedicated `VersionUpdateCard` in Storage tab with a 10-second reload walkthrough.
+  - Drafted 7-tier 3D milestone showcase (`JUICER_MILESTONES`) and seamless upgrade card on companion landing page.
 - **Documentation Synchronization & Production Release Prep:**
   - Audited all project documentation across `AGENTS.md`, `README.md`, `extension/README.md`, and `docs/ARCHITECTURE.md`, eliminating directory tree, asset, and schema drift.
-  - Confirmed 0 lint errors/warnings with `oxlint` across 61 files with 121 rules, formatted 95 files with `oxfmt`, and compiled/packaged `threadfx-1.0.0-chrome.zip` (880 KB) alongside the website.
+  - Confirmed 0 lint errors/warnings with `oxlint` across 63 files with 121 rules, formatted 97 files with `oxfmt`, and compiled/packaged `threadfx-1.0.0-chrome.zip` (882 KB) alongside the website.
 
 ---
 

@@ -10,6 +10,9 @@
 
 ### Added
 
+- **In-App Release Notification & Lifecycle Manager**: Introduced zero-overhead version tracking in the Side Panel via `useUpdateCheck`. Checks a lightweight edge-cached `version.json` every 12 hours, alerting users with an ambient header notification when an update is published, paired with a dedicated lifecycle card in the Storage tab providing one-click downloads and a 10-second reload walkthrough with zero data loss.
+- **Landing Page Gamification Showcase & Upgrade Blueprint**: Drafted an interactive 7-tier sensory milestone showcase on the companion web portal displaying all 3D medals (`Bronze` through `Mythic`) with rank thresholds and perks, paired with a seamless upgrade guide explaining how to refresh unpacked installs safely.
+
 - **Interactive Data & Storage Management Hub**: Added a dedicated "Storage" chassis tab to the Side Panel, featuring real-time visual capacity gauges, used vs. available storage tracking, granular slice breakdowns (anti-farming post cache, sound presets, and progression stats), and safe two-step management actions to clear post history or reset preferences without affecting your lifetime milestone achievements.
 - **Smart Juicer Anti-Farming Shield**: Added intelligent post-deduplication and velocity protection to the sensory odometer. Liking and unliking the same post retains 100% of its tactile audio and visual particle feedback without artificially inflating your lifetime like tally or milestone progress, safeguarding your account from social platform rate limits.
 - **7 Symmetrical 3D Sensory Achievement Badges**: Introduced bespoke transparent 3D medals for each milestone tier (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) rendered in ultra-sharp WebP, featuring an interactive collector popover shelf and inspectable badge previews right from the Side Panel metric strip.

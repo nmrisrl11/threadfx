@@ -19,7 +19,7 @@ threadfx/
 │   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, MilestonesPopover, ThemeToggle, Footer)
 │   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
 │   │   │   ├── particles/          # Tab coordinator, palettes grid, physics sliders, particle stage dock
-│   │   │   └── data/               # Tab coordinator, capacity meter, itemized breakdown, actions, dock monitor
+│   │   │   └── data/               # Tab coordinator, capacity meter, itemized breakdown, actions, update card, dock monitor
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, Popover, etc.)
 │   ├── entrypoints/
 │   │   ├── background.ts           # Service worker (sidePanel behavior & shortcut toggling)
@@ -30,7 +30,7 @@ threadfx/
 │   │       ├── App.tsx             # Interactive soundboard, volume, likes counter
 │   │       ├── fonts.css           # SubsetFont Latin variable typography definitions
 │   │       └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
-│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useStorageTelemetry, useActiveTabStatus
+│   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useStorageTelemetry, useActiveTabStatus, useUpdateCheck
 │   ├── lib/
 │   │   ├── storage.ts              # Type-safe chrome.storage helpers
 │   │   ├── threads-detector.ts     # Domain-isolated Threads action classifier & vector path fingerprinting

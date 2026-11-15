@@ -3,6 +3,7 @@ import { DataDockMonitor } from "@/components/sidepanel/data/data-dock-monitor";
 import { DataHeader } from "@/components/sidepanel/data/data-header";
 import { StorageBreakdownCard } from "@/components/sidepanel/data/storage-breakdown-card";
 import { StorageMeterCard } from "@/components/sidepanel/data/storage-meter-card";
+import { VersionUpdateCard } from "@/components/sidepanel/data/version-update-card";
 import { useStorageTelemetry } from "@/hooks/use-storage-telemetry";
 
 export function DataTab() {
@@ -22,7 +23,7 @@ export function DataTab() {
 				<DataHeader />
 			</div>
 
-			{/* 2. Scrollable Body: Visual Storage Meter, Breakdown & Actions */}
+			{/* 2. Scrollable Body: Visual Storage Meter, Breakdown, Actions & Updates */}
 			<div className="min-h-0 flex-1 space-y-3 overflow-x-hidden overflow-y-auto pr-1">
 				<StorageMeterCard telemetry={telemetry} loading={loading} />
 				<StorageBreakdownCard telemetry={telemetry} loading={loading} />
@@ -31,6 +32,7 @@ export function DataTab() {
 					onResetSettings={resetSettingsToDefault}
 					onResetOdometer={resetLikesCounter}
 				/>
+				<VersionUpdateCard />
 			</div>
 
 			{/* 3. Docked Storage Monitor: Always pinned at bottom */}

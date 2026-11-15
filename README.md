@@ -89,6 +89,14 @@ Since ThreadFX is currently distributed as an open-source unpacked package:
 6. Select the unzipped `threadfx` folder (or `.output/chrome-mv3`).
 7. Open [threads.com](https://threads.com), click the ThreadFX icon in your browser toolbar to open your Side Panel, and start liking!
 
+### 🔄 How to Update
+
+When a new release notification appears:
+
+1. Download the latest `.zip`.
+2. Extract and overwrite the files in your existing ThreadFX folder.
+3. Click the circular **Reload icon (`↻`)** on `chrome://extensions`. All your lifetime stats, unlocked 3D badges, and sound preferences are stored in Chrome local storage and are 100% preserved.
+
 ---
 
 ## 💻 Local Development Workflow (npm)
