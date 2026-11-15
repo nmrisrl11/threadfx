@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://threadfx.nmrisrl.dev">
-  <img src="extension/public/icon/512.png" alt="ThreadFX Logo" width="108" height="108" />
+  <img src="extension/public/icon/128.png" alt="ThreadFX Logo" width="108" height="108" />
 </a>
 
 # ThreadFX
@@ -139,6 +139,7 @@ threadfx/
 │   │   │   ├── index.html
 │   │   │   ├── main.tsx            # Synchronous early theme initialization (zero-FOUC)
 │   │   │   ├── App.tsx             # Interactive soundboard, volume, likes counter
+│   │   │   ├── fonts.css           # SubsetFont Latin variable typography definitions
 │   │   │   └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
 │   │   ├── background.ts           # Configures openPanelOnActionClick & Alt+Shift+T shortcut toggling
 │   │   └── content.ts              # threads.com DOM like-observer & ZzFX trigger
@@ -157,6 +158,7 @@ threadfx/
 ├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
 │   │   ├── components/             # shadcn/ui components & Hero/Simulator
+│   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
 │   │   ├── lib/                    # Shared cn utility wrapper
 │   │   ├── App.tsx                 # Hero, Like Simulator, 3-Step Install Guide
 │   │   ├── index.css               # AMOLED dark design tokens
@@ -184,6 +186,7 @@ threadfx/
 │   ├── ARCHITECTURE.md             # System diagrams & runtime sequence
 │   ├── BRAND.md                    # Design system, color tokens, and visual voice
 │   ├── FEATURE_BLUEPRINT.md        # Feature specifications & visual wireframes
+│   ├── SECURITY_AND_DISTRIBUTION.md # Security posture, VirusTotal audits & distribution
 │   └── UNIVERSAL_FX_ROADMAP.md     # Multi-platform adapter roadmap
 │
 ├── AGENTS.md                       # Technical guidelines for AI agents
@@ -211,11 +214,24 @@ ThreadFX includes dedicated agent skills located in `.agents/skills/` that can b
 ## 📄 Documentation Links
 
 - [**AGENTS.md**](AGENTS.md) — Technical guidelines for AI coding agents and contributors.
+- [**docs/SECURITY_AND_DISTRIBUTION.md**](docs/SECURITY_AND_DISTRIBUTION.md) — Security posture, VirusTotal audits, and distribution guide.
 - [**docs/BRAND.md**](docs/BRAND.md) — Design tokens, color palette, and typography system.
 - [**docs/ARCHITECTURE.md**](docs/ARCHITECTURE.md) — Detailed runtime lifecycle and sequence diagrams.
 - [**docs/FEATURE_BLUEPRINT.md**](docs/FEATURE_BLUEPRINT.md) — Feature specifications and sensory wireframes.
 - [**docs/UNIVERSAL_FX_ROADMAP.md**](docs/UNIVERSAL_FX_ROADMAP.md) — Multi-platform adapter expansion roadmap.
 - [**PENDING_CHANGES.md**](PENDING_CHANGES.md) — Staging area for unreleased changes and release notes.
+
+---
+
+## 🛡️ Security, Privacy & VirusTotal Audit
+
+ThreadFX is engineered from the ground up for zero-telemetry and total privacy:
+
+- **0 / 70 Clean Detection on VirusTotal:** Fully scanned and verified with zero malware, zero adware, and zero suspicious heuristics.
+- **Strictly Scoped Permissions:** Only requests `["sidePanel", "storage"]` restricted exclusively to `threads.com` (and legacy `threads.net`).
+- **Zero Remote Code or Binary Audio Files:** 100% of code and procedural audio synthesis runs locally on-device without connecting to third-party CDNs.
+
+For technical details on browser reputation scoring, developer mode notifications, and security verification, read the [Security & Distribution Guide](docs/SECURITY_AND_DISTRIBUTION.md).
 
 ---
 

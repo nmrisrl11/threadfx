@@ -28,6 +28,7 @@ threadfx/
 │   │       ├── index.html
 │   │       ├── main.tsx            # Synchronous early theme initialization (zero-FOUC)
 │   │       ├── App.tsx             # Interactive soundboard, volume, likes counter
+│   │       ├── fonts.css           # SubsetFont Latin variable typography definitions
 │   │       └── style.css           # Tailwind v4 CSS variables & light/dark design tokens
 │   ├── hooks/                      # useSettingsSelector, useTheme, useAudioSettings, useStorageTelemetry, useActiveTabStatus
 │   ├── lib/
@@ -44,6 +45,7 @@ threadfx/
 ├── website/                        # Landing Page (Vite + React)
 │   ├── src/
 │   │   ├── components/             # Hero, SoundboardDemo, InstallGuide
+│   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
 │   │   └── App.tsx
 │   ├── public/
 │   │   └── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
@@ -63,6 +65,7 @@ threadfx/
 │   ├── ARCHITECTURE.md             # System diagrams & runtime sequence
 │   ├── BRAND.md                    # Design system, color tokens, and visual voice
 │   ├── FEATURE_BLUEPRINT.md        # Feature specifications & visual wireframes
+│   ├── SECURITY_AND_DISTRIBUTION.md # Security posture, VirusTotal audits & distribution
 │   └── UNIVERSAL_FX_ROADMAP.md     # Multi-platform adapter roadmap
 │
 ├── AGENTS.md                       # Technical guidelines for AI agents

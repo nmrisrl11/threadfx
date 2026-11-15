@@ -80,6 +80,7 @@ npm run build:firefox     # Compiles Firefox MV2/MV3 build
   - `https://*.threads.net/*` (legacy fallback)
   - `https://threads.net/*` (legacy fallback)
 - **Zero invasive permissions** (no `<all_urls>`, no webRequest, no cookies, no tracking).
+- **Security & VirusTotal Audit:** Verified 0/70 clean on VirusTotal. See [Security & Distribution Guide](../docs/SECURITY_AND_DISTRIBUTION.md).
 
 ---
 

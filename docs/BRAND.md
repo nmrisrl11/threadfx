@@ -215,7 +215,8 @@ threadfx/
 
 ### Edge Caching Strategy (Vercel CDN)
 Static assets and images in `website/vercel.json` are served with aggressive Cache-Control directives:
-- `/assets/(.*)`: `public, max-age=31536000, immutable` (1 year cache)
-- `/(icons|images)/(.*)`: `public, max-age=2592000, stale-while-revalidate=86400` (30 days edge cache)
+- `/assets/(.*)`: `public, max-age=31536000, immutable` (1 year cache for content-hashed bundles & variable fonts)
+- `/(icons|images|badges)/(.*)`: `public, max-age=2592000, stale-while-revalidate=86400` (30 days edge cache for 3D badges & branding)
 - `/(favicon.ico|favicon.svg|og-image.png|site.webmanifest)`: `public, max-age=86400, stale-while-revalidate=86400` (24 hours)
+- `/(.*).html`: `public, max-age=0, must-revalidate` (instant invalidation upon deployment)
 ```

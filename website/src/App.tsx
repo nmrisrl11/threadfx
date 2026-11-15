@@ -211,7 +211,7 @@ export default function App() {
 					<div className="relative mx-auto flex h-24 w-24 items-center justify-center">
 						<div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#FF2E93]/25 via-[#7928CA]/30 to-[#00F5FF]/25 blur-xl" />
 						<img
-							src="/icons/512.png"
+							src="/icons/512.webp"
 							alt={`${APP_INFO.name} 3D Brand Emblem`}
 							width="96"
 							height="96"

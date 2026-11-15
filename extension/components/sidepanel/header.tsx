@@ -20,7 +20,7 @@ export function SidepanelHeader({ isThreadsActive = true }: SidepanelHeaderProps
 			{/* Brand Identity */}
 			<div className="flex items-center gap-2.5">
 				<img
-					src="/icon/512.png"
+					src="/icon/128.png"
 					alt={APP_INFO.name}
 					className="h-7 w-7 shrink-0 rounded-lg object-contain shadow-xs select-none"
 					loading="eager"

@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource-variable/plus-jakarta-sans";
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/geist-mono";
+@import "./fonts.css";
 
 @theme inline {
 	--font-sans:
