@@ -3,13 +3,27 @@ import { DEFAULT_SETTINGS, getSettings, onSettingsChanged, saveSettings } from "
 import type { ConfettiPaletteId } from "@data/particles";
 import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
 import type { SoundPack, SoundPackId } from "@data/presets";
+import { SOUND_PACKS, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
 import { useCallback, useSyncExternalStore } from "react";
 
 // Module-level external store state
 let currentSettings: ThreadFXSettings = DEFAULT_SETTINGS;
+let lastLikesCount = 0;
 const listeners = new Set<() => void>();
+const audioPulseListeners = new Set<(pack: SoundPack) => void>();
+
+export function subscribeAudioPulse(listener: (pack: SoundPack) => void) {
+	audioPulseListeners.add(listener);
+	return () => {
+		audioPulseListeners.delete(listener);
+	};
+}
+
+export function emitAudioPulse(pack: SoundPack) {
+	audioPulseListeners.forEach((listener) => listener(pack));
+}
 
 function notify() {
 	listeners.forEach((listener) => listener());
@@ -85,6 +99,7 @@ export function initTheme() {
 if (typeof chrome !== "undefined" && chrome.storage?.local) {
 	getSettings().then((s) => {
 		currentSettings = s;
+		lastLikesCount = s.likesJuicedCount || 0;
 		if (s.theme) {
 			applyThemeToDOM(s.theme);
 		}
@@ -92,6 +107,11 @@ if (typeof chrome !== "undefined" && chrome.storage?.local) {
 	});
 
 	onSettingsChanged((updated: ThreadFXSettings) => {
+		if (updated.likesJuicedCount > lastLikesCount) {
+			lastLikesCount = updated.likesJuicedCount;
+			const pack = SOUND_PACKS[updated.soundPack] || SOUND_PACKS.bubble;
+			emitAudioPulse(pack);
+		}
 		currentSettings = updated;
 		if (updated.theme) {
 			applyThemeToDOM(updated.theme);
@@ -142,6 +162,7 @@ export function useLikesCounter(): number {
 export function useAudioSettings() {
 	const soundPack = useSettingsSelector((s) => s.soundPack);
 	const volume = useSettingsSelector((s) => s.volume);
+	const pitch = useSettingsSelector((s) => s.pitch ?? 1.0);
 
 	const setSoundPack = useCallback((packId: SoundPackId) => {
 		setSetting("soundPack", packId);
@@ -151,16 +172,24 @@ export function useAudioSettings() {
 		setSetting("volume", vol);
 	}, []);
 
+	const setPitch = useCallback((p: number) => {
+		setSetting("pitch", p);
+	}, []);
+
 	const previewSound = useCallback((pack: SoundPack) => {
 		if (!currentSettings.enabled) return;
-		zzfx(currentSettings.volume, ...pack.params);
+		const pitched = applyPitch(pack.params, currentSettings.pitch ?? 1.0);
+		zzfx(currentSettings.volume, ...pitched);
+		emitAudioPulse(pack);
 	}, []);
 
 	return {
 		soundPack,
 		volume,
+		pitch,
 		setSoundPack,
 		setVolume,
+		setPitch,
 		previewSound,
 	};
 }

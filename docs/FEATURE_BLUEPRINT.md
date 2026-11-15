@@ -34,14 +34,21 @@
 
 > **Question:** _How should customizable audio and visual effects be handled?_
 
-- **Audio Customization:**
-  - **Level 1 (Presets):** Curated sound packs (Bubble Pop, 8-Bit, Hype, Blip, Mechanical Switch, ASMR Wood).
-  - **Level 2 (Audio Modifiers):** Pitch shift slider (0.5x to 2.0x) and sound duration slider applied dynamically to any preset.
-  - **Level 3 (In-Panel Sound Lab):** Mini procedural synthesizer inside the Side Panel allowing users to tweak ZzFX parameters (Frequency, Attack, Sustain, Decay) with a live audio preview.
-- **Visual FX Customization:**
-  - **Level 1 (Palettes):** Curated color themes (Threads Neon, Cyberpunk, AMOLED White, Pastel Dream, Sunset Gold).
-  - **Level 2 (Emoji Bursts):** Option to burst emojis (❤️, 🔥, 🎉, 🚀, 💎, 💯) instead of round particles using `canvas-confetti`'s text shape rendering.
-  - **Level 3 (Physics Sliders):** Gravity, particle velocity, and spread controls in the Side Panel settings.
+- **Audio Customization Roadmap:**
+  - **Level 1 (Presets & Modifiers - v1.0 Launch):** Curated sound packs (Bubble Pop, 8-Bit Coin, Hype Spark, Minimal Click, Wood Tap, Neon Zap, Water Drop, Sub Thump) paired with a live **Pitch Shift Slider (0.5x to 2.0x)**, **Organic Micro-Pitch Jitter (±3%)**, and **Docked Waveform Spectrum Monitor**. Liking delivers positive reward audio and particle bursts; unliking remains a quiet, fatigue-free retraction.
+  - **Level 2 (In-Panel Sound Lab - v1.1):** Mini procedural synthesizer studio inside an expandable Side Panel drawer. Users can visually tweak raw ZzFX parameters (Root Frequency, Attack, Sustain, Decay, Modulation, Pitch Jump, Waveform Shape).
+  - **Level 3 (Client-Side Storage & Share Codes - v1.1):**
+    - **Local Preset Storage:** Users can save their customized sounds into `chrome.storage.local` under `settings.customPacks: SoundPack[]`. Consumes < 1.5 KB total for 20 presets (0.015% of the 10 MB quota).
+    - **Peer-to-Peer Share Codes (`TFX-...`):** Compact serialized strings (e.g., `TFX-BBL-420-350` or Base64 payload) encoding the numeric parameter array.
+    - **Safe Import Flow:** Users paste a code, the engine validates/clamps values to safe acoustic thresholds (preventing hearing hazards or extreme spikes), plays an immediate preview, and allows setting it as temporary active sound or saving to "My Presets".
+    - **Viral Threads Distribution:** Users can post their sound codes directly in thread replies for one-click import by other ThreadFX users.
+- **Visual FX & Particle Customization Roadmap:**
+  - **Level 1 (Palettes & Physics - v1.0 Launch):** Curated palettes (Soft Rose, Silver Minimal, Cyber Neon, Warm Gold) with Particle Density (10–60) and Spread Angle (30°–90°) sliders.
+  - **Level 2 (Emoji Reaction Bursts - v1.1):** Option to burst customizable floating emojis instead of round particles using `canvas-confetti` shape rendering.
+  - **Level 3 (Particle Lab & Palette Codes - v1.1):**
+    - **Custom Palette Builder:** Color picker supporting 2–6 custom hex tones, gravity, and particle velocity controls.
+    - **Local Palette Storage:** Persisted client-side in `chrome.storage.local` under `settings.customPalettes`.
+    - **Particle Share Codes (`TFXP-...`):** Serialized palette codes that users can export, import, or share across social threads to match creator branding.
 
 ---
 
@@ -132,17 +139,21 @@ Legend:
 
 ---
 
-### Phase 4: The "Sound Lab" & Advanced Customization (`v1.5.0`)
+### Phase 4: The "Sound & Particle Lab" with Viral Share Codes (`v1.1.0`)
 
-- [ ] 🟡 **Side Panel Sound Lab (Custom Synth Editor):** Visual sliders for ZzFX parameters:
-  - Attack & Decay times
-  - Base Frequency (Hz)
-  - Frequency Slide / Pitch Bend
-  - Modulation & Noise
-  - Live "Test Sound" button
-- [ ] 🟡 **Custom Preset Saving:** Save user-crafted procedural sounds into `chrome.storage.local`.
-- [ ] 🟡 **Shareable Sound URL Links:** Export/import custom sounds via short parameter strings (e.g., `threadfx://sfx/0.2,0.1,520,-0.03...`).
-- [ ] 🔴 **Audio Waveform Canvas:** Real-time visual oscilloscope rendered in the Side Panel when testing or synthesizing procedural sounds.
+- [ ] 🟡 **ThreadFX Sound Lab (Visual Synth Studio):**
+  - In-panel visual synthesizer sliders for Root Frequency, Attack, Sustain, Decay, Modulation, Pitch Jump, and Waveform Shape.
+  - Live waveform preview while adjusting parameters.
+  - Save custom sounds locally in `chrome.storage.local` under `settings.customPacks` (< 1.5 KB total footprint for 20 presets).
+- [ ] 🟢 **Peer-to-Peer Sound Share Codes (`TFX-...`):**
+  - Export compact, human-readable shareable strings (e.g., `TFX-BBL-420-350`) encoding the sound parameters.
+  - Import modal with acoustic clamping (safety limits to prevent ear-damaging spikes) and instant live audition.
+  - Options to audition as temporary active sound or save permanently to "My Presets".
+  - Viral organic growth loop enabling users to share custom sounds in Threads replies.
+- [ ] 🟡 **ThreadFX Particle Lab & Palette Share Codes (`TFXP-...`):**
+  - Custom color picker supporting 2–6 hex colors, particle count, spread, gravity, and velocity controls.
+  - Local preset storage in `chrome.storage.local` under `settings.customPalettes`.
+  - Export and import palette share codes across social threads to match personal or creator branding.
 
 ---
 

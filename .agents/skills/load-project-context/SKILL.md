@@ -49,6 +49,12 @@ Before reading code or making changes, internalize these core rules:
 - **ALWAYS** import and name icons from `lucide-react` with the `Icon` suffix (e.g. `Volume2Icon`, `SparklesIcon`, `SunIcon`, `MoonIcon`, `HeartIcon`).
 - **NEVER** import bare icon names without the `Icon` suffix (e.g. `import { Sun }` is prohibited).
 
+### ⚠️ Rule 8: No Emojis in UI or User-Facing Copywriting (Zero AI-Slop Emojis)
+- **NEVER** use emojis in UI components, buttons, tabs, preset cards, badges, settings panels, or user-facing copywriting.
+- **NEVER** use emojis in runtime data structures, preset metadata, or UI labels.
+- **ALWAYS** use crisp, semantic Lucide React icons (following Rule 7) or clean typographic hierarchy (`font-mono`, frequency readouts, etc.) for visual distinction.
+- **Strict Exception**: Markdown documentation files (e.g., `README.md`) may use tasteful emojis for top-level section headers only, but never in copy exposed to extension or web users.
+
 ---
 
 ## 2. Inspect Documentation & Guidelines
@@ -125,7 +131,7 @@ Synchronized state between `content.ts` and `sidepanel`:
 ```typescript
 export interface ThreadFXSettings {
 	enabled: boolean; // Master toggle (default: true)
-	volume: number; // 0.0 to 1.0 (default: 0.6)
+	volume: number; // 0.0 to 1.0 (default: 0.5)
 	soundPack: "bubble" | "retro" | "hype" | "blip"; // Active preset
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced

@@ -1,7 +1,12 @@
 import type { ThreadFXSettings } from "@/lib/storage";
-import { getSettings, incrementLikesJuiced, onSettingsChanged } from "@/lib/storage";
+import {
+	DEFAULT_SETTINGS,
+	getSettings,
+	incrementLikesJuiced,
+	onSettingsChanged,
+} from "@/lib/storage";
 import { CONFETTI_PALETTES, DEFAULT_CONFETTI_PALETTE } from "@data/particles";
-import { DEFAULT_SOUND_PACK, SOUND_PACKS } from "@data/presets";
+import { DEFAULT_SOUND_PACK, SOUND_PACKS, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
 
@@ -16,7 +21,7 @@ export default defineContentScript({
 	main() {
 		console.log("[ThreadFX] Content script loaded on Threads.");
 
-		let settings: ThreadFXSettings;
+		let settings: ThreadFXSettings = DEFAULT_SETTINGS;
 		getSettings().then((s: ThreadFXSettings) => {
 			settings = s;
 		});
@@ -25,7 +30,7 @@ export default defineContentScript({
 			settings = updated;
 		});
 
-		// Top-level click listener using event delegation
+		// Top-level click listener using event delegation in capture phase
 		document.addEventListener(
 			"click",
 			(event: MouseEvent) => {
@@ -38,21 +43,54 @@ export default defineContentScript({
 				const button = target.closest('[role="button"]') || target.closest("button");
 				if (!button) return;
 
-				// Check aria-label or inner SVG aria-label for 'Like'
+				// Inspect aria-label on button or inner SVG
 				const buttonLabel = button.getAttribute("aria-label") || "";
 				const svg = button.querySelector("svg");
 				const svgLabel = svg?.getAttribute("aria-label") || "";
 				const label = (buttonLabel || svgLabel).toLowerCase();
 
-				// Only trigger when liking (avoid triggering on 'Unlike')
-				const isLike = label.includes("like") && !label.includes("unlike");
-
-				// Also detect heart SVG icon paths as fallback
+				// Detect heart SVG icon as fallback
 				const hasHeartIcon = !!button.querySelector('svg path[d*="M12"]');
 
-				if (isLike || hasHeartIcon) {
-					handleLikeAction(button);
+				// Check whether this button is a Like/Reaction target
+				const isLikeTarget =
+					label.includes("like") ||
+					label.includes("gusta") ||
+					label.includes("curti") ||
+					label.includes("jaime") ||
+					label.includes("gefällt") ||
+					hasHeartIcon ||
+					button.querySelector('svg[color*="255, 48, 64"]') !== null ||
+					button.querySelector('svg[style*="255, 48, 64"]') !== null;
+
+				if (!isLikeTarget) return;
+
+				// Determine if the post is CURRENTLY already liked (retraction / unlike action)
+				// On Threads Web:
+				// - Already liked button has aria-label="Liked" (past tense) or "Unlike"
+				// - Heart SVG or container has red color "rgb(255, 48, 64)"
+				// - Button may have aria-pressed="true"
+				const isAlreadyLiked =
+					label === "liked" ||
+					label.includes("liked") ||
+					label.includes("unlike") ||
+					label.includes("remove like") ||
+					label.includes("ya no me gusta") ||
+					label.includes("descurtir") ||
+					button.getAttribute("aria-pressed") === "true" ||
+					button.querySelector('svg[color*="255, 48, 64"]') !== null ||
+					button.querySelector('svg[style*="255, 48, 64"]') !== null ||
+					button.querySelector('svg path[fill*="255, 48, 64"]') !== null ||
+					button.querySelector('svg[color*="rgb(255,"]') !== null ||
+					button.querySelector('svg[style*="rgb(255,"]') !== null;
+
+				// Retraction / Unlike action: silent retreat with zero audio distraction
+				if (isAlreadyLiked) {
+					return;
 				}
+
+				// Otherwise, user is liking the post: trigger tactile delight!
+				handleLikeAction(button);
 			},
 			true,
 		);
@@ -62,7 +100,9 @@ export default defineContentScript({
 			try {
 				const pack = SOUND_PACKS[settings.soundPack] ?? SOUND_PACKS[DEFAULT_SOUND_PACK];
 				if (pack) {
-					zzfx(settings.volume, ...pack.params);
+					// Apply user pitch with subtle organic micro-jitter (±3% variance) to prevent machine-gun fatigue on rapid likes
+					const pitched = applyPitch(pack.params, settings.pitch ?? 1.0, 0.03);
+					zzfx(settings.volume ?? 0.5, ...pitched);
 				}
 			} catch (err) {
 				console.warn("[ThreadFX] Sound trigger error:", err);

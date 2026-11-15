@@ -10,6 +10,15 @@
 
 ### Added
 
+- **Pitch Modulation Controller**: Introduced an acoustic pitch multiplier slider (0.5x to 2.0x) that dynamically shifts the tone of any sound preset with instant live audition, a quick reset button, and real-time frequency calculations.
+- **Expanded 8-Preset Sound Library**: Introduced two new signature procedural sound profiles—`Water Drop` (pure resonant acoustic droplet chime) and `Sub Thump` (deep 808 low-frequency tactile kick)—delivering balanced acoustic variety and perfect rectangular symmetry across both compact and widened side panels.
+- **Organic Micro-Pitch Jitter**: Injected subtle procedural pitch variance (±3%) into consecutive likes on Threads, eliminating the repetitive "machine-gun" effect during rapid scrolling and making every like feel lively and physical.
+- **Pinned Sound FX Context Header**: Anchored the Sound Profile title, contextual preset reset button, and acoustic category filter pills (All, Tactile, Arcade, Organic) to the top of the chassis so browsing filters remain permanently accessible while scrolling.
+- **Adaptive 2-Channel Dynamics Strip**: Redesigned Audition Volume and Pitch Modulation into a balanced, pro-audio channel strip with 1-click speaker mute/unmute, nominal 50% default calibration, and contextual reset buttons.
+- **Refined Header & System Utility Hierarchy**: Re-architected the Side Panel top bar into a clean two-tier hierarchy—placing the bold brand mark and tactile master power module on the top row, and pairing the real-time engagement counter with the ambient theme switcher in the utility bar below.
+- **Docked 28-Band Audio Spectrum Monitor**: Built a 28-band live frequency waveform monitor docked permanently at the bottom of the Sound FX chassis with an emerald status LED, ambient resting rhythm, live acoustic telemetry, and dynamic pulse animations synchronized with auditions and in-feed likes.
+- **Adaptive Container Query Grid**: Upgraded the sound preset grid using CSS Container Queries to fluidly scale from 2 columns on compact side panels to 3 and 4 columns on widened side panels without layout distortion.
+- **Acoustic Category Filter Pills**: Organized presets into clean acoustic domains (All, Tactile, Arcade, Organic) for focused, clutter-free browsing.
 - **Independent Tri-State Theme Switcher**: Introduced a dedicated light, dark, and system color mode controller to the Side Panel header, letting you effortlessly switch between crisp daylight clarity, deep obsidian contrast, or seamless synchronization with your operating system preferences.
 - **Bespoke 3D Speech-Thread Brand Mark**: Upgraded the official brand mark to a brushed titanium and liquid chrome continuous dialogue ribbon with three tactile metallic chat studs inside an elevated dark matte obsidian squircle.
 - **Automated Asset Processing Pipeline**: Introduced a dedicated Python pipeline (`process_logo.py`) that automates boundary unmultiplication, Lanczos downsampling across all icon tiers, multi-layer `.ico` packaging, and Open Graph card compositing.

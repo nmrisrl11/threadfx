@@ -9,6 +9,7 @@ export interface ThreadFXSettings {
 	enabled: boolean;
 	volume: number;
 	soundPack: SoundPackId;
+	pitch: number;
 	confettiEnabled: boolean;
 	likesJuicedCount: number;
 	confettiPalette: ConfettiPaletteId;
@@ -19,8 +20,9 @@ export interface ThreadFXSettings {
 
 export const DEFAULT_SETTINGS: ThreadFXSettings = {
 	enabled: true,
-	volume: 0.6,
+	volume: 0.5,
 	soundPack: "bubble",
+	pitch: 1.0,
 	confettiEnabled: true,
 	likesJuicedCount: 0,
 	confettiPalette: "rose",

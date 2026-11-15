@@ -16,7 +16,9 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & tasks
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components (sidepanel & primitives)
-│   │   ├── sidepanel/              # Header, ThemeToggle, Tabs, Audio/Particle Grids
+│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, Footer)
+│   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
+│   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
 │   ├── entrypoints/
 │   │   ├── background.ts           # Service worker (sidePanel behavior)
@@ -148,6 +150,15 @@ To maintain naming clarity, eliminate collisions with HTML primitives and domain
 - **NEVER** import bare icon names without the `Icon` suffix (e.g., `import { Sun }` or `import { Heart }` is strictly prohibited).
 - **Native Availability**: Modern `lucide-react` natively exports all icon components directly with the `Icon` suffix; never alias manually unless disambiguating an external symbol.
 
+### Rule 9: No Emojis in UI or User-Facing Copywriting (Zero AI-Slop Emojis)
+
+To prevent generic, unpolished AI slop and uphold ThreadFX's sleek, hardware-grade aesthetic:
+
+- **NEVER** use emojis in UI components, buttons, tabs, preset cards, badges, settings panels, or user-facing copywriting.
+- **NEVER** use emojis in runtime data structures, preset metadata, or UI labels.
+- **ALWAYS** use crisp, semantic Lucide React icons (following Rule 8) or clean typographic hierarchy (`font-mono`, frequency readouts, etc.) for visual distinction.
+- **Strict Exception**: Markdown documentation files (e.g., `README.md`) may use tasteful emojis for top-level section headers only, but never in copy exposed to extension or web users.
+
 ---
 
 ## 3. Cross-OS & Platform Support Guidelines
@@ -210,8 +221,9 @@ State shared between `content.ts` and `sidepanel` must follow this schema:
 ```typescript
 export interface ThreadFXSettings {
 	enabled: boolean; // Master toggle (default: true)
-	volume: number; // 0.0 to 1.0 (default: 0.6)
-	soundPack: "bubble" | "retro" | "hype" | "blip"; // Active ZzFX preset
+	volume: number; // 0.0 to 1.0 (default: 0.5)
+	soundPack: "bubble" | "retro" | "hype" | "blip" | "wood" | "zap" | "drop" | "thump"; // Active ZzFX preset
+	pitch: number; // Pitch multiplier 0.5x to 2.0x (default: 1.0)
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")

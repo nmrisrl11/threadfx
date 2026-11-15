@@ -26,7 +26,7 @@ import React, { useState } from "react";
 
 export default function App() {
 	const [selectedPack, setSelectedPack] = useState<SoundPackId>("bubble");
-	const [volume, setVolume] = useState<number>(0.6);
+	const [volume, setVolume] = useState<number>(0.5);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const [likeCount, setLikeCount] = useState<number>(24);
 	const [confettiActive, setConfettiActive] = useState<boolean>(true);
@@ -201,7 +201,9 @@ export default function App() {
 												}`}
 											>
 												<div className="mb-1 flex items-center justify-between">
-													<span className="text-lg">{pack.icon}</span>
+													<span className="text-muted-foreground/60 font-mono text-[10px]">
+														{pack.frequency}Hz
+													</span>
 													{isSelected && <CheckIcon className="h-3.5 w-3.5 text-[#FF2E93]" />}
 												</div>
 												<div className="text-foreground text-xs font-bold">{pack.name}</div>
@@ -263,7 +265,7 @@ export default function App() {
 								<p className="text-sm leading-relaxed text-[#EDEDED]">
 									Testing tactile social interactions! Liking this post triggers zero-latency
 									procedural sound synthesis, custom particle dynamics, and responsive micro-motion.
-									Hit the heart below to test the juice! ⚡✨
+									Hit the heart below to test the juice!
 								</p>
 
 								{/* Simulated Action Bar */}

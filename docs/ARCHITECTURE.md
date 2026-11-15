@@ -101,8 +101,9 @@ State shared across extension components follows the typed `ThreadFXSettings` sc
 ```typescript
 export interface ThreadFXSettings {
 	enabled: boolean; // Master toggle (default: true)
-	volume: number; // 0.0 to 1.0 (default: 0.6)
+	volume: number; // 0.0 to 1.0 (default: 0.5)
 	soundPack: SoundPackId; // Active ZzFX preset from @data/presets
+	pitch: number; // Pitch multiplier 0.5x to 2.0x (default: 1.0)
 	confettiEnabled: boolean; // Visual confetti on like (default: true)
 	likesJuicedCount: number; // Lifetime counter of likes enhanced
 	theme: "system" | "dark" | "light"; // Tri-state color scheme (default: "system")

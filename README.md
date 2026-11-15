@@ -122,7 +122,9 @@ threadfx/
 ├── .vscode/                        # Recommended extensions, settings & task runner v2.0.0
 ├── extension/                      # WXT Browser Extension (Manifest V3)
 │   ├── components/                 # UI components
-│   │   ├── sidepanel/              # Header, ThemeToggle, Tabs, Audio/Particle Grids
+│   │   ├── sidepanel/              # Shared chrome (Header, MetricStrip, ThemeToggle, Footer)
+│   │   │   ├── sound-fx/           # Tab coordinator, header, grid, channel strips, waveform monitor
+│   │   │   └── particles/          # Tab coordinator, palettes grid, physics sliders
 │   │   └── ui/                     # Primitives (Button, Slider, Switch, Tabs, etc.)
 │   ├── entrypoints/
 │   │   ├── sidepanel/              # Native Chrome Side Panel React 19 App
