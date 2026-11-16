@@ -128,3 +128,83 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {
 	background: #383838;
 }
+
+/* ==========================================================================
+   Scroll-Driven Section Fade Animations (120 FPS Compositor-Thread Motion)
+   Inspired by islandcn.dev & Modern Web Guidance (scroll-entry-exit-effects)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports ((animation-timeline: view()) and (animation-range: entry)) {
+		@keyframes hero-fade-out {
+			from {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			to {
+				opacity: 0;
+				transform: translateY(-24px);
+			}
+		}
+
+		@keyframes cue-fade-out {
+			from {
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+			to {
+				opacity: 0;
+				transform: translateY(12px);
+				pointer-events: none;
+			}
+		}
+
+		@keyframes section-fade-in {
+			from {
+				opacity: 0;
+				transform: translateY(28px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes section-fade-out {
+			from {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			to {
+				opacity: 0;
+				transform: translateY(-20px);
+			}
+		}
+
+		/* Bottom Scroll Cue: Fades out quickly upon initial scroll (0px to 100px) */
+		.hero-scroll-cue {
+			animation: cue-fade-out cubic-bezier(0.23, 1, 0.32, 1) both;
+			animation-timeline: scroll(root);
+			animation-range: 0px 100px;
+		}
+
+		/* Hero Section: Stays 100% visible while reading; dissolves only as it pushes off-screen (50% to 95%) */
+		.hero-scroll-fade {
+			animation: hero-fade-out cubic-bezier(0.23, 1, 0.32, 1) both;
+			animation-timeline: view(block);
+			animation-range: exit 50% exit 95%;
+		}
+
+		/* Mid-Page Sections: Enters smoothly from below, remains fully visible in view, dissolves on late exit */
+		.section-scroll-fade {
+			animation:
+				section-fade-in cubic-bezier(0.23, 1, 0.32, 1) backwards,
+				section-fade-out cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+			animation-timeline: view(block), view(block);
+			animation-range:
+				entry 0% entry 240px,
+				exit 65% exit 98%;
+		}
+	}
+}

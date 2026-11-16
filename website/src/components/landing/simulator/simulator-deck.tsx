@@ -141,7 +141,10 @@ export function SimulatorDeck() {
 	};
 
 	return (
-		<section id="simulator" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-16">
+		<section
+			id="simulator"
+			className="section-scroll-fade mx-auto max-w-5xl scroll-mt-20 px-6 py-16"
+		>
 			<div className="mb-8 text-center">
 				<h2 className="text-foreground text-2xl font-bold tracking-tight sm:text-3xl">
 					The Instrument

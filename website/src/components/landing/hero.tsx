@@ -60,7 +60,7 @@ export function Hero() {
 	);
 
 	return (
-		<section className="relative flex min-h-dvh w-full flex-col items-center justify-between px-4 py-8 sm:px-6 sm:py-12">
+		<section className="hero-scroll-fade relative flex min-h-dvh w-full flex-col items-center justify-between px-4 py-8 sm:px-6 sm:py-12">
 			{/* Top Spacer for balanced vertical centering */}
 			<div className="h-4 shrink-0 sm:h-8" />
 
@@ -116,8 +116,8 @@ export function Hero() {
 				</div>
 			</div>
 
-			{/* Bottom Scroll Indicator (Protected from text selection) */}
-			<div className="flex shrink-0 flex-col items-center pt-8 pb-4">
+			{/* Bottom Scroll Indicator: Fades out quickly upon scroll */}
+			<div className="hero-scroll-cue flex shrink-0 flex-col items-center pt-8 pb-4">
 				<a
 					href="#simulator"
 					aria-label="Scroll to interactive simulator"

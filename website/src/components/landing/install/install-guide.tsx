@@ -18,7 +18,10 @@ export function InstallGuide() {
 	};
 
 	return (
-		<section id="install-guide" className="mx-auto max-w-4xl scroll-mt-20 px-6 py-20">
+		<section
+			id="install-guide"
+			className="section-scroll-fade mx-auto max-w-4xl scroll-mt-20 px-6 py-20"
+		>
 			<div className="mb-10 text-center">
 				<h2 className="text-foreground text-2xl font-bold tracking-tight sm:text-3xl">
 					Install in 3 Simple Steps

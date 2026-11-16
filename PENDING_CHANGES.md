@@ -10,6 +10,8 @@
 
 ### Added
 
+- **Smooth 120fps Scroll-Driven Section Transitions**: Implemented hardware-accelerated, compositor-thread CSS Scroll-Driven Animations (`animation-timeline: view(block)`) inspired by `islandcn.dev`. Mid-page sections smoothly glide in from below on entry with subtle upward micro-motion, remain fully crisp and interactive while in view, and only dissolve late as they leave the top.
+- **Natural Hero Scroll Pacing & Early Cue Dissolve**: Re-engineered scroll ranges on the landing page hero to keep the headline, acoustic waveform, and download action 100% visible and solid during reading, while smoothly fading out the bottom "Try the Simulator" cue on initial scroll and transitioning seamlessly into the live instrument deck without empty gaps.
 - **Interactive Acoustic Pedestal & Flanking Particle Dynamics**: Elevated the landing page hero with a 3D brand emblem featuring an integrated 28-band monochrome spectrum monitor that dynamically shifts its resonant frequency center as users cycle through all 8 procedural sound packs (`Bubble Pop` through `Sub Thump`), accompanied by subtle flanking silver metallic particles drifting behind the emblem.
 - **Global Monochromatic Text Selection Sheen**: Upgraded global text selection across the landing page with a soft frosted monochrome sheen, eliminating harsh browser blue boxes while keeping interactive action buttons protected from accidental drag selection.
 - **Future-Proof Multi-Platform Feed Positioning**: Updated headline and sub-description copywriting across the landing page to future-proof the suite for upcoming headless feed adapters across Threads, X, Bluesky, Instagram, and web feeds.

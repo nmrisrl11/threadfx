@@ -5,7 +5,10 @@ import { SidepanelSpecCard } from "@/components/landing/bento/sidepanel-spec-car
 
 export function FeatureBento() {
 	return (
-		<section id="features" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-20">
+		<section
+			id="features"
+			className="section-scroll-fade mx-auto max-w-5xl scroll-mt-20 px-6 py-20"
+		>
 			<div className="mb-10 text-center">
 				<h2 className="text-foreground text-2xl font-bold tracking-tight sm:text-3xl">
 					Engineered for Tactile Delight

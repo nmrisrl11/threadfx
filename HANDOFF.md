@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 16, 2026 (10:55 AM +08:00)  
+> **Last Synchronized:** November 16, 2026 (11:30 AM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Clean code state with fully validated Hero Section elevation on website. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:web` & `build:ext`) passing cleanly.
+> **Working Tree Status:** Clean code state with fully validated Hero Section elevation and smooth 120fps CSS Scroll-Driven Animations on website. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
 ---
 

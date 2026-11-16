@@ -4,7 +4,10 @@ import { TrophyIcon } from "lucide-react";
 
 export function MilestonesStrip() {
 	return (
-		<section id="milestones" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-20">
+		<section
+			id="milestones"
+			className="section-scroll-fade mx-auto max-w-5xl scroll-mt-20 px-6 py-20"
+		>
 			<div className="mb-10 text-center">
 				<div className="text-muted-foreground inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#121214] px-3 py-1 font-mono text-[11px]">
 					<TrophyIcon className="h-3.5 w-3.5 text-[#FF2E93]" />
