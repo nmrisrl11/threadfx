@@ -149,7 +149,11 @@ export function DownloadSection() {
 	}, []);
 
 	return (
-		<section id="download" ref={trackRef} className="relative h-[200vh] w-full sm:h-[220vh]">
+		<section
+			id="download"
+			ref={trackRef}
+			className="section-scroll-fade relative h-[200vh] w-full sm:h-[220vh]"
+		>
 			{/* Sticky Centered Presentation Stage */}
 			<div className="sticky top-0 flex min-h-dvh w-full flex-col items-center justify-center overflow-hidden px-4 py-12 text-center sm:px-6">
 				<div className="mx-auto flex w-full max-w-4xl flex-col items-center">

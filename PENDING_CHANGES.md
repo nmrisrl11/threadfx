@@ -10,6 +10,12 @@
 
 ### Added
 
+- **Architectural Landing Page Footer with Full-Width Brand Wordmark (`Footer`)**: Enhanced the companion website footer inspired by modern architectural designs:
+  - Multi-column product layout separating in-page shortcuts (`Navigation`: Simulator, Features, Milestones, Installation, Download) from open-source ecosystem resources (`Project`: GitHub, Releases, Issue Tracker, MIT License).
+  - High-contrast group headers (`text-zinc-100 font-semibold`) establishing clear visual hierarchy over muted interactive link items (`text-zinc-400 hover:text-white`) with external link micro-motion indicators (`ArrowUpRightIcon`).
+  - Warm, user-friendly privacy reassurance (`100% private • Runs locally on your device`) alongside open-source licensing and a subtle smooth "Back to top" button (`ArrowUpIcon`).
+  - Heroic, full-width vector brand wordmark (`THREADFX`) spanning the entire base with positive geometric letter-spacing (`0.035em`) for clean glyph separation and understated architectural presence (`text-white/[0.07] hover:text-white/[0.13]`).
+
 - **Cardless Scroll-Revealed Download CTA Section (`DownloadSection`)**: Introduced an unboxed, minimalist closing CTA section positioned below the installation guide. Features a 3-beat scroll-triggered reveal powered by GSAP and ScrollTrigger:
   - Beat 1: Title floats and blurs in smoothly as the section settles into view (`Ready to feel every reaction?`).
   - Beat 2: Subtitle floats in with generous, balanced typography spacing (`Download the free extension and turn silent scrolling into a rich, tactile experience in seconds.`).
