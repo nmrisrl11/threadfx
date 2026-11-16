@@ -1,4 +1,4 @@
-import { BentoSection } from "@/components/bento/bento-section";
+import { FeatureSection } from "@/components/features/feature-section";
 import { HeroSection } from "@/components/hero/hero-section";
 import { InstallSection } from "@/components/install/install-section";
 import { MilestonesSection } from "@/components/milestones/milestones-section";
@@ -14,7 +14,7 @@ export default function App() {
 			<main>
 				<HeroSection />
 				<SimulatorSection />
-				<BentoSection />
+				<FeatureSection />
 				<MilestonesSection />
 				<InstallSection />
 			</main>

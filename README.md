@@ -166,7 +166,7 @@ threadfx/
 ├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
 │   │   ├── components/             # UI components (flat domain architecture)
-│   │   │   ├── bento/              # BentoSection (bento-section.tsx + spec cards)
+│   │   │   ├── features/           # FeatureSection (feature-section, feature-card)
 │   │   │   ├── hero/               # HeroSection (hero-section.tsx, hero-waveform.tsx, hero-scroll-cue.tsx)
 │   │   │   ├── install/            # InstallSection (install-section.tsx, update-callout.tsx)
 │   │   │   ├── layout/             # Chrome & page layout components (navbar, footer)

@@ -143,7 +143,7 @@ export interface ThreadFXSettings {
   - `components/layout/`: Chrome & page layout components (`navbar.tsx`, `footer.tsx`).
   - `components/hero/`: Modular hero coordinator (`hero-section.tsx`, `hero-waveform.tsx`, `hero-scroll-cue.tsx`).
   - `components/simulator/`: Domain-isolated audio/particle simulator (`simulator-section.tsx`, `soundboard-panel.tsx`, `audio-sliders.tsx`, `particle-controls.tsx`, `thread-post-mock.tsx`).
-  - `components/bento/`: Asymmetric 4-panel technical showcase (`bento-section.tsx`, `audio-spec-card.tsx`, `particle-spec-card.tsx`, `sidepanel-spec-card.tsx`, `privacy-spec-card.tsx`).
+  - `components/features/`: Feature showroom and DRY parametric cards (`feature-section.tsx`, `feature-card.tsx`).
   - `components/milestones/`: Juicer ranks & 3D medal gallery (`milestones-section.tsx`, `medal-card.tsx`).
   - `components/install/`: 3-stage installation tray and update callout (`install-section.tsx`, `update-callout.tsx`).
 - **Purged AI-Slop Visual Noise:** Eliminated fuzzy rainbow blur blobs, split-color gradient text, and cookie-cutter 6-card SaaS template grids in favor of deep obsidian surfaces (`#080808` / `#111114`) and hairline borders (`rgba(255,255,255,0.08)`).
@@ -170,8 +170,8 @@ When resuming development in the next session, proceed through the following sec
 1. **The Instrument / Simulator Section (`website/src/components/landing/simulator/`):**
    - Review and polish the interactive soundboard pads, channel sliders (Volume & Pitch), and particle controls.
    - Refine the simulated Threads feed post card to ensure maximum physical tactile satisfaction upon liking and reposting.
-2. **Feature Bento Showcase (`website/src/components/landing/bento/`):**
-   - Review the 4 asymmetrical engineering spec tiles (ZzFX synthesis, GPU canvas particles, Chrome Side Panel architecture, and 100% on-device privacy guarantee).
+2. **Feature Showcase Gallery (`website/src/components/features/`):**
+   - Review the 4 asymmetrical feature cards (Sound Effects, Celebrations, Side Panel, and 100% On-Device Privacy).
 3. **Gamification & Medal Gallery (`website/src/components/landing/milestones/`):**
    - Review the 7-tier juicer milestone rank showcase and 3D WebP medal hover states.
 4. **Install Tray (`website/src/components/landing/install/`):**
