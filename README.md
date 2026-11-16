@@ -170,7 +170,7 @@ threadfx/
 │   │   │   ├── hero/               # HeroSection (hero-section.tsx, hero-waveform.tsx, hero-scroll-cue.tsx)
 │   │   │   ├── install/            # InstallSection (install-section.tsx, update-callout.tsx)
 │   │   │   ├── layout/             # Chrome & page layout components (navbar, footer)
-│   │   │   ├── milestones/         # MilestonesSection (milestones-section.tsx, medal-card.tsx)
+│   │   │   ├── milestones/         # MilestonesSection (milestones-section.tsx, milestone-panel.tsx, milestone-theme.ts)
 │   │   │   ├── simulator/          # SimulatorSection (simulator-section, thread-post-mock, audio-sliders, particle-controls, soundboard-panel)
 │   │   │   └── ui/                 # Primitives (animated-content, badge, button, card, slider, switch)
 │   │   ├── lib/                    # Shared utilities (cn, audio-events)

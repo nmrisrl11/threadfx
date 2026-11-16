@@ -1,31 +1,95 @@
-import { MedalCard } from "@/components/milestones/medal-card";
+import { MilestonePanel } from "@/components/milestones/milestone-panel";
+import { AnimatedContent } from "@/components/ui/animated-content";
 import { JUICER_MILESTONES } from "@data/milestones";
 import { TrophyIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+// Wait 85ms before expanding on hover to prevent cursor sweep thrashing (from gallery1.tsx)
+const HOVER_INTENT_MS = 85;
 
 export function MilestonesSection() {
+	// Default to Rank 1 (Bronze) as the entry milestone
+	const [activeLevel, setActiveLevel] = useState<number>(1);
+	const intent = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+	useEffect(() => () => clearTimeout(intent.current), []);
+
+	const handleHover = (level: number) => {
+		clearTimeout(intent.current);
+		intent.current = setTimeout(() => setActiveLevel(level), HOVER_INTENT_MS);
+	};
+
+	const handleActivate = (level: number) => {
+		clearTimeout(intent.current);
+		setActiveLevel(level);
+	};
+
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+			e.preventDefault();
+			setActiveLevel((prev) => (prev >= 7 ? 1 : prev + 1));
+		} else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+			e.preventDefault();
+			setActiveLevel((prev) => (prev <= 1 ? 7 : prev - 1));
+		} else if (e.key === "Home") {
+			e.preventDefault();
+			setActiveLevel(1);
+		} else if (e.key === "End") {
+			e.preventDefault();
+			setActiveLevel(7);
+		}
+	};
+
 	return (
 		<section
 			id="milestones"
-			className="section-scroll-fade mx-auto max-w-5xl scroll-mt-20 px-6 py-20"
+			className="section-scroll-fade relative flex min-h-dvh w-full flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-12"
 		>
-			<div className="mb-10 text-center">
-				<div className="text-muted-foreground inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#121214] px-3 py-1 font-mono text-[11px]">
-					<TrophyIcon className="h-3.5 w-3.5 text-[#FF2E93]" />
-					<span>Gamified Sensory Progression</span>
-				</div>
-				<h2 className="text-foreground mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-					Ascend the Juicer Ranks
-				</h2>
-				<p className="text-muted-foreground mx-auto mt-2 max-w-xl text-sm leading-relaxed">
-					Every like enhanced feeds your private, on-device sensory odometer. Unlock victory
-					fanfares, particle fireworks, and bespoke 3D medals as your journey progresses.
-				</p>
-			</div>
+			<div className="my-auto w-full max-w-6xl">
+				{/* Section Header (Symmetrical with Simulator & Feature Sections) */}
+				<div className="mb-10 text-center">
+					<div className="mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
+						<TrophyIcon className="size-3.5 text-zinc-400" />
+						<span>Milestone Progression</span>
+					</div>
 
-			<div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-				{JUICER_MILESTONES.map((milestone) => (
-					<MedalCard key={milestone.level} milestone={milestone} />
-				))}
+					<h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+						Collect every milestone.
+					</h2>
+					<p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-balance text-zinc-400 sm:text-lg">
+						Every reaction you give builds toward rare 3D medals.
+						<br className="hidden sm:inline" />
+						Unlock celebratory fanfares and fireworks from 10 to 1,000 likes.
+					</p>
+				</div>
+
+				{/* Accordion Showroom Gallery — Staggered Entry per panel via AnimatedContent */}
+				<AnimatedContent
+					distance={0}
+					scale={0.85}
+					blur={6}
+					duration={0.9}
+					ease="power3.out"
+					stagger={0.05}
+					threshold={0.1}
+					once={false}
+					delay={0.1}
+					role="region"
+					aria-label="Juicer Milestone Medals Gallery"
+					onKeyDown={handleKeyDown}
+					onMouseLeave={() => clearTimeout(intent.current)}
+					className="flex w-full flex-col gap-2 md:h-[500px] md:flex-row md:gap-2.5"
+				>
+					{JUICER_MILESTONES.map((milestone) => (
+						<MilestonePanel
+							key={milestone.level}
+							milestone={milestone}
+							isActive={activeLevel === milestone.level}
+							onActivate={() => handleActivate(milestone.level)}
+							onHover={() => handleHover(milestone.level)}
+						/>
+					))}
+				</AnimatedContent>
 			</div>
 		</section>
 	);

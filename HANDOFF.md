@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 16, 2026 (11:50 AM +08:00)  
+> **Last Synchronized:** November 16, 2026 (04:20 PM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Clean code state with flattened components directory architecture, standardized `*Section` coordinators, and dedicated `layout/` folder. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
+> **Working Tree Status:** Clean code state with fully elevated MilestonesSection accordion showroom, 82% WebP asset weight reduction, Vercel edge caching rules, and responsive dual-mode layout (desktop horizontal + mobile vertical accordion). All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
 ---
 
@@ -144,7 +144,7 @@ export interface ThreadFXSettings {
   - `components/hero/`: Modular hero coordinator (`hero-section.tsx`, `hero-waveform.tsx`, `hero-scroll-cue.tsx`).
   - `components/simulator/`: Domain-isolated audio/particle simulator (`simulator-section.tsx`, `soundboard-panel.tsx`, `audio-sliders.tsx`, `particle-controls.tsx`, `thread-post-mock.tsx`).
   - `components/features/`: Feature showroom and DRY parametric cards (`feature-section.tsx`, `feature-card.tsx`).
-  - `components/milestones/`: Juicer ranks & 3D medal gallery (`milestones-section.tsx`, `medal-card.tsx`).
+  - `components/milestones/`: Juicer ranks & 3D medal gallery (`milestones-section.tsx`, `milestone-panel.tsx`, `milestone-theme.ts`).
   - `components/install/`: 3-stage installation tray and update callout (`install-section.tsx`, `update-callout.tsx`).
 - **Purged AI-Slop Visual Noise:** Eliminated fuzzy rainbow blur blobs, split-color gradient text, and cookie-cutter 6-card SaaS template grids in favor of deep obsidian surfaces (`#080808` / `#111114`) and hairline borders (`rgba(255,255,255,0.08)`).
 - **Hero Section Finalized to Precision Proportions & Tactile Interactivity:**
@@ -160,6 +160,24 @@ export interface ThreadFXSettings {
   - **Apple-Style Scroll Cue:** Minimalist bottom pill featuring an animated bouncing dot and `TRY THE SIMULATOR` in clean monospaced tracking.
   - **Native Right-Click & Selection Preserved:** Removed context menu blockers to ensure native browser right-click behavior.
   - **Temporary Navbar Concealment:** `<Navbar />` temporarily commented out in `App.tsx` for focused hero visual iteration.
+
+### 🏆 Milestones Section Gallery Elevation & Asset Optimization (`website/`)
+
+- **Dual-Mode Expanding Accordion Showroom (`MilestonesSection` & `MilestonePanel`):**
+  - **Desktop (`md:`):** Horizontal showroom with buttery-smooth cubic-bezier expansion (`transition-[flex-grow] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)]`), hover intent debouncing (`HOVER_INTENT_MS = 85ms`), fixed-width content container (`md:w-[460px]`) preventing text reflow, and rotated vertical rank typography on collapsed slats.
+  - **Mobile (`< md`):** Vertical drawer accordion with smooth height animation (`transition-[height,flex-grow,background-color]`). Inactive panels collapse to slim horizontal strips (`h-14 sm:h-16`) displaying badge thumbnail, level, rank title, and required likes. Tapping expands to `h-[430px]` while retracting the previous active panel.
+- **82% WebP Asset Payload Optimization (2.94 MB $\to$ 546 KB):**
+  - Downsampled 7 3D environmental artwork backgrounds (`milestone-1-bg.webp` through `milestone-7-bg.webp`) from 2048×2048 to 1024×1024 using high-precision Lanczos resampling, re-encoded at WebP quality 82 (method 6). Slashed total weight by 81.9% with zero perceptible quality degradation on Retina displays.
+  - Added explicit `width={1024}` and `height={1024}` attributes to eliminate Cumulative Layout Shift (CLS).
+  - Configured selective loading: `loading={milestone.level === 1 ? "eager" : "lazy"}` and `decoding="async"` to prioritize initial paint.
+- **Vercel Edge CDN Caching Rule:**
+  - Updated `website/vercel.json` with `/(icons|badges|milestones)/(.*)` specifying `public, max-age=31536000, stale-while-revalidate=86400` (1-year edge cache, 0 origin egress on cached hits).
+  - Tuned `/version.json` caching to 5 minutes (`max-age=300`) for responsive extension update detection.
+- **Frosted Minimalist Telemetry & Audio Pill:**
+  - Symmetrical frosted glass pills (`rounded-full border border-white/15 bg-black/60 px-3 py-1 backdrop-blur-md`) for the high-contrast `Rank 0X / 07` indicator and the interactive `Listen to Fanfare` trigger.
+  - Synthesizes procedural victory audio via ZzFX (`INTERACTION_SOUNDS.publish`) with harmonic pitch tuning and celebratory confetti bursts.
+- **Staggered Panel Cascade via `AnimatedContent`:**
+  - Wrapped `MilestonePanel` items directly with `AnimatedContent` (`stagger: 0.05`, `scale: 0.85`, `blur: 6px`, `duration: 0.9s`, `ease: power3.out`), cascading each panel sequentially into view on scroll.
 
 ---
 
