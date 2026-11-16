@@ -160,25 +160,20 @@ h6 {
 			}
 		}
 
-		@keyframes section-fade-in {
-			from {
+		/* Mid-Page Section Scroll Fade: Centralized Timeline-Range Keyframe (scroll-entry-exit-effects) */
+		@keyframes section-fade {
+			entry 0% {
 				opacity: 0;
 				transform: translateY(28px);
 			}
-			to {
+			entry 100%,
+			exit 20% {
 				opacity: 1;
 				transform: translateY(0);
 			}
-		}
-
-		@keyframes section-fade-out {
-			from {
-				opacity: 1;
-				transform: translateY(0);
-			}
-			to {
+			exit 100% {
 				opacity: 0;
-				transform: translateY(-20px);
+				transform: translateY(-24px);
 			}
 		}
 
@@ -198,13 +193,8 @@ h6 {
 
 		/* Mid-Page Sections: Enters smoothly from below, remains fully visible in view, dissolves on late exit */
 		.section-scroll-fade {
-			animation:
-				section-fade-in cubic-bezier(0.23, 1, 0.32, 1) backwards,
-				section-fade-out cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
-			animation-timeline: view(block), view(block);
-			animation-range:
-				entry 0% entry 240px,
-				exit 65% exit 98%;
+			animation: section-fade cubic-bezier(0.23, 1, 0.32, 1) both;
+			animation-timeline: view(block);
 		}
 	}
 }

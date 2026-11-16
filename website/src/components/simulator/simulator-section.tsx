@@ -2,7 +2,8 @@ import { AudioSliders } from "@/components/simulator/audio-sliders";
 import { ParticleControls } from "@/components/simulator/particle-controls";
 import { SoundboardPanel } from "@/components/simulator/soundboard-panel";
 import { ThreadPostMock } from "@/components/simulator/thread-post-mock";
-import { Card } from "@/components/ui/card";
+import { AnimatedContent } from "@/components/ui/animated-content";
+import { emitAudioPulse } from "@/lib/audio-events";
 import type { BurstMode, ConfettiPaletteId } from "@data/particles";
 import {
 	CONFETTI_PALETTES,
@@ -28,8 +29,9 @@ export function SimulatorSection() {
 	const [selectedPalette, setSelectedPalette] =
 		useState<ConfettiPaletteId>(DEFAULT_CONFETTI_PALETTE);
 	const [selectedEmoji, setSelectedEmoji] = useState<string>(DEFAULT_EMOJI);
+	const [pressedKeyIndex, setPressedKeyIndex] = useState<number | null>(null);
 
-	// Keyboard hotkeys [1-8] for instant sound auditioning
+	// Physical keyboard hotkeys [1-8] for instant sound auditioning & key depression
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			const target = e.target as HTMLElement | null;
@@ -47,8 +49,12 @@ export function SimulatorSection() {
 				if (targetPack) {
 					e.preventDefault();
 					setSelectedPack(targetPack.id);
+					setPressedKeyIndex(num - 1);
+					setTimeout(() => setPressedKeyIndex(null), 150);
+
 					const pitched = applyPitch(targetPack.params, pitch);
 					zzfx(volume, ...pitched);
+					emitAudioPulse(targetPack);
 				}
 			}
 		};
@@ -63,6 +69,7 @@ export function SimulatorSection() {
 		if (pack) {
 			const pitched = applyPitch(pack.params, pitch);
 			zzfx(volume, ...pitched);
+			emitAudioPulse(pack);
 		}
 	};
 
@@ -76,8 +83,9 @@ export function SimulatorSection() {
 			const pack = SOUND_PACKS[selectedPack] || SOUND_PACKS.bubble;
 			const pitched = applyPitch(pack.params, pitch, 0.03);
 			zzfx(volume, ...pitched);
+			emitAudioPulse(pack);
 
-			// Canvas particle burst
+			// Canvas particle burst centered on the like button
 			if (confettiActive) {
 				const rect = e.currentTarget.getBoundingClientRect();
 				const x = (rect.left + rect.width / 2) / window.innerWidth;
@@ -143,52 +151,76 @@ export function SimulatorSection() {
 	return (
 		<section
 			id="simulator"
-			className="section-scroll-fade mx-auto max-w-5xl scroll-mt-20 px-6 py-16"
+			className="section-scroll-fade relative flex min-h-dvh w-full flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-12"
 		>
-			<div className="mb-8 text-center">
-				<h2 className="text-foreground text-2xl font-bold tracking-tight sm:text-3xl">
-					The Instrument
-				</h2>
-				<p className="text-muted-foreground mt-2 text-sm">
-					Audition procedural sound profiles and tune particle physics live before installing.
-				</p>
+			<div className="my-auto w-full max-w-6xl">
+				{/* Section Header (Static - No animation) */}
+				<div className="mb-10 text-center">
+					<h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+						Feel the feedback.
+					</h2>
+					<p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+						Select sound profiles with keys 1–8 and tap like to test your haptic setup live.
+					</p>
+				</div>
+
+				{/* Layer 1: Spatial Stage (Thread Post Mock with Controls) */}
+				<AnimatedContent
+					distance={0}
+					scale={0.85}
+					blur={6}
+					duration={0.9}
+					ease="power3.out"
+					stagger={0.08}
+					threshold={0.1}
+					once={false}
+					className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:items-center lg:gap-8"
+				>
+					{/* Center Stage: The Hero Thread Post Mock (First in DOM -> Animates First) */}
+					<div className="order-1 flex justify-center lg:order-2 lg:col-span-6">
+						<ThreadPostMock
+							isLiked={isLiked}
+							likeCount={likeCount}
+							repostCount={repostCount}
+							onLike={handleSimulatedLike}
+							onRepost={handleSimulatedRepost}
+						/>
+					</div>
+
+					{/* Left Satellite: Acoustics Controller (Second in DOM -> Animates Second) */}
+					<div className="order-2 lg:order-1 lg:col-span-3">
+						<AudioSliders
+							volume={volume}
+							pitch={pitch}
+							onVolumeChange={setVolume}
+							onPitchChange={setPitch}
+						/>
+					</div>
+
+					{/* Right Satellite: Particles Controller (Third in DOM -> Animates Third) */}
+					<div className="order-3 lg:col-span-3">
+						<ParticleControls
+							confettiActive={confettiActive}
+							burstMode={burstMode}
+							selectedPalette={selectedPalette}
+							selectedEmoji={selectedEmoji}
+							onToggleConfetti={setConfettiActive}
+							onSelectBurstMode={setBurstMode}
+							onSelectPalette={setSelectedPalette}
+							onSelectEmoji={setSelectedEmoji}
+						/>
+					</div>
+				</AnimatedContent>
+
+				{/* Layer 2: Musical Soundboard Keybed */}
+				<div className="mx-auto mt-8 w-full max-w-4xl">
+					<SoundboardPanel
+						selectedPack={selectedPack}
+						onSelectPack={handleSelectPack}
+						pressedKeyIndex={pressedKeyIndex}
+					/>
+				</div>
 			</div>
-
-			<Card className="grid grid-cols-1 gap-6 border-white/8 bg-[#111114] p-5 shadow-2xl sm:p-7 md:grid-cols-12">
-				{/* Audio & Particle Controls Column */}
-				<div className="space-y-4 md:col-span-6 md:border-r md:border-white/8 md:pr-6">
-					<SoundboardPanel selectedPack={selectedPack} onSelectPack={handleSelectPack} />
-
-					<AudioSliders
-						volume={volume}
-						pitch={pitch}
-						onVolumeChange={setVolume}
-						onPitchChange={setPitch}
-					/>
-
-					<ParticleControls
-						confettiActive={confettiActive}
-						burstMode={burstMode}
-						selectedPalette={selectedPalette}
-						selectedEmoji={selectedEmoji}
-						onToggleConfetti={setConfettiActive}
-						onSelectBurstMode={setBurstMode}
-						onSelectPalette={setSelectedPalette}
-						onSelectEmoji={setSelectedEmoji}
-					/>
-				</div>
-
-				{/* Social Feed Rig Column */}
-				<div className="flex flex-col justify-center md:col-span-6 md:pl-2">
-					<ThreadPostMock
-						isLiked={isLiked}
-						likeCount={likeCount}
-						repostCount={repostCount}
-						onLike={handleSimulatedLike}
-						onRepost={handleSimulatedRepost}
-					/>
-				</div>
-			</Card>
 		</section>
 	);
 }

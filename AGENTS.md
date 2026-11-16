@@ -50,8 +50,8 @@ threadfx/
 │   │   │   ├── install/            # InstallSection (install-section.tsx, update-callout.tsx)
 │   │   │   ├── layout/             # Chrome & page layout components (navbar, footer)
 │   │   │   ├── milestones/         # MilestonesSection (milestones-section.tsx, medal-card.tsx)
-│   │   │   ├── simulator/          # SimulatorSection (simulator-section.tsx + sub-controllers)
-│   │   │   └── ui/                 # Primitives (badge, button, card, slider, switch)
+│   │   │   ├── simulator/          # SimulatorSection (simulator-section, thread-post-mock, audio-sliders, particle-controls, soundboard-panel)
+│   │   │   └── ui/                 # Primitives (animated-content, badge, button, card, slider, switch)
 │   │   ├── lib/                    # Shared utilities (cn, audio-events)
 │   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
 │   │   ├── index.css               # AMOLED dark design tokens & frosted monochrome selection
