@@ -10,6 +10,12 @@
 
 ### Added
 
+- **Cardless Scroll-Revealed Download CTA Section (`DownloadSection`)**: Introduced an unboxed, minimalist closing CTA section positioned below the installation guide. Features a 3-beat scroll-triggered reveal powered by GSAP and ScrollTrigger:
+  - Beat 1: Title floats and blurs in smoothly as the section settles into view (`Ready to feel every reaction?`).
+  - Beat 2: Subtitle floats in with generous, balanced typography spacing (`Download the free extension and turn silent scrolling into a rich, tactile experience in seconds.`).
+  - Beat 3: Single primary high-contrast Download ThreadFX CTA button floats in to invite the download.
+  - Engineered with non-collapsing word-boundary spacing (`mr-[0.28em]`), balanced vertical rhythm (24px/28px title-to-description, 32px/36px description-to-button), and continuous bi-directional scroll interpolation without DOM style clearing flashes, layout shifts, or GPU compositor tile thrashing.
+
 - **ReactBits Interactive ScrollStack Showroom (`InstallSection` & `ScrollStack`)**: Transformed the installation experience from a generic static grid into a hardware-accelerated focal stacking card showroom (`scroll-stack.tsx`). Leverages ReactBits' focus preset with rAF-throttled scroll listening, 3D scale transforms (`itemScale={0.06}`), progressive dimming (`dimAmount={0.35}`), and depth blur (`blurAmount={3}`), creating an intuitive, tactile flow that guides users step-by-step through installation.
 - **Single-Responsibility Install Cards (`step-*-card.tsx`)**: Modularized each step into a dedicated, SRP-compliant component:
   - `step-download-card.tsx` (Step 01): Clean folder preview with high-contrast download CTA, bound to central app metadata without distracting version or file size text.

@@ -1,3 +1,4 @@
+import { DownloadSection } from "@/components/download/download-section";
 import { FeatureSection } from "@/components/features/feature-section";
 import { HeroSection } from "@/components/hero/hero-section";
 import { InstallSection } from "@/components/install/install-section";
@@ -17,6 +18,7 @@ export default function App() {
 				<FeatureSection />
 				<MilestonesSection />
 				<InstallSection />
+				<DownloadSection />
 			</main>
 			<Footer />
 		</div>
