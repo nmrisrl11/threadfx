@@ -46,26 +46,52 @@
 
 :root,
 .dark {
+	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+
 	--background: #080808;
 	--foreground: #f3f5f7;
-	--card: #121212;
+	--card: #111113;
 	--card-foreground: #f3f5f7;
-	--popover: #121212;
+	--popover: #111113;
 	--popover-foreground: #f3f5f7;
 	--primary: #ff2e93;
 	--primary-foreground: #ffffff;
-	--secondary: #1c1c1c;
+	--secondary: #18181b;
 	--secondary-foreground: #f3f5f7;
-	--muted: #1c1c1c;
+	--muted: #18181b;
 	--muted-foreground: #8e8e93;
-	--accent: #262626;
+	--accent: #222226;
 	--accent-foreground: #f3f5f7;
 	--destructive: #ef4444;
-	--border: #262626;
-	--input: #262626;
+	--border: rgba(255, 255, 255, 0.08);
+	--input: rgba(255, 255, 255, 0.12);
 	--ring: #ff2e93;
 	--radius: 0.5rem;
 	color-scheme: dark;
+}
+
+/* Global Subtle Monochrome Text Selection (Soft Frosted Sheen) */
+::selection {
+	background-color: rgba(255, 255, 255, 0.22);
+	color: #ffffff;
+}
+
+::-moz-selection {
+	background-color: rgba(255, 255, 255, 0.22);
+	color: #ffffff;
+}
+
+/* Ensure interactive buttons and controls are never dragged into text selection */
+button,
+[role="button"] {
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 body {

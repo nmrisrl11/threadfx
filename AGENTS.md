@@ -42,13 +42,19 @@ threadfx/
 │   ├── package.json
 │   └── wxt.config.ts
 │
-├── website/                        # Landing Page (Vite + React)
+├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
-│   │   ├── components/             # Hero, SoundboardDemo, InstallGuide
+│   │   ├── components/             # UI components
+│   │   │   ├── landing/            # Modular landing architecture (hero, hero-waveform, navbar, footer, bento, install, milestones, simulator)
+│   │   │   └── ui/                 # Primitives (badge, button, card, slider, switch)
+│   │   ├── lib/                    # Shared utilities (cn, audio-events)
 │   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
-│   │   └── App.tsx
+│   │   ├── index.css               # AMOLED dark design tokens & frosted monochrome selection
+│   │   ├── App.tsx                 # Root layout & landing page coordinator
+│   │   └── main.tsx
 │   ├── public/
-│   │   └── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
+│   │   ├── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
+│   │   └── icons/                  # PWA and responsive icons (16-512px)
 │   ├── components.json             # shadcn/ui config
 │   ├── vercel.json                 # /download redirect to Cloudflare R2
 │   └── package.json

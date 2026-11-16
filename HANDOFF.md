@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 16, 2026 (12:30 AM +08:00)  
+> **Last Synchronized:** November 16, 2026 (10:55 AM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Clean working tree — 100% synchronized with `origin/main` (latest commit `41985c2`). All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
+> **Working Tree Status:** Clean code state with fully validated Hero Section elevation on website. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:web` & `build:ext`) passing cleanly.
 
 ---
 
@@ -12,21 +12,21 @@
 
 ThreadFX is an open-source interactive effects, procedural audio, and tactile feedback suite for social feeds, launching with flagship desktop support for **Meta Threads** (`threads.com`).
 
-| Property                  | Value                                                                                           |
-| :------------------------ | :---------------------------------------------------------------------------------------------- |
-| **Monorepo Version**      | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`)            |
-| **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                  |
-| **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                      |
-| **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                              |
-| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (882 KB, includes 7 WebP badges, Frimousse emojis & fonts)  |
-| **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Static build in `website/dist/`                       |
-| **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**) |
-| **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (6 palettes + vector emoji reaction bursts)      |
-| **Progression Engine**    | 7 Sensory ranks with 3D WebP achievement badges, lifetime odometer, and victory fanfares        |
-| **Linter / Formatter**    | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings                                           |
-| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`)                 |
-| **Distribution**          | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`$0` egress)                |
-| **Author / Maintainer**   | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License (Brand & Assets Reserved) |
+| Property                  | Value                                                                                               |
+| :------------------------ | :-------------------------------------------------------------------------------------------------- |
+| **Monorepo Version**      | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`)                |
+| **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                      |
+| **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                          |
+| **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                                  |
+| **Extension Bundle Size** | `.output/threadfx-1.0.0-chrome.zip` (882 KB, includes 7 WebP badges, Frimousse emojis & fonts)      |
+| **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Modularized landing architecture in `components/landing/` |
+| **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**)     |
+| **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (6 palettes + vector emoji reaction bursts)          |
+| **Progression Engine**    | 7 Sensory ranks with 3D WebP achievement badges, lifetime odometer, and victory fanfares            |
+| **Linter / Formatter**    | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings                                               |
+| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`)                     |
+| **Distribution**          | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`$0` egress)                    |
+| **Author / Maintainer**   | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License (Brand & Assets Reserved)     |
 
 ---
 
@@ -137,25 +137,48 @@ export interface ThreadFXSettings {
 - **Interactive Data Management & Storage Hub (`data-tab.tsx`, `use-storage-telemetry.ts`):**
   - Dedicated "Storage" chassis tab with real-time capacity progress meter, itemized breakdown (Post Memory, Settings, Milestones), and safe 2-step data action buttons.
 
+### 🌐 Landing Page Architecture Elevation & Hero Craftsmanship (`website/`)
+
+- **SRP Decomposition of Monolithic `App.tsx`:** Decomposed the former 816-line monolith into dedicated, single-responsibility modules under `website/src/components/landing/`:
+  - `navbar.tsx`: Frosted glass navigation with brand emblem, version badge, and download CTA.
+  - `hero.tsx`: Full-viewport (`min-h-dvh`) Apple-grade hero with 3D logo, 2-line headline, and tactile CTA.
+  - `simulator/`: Domain-isolated audio/particle simulator (`simulator-deck.tsx`, `soundboard-panel.tsx`, `audio-sliders.tsx`, `particle-controls.tsx`, `thread-post-mock.tsx`).
+  - `bento/`: Asymmetric 4-panel technical showcase (`feature-bento.tsx`, `audio-spec-card.tsx`, `particle-spec-card.tsx`, `sidepanel-spec-card.tsx`, `privacy-spec-card.tsx`).
+  - `milestones/`: Juicer ranks & 3D medal gallery (`milestones-strip.tsx`, `medal-card.tsx`).
+  - `install/`: 3-stage installation tray and update callout (`install-guide.tsx`, `update-callout.tsx`).
+  - `footer.tsx`: Minimalist hardware-grade footer with open-source credentials.
+- **Purged AI-Slop Visual Noise:** Eliminated fuzzy rainbow blur blobs, split-color gradient text, and cookie-cutter 6-card SaaS template grids in favor of deep obsidian surfaces (`#080808` / `#111114`) and hairline borders (`rgba(255,255,255,0.08)`).
+- **Hero Section Finalized to Precision Proportions & Tactile Interactivity:**
+  - **Full-Viewport Framing:** Structured with `min-h-dvh flex flex-col justify-between items-center` to command the user's field of view on screen load.
+  - **3D Brand Emblem (`size-28 sm:size-36`) with Integrated Acoustic Pedestal:** Balanced 112px–144px picture container with `<source srcSet="/icons/512.webp" type="image/webp" />` and `.png` fallback. Elevated with an integrated 28-band monochrome waveform monitor (`hero-waveform.tsx`) docked directly beneath the emblem, featuring live micro-telemetry whispers (`Bubble Pop · 420Hz`) and resonant frequency peak biasing.
+  - **Round-Robin Sound Cycling (Rounding SFX):** Tapping the logo sequentially auditions all 8 procedural sound presets in `SOUND_PACK_LIST` (`Bubble Pop` $\to$ `8-Bit Coin` $\to$ `Hype Spark` $\to$ `Minimal Click` $\to$ `Wood Tap` $\to$ `Neon Zap` $\to$ `Water Drop` $\to$ `Sub Thump`), dynamically updating the frequency readout and spectrum bars on each tap.
+  - **Subtle Silver Minimal Flanking Particles:** Configured dual-flank bursts (`CONFETTI_PALETTES.monochrome`) that emerge outward from the left and right edges behind the logo (`zIndex: 1`), keeping the 3D chrome artwork crisp and unobstructed.
+  - **Guaranteed Symmetrical 2-Liner Typography:** Balanced headline and sub-description break cleanly into 2-liners with zero orphan words:
+    `Turn silent scrolling / into a tactile experience.`
+    `Procedural sound synthesis and particle dynamics for social feeds. / Made for the social web, docked right in your browser.`
+  - **Single Tactile CTA:** Styled after author's proven `gemini-ai-pro-app` CTA (`rounded-full border border-white/60 bg-gradient-to-b from-white via-[#fafafa] to-[#e8e8e8] px-10 py-4 sm:px-11 sm:py-4.5 text-[16px] sm:text-[17px] font-semibold text-neutral-900 shadow-[0_12px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,1)]`). Completely icon-free and protected with `select-none`.
+  - **Global Monochromatic Text Selection:** Configured soft frosted monochrome text selection (`rgba(255,255,255,0.22)` with `#ffffff` text) across `website/src/index.css`, replacing browser electric blue with clean dark-mode highlights while protecting interactive buttons from drag-selection.
+  - **Apple-Style Scroll Cue:** Minimalist bottom pill featuring an animated bouncing dot and `TRY THE SIMULATOR` in clean monospaced tracking.
+  - **Native Right-Click & Selection Preserved:** Removed context menu blockers to ensure native browser right-click behavior.
+  - **Temporary Navbar Concealment:** `<Navbar />` temporarily commented out in `App.tsx` for focused hero visual iteration.
+
 ---
 
-## 5. Next Focus: Landing Page Development (`website/`)
+## 5. Next Focus: Resuming Landing Page Elevation Tomorrow
 
-The next conversation session will focus on elevating and polishing the **ThreadFX Landing Page (`website/`)**:
+When resuming development in the next session, proceed through the following sections in order:
 
-1. **Interactive 7-Tier Sensory Milestone Showcase:**
-   - Display the 7 transparent 3D WebP achievement medals (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`) on the web portal.
-   - Interactive rank inspection card with unlocked status and sensory milestones.
-2. **Companion Web Simulator Enhancement (`website/src/components/SoundboardDemo.tsx`):**
-   - Verify full feature parity with the extension: 8 procedural sound presets, pitch modulation slider (0.5x–2.0x), dual-mode particle selector (6 palettes + custom emoji bursts), and keyboard hotkeys (1–8).
-   - Add milestone progression previews to simulator likes.
-3. **Seamless Unpacked Installation & Upgrade Guide:**
-   - Visual step-by-step installation card explaining how to load unpacked extensions in 10 seconds.
-   - Seamless upgrade walkthrough explaining how to extract and reload without losing on-device settings or milestones.
-4. **Hero & Design Engineering Polish:**
-   - Distinctive typography using Plus Jakarta Sans, Inter, and Geist Mono.
-   - Hardware-grade dark mode aesthetic following `docs/BRAND.md`.
-   - Clean, verified `/download` routing resolving to Cloudflare R2.
+1. **The Instrument / Simulator Section (`website/src/components/landing/simulator/`):**
+   - Review and polish the interactive soundboard pads, channel sliders (Volume & Pitch), and particle controls.
+   - Refine the simulated Threads feed post card to ensure maximum physical tactile satisfaction upon liking and reposting.
+2. **Feature Bento Showcase (`website/src/components/landing/bento/`):**
+   - Review the 4 asymmetrical engineering spec tiles (ZzFX synthesis, GPU canvas particles, Chrome Side Panel architecture, and 100% on-device privacy guarantee).
+3. **Gamification & Medal Gallery (`website/src/components/landing/milestones/`):**
+   - Review the 7-tier juicer milestone rank showcase and 3D WebP medal hover states.
+4. **Install Tray (`website/src/components/landing/install/`):**
+   - Review the 3-step developer package installation walkthrough and one-click copyable `chrome://extensions` snippet.
+5. **Navbar Alignment & Final Polish (`website/src/components/landing/navbar.tsx`):**
+   - Re-enable the floating frosted navbar in `App.tsx` once section styling is locked, ensuring seamless scroll-spy or anchor navigation.
 
 ---
 

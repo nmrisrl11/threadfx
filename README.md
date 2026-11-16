@@ -165,11 +165,13 @@ threadfx/
 │
 ├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
-│   │   ├── components/             # shadcn/ui components & Hero/Simulator
+│   │   ├── components/             # UI components
+│   │   │   ├── landing/            # Modular landing architecture (hero, hero-waveform, navbar, footer, bento, install, milestones, simulator)
+│   │   │   └── ui/                 # Primitives (badge, button, card, slider, switch)
+│   │   ├── lib/                    # Shared utilities (cn, audio-events)
 │   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
-│   │   ├── lib/                    # Shared cn utility wrapper
-│   │   ├── App.tsx                 # Hero, Like Simulator, 3-Step Install Guide
-│   │   ├── index.css               # AMOLED dark design tokens
+│   │   ├── index.css               # AMOLED dark design tokens & frosted monochrome selection
+│   │   ├── App.tsx                 # Root layout & landing page coordinator
 │   │   └── main.tsx
 │   ├── public/
 │   │   ├── badges/                 # 7 transparent 3D WebP achievement badges (1-7)

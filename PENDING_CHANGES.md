@@ -10,6 +10,10 @@
 
 ### Added
 
+- **Interactive Acoustic Pedestal & Flanking Particle Dynamics**: Elevated the landing page hero with a 3D brand emblem featuring an integrated 28-band monochrome spectrum monitor that dynamically shifts its resonant frequency center as users cycle through all 8 procedural sound packs (`Bubble Pop` through `Sub Thump`), accompanied by subtle flanking silver metallic particles drifting behind the emblem.
+- **Global Monochromatic Text Selection Sheen**: Upgraded global text selection across the landing page with a soft frosted monochrome sheen, eliminating harsh browser blue boxes while keeping interactive action buttons protected from accidental drag selection.
+- **Future-Proof Multi-Platform Feed Positioning**: Updated headline and sub-description copywriting across the landing page to future-proof the suite for upcoming headless feed adapters across Threads, X, Bluesky, Instagram, and web feeds.
+
 - **In-App Release Notification & Lifecycle Manager**: Introduced zero-overhead version tracking in the Side Panel via `useUpdateCheck`. Checks a lightweight edge-cached `version.json` every 12 hours, alerting users with a quiet, dismissible `UpdateBanner` component below the header when an update is published, paired with a dedicated lifecycle card in the Storage tab providing one-click downloads and a 10-second reload walkthrough with zero data loss.
 - **Landing Page Gamification Showcase & Upgrade Blueprint**: Drafted an interactive 7-tier sensory milestone showcase on the companion web portal displaying all 3D medals (`Bronze` through `Mythic`) with rank thresholds and perks, paired with a seamless upgrade guide explaining how to refresh unpacked installs safely.
 
