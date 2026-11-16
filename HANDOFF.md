@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 16, 2026 (09:45 PM +08:00)  
-> **Active Branch:** `main`  
-> **Working Tree Status:** Clean code state with ReactBits `ScrollStack` installation showroom, modular step cards (`step-download-card.tsx`, `step-developer-card.tsx`, `step-load-card.tsx`, `step-updates-card.tsx`), zero layout shift polish, administrative SFX boundary separation, unified section eyebrows across all 4 sections, and 100% `@data/app` centralization. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly. Ready for review upon return.
+> **Last Synchronized:** November 17, 2026 (00:38 AM +08:00)  
+> **Active Branch:** `main` (commit `3f2c3b1`)  
+> **Working Tree Status:** Clean code state on `origin/main`. Complete landing page suite finalized and active: Hero Section, Interactive Spatial Simulator, Asymmetrical Feature Bento, Milestones Accordion Gallery, ReactBits ScrollStack Installation Showroom, Scroll-Revealed Download CTA Banner, Architectural Footer with Full-Width Wordmark, and Floating Capsule Navbar with real-time scroll spy and zero-shift mobile breadcrumb. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly. Ready for review or next features upon return.
 
 ---
 
@@ -198,18 +198,47 @@ export interface ThreadFXSettings {
 - **Zero-Layout-Shift (CLS = 0.00) Interactive Polish:**
   - Applied Emil Kowalski design engineering principles: stabilized button widths for copy state and reload simulation, removed container-level active scale shifts in favor of isolated glyph spring animations, and ensured constant border geometry.
 
+### 🚀 Cardless Scroll-Revealed Download CTA Banner (`website/`)
+
+- **3-Beat Scroll-Triggered Reveal (`DownloadSection`):** Introduced a boxless, minimalist closing CTA banner below the install guide powered by GSAP and ScrollTrigger:
+  - Beat 1: Title floats and blurs in smoothly as the section settles into view (`Ready to feel every reaction?`).
+  - Beat 2: Subtitle floats in with generous, balanced typography spacing (`Download the free extension and turn silent scrolling into a rich, tactile experience in seconds.`).
+  - Beat 3: Single primary high-contrast Download ThreadFX CTA button floats in to invite the download.
+  - Engineered with non-collapsing word margins (`mr-[0.28em]`), balanced vertical rhythm (24px/28px and 32px/36px), and continuous bi-directional scroll interpolation without DOM style clearing flashes, layout shifts, or GPU compositor tile thrashing.
+
+### 🏛️ Architectural Landing Page Footer with Full-Width Wordmark (`website/`)
+
+- **Elevated Architectural Layout (`Footer`):** Inspired by `footer31.tsx`, completely redesigned the landing page footer:
+  - Multi-column product layout separating in-page shortcuts (`Navigation`: Simulator, Features, Milestones, Installation, Download) from open-source ecosystem resources (`Project`: GitHub, Releases, Issue Tracker, MIT License).
+  - Cleaned redundant creator links; kept high-contrast group headers (`text-zinc-100 font-semibold`) and clean external link indicators (`ArrowUpRightIcon`).
+  - Platform-agnostic copy: _"Tactile micro-interactions, procedural Web Audio synthesis, and responsive particle physics for social feeds and modern web platforms."_
+  - Warm privacy reassurance (`100% private • Runs locally on your device`) alongside open-source licensing and a subtle smooth "Back to top" button (`ArrowUpIcon`).
+  - Heroic, full-width vector brand wordmark (`THREADFX`) spanning the entire base with positive geometric letter-spacing (`0.035em`) for clean glyph separation (eliminating `F`/`X` collision) and understated architectural presence (`text-white/[0.07] hover:text-white/[0.13]`).
+
+### 🧭 Floating Capsule Navbar with Scroll Spy & Zero-Shift Mobile Breadcrumb (`website/`)
+
+- **Center-Docked Floating Capsule (`Navbar`):** Re-mounted in `website/src/App.tsx` with a uniform 360-degree hairline border (`border border-white/10`), subtle diffused drop shadow (`shadow-[0_4px_24px_rgba(0,0,0,0.35)]`), and frosted obsidian glass (`backdrop-blur-xl bg-neutral-950/80`).
+- **Clean Hero Clearance:** Remains 100% hidden at the page top (`opacity-0 -translate-y-6 pointer-events-none`) so the hero section stays clean and unencumbered, smoothly sliding and fading in once scrolled 50% past the hero.
+- **Real-Time Scroll Spy:** Continuously highlights active section pills (`Simulator`, `Features`, `Milestones`, `Install`) with frosted indicators as sections cross the focal reading line (`window.innerHeight * 0.38`).
+- **Zero-Layout-Shift (`CLS = 0.00`) Mobile Active Breadcrumb:** Replaces crowded mobile link rows with a single dynamic breadcrumb pill (`ThreadFX | [Simulator ▾] Download`) powered by an intrinsic single-cell CSS Grid stacker (`grid grid-cols-1 grid-rows-1`). The button width is permanently locked to the widest label (`Milestones`), entirely preventing capsule jitter, width bouncing, or `Download` button jumping during scroll, with smooth 200ms `ease-out` opacity and slide-fade transitions between labels.
+- **Tactile Mobile Quick-Jump Dropdown:** Tapping the breadcrumb opens a compact, frosted glass menu card directly anchored below the capsule with active section pips and tap-outside dismiss overlay.
+- **Symmetrical Hairline Vertical Separator:** Integrates a hairline divider (`h-3.5 w-px bg-white/10`) providing clean optical separation between the brand mark and navigation controls across both mobile and desktop.
+- **Collision-Free Scroll Margins & Offsets:** Applied `scroll-mt-24 sm:scroll-mt-28` across all landing page sections alongside programmatic offset scrolling (88px mobile / 104px desktop) in `handleNavClick`, guaranteeing generous breathing room below the floating capsule on both link clicks and native URL hash navigation.
+- **Direct Domain Root Anchor:** Clicking `ThreadFX` points directly to `/`, performing smooth scroll to top without full-page reloads.
+
 ---
 
-## 5. Next Focus: Resuming Landing Page Elevation
+## 5. Next Focus: Upcoming Enhancements & Release Prep
 
 When resuming development in the next session:
 
-1. **Navbar Alignment & Scroll Navigation (`website/src/components/layout/navbar.tsx`):**
-   - Re-enable the floating frosted `<Navbar />` in `App.tsx` (temporarily commented out during hero iteration).
-   - Verify smooth anchor navigation across all 5 full-viewport sections (`#hero`, `#simulator`, `#features`, `#milestones`, `#install-guide`).
-2. **End-to-End Monorepo Audit & Release Readiness:**
+1. **End-to-End Monorepo Audit & Release Verification:**
    - Run `/verify-project` to audit the entire repository (types, linting, packaging).
    - Review complete user journey across desktop and mobile.
+2. **Upcoming Platform Adapters (Roadmap Preview):**
+   - Review `docs/UNIVERSAL_FX_ROADMAP.md` for upcoming headless social feed adapters (Bluesky, X/Twitter, Instagram).
+3. **Draft Release Packaging:**
+   - Run `/release-extension` when ready to cut the official v1.0.0 distribution archive.
 
 ---
 
