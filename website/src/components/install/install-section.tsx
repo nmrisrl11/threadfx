@@ -1,10 +1,10 @@
-import { UpdateCallout } from "@/components/landing/install/update-callout";
+import { UpdateCallout } from "@/components/install/update-callout";
 import { Card } from "@/components/ui/card";
 import { APP_INFO } from "@data/app";
 import { CheckIcon, CopyIcon, DownloadIcon } from "lucide-react";
 import { useState } from "react";
 
-export function InstallGuide() {
+export function InstallSection() {
 	const [copied, setCopied] = useState<boolean>(false);
 
 	const handleCopyUrl = async () => {

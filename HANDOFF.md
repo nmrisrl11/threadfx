@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 16, 2026 (11:30 AM +08:00)  
+> **Last Synchronized:** November 16, 2026 (11:50 AM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Clean code state with fully validated Hero Section elevation and smooth 120fps CSS Scroll-Driven Animations on website. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
+> **Working Tree Status:** Clean code state with flattened components directory architecture, standardized `*Section` coordinators, and dedicated `layout/` folder. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
 ---
 
@@ -139,14 +139,13 @@ export interface ThreadFXSettings {
 
 ### 🌐 Landing Page Architecture Elevation & Hero Craftsmanship (`website/`)
 
-- **SRP Decomposition of Monolithic `App.tsx`:** Decomposed the former 816-line monolith into dedicated, single-responsibility modules under `website/src/components/landing/`:
-  - `navbar.tsx`: Frosted glass navigation with brand emblem, version badge, and download CTA.
-  - `hero.tsx`: Full-viewport (`min-h-dvh`) Apple-grade hero with 3D logo, 2-line headline, and tactile CTA.
-  - `simulator/`: Domain-isolated audio/particle simulator (`simulator-deck.tsx`, `soundboard-panel.tsx`, `audio-sliders.tsx`, `particle-controls.tsx`, `thread-post-mock.tsx`).
-  - `bento/`: Asymmetric 4-panel technical showcase (`feature-bento.tsx`, `audio-spec-card.tsx`, `particle-spec-card.tsx`, `sidepanel-spec-card.tsx`, `privacy-spec-card.tsx`).
-  - `milestones/`: Juicer ranks & 3D medal gallery (`milestones-strip.tsx`, `medal-card.tsx`).
-  - `install/`: 3-stage installation tray and update callout (`install-guide.tsx`, `update-callout.tsx`).
-  - `footer.tsx`: Minimalist hardware-grade footer with open-source credentials.
+- **SRP Decomposition of Monolithic `App.tsx`:** Decomposed into dedicated, single-responsibility modules directly under `website/src/components/`:
+  - `components/layout/`: Chrome & page layout components (`navbar.tsx`, `footer.tsx`).
+  - `components/hero/`: Modular hero coordinator (`hero-section.tsx`, `hero-waveform.tsx`, `hero-scroll-cue.tsx`).
+  - `components/simulator/`: Domain-isolated audio/particle simulator (`simulator-section.tsx`, `soundboard-panel.tsx`, `audio-sliders.tsx`, `particle-controls.tsx`, `thread-post-mock.tsx`).
+  - `components/bento/`: Asymmetric 4-panel technical showcase (`bento-section.tsx`, `audio-spec-card.tsx`, `particle-spec-card.tsx`, `sidepanel-spec-card.tsx`, `privacy-spec-card.tsx`).
+  - `components/milestones/`: Juicer ranks & 3D medal gallery (`milestones-section.tsx`, `medal-card.tsx`).
+  - `components/install/`: 3-stage installation tray and update callout (`install-section.tsx`, `update-callout.tsx`).
 - **Purged AI-Slop Visual Noise:** Eliminated fuzzy rainbow blur blobs, split-color gradient text, and cookie-cutter 6-card SaaS template grids in favor of deep obsidian surfaces (`#080808` / `#111114`) and hairline borders (`rgba(255,255,255,0.08)`).
 - **Hero Section Finalized to Precision Proportions & Tactile Interactivity:**
   - **Full-Viewport Framing:** Structured with `min-h-dvh flex flex-col justify-between items-center` to command the user's field of view on screen load.

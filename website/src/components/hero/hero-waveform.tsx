@@ -98,7 +98,7 @@ export function HeroWaveform() {
 					/>
 				</span>
 				<span className="font-medium tracking-tight">
-					{activePack.name} · {activePack.frequency}Hz
+					{activePack.name} · {activePack.frequency ? `${activePack.frequency}Hz` : "Tactile"}
 				</span>
 			</div>
 		</div>

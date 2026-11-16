@@ -1,7 +1,7 @@
-import { AudioSliders } from "@/components/landing/simulator/audio-sliders";
-import { ParticleControls } from "@/components/landing/simulator/particle-controls";
-import { SoundboardPanel } from "@/components/landing/simulator/soundboard-panel";
-import { ThreadPostMock } from "@/components/landing/simulator/thread-post-mock";
+import { AudioSliders } from "@/components/simulator/audio-sliders";
+import { ParticleControls } from "@/components/simulator/particle-controls";
+import { SoundboardPanel } from "@/components/simulator/soundboard-panel";
+import { ThreadPostMock } from "@/components/simulator/thread-post-mock";
 import { Card } from "@/components/ui/card";
 import type { BurstMode, ConfettiPaletteId } from "@data/particles";
 import {
@@ -16,7 +16,7 @@ import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
 import React, { useEffect, useState } from "react";
 
-export function SimulatorDeck() {
+export function SimulatorSection() {
 	const [selectedPack, setSelectedPack] = useState<SoundPackId>("bubble");
 	const [volume, setVolume] = useState<number>(0.5);
 	const [pitch, setPitch] = useState<number>(1.0);

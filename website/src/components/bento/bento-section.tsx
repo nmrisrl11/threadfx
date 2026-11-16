@@ -1,9 +1,9 @@
-import { AudioSpecCard } from "@/components/landing/bento/audio-spec-card";
-import { ParticleSpecCard } from "@/components/landing/bento/particle-spec-card";
-import { PrivacySpecCard } from "@/components/landing/bento/privacy-spec-card";
-import { SidepanelSpecCard } from "@/components/landing/bento/sidepanel-spec-card";
+import { AudioSpecCard } from "@/components/bento/audio-spec-card";
+import { ParticleSpecCard } from "@/components/bento/particle-spec-card";
+import { PrivacySpecCard } from "@/components/bento/privacy-spec-card";
+import { SidepanelSpecCard } from "@/components/bento/sidepanel-spec-card";
 
-export function FeatureBento() {
+export function BentoSection() {
 	return (
 		<section
 			id="features"

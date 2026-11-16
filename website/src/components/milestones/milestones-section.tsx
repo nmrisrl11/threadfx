@@ -1,8 +1,8 @@
-import { MedalCard } from "@/components/landing/milestones/medal-card";
+import { MedalCard } from "@/components/milestones/medal-card";
 import { JUICER_MILESTONES } from "@data/milestones";
 import { TrophyIcon } from "lucide-react";
 
-export function MilestonesStrip() {
+export function MilestonesSection() {
 	return (
 		<section
 			id="milestones"

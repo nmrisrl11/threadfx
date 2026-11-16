@@ -165,8 +165,13 @@ threadfx/
 │
 ├── website/                        # Landing Page (Vite + React 19 + Tailwind CSS v4)
 │   ├── src/
-│   │   ├── components/             # UI components
-│   │   │   ├── landing/            # Modular landing architecture (hero, hero-waveform, navbar, footer, bento, install, milestones, simulator)
+│   │   ├── components/             # UI components (flat domain architecture)
+│   │   │   ├── bento/              # BentoSection (bento-section.tsx + spec cards)
+│   │   │   ├── hero/               # HeroSection (hero-section.tsx, hero-waveform.tsx, hero-scroll-cue.tsx)
+│   │   │   ├── install/            # InstallSection (install-section.tsx, update-callout.tsx)
+│   │   │   ├── layout/             # Chrome & page layout components (navbar, footer)
+│   │   │   ├── milestones/         # MilestonesSection (milestones-section.tsx, medal-card.tsx)
+│   │   │   ├── simulator/          # SimulatorSection (simulator-section.tsx + sub-controllers)
 │   │   │   └── ui/                 # Primitives (badge, button, card, slider, switch)
 │   │   ├── lib/                    # Shared utilities (cn, audio-events)
 │   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
