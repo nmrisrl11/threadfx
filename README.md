@@ -168,11 +168,11 @@ threadfx/
 │   │   ├── components/             # UI components (flat domain architecture)
 │   │   │   ├── features/           # FeatureSection (feature-section, feature-card)
 │   │   │   ├── hero/               # HeroSection (hero-section.tsx, hero-waveform.tsx, hero-scroll-cue.tsx)
-│   │   │   ├── install/            # InstallSection (install-section.tsx, update-callout.tsx)
+│   │   │   ├── install/            # InstallSection (install-section.tsx, step-download-card.tsx, step-developer-card.tsx, step-load-card.tsx, step-updates-card.tsx)
 │   │   │   ├── layout/             # Chrome & page layout components (navbar, footer)
 │   │   │   ├── milestones/         # MilestonesSection (milestones-section.tsx, milestone-panel.tsx, milestone-theme.ts)
 │   │   │   ├── simulator/          # SimulatorSection (simulator-section, thread-post-mock, audio-sliders, particle-controls, soundboard-panel)
-│   │   │   └── ui/                 # Primitives (animated-content, badge, button, card, slider, switch)
+│   │   │   └── ui/                 # Primitives (animated-content, badge, button, card, scroll-stack, slider, switch)
 │   │   ├── lib/                    # Shared utilities (cn, audio-events)
 │   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
 │   │   ├── index.css               # AMOLED dark design tokens & frosted monochrome selection

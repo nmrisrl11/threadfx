@@ -1,6 +1,6 @@
 import { FeatureCard } from "@/components/features/feature-card";
 import { AnimatedContent } from "@/components/ui/animated-content";
-import { LaptopIcon, ShieldCheckIcon, SparklesIcon, ZapIcon } from "lucide-react";
+import { LayersIcon, LaptopIcon, ShieldCheckIcon, SparklesIcon, ZapIcon } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 
 interface FeatureItem {
@@ -134,6 +134,11 @@ export function FeatureSection() {
 			<div className="my-auto w-full max-w-6xl">
 				{/* Section Header (Symmetrical with SimulatorSection) */}
 				<div className="mb-10 text-center">
+					<div className="mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
+						<LayersIcon className="size-3.5 text-zinc-400" />
+						<span>Core Architecture</span>
+					</div>
+
 					<h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
 						Feel every reaction.
 					</h2>

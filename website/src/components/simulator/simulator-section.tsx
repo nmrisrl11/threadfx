@@ -15,6 +15,7 @@ import type { SoundPackId } from "@data/presets";
 import { INTERACTION_SOUNDS, SOUND_PACKS, SOUND_PACK_LIST, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
+import { Volume2Icon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 export function SimulatorSection() {
@@ -156,6 +157,11 @@ export function SimulatorSection() {
 			<div className="my-auto w-full max-w-6xl">
 				{/* Section Header (Static - No animation) */}
 				<div className="mb-10 text-center">
+					<div className="mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
+						<Volume2Icon className="size-3.5 text-zinc-400" />
+						<span>Interactive Simulator</span>
+					</div>
+
 					<h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
 						Feel the feedback.
 					</h2>

@@ -44,7 +44,7 @@ export function Footer() {
 						rel="noreferrer"
 						className="hover:text-foreground transition-colors"
 					>
-						Threads
+						{APP_INFO.platform.name}
 					</a>
 					<a
 						href={APP_INFO.urls.license}

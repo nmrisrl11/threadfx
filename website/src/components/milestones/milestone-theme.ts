@@ -1,3 +1,5 @@
+import { APP_INFO } from "@data/app";
+
 export interface MilestoneTierConfig {
 	accentColor: string;
 	accentBadgeBg: string;
@@ -104,7 +106,7 @@ export const MILESTONE_TIER_CONFIGS: Record<number, MilestoneTierConfig> = {
 			"radial-gradient(ellipse at 50% 38%, rgba(251, 113, 133, 0.28) 0%, rgba(168, 85, 247, 0.18) 35%, rgba(6, 182, 212, 0.12) 65%, transparent 85%)",
 		ambientGlow: "shadow-[0_0_48px_rgba(251,113,133,0.32)]",
 		bgImage: "/milestones/milestone-7-bg.webp",
-		perkTitle: "ThreadFX Luminary",
+		perkTitle: `${APP_INFO.name} Luminary`,
 		perkDescription:
 			"The pinnacle of mastery. Unlocks polychromatic celestial stardust fireworks and grand victory fanfare.",
 		soundPitch: 1.7,

@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 16, 2026 (04:20 PM +08:00)  
+> **Last Synchronized:** November 16, 2026 (09:45 PM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Clean code state with fully elevated MilestonesSection accordion showroom, 82% WebP asset weight reduction, Vercel edge caching rules, and responsive dual-mode layout (desktop horizontal + mobile vertical accordion). All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
+> **Working Tree Status:** Clean code state with ReactBits `ScrollStack` installation showroom, modular step cards (`step-download-card.tsx`, `step-developer-card.tsx`, `step-load-card.tsx`, `step-updates-card.tsx`), zero layout shift polish, administrative SFX boundary separation, unified section eyebrows across all 4 sections, and 100% `@data/app` centralization. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly. Ready for review upon return.
 
 ---
 
@@ -145,7 +145,7 @@ export interface ThreadFXSettings {
   - `components/simulator/`: Domain-isolated audio/particle simulator (`simulator-section.tsx`, `soundboard-panel.tsx`, `audio-sliders.tsx`, `particle-controls.tsx`, `thread-post-mock.tsx`).
   - `components/features/`: Feature showroom and DRY parametric cards (`feature-section.tsx`, `feature-card.tsx`).
   - `components/milestones/`: Juicer ranks & 3D medal gallery (`milestones-section.tsx`, `milestone-panel.tsx`, `milestone-theme.ts`).
-  - `components/install/`: 3-stage installation tray and update callout (`install-section.tsx`, `update-callout.tsx`).
+  - `components/install/`: Interactive ReactBits ScrollStack installation showroom and modular step cards (`install-section.tsx`, `step-download-card.tsx`, `step-developer-card.tsx`, `step-load-card.tsx`, `step-updates-card.tsx`).
 - **Purged AI-Slop Visual Noise:** Eliminated fuzzy rainbow blur blobs, split-color gradient text, and cookie-cutter 6-card SaaS template grids in favor of deep obsidian surfaces (`#080808` / `#111114`) and hairline borders (`rgba(255,255,255,0.08)`).
 - **Hero Section Finalized to Precision Proportions & Tactile Interactivity:**
   - **Full-Viewport Framing:** Structured with `min-h-dvh flex flex-col justify-between items-center` to command the user's field of view on screen load.
@@ -179,23 +179,37 @@ export interface ThreadFXSettings {
 - **Staggered Panel Cascade via `AnimatedContent`:**
   - Wrapped `MilestonePanel` items directly with `AnimatedContent` (`stagger: 0.05`, `scale: 0.85`, `blur: 6px`, `duration: 0.9s`, `ease: power3.out`), cascading each panel sequentially into view on scroll.
 
+### 📦 Install Section Elevation & ReactBits ScrollStack Showroom (`website/`)
+
+- **Interactive ScrollStack Stacking Architecture (`scroll-stack.tsx`):**
+  - Re-architected the install section using ReactBits' focal scroll stack pattern (`itemScale={0.06}`, `dimAmount={0.35}`, `blurAmount={3}`, `stackOffset={96}`, `itemStackDistance={14}`, `itemMargin={40}`).
+  - Leverages rAF-throttled scroll listening and hardware-accelerated 3D transforms (`translate3d`, `scale`) for silky 60/120fps depth transitions as cards stack into focus.
+- **Decomposed SRP Step Cards (`step-*-card.tsx`):**
+  - **`step-download-card.tsx` (Step 01 · Download & Unzip):** High-contrast CTA download button (`bg-white text-zinc-950 font-semibold`) linking directly to `/download`, paired with a clean folder preview (`APP_INFO.name + " Folder"`), eliminating distracting version/size numbers from the primary CTA.
+  - **`step-developer-card.tsx` (Step 02 · Enable Developer Mode):** Standardized Radix UI `<Switch>` primitive replacing broken hand-rolled toggle; clipboard copy button for `chrome://extensions` with fixed width container (`w-16 items-center justify-end`) to eliminate layout shift on text state transition.
+  - **`step-load-card.tsx` (Step 03 · Load & Juice):** Social reaction mock card with live heart spring pop (`HeartIcon` scales internally without container ballooning), live likes odometer (`tabular-nums`), and explicit load unpacked instructions.
+  - **`step-updates-card.tsx` (Step 04 · Fast Updates):** Seamless update reassurance card with simulated reload button (`sm:min-w-[190px]` to eliminate text-swap layout shift) and zero-data-loss guarantee.
+- **Administrative SFX Boundary Rule:**
+  - Strictly separated administrative and utility controls from procedural audio. Clicking Developer Mode switch, copying URLs, or simulating update reloads produces zero sound, reserving ZzFX procedural audio exclusively for social feed reactions.
+- **Section Eyebrow Synchronization Across All 4 Sections:**
+  - Unified section eyebrows across `SimulatorSection`, `FeatureSection`, `MilestonesSection`, and `InstallSection` with consistent monospace uppercase badges and Lucide React icons (`Volume2Icon`, `LayersIcon`, `TrophyIcon`, `DownloadIcon`).
+- **Complete Centralization with `@data/app`:**
+  - Centralized app branding and platform metadata across all landing page components (`hero-section.tsx`, `footer.tsx`, `milestone-theme.ts`, `thread-post-mock.tsx`, and all install cards) using `@data/app` (`APP_INFO.name`, `APP_INFO.platform.name`, `APP_INFO.slug`).
+- **Zero-Layout-Shift (CLS = 0.00) Interactive Polish:**
+  - Applied Emil Kowalski design engineering principles: stabilized button widths for copy state and reload simulation, removed container-level active scale shifts in favor of isolated glyph spring animations, and ensured constant border geometry.
+
 ---
 
-## 5. Next Focus: Resuming Landing Page Elevation Tomorrow
+## 5. Next Focus: Resuming Landing Page Elevation
 
-When resuming development in the next session, proceed through the following sections in order:
+When resuming development in the next session:
 
-1. **The Instrument / Simulator Section (`website/src/components/landing/simulator/`):**
-   - Review and polish the interactive soundboard pads, channel sliders (Volume & Pitch), and particle controls.
-   - Refine the simulated Threads feed post card to ensure maximum physical tactile satisfaction upon liking and reposting.
-2. **Feature Showcase Gallery (`website/src/components/features/`):**
-   - Review the 4 asymmetrical feature cards (Sound Effects, Celebrations, Side Panel, and 100% On-Device Privacy).
-3. **Gamification & Medal Gallery (`website/src/components/landing/milestones/`):**
-   - Review the 7-tier juicer milestone rank showcase and 3D WebP medal hover states.
-4. **Install Tray (`website/src/components/landing/install/`):**
-   - Review the 3-step developer package installation walkthrough and one-click copyable `chrome://extensions` snippet.
-5. **Navbar Alignment & Final Polish (`website/src/components/landing/navbar.tsx`):**
-   - Re-enable the floating frosted navbar in `App.tsx` once section styling is locked, ensuring seamless scroll-spy or anchor navigation.
+1. **Navbar Alignment & Scroll Navigation (`website/src/components/layout/navbar.tsx`):**
+   - Re-enable the floating frosted `<Navbar />` in `App.tsx` (temporarily commented out during hero iteration).
+   - Verify smooth anchor navigation across all 5 full-viewport sections (`#hero`, `#simulator`, `#features`, `#milestones`, `#install-guide`).
+2. **End-to-End Monorepo Audit & Release Readiness:**
+   - Run `/verify-project` to audit the entire repository (types, linting, packaging).
+   - Review complete user journey across desktop and mobile.
 
 ---
 

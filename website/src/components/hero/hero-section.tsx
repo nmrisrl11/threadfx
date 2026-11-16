@@ -112,7 +112,7 @@ export function HeroSection() {
 						title={`Download ${APP_INFO.name} Extension (.zip)`}
 						className="group relative inline-block cursor-pointer overflow-hidden rounded-full border border-white/60 bg-gradient-to-b from-white via-[#fafafa] to-[#e8e8e8] px-10 py-4 text-[16px] font-semibold text-neutral-900 shadow-[0_12px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,1)] transition-all duration-300 ease-out select-none hover:from-white hover:to-[#f2f2f2] hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] active:scale-[0.98] sm:px-11 sm:py-4.5 sm:text-[17px]"
 					>
-						Download ThreadFX
+						Download {APP_INFO.name}
 					</a>
 				</div>
 			</div>

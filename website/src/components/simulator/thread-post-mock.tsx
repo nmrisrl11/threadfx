@@ -1,3 +1,4 @@
+import { APP_INFO } from "@data/app";
 import { HeartIcon, MessageCircleIcon, RepeatIcon, Share2Icon } from "lucide-react";
 import React from "react";
 
@@ -38,7 +39,7 @@ export function ThreadPostMock({
 							<source srcSet="/icons/512.webp" type="image/webp" />
 							<img
 								src="/icons/128.png"
-								alt="ThreadFX"
+								alt={APP_INFO.name}
 								width={40}
 								height={40}
 								className="size-full rounded-xl object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
@@ -47,18 +48,18 @@ export function ThreadPostMock({
 					</div>
 					<div>
 						<div className="flex items-center gap-1.5">
-							<span className="text-sm font-bold tracking-tight text-white">ThreadFX</span>
+							<span className="text-sm font-bold tracking-tight text-white">{APP_INFO.name}</span>
 							<span className="text-xs text-zinc-500">•</span>
 							<span className="text-xs text-zinc-500">Just now</span>
 						</div>
-						<span className="font-mono text-xs text-zinc-500">@threadfx</span>
+						<span className="font-mono text-xs text-zinc-500">@{APP_INFO.slug}</span>
 					</div>
 				</div>
 
 				{/* Post Body: Engaging Human Copywriting */}
 				<p className="mt-4 text-sm leading-relaxed text-zinc-200 sm:text-[15px]">
-					Most social feeds feel flat and silent. We built ThreadFX to bring tactile physical clicks
-					and celebratory bursts to every reaction. Tap the heart or repost to feel it!
+					Most social feeds feel flat and silent. We built {APP_INFO.name} to bring tactile physical
+					clicks and celebratory bursts to every reaction. Tap the heart or repost to feel it!
 				</p>
 
 				{/* Action Bar */}

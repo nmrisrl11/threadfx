@@ -11,6 +11,7 @@
 - **Audio Engine:** Shared in-memory procedural synthesizer via `@data/zzfx` & `@data/presets`
 - **Visual Effects:** `canvas-confetti` (particle bursts & celebratory reactions via `@data/particles`)
 - **Animation Engine:** [GSAP](https://gsap.com/) & ScrollTrigger (`AnimatedContent` staggered reveals & zoom effects)
+- **Interactive Stacking:** `ScrollStack` (ReactBits-inspired hardware-accelerated focal stacking cards)
 - **Juicer Milestones:** Procedural progression tiers & sensory ranks via `@data/milestones`
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
