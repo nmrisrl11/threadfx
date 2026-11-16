@@ -43,7 +43,7 @@ export function MilestonesSection() {
 	return (
 		<section
 			id="milestones"
-			className="section-scroll-fade relative flex min-h-dvh w-full flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-12"
+			className="section-scroll-fade relative flex min-h-dvh w-full scroll-mt-24 flex-col items-center justify-center px-4 py-8 sm:scroll-mt-28 sm:px-6 sm:py-12"
 		>
 			<div className="my-auto w-full max-w-6xl">
 				{/* Section Header (Symmetrical with Simulator & Feature Sections) */}

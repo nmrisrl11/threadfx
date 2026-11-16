@@ -9,7 +9,7 @@ export function InstallSection() {
 	return (
 		<section
 			id="install-guide"
-			className="section-scroll-fade relative min-h-dvh w-full px-4 py-16 sm:px-6 sm:py-24"
+			className="section-scroll-fade relative min-h-dvh w-full scroll-mt-24 px-4 py-16 sm:scroll-mt-28 sm:px-6 sm:py-24"
 		>
 			<div className="mx-auto w-full max-w-4xl">
 				{/* Section Header */}

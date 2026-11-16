@@ -10,6 +10,16 @@
 
 ### Added
 
+- **Floating Capsule Navbar with Active Scroll-Spy & Zero-Shift Mobile Breadcrumb (`Navbar`)**: Designed and integrated a distinctive, minimalist floating capsule header for the landing page:
+  - Center-docked floating capsule chassis (`fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center`) with a uniform 360-degree hairline border (`border border-white/10`), subtle diffused shadow (`shadow-[0_4px_24px_rgba(0,0,0,0.35)]`), and frosted obsidian glass (`backdrop-blur-xl bg-neutral-950/80`).
+  - Invisible-by-default hero clearance: remains 100% hidden at the page top (`opacity-0 -translate-y-6 pointer-events-none`) so the hero section stays clean and unencumbered, smoothly sliding and fading in once scrolled past the hero threshold.
+  - Real-time scroll spy: continuously highlights active section pills (`Simulator`, `Features`, `Milestones`, `Install`) with frosted indicators as sections cross the focal reading line (`window.innerHeight * 0.38`).
+  - Zero-Layout-Shift (`CLS = 0.00`) Mobile Active Breadcrumb: replaces cramped mobile link rows with a single dynamic breadcrumb pill (`ThreadFX | [Simulator ▾] Download`) powered by an intrinsic single-cell CSS Grid stacker (`grid grid-cols-1 grid-rows-1`). The button width is permanently locked to the widest label (`Milestones`), entirely preventing capsule jitter, width bouncing, or `Download` button jumping during scroll, with smooth 200ms `ease-out` opacity and slide-fade transitions between labels.
+  - Tactile Mobile Quick-Jump Dropdown: tapping the breadcrumb opens a compact, frosted glass menu card directly anchored below the capsule with active section pips and tap-outside dismiss overlay.
+  - Symmetrical Hairline Vertical Separator: integrates a hairline divider (`h-3.5 w-px bg-white/10`) providing clean optical separation between the brand mark and navigation controls across both mobile and desktop.
+  - Collision-Free Scroll Margins & Offsets: applied `scroll-mt-24 sm:scroll-mt-28` across all landing page sections alongside programmatic offset scrolling (88px mobile / 104px desktop) in `handleNavClick`, guaranteeing generous breathing room below the floating capsule on both link clicks and native URL hash navigation.
+  - Brand domain anchor: clicking `ThreadFX` points directly to `/`, performing smooth scroll to top without full-page reloads.
+
 - **Architectural Landing Page Footer with Full-Width Brand Wordmark (`Footer`)**: Enhanced the companion website footer inspired by modern architectural designs:
   - Multi-column product layout separating in-page shortcuts (`Navigation`: Simulator, Features, Milestones, Installation, Download) from open-source ecosystem resources (`Project`: GitHub, Releases, Issue Tracker, MIT License).
   - High-contrast group headers (`text-zinc-100 font-semibold`) establishing clear visual hierarchy over muted interactive link items (`text-zinc-400 hover:text-white`) with external link micro-motion indicators (`ArrowUpRightIcon`).

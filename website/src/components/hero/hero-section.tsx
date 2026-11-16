@@ -61,7 +61,10 @@ export function HeroSection() {
 	);
 
 	return (
-		<section className="hero-scroll-fade relative flex min-h-dvh w-full flex-col items-center justify-between px-4 py-8 sm:px-6 sm:py-12">
+		<section
+			id="hero"
+			className="hero-scroll-fade relative flex min-h-dvh w-full flex-col items-center justify-between px-4 py-8 sm:px-6 sm:py-12"
+		>
 			{/* Top Spacer for balanced vertical centering */}
 			<div className="h-4 shrink-0 sm:h-8" />
 
