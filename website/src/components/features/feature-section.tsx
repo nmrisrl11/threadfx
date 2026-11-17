@@ -28,7 +28,10 @@ const FEATURE_ITEMS: FeatureItem[] = [
 					<span>Sound on tap</span>
 					<span className="text-muted-foreground">Instant play</span>
 				</div>
-				<div className="border-border bg-muted/40 flex h-12 items-end justify-between gap-1.5 rounded-lg border p-2">
+				<div
+					aria-hidden="true"
+					className="border-border bg-muted/40 flex h-12 items-end justify-between gap-1.5 rounded-lg border p-2"
+				>
 					{[30, 65, 95, 50, 80, 100, 75, 45, 85, 40, 60, 35, 70, 50, 90, 40].map((h, i) => (
 						<span
 							key={i}
@@ -49,7 +52,7 @@ const FEATURE_ITEMS: FeatureItem[] = [
 		description:
 			"Every like and repost erupts into bright, celebratory sparks that float smoothly across your post.",
 		visual: (
-			<div className="flex items-center justify-center">
+			<div aria-hidden="true" className="flex items-center justify-center">
 				<div className="relative flex size-18 items-center justify-center">
 					<span className="absolute size-3 rounded-full bg-rose-400/80 shadow-[0_0_12px_rgba(251,113,133,0.8)]" />
 					<span className="bg-foreground absolute -top-1 -right-1 size-2 rounded-full shadow-xs" />
@@ -135,7 +138,7 @@ export function FeatureSection() {
 				{/* Section Header (Symmetrical with SimulatorSection) */}
 				<div className="mb-10 text-center">
 					<div className="text-muted-foreground mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-						<LayersIcon className="text-muted-foreground size-3.5" />
+						<LayersIcon aria-hidden="true" className="text-muted-foreground size-3.5" />
 						<span>Core Architecture</span>
 					</div>
 

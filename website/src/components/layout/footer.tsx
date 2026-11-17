@@ -72,13 +72,17 @@ export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">
 							<a
 								href={APP_INFO.author.url}
 								target="_blank"
-								rel="noreferrer"
-								className="group text-foreground/80 hover:text-foreground inline-flex items-center gap-1 font-medium transition-colors"
+								rel="noreferrer noopener"
+								className="group text-foreground/80 hover:text-foreground focus-visible:ring-ring inline-flex items-center gap-1 rounded-md px-1 py-0.5 font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
 							>
 								<span>
 									{APP_INFO.author.name} ({APP_INFO.author.handle})
 								</span>
-								<ArrowUpRightIcon className="text-muted-foreground group-hover:text-foreground size-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+								<ArrowUpRightIcon
+									aria-hidden="true"
+									className="text-muted-foreground group-hover:text-foreground size-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+								/>
+								<span className="sr-only"> (opens in new tab)</span>
 							</a>
 						</div>
 					</div>
@@ -87,20 +91,28 @@ export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">
 					<div className="grid grid-cols-2 gap-10 sm:gap-16 lg:gap-20">
 						{FOOTER_SECTIONS.map((section) => (
 							<div key={section.title} className="flex flex-col gap-3">
-								<h3 className="text-foreground font-mono text-[11px] font-semibold tracking-wider uppercase">
+								<h2 className="text-foreground font-mono text-[11px] font-semibold tracking-wider uppercase">
 									{section.title}
-								</h3>
+								</h2>
 								<ul className="flex flex-col gap-2">
 									{section.links.map((link) => (
 										<li key={link.label}>
 											<a
 												href={link.href}
-												{...(link.isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
-												className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-1 text-sm transition-colors"
+												{...(link.isExternal
+													? { target: "_blank", rel: "noreferrer noopener" }
+													: {})}
+												className="group text-muted-foreground hover:text-foreground focus-visible:ring-ring inline-flex items-center gap-1 rounded-md px-1 py-0.5 text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
 											>
 												<span>{link.label}</span>
 												{link.isExternal && (
-													<ArrowUpRightIcon className="text-muted-foreground group-hover:text-foreground size-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+													<>
+														<ArrowUpRightIcon
+															aria-hidden="true"
+															className="text-muted-foreground group-hover:text-foreground size-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+														/>
+														<span className="sr-only"> (opens in new tab)</span>
+													</>
 												)}
 											</a>
 										</li>
@@ -129,11 +141,15 @@ export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">
 						<button
 							type="button"
 							onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-							className="group text-muted-foreground hover:text-foreground inline-flex cursor-pointer items-center gap-1 transition-colors"
+							className="group text-muted-foreground hover:text-foreground focus-visible:ring-ring inline-flex cursor-pointer items-center gap-1 rounded-md px-1.5 py-0.5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
 							title="Scroll to top"
+							aria-label="Scroll to top of page"
 						>
 							<span>Back to top</span>
-							<ArrowUpIcon className="text-muted-foreground group-hover:text-foreground size-3 transition-transform duration-200 group-hover:-translate-y-0.5" />
+							<ArrowUpIcon
+								aria-hidden="true"
+								className="text-muted-foreground group-hover:text-foreground size-3 transition-transform duration-200 group-hover:-translate-y-0.5"
+							/>
 						</button>
 					</div>
 				</div>
@@ -145,7 +161,7 @@ export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
 						className="text-foreground/[0.07] hover:text-foreground/[0.13] h-auto w-full transition-colors duration-700"
-						aria-label={APP_INFO.name}
+						aria-hidden="true"
 					>
 						<text
 							x="50%"

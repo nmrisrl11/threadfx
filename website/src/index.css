@@ -108,7 +108,7 @@
 		--destructive: #ef4444;
 		--border: rgba(255, 255, 255, 0.08);
 		--input: rgba(255, 255, 255, 0.12);
-		--ring: #ff2e93;
+		--ring: rgba(255, 255, 255, 0.2);
 
 		--surface-subtle: rgba(255, 255, 255, 0.02);
 		--surface-muted: rgba(255, 255, 255, 0.04);
@@ -143,7 +143,7 @@
 	--destructive: #ef4444;
 	--border: rgba(255, 255, 255, 0.08);
 	--input: rgba(255, 255, 255, 0.12);
-	--ring: #ff2e93;
+	--ring: rgba(255, 255, 255, 0.2);
 
 	--surface-subtle: rgba(255, 255, 255, 0.02);
 	--surface-muted: rgba(255, 255, 255, 0.04);
@@ -225,6 +225,12 @@ button,
 
 html {
 	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 h1,

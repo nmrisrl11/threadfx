@@ -49,7 +49,7 @@ export function MilestonesSection() {
 				{/* Section Header (Symmetrical with Simulator & Feature Sections) */}
 				<div className="mb-10 text-center">
 					<div className="text-muted-foreground mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-						<TrophyIcon className="text-muted-foreground size-3.5" />
+						<TrophyIcon aria-hidden="true" className="text-muted-foreground size-3.5" />
 						<span>Milestone Progression</span>
 					</div>
 

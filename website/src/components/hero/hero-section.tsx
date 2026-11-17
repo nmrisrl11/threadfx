@@ -76,14 +76,13 @@ export function HeroSection() {
 					onClick={handleAudition}
 					aria-label="Audition procedural sound and particle feedback"
 					title="Tap to cycle tactile sounds and particles"
-					className="group relative z-10 flex cursor-pointer flex-col items-center transition-transform duration-300 ease-out outline-none select-none active:scale-[0.98]"
+					className="group focus-visible:ring-ring relative z-10 flex cursor-pointer flex-col items-center rounded-2xl p-2 transition-transform duration-300 ease-out select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
 				>
 					<picture className="relative z-10 inline-block size-28 select-none sm:size-36">
 						<source srcSet="/icons/512.webp" type="image/webp" />
 						<img
 							src="/icons/512.png"
-							alt={APP_INFO.name}
-							title={APP_INFO.name}
+							alt=""
 							draggable={false}
 							width={144}
 							height={144}
@@ -113,7 +112,7 @@ export function HeroSection() {
 					<a
 						href={APP_INFO.urls.download}
 						title={`Download ${APP_INFO.name} Extension (.zip)`}
-						className="group bg-primary text-primary-foreground border-border/80 relative inline-block cursor-pointer overflow-hidden rounded-full border px-10 py-4 text-[16px] font-semibold shadow-sm transition-all duration-300 ease-out select-none hover:opacity-90 hover:shadow-md active:scale-[0.98] sm:px-11 sm:py-4.5 sm:text-[17px]"
+						className="group bg-primary text-primary-foreground border-border/80 focus-visible:ring-ring relative inline-block cursor-pointer overflow-hidden rounded-full border px-10 py-4 text-[16px] font-semibold shadow-sm transition-all duration-300 ease-out select-none hover:opacity-90 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] sm:px-11 sm:py-4.5 sm:text-[17px]"
 					>
 						Download {APP_INFO.name}
 					</a>

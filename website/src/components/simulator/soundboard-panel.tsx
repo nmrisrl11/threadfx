@@ -30,7 +30,7 @@ export function SoundboardPanel({
 				className="flex items-center justify-between px-1"
 			>
 				<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-					<MusicIcon className="text-muted-foreground size-3.5" />
+					<MusicIcon aria-hidden="true" className="text-muted-foreground size-3.5" />
 					<span>Soundboard Keybed</span>
 				</div>
 				<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[10px]">
@@ -65,9 +65,10 @@ export function SoundboardPanel({
 							type="button"
 							onClick={() => onSelectPack(pack.id)}
 							aria-label={`Audition ${pack.name} sound profile (Key ${index + 1})`}
+							aria-pressed={isSelected}
 							className={cn(
 								// Constant 1px border geometry and color-only transition to eliminate layout shift
-								"group relative flex cursor-pointer flex-col justify-between rounded-xl border p-2.5 text-left transition-colors duration-150 outline-none select-none",
+								"group focus-visible:ring-ring relative flex cursor-pointer flex-col justify-between rounded-xl border p-2.5 text-left transition-colors duration-150 select-none focus-visible:ring-2 focus-visible:outline-none",
 								// Surface & border tones
 								isSelected
 									? "border-foreground/30 bg-accent text-foreground shadow-xs"
@@ -109,6 +110,7 @@ export function SoundboardPanel({
 								</span>
 								{/* Permanent indicator slot to eliminate flexbox layout shift */}
 								<span
+									aria-hidden="true"
 									className={cn(
 										"size-1.5 shrink-0 rounded-full transition-opacity duration-150",
 										isSelected ? "bg-foreground opacity-100 shadow-xs" : "opacity-0",

@@ -58,18 +58,19 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 								type="button"
 								onClick={handleSimulateReload}
 								aria-label="Simulate extension reload"
-								className="group border-border bg-card text-foreground hover:bg-accent inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border px-4 py-3 text-xs font-semibold shadow-xs transition-transform duration-150 active:scale-[0.98] sm:w-fit sm:min-w-[190px]"
+								className="group border-border bg-card text-foreground hover:bg-accent focus-visible:ring-ring inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border px-4 py-3 text-xs font-semibold shadow-xs transition-transform duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] sm:w-fit sm:min-w-[190px]"
 							>
 								<RefreshCwIcon
+									aria-hidden="true"
 									className={`size-3.5 shrink-0 transition-transform duration-700 ${
 										isReloading
-											? "text-foreground animate-spin"
+											? "text-foreground animate-spin motion-reduce:animate-none"
 											: "text-muted-foreground group-hover:text-foreground"
 									}`}
 								/>
-								<span className="truncate">
+								<span role="status" aria-live="polite" className="truncate">
 									{isReloading
-										? "Reloading..."
+										? "Reloading…"
 										: reloadSuccess
 											? "Reload complete!"
 											: "Test 1-click reload"}
@@ -98,7 +99,7 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 						<div className="mt-3.5 flex flex-col gap-2.5">
 							<div className="border-border bg-card/60 flex items-center justify-between rounded-lg border p-2.5 text-xs">
 								<div className="flex items-center gap-2">
-									<CheckCircle2Icon className="text-muted-foreground size-3.5" />
+									<CheckCircle2Icon aria-hidden="true" className="text-muted-foreground size-3.5" />
 									<span className="text-foreground/90">
 										All unlocked milestone medals &amp; ranks
 									</span>
@@ -108,7 +109,7 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 
 							<div className="border-border bg-card/60 flex items-center justify-between rounded-lg border p-2.5 text-xs">
 								<div className="flex items-center gap-2">
-									<CheckCircle2Icon className="text-muted-foreground size-3.5" />
+									<CheckCircle2Icon aria-hidden="true" className="text-muted-foreground size-3.5" />
 									<span className="text-foreground/90">
 										Selected sound pack, volume &amp; pitch
 									</span>
@@ -118,7 +119,7 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 
 							<div className="border-border bg-card/60 flex items-center justify-between rounded-lg border p-2.5 text-xs">
 								<div className="flex items-center gap-2">
-									<CheckCircle2Icon className="text-muted-foreground size-3.5" />
+									<CheckCircle2Icon aria-hidden="true" className="text-muted-foreground size-3.5" />
 									<span className="text-foreground/90">
 										Confetti palettes &amp; reaction emojis
 									</span>

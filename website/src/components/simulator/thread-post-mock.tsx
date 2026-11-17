@@ -25,7 +25,7 @@ export function ThreadPostMock({
 					Social Feed Preview
 				</span>
 				<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[10px]">
-					<span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
+					<span className="size-1.5 animate-pulse rounded-full bg-emerald-500 motion-reduce:animate-none" />
 					<span>Interactive Stage</span>
 				</div>
 			</div>
@@ -70,10 +70,12 @@ export function ThreadPostMock({
 					<button
 						type="button"
 						onClick={onLike}
-						className="group flex cursor-pointer items-center gap-2 transition-transform duration-150 ease-[var(--ease-spring)] outline-none select-none active:scale-[0.88]"
+						className="group focus-visible:ring-ring -m-1 flex cursor-pointer items-center gap-2 rounded-lg p-1 transition-transform duration-150 ease-[var(--ease-spring)] select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.88]"
 						aria-label={isLiked ? "Unlike post" : "Like post"}
+						aria-pressed={isLiked}
 					>
 						<HeartIcon
+							aria-hidden="true"
 							className={`size-5 transition-[color,fill,transform] duration-150 ${
 								isLiked
 									? "scale-110 fill-[#ff2e93] text-[#ff2e93]"
@@ -91,7 +93,7 @@ export function ThreadPostMock({
 
 					{/* Reply Button */}
 					<div className="text-muted-foreground flex items-center gap-1.5 text-xs select-none">
-						<MessageCircleIcon className="size-4" />
+						<MessageCircleIcon aria-hidden="true" className="size-4" />
 						<span className="font-mono">18</span>
 					</div>
 
@@ -99,16 +101,16 @@ export function ThreadPostMock({
 					<button
 						type="button"
 						onClick={onRepost}
-						className="group text-muted-foreground flex cursor-pointer items-center gap-1.5 text-xs transition-colors duration-150 outline-none select-none hover:text-emerald-500 active:scale-[0.88]"
+						className="group text-muted-foreground focus-visible:ring-ring -m-1 flex cursor-pointer items-center gap-1.5 rounded-lg p-1 text-xs transition-colors duration-150 select-none hover:text-emerald-500 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.88]"
 						aria-label="Repost post"
 					>
-						<RepeatIcon className="size-4" />
+						<RepeatIcon aria-hidden="true" className="size-4" />
 						<span className="font-mono transition-colors duration-150">{repostCount}</span>
 					</button>
 
 					{/* Share Button */}
 					<div className="text-muted-foreground flex items-center gap-1.5 text-xs select-none">
-						<Share2Icon className="size-4" />
+						<Share2Icon aria-hidden="true" className="size-4" />
 						<span className="font-mono">12</span>
 					</div>
 				</div>

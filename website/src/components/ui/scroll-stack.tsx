@@ -61,6 +61,19 @@ export function ScrollStack({
 			const itemElements = itemsRef.current.filter(Boolean) as HTMLDivElement[];
 			if (itemElements.length === 0) return;
 
+			// Respect reduced motion accessibility setting
+			const prefersReduced =
+				typeof window !== "undefined" &&
+				window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+			if (prefersReduced) {
+				for (const el of itemElements) {
+					el.style.transform = "none";
+					el.style.filter = "none";
+				}
+				return;
+			}
+
 			// 1. Calculate progress for each item
 			// progress[i] = 0 when item is below its sticky threshold, 1 when pinned at sticky threshold
 			const progress: number[] = new Array(itemElements.length).fill(0);

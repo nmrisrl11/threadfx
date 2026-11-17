@@ -47,7 +47,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 				ticks: 120,
 				origin: { x, y },
 				colors: tier.particleColors,
-				disableForReducedMotion: false,
+				disableForReducedMotion: true,
 			});
 		}
 	};
@@ -173,7 +173,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 							tier.accentBadgeBg,
 						)}
 					>
-						<TrophyIcon className="size-3 opacity-80" />
+						<TrophyIcon aria-hidden="true" className="size-3 opacity-80" />
 						<span className="font-semibold">Rank 0{milestone.level}</span>
 						<span className="hidden opacity-60 xl:inline">/ 07</span>
 					</div>
@@ -182,6 +182,8 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 					<button
 						ref={fanfareBtnRef}
 						type="button"
+						tabIndex={isActive ? 0 : -1}
+						aria-hidden={!isActive}
 						onClick={handleAuditionFanfare}
 						aria-label={`Audition ${milestone.title} celebration audio`}
 						className={cn(
@@ -193,6 +195,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 						)}
 					>
 						<Volume2Icon
+							aria-hidden="true"
 							className={cn(
 								"size-3 text-zinc-300 transition-transform duration-150 group-hover/btn:text-white",
 								isPlayingAudio ? "scale-110 text-white" : "group-hover/btn:scale-105",

@@ -106,7 +106,7 @@ export function SimulatorSection() {
 						scalar: 1.8,
 						flat: true,
 						origin: { x, y },
-						disableForReducedMotion: false,
+						disableForReducedMotion: true,
 					});
 				} else {
 					const palette = CONFETTI_PALETTES[selectedPalette] || CONFETTI_PALETTES.rose;
@@ -117,7 +117,7 @@ export function SimulatorSection() {
 						ticks: 120,
 						origin: { x, y },
 						colors: palette.colors,
-						disableForReducedMotion: false,
+						disableForReducedMotion: true,
 					});
 				}
 			}
@@ -144,7 +144,7 @@ export function SimulatorSection() {
 				ticks: 90,
 				origin: { x, y },
 				colors: ["#10B981", "#34D399", "#00F5FF", "#FFFFFF"],
-				disableForReducedMotion: false,
+				disableForReducedMotion: true,
 			});
 		}
 	};
@@ -158,7 +158,7 @@ export function SimulatorSection() {
 				{/* Section Header (Static - No animation) */}
 				<div className="mb-10 text-center">
 					<div className="text-muted-foreground mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-						<Volume2Icon className="text-muted-foreground size-3.5" />
+						<Volume2Icon aria-hidden="true" className="text-muted-foreground size-3.5" />
 						<span>Interactive Simulator</span>
 					</div>
 

@@ -56,7 +56,10 @@ export function HeroWaveform() {
 	}, []);
 
 	return (
-		<div className="mt-3.5 flex flex-col items-center gap-1.5 transition-all duration-300">
+		<div
+			aria-hidden="true"
+			className="mt-3.5 flex flex-col items-center gap-1.5 transition-all duration-300"
+		>
 			{/* Waveform Surface: 28 Frequency Bands Centered Beneath Logo */}
 			<div className="relative flex h-5 w-44 items-end justify-between gap-[2.5px] px-0.5 sm:h-6 sm:w-52">
 				{Array.from({ length: NUM_BARS }).map((_, idx) => {
@@ -86,7 +89,9 @@ export function HeroWaveform() {
 				<span className="relative flex h-1.5 w-1.5">
 					<span
 						className={`absolute inline-flex h-full w-full rounded-full transition-opacity duration-150 ${
-							isPulsing ? "bg-foreground animate-ping opacity-75" : "opacity-0"
+							isPulsing
+								? "bg-foreground animate-ping opacity-75 motion-reduce:animate-none"
+								: "opacity-0"
 						}`}
 					/>
 					<span

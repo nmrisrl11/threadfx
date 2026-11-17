@@ -61,12 +61,21 @@ export function Navbar() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	// Auto-close mobile menu on scroll
+	// Auto-close mobile menu on scroll or Escape key
 	useEffect(() => {
 		if (!isMobileMenuOpen) return;
 		const closeOnScroll = () => setIsMobileMenuOpen(false);
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape") {
+				setIsMobileMenuOpen(false);
+			}
+		};
 		window.addEventListener("scroll", closeOnScroll, { passive: true, once: true });
-		return () => window.removeEventListener("scroll", closeOnScroll);
+		window.addEventListener("keydown", handleKeyDown);
+		return () => {
+			window.removeEventListener("scroll", closeOnScroll);
+			window.removeEventListener("keydown", handleKeyDown);
+		};
 	}, [isMobileMenuOpen]);
 
 	const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string, id: string) => {
@@ -123,7 +132,7 @@ export function Navbar() {
 								window.history.replaceState(null, "", "/");
 							}
 						}}
-						className="text-foreground text-xs font-extrabold tracking-tight transition-opacity select-none hover:opacity-80 sm:text-sm"
+						className="text-foreground focus-visible:ring-ring rounded-full px-1.5 py-0.5 text-xs font-extrabold tracking-tight transition-opacity select-none hover:opacity-80 focus-visible:ring-2 focus-visible:outline-none sm:text-sm"
 					>
 						{APP_INFO.name}
 					</a>
@@ -136,8 +145,9 @@ export function Navbar() {
 						type="button"
 						onClick={() => setIsMobileMenuOpen((prev) => !prev)}
 						aria-expanded={isMobileMenuOpen}
+						aria-controls="mobile-nav-menu"
 						aria-label="Toggle navigation sections"
-						className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-colors duration-150 select-none active:scale-[0.96] sm:hidden ${
+						className={`focus-visible:ring-ring flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-colors duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96] sm:hidden ${
 							isMobileMenuOpen
 								? "bg-accent text-foreground shadow-xs"
 								: "bg-surface-subtle text-muted-foreground hover:bg-accent/60 hover:text-foreground"
@@ -164,6 +174,7 @@ export function Navbar() {
 						</span>
 
 						<ChevronDownIcon
+							aria-hidden="true"
 							className={`text-muted-foreground size-3 shrink-0 transition-transform duration-200 ${
 								isMobileMenuOpen ? "text-foreground rotate-180" : ""
 							}`}
@@ -171,7 +182,7 @@ export function Navbar() {
 					</button>
 
 					{/* Desktop Navigation Links with Scroll Spy Active Indicator */}
-					<nav className="hidden items-center gap-0.5 sm:flex">
+					<nav aria-label="Main" className="hidden items-center gap-0.5 sm:flex">
 						{NAV_LINKS.map((link) => {
 							const isActive = activeSection === link.id;
 							return (
@@ -180,7 +191,7 @@ export function Navbar() {
 									href={link.href}
 									onClick={(e) => handleNavClick(e, link.href, link.id)}
 									aria-current={isActive ? "page" : undefined}
-									className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 select-none ${
+									className={`focus-visible:ring-ring rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 select-none focus-visible:ring-2 focus-visible:outline-none ${
 										isActive
 											? "bg-accent text-foreground shadow-xs"
 											: "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
@@ -201,16 +212,20 @@ export function Navbar() {
 						onClick={() => setTheme(isDark ? "light" : "dark")}
 						aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
 						title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-						className="text-muted-foreground hover:text-foreground flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors active:scale-95 sm:hidden"
+						className="text-muted-foreground hover:text-foreground focus-visible:ring-ring flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:hidden"
 					>
-						{isDark ? <SunIcon className="size-3.5" /> : <MoonIcon className="size-3.5" />}
+						{isDark ? (
+							<SunIcon aria-hidden="true" className="size-3.5" />
+						) : (
+							<MoonIcon aria-hidden="true" className="size-3.5" />
+						)}
 					</button>
 
 					{/* Primary Download Pill */}
 					<a
 						href={APP_INFO.urls.download}
 						title={`Download ${APP_INFO.name}`}
-						className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 select-none active:scale-[0.97] sm:ml-0.5 sm:px-3.5"
+						className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.97] sm:ml-0.5 sm:px-3.5"
 					>
 						Download
 					</a>
@@ -218,11 +233,14 @@ export function Navbar() {
 
 				{/* Mobile Dropdown Menu Card (Anchored directly below capsule) */}
 				{isMobileMenuOpen && (
-					<div className="border-border bg-card/95 text-card-foreground shadow-modal mt-2 w-56 overflow-hidden rounded-2xl border p-2 backdrop-blur-2xl transition-all sm:hidden">
+					<div
+						id="mobile-nav-menu"
+						className="border-border bg-card/95 text-card-foreground shadow-modal mt-2 w-56 overflow-hidden rounded-2xl border p-2 backdrop-blur-2xl transition-all sm:hidden"
+					>
 						<div className="text-muted-foreground px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase">
 							Sections
 						</div>
-						<nav className="flex flex-col gap-0.5">
+						<nav aria-label="Mobile navigation" className="flex flex-col gap-0.5">
 							{NAV_LINKS.map((link) => {
 								const isActive = activeSection === link.id;
 								return (
@@ -231,7 +249,7 @@ export function Navbar() {
 										href={link.href}
 										onClick={(e) => handleNavClick(e, link.href, link.id)}
 										aria-current={isActive ? "page" : undefined}
-										className={`flex items-center justify-between rounded-xl px-2.5 py-2 text-xs transition-all select-none ${
+										className={`focus-visible:ring-ring flex items-center justify-between rounded-xl px-2.5 py-2 text-xs transition-all select-none focus-visible:ring-2 focus-visible:outline-none ${
 											isActive
 												? "bg-accent text-foreground font-semibold shadow-xs"
 												: "text-muted-foreground hover:bg-accent/50 hover:text-foreground font-medium"

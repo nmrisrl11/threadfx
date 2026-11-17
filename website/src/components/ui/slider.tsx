@@ -43,6 +43,8 @@ function Slider({
 			</SliderPrimitive.Track>
 			<SliderPrimitive.Thumb
 				data-slot="slider-thumb"
+				aria-label={props["aria-label"]}
+				aria-labelledby={props["aria-labelledby"]}
 				className={cn(
 					"bg-foreground border-border focus-visible:ring-ring block size-3.5 rounded-full border shadow-xs transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:pointer-events-none disabled:opacity-50",
 					thumbClassName,

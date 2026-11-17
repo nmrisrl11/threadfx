@@ -16,7 +16,7 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 			{/* Pod Header */}
 			<div className="flex items-center justify-between">
 				<div className="text-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-					<SlidersIcon className="text-muted-foreground size-3.5" />
+					<SlidersIcon aria-hidden="true" className="text-muted-foreground size-3.5" />
 					<span>Acoustics</span>
 				</div>
 				{isCustomized && (
@@ -26,8 +26,9 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 							onVolumeChange(0.5);
 							onPitchChange(1.0);
 						}}
-						className="text-muted-foreground hover:text-foreground cursor-pointer font-mono text-[10px] transition-colors"
+						className="text-muted-foreground hover:text-foreground focus-visible:ring-ring cursor-pointer rounded-md px-1 font-mono text-[10px] transition-colors focus-visible:ring-2 focus-visible:outline-none"
 						title="Reset to default acoustic values"
+						aria-label="Reset acoustic settings to default"
 					>
 						Reset
 					</button>
@@ -38,7 +39,7 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 			<div className="space-y-2">
 				<div className="flex items-center justify-between text-xs">
 					<div className="text-foreground/90 flex items-center gap-1.5">
-						<Volume2Icon className="text-muted-foreground size-3.5" />
+						<Volume2Icon aria-hidden="true" className="text-muted-foreground size-3.5" />
 						<span className="text-foreground/90 font-medium">Volume</span>
 					</div>
 					<span className="text-foreground font-mono text-[11px] font-semibold">
@@ -51,6 +52,7 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 					max={1}
 					step={0.05}
 					onValueChange={(vals: number[]) => onVolumeChange(vals[0])}
+					aria-label="Volume"
 					className="w-full"
 				/>
 			</div>
@@ -59,7 +61,12 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 			<div className="space-y-2 pt-1">
 				<div className="flex items-center justify-between text-xs">
 					<div className="text-foreground/90 flex items-center gap-1.5">
-						<span className="text-muted-foreground font-mono text-[11px] font-semibold">Hz</span>
+						<span
+							aria-hidden="true"
+							className="text-muted-foreground font-mono text-[11px] font-semibold"
+						>
+							Hz
+						</span>
 						<span className="text-foreground/90 font-medium">Pitch Multiplier</span>
 					</div>
 					<span className="text-foreground font-mono text-[11px] font-semibold">
@@ -72,9 +79,10 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 					max={2.0}
 					step={0.05}
 					onValueChange={(vals: number[]) => onPitchChange(vals[0])}
+					aria-label="Pitch multiplier"
 					className="w-full"
 				/>
-				<div className="text-muted-foreground/80 flex justify-between font-mono text-[9px]">
+				<div className="text-muted-foreground flex justify-between font-mono text-[9px]">
 					<span>0.5x (Bass)</span>
 					<span>1.0x (True)</span>
 					<span>2.0x (Air)</span>

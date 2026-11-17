@@ -15,7 +15,7 @@ export function InstallSection() {
 				{/* Section Header */}
 				<div className="mb-12 text-center sm:mb-16">
 					<div className="text-muted-foreground mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-						<DownloadIcon className="text-muted-foreground size-3.5" />
+						<DownloadIcon aria-hidden="true" className="text-muted-foreground size-3.5" />
 						<span>Setup &amp; Installation</span>
 					</div>
 

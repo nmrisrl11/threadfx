@@ -10,6 +10,13 @@
 
 ### Added
 
+- **Full A11Y & WCAG 2.1/2.2 Compliance Pass (`website/`)**:
+  - Implemented an accessible keyboard skip link anchored directly to `<main id="main-content">`, enabling assistive-tech and keyboard users to bypass header navigation smoothly (WCAG 2.4.1 Level A).
+  - Enforced `disableForReducedMotion: true` across all procedural confetti bursts and disabled scale/blur depth transforms in `ScrollStack` when `prefers-reduced-motion: reduce` is active, safeguarding users with vestibular motion sensitivity (WCAG 2.3.3 Level AAA).
+  - Unified visible `:focus-visible` focus rings across all interactive buttons, cards, and sliders with clean monochrome tokens (`rgba(255, 255, 255, 0.2)` on dark backgrounds and `rgba(0, 0, 0, 0.2)` on light backgrounds), eliminating out-of-place neon pink rings and avoiding bare `outline-none` focus suppressions (WCAG 2.4.7 Level AA).
+  - Assigned explicit ARIA states, roles, and status announcements across interactive widgets—including WAI-ARIA Radio Group roving arrow navigation on `ThemeToggle`, `aria-label` definitions on acoustic sliders, `aria-pressed` states on reaction cards and soundboard keys, and `role="status"` / `aria-live="polite"` on asynchronous copy and reload actions (WCAG 4.1.2 & 4.1.3).
+  - Added `aria-hidden="true"` to decorative Lucide React icons, and added external link announcements (`<span className="sr-only"> (opens in new tab)</span>`) with `rel="noreferrer noopener"`.
+
 - **Curtain Reveal Footer & Dynamic Height Docking (`website/`)**:
   - Implemented an interactive curtain reveal layout where the main page content lifts away smoothly at the end of the scroll to uncover a fixed footer docked underneath.
   - Integrated an autonomous `ResizeObserver` listener on the footer container that dynamically synchronizes `marginBottom` on `<main>`, guaranteeing seamless pixel alignment and preventing layout gaps across mobile, tablet, and desktop viewports.

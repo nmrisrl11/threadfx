@@ -61,22 +61,29 @@ export const StepDeveloperCard = React.forwardRef<HTMLDivElement, StepDeveloperC
 								type="button"
 								onClick={handleCopyUrl}
 								aria-label="Copy extensions URL"
-								className="group border-border bg-surface-subtle hover:bg-accent text-foreground inline-flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3 font-mono text-xs transition-colors duration-150 sm:w-fit sm:min-w-[300px]"
+								className="group border-border bg-surface-subtle hover:bg-accent text-foreground focus-visible:ring-ring inline-flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3 font-mono text-xs transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none sm:w-fit sm:min-w-[300px]"
 							>
 								<div className="flex items-center gap-2">
-									<span className="bg-muted-foreground/60 group-hover:bg-muted-foreground size-2 rounded-full" />
+									<span
+										aria-hidden="true"
+										className="bg-muted-foreground/60 group-hover:bg-muted-foreground size-2 rounded-full"
+									/>
 									<span className="text-foreground font-semibold">chrome://extensions</span>
 								</div>
 
-								<div className="inline-flex w-16 items-center justify-end font-sans text-xs">
+								<div
+									role="status"
+									aria-live="polite"
+									className="inline-flex w-16 items-center justify-end font-sans text-xs"
+								>
 									{copied ? (
 										<span className="inline-flex items-center gap-1 font-medium text-emerald-500">
-											<CheckIcon className="size-3.5" />
+											<CheckIcon aria-hidden="true" className="size-3.5" />
 											<span>Copied</span>
 										</span>
 									) : (
 										<span className="text-muted-foreground group-hover:text-foreground inline-flex items-center gap-1 transition-colors">
-											<CopyIcon className="size-3.5" />
+											<CopyIcon aria-hidden="true" className="size-3.5" />
 											<span>Copy</span>
 										</span>
 									)}

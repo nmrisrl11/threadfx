@@ -30,7 +30,7 @@ export function ParticleControls({
 			{/* Pod Header */}
 			<div className="flex items-center justify-between">
 				<div className="text-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-					<SparklesIcon className="text-muted-foreground size-3.5" />
+					<SparklesIcon aria-hidden="true" className="text-muted-foreground size-3.5" />
 					<span>Particles</span>
 				</div>
 				<Switch
@@ -43,12 +43,18 @@ export function ParticleControls({
 			{confettiActive ? (
 				<div className="space-y-3 pt-0.5">
 					{/* Mode Segmented Switcher */}
-					<div className="border-border bg-muted/60 grid grid-cols-2 rounded-lg border p-0.5 text-xs">
+					<div
+						role="tablist"
+						aria-label="Burst mode selection"
+						className="border-border bg-muted/60 grid grid-cols-2 rounded-lg border p-0.5 text-xs"
+					>
 						<button
 							type="button"
+							role="tab"
+							aria-selected={burstMode === "palette"}
 							onClick={() => onSelectBurstMode("palette")}
 							className={cn(
-								"cursor-pointer rounded-md py-1 text-center font-medium transition-colors duration-150 select-none",
+								"focus-visible:ring-ring cursor-pointer rounded-md py-1 text-center font-medium transition-colors duration-150 select-none focus-visible:ring-2 focus-visible:outline-none",
 								burstMode === "palette"
 									? "bg-card text-foreground font-semibold shadow-xs"
 									: "text-muted-foreground hover:text-foreground",
@@ -58,9 +64,11 @@ export function ParticleControls({
 						</button>
 						<button
 							type="button"
+							role="tab"
+							aria-selected={burstMode === "emoji"}
 							onClick={() => onSelectBurstMode("emoji")}
 							className={cn(
-								"cursor-pointer rounded-md py-1 text-center font-medium transition-colors duration-150 select-none",
+								"focus-visible:ring-ring cursor-pointer rounded-md py-1 text-center font-medium transition-colors duration-150 select-none focus-visible:ring-2 focus-visible:outline-none",
 								burstMode === "emoji"
 									? "bg-card text-foreground font-semibold shadow-xs"
 									: "text-muted-foreground hover:text-foreground",
@@ -72,16 +80,17 @@ export function ParticleControls({
 
 					{/* Palettes Grid - Zero Layout Shift Geometry */}
 					{burstMode === "palette" ? (
-						<div className="grid grid-cols-2 gap-1.5">
+						<div className="grid grid-cols-2 gap-1.5" role="group" aria-label="Confetti palettes">
 							{CONFETTI_PALETTE_LIST.map((palette) => {
 								const isSelected = selectedPalette === palette.id;
 								return (
 									<button
 										key={palette.id}
 										type="button"
+										aria-pressed={isSelected}
 										onClick={() => onSelectPalette(palette.id)}
 										className={cn(
-											"group flex cursor-pointer items-center justify-between rounded-lg border p-2 text-left transition-colors duration-150 outline-none select-none",
+											"group focus-visible:ring-ring flex cursor-pointer items-center justify-between rounded-lg border p-2 text-left transition-colors duration-150 select-none focus-visible:ring-2 focus-visible:outline-none",
 											isSelected
 												? "border-foreground/30 bg-accent text-foreground shadow-xs"
 												: "border-border bg-surface-subtle text-muted-foreground hover:border-foreground/15 hover:bg-muted hover:text-foreground",
@@ -89,7 +98,7 @@ export function ParticleControls({
 										)}
 									>
 										<div className="flex min-w-0 items-center gap-1.5">
-											<div className="flex shrink-0 items-center gap-0.5">
+											<div className="flex shrink-0 items-center gap-0.5" aria-hidden="true">
 												{palette.colors.slice(0, 3).map((color, idx) => (
 													<span
 														key={idx}
@@ -112,6 +121,7 @@ export function ParticleControls({
 
 										{/* Permanent indicator slot to eliminate flexbox layout shift */}
 										<span
+											aria-hidden="true"
 											className={cn(
 												"size-1.5 shrink-0 rounded-full transition-opacity duration-150",
 												isSelected ? "bg-foreground opacity-100 shadow-xs" : "opacity-0",
@@ -123,16 +133,18 @@ export function ParticleControls({
 						</div>
 					) : (
 						/* Emojis Grid - Zero Layout Shift Geometry */
-						<div className="grid grid-cols-4 gap-1.5">
+						<div className="grid grid-cols-4 gap-1.5" role="group" aria-label="Reaction emojis">
 							{QUICK_EMOJIS.map((emoji) => {
 								const isSelected = selectedEmoji === emoji;
 								return (
 									<button
 										key={emoji}
 										type="button"
+										aria-label={`${emoji} reaction`}
+										aria-pressed={isSelected}
 										onClick={() => onSelectEmoji(emoji)}
 										className={cn(
-											"flex h-8 cursor-pointer items-center justify-center rounded-lg border text-base transition-colors duration-150 outline-none select-none",
+											"focus-visible:ring-ring flex h-8 cursor-pointer items-center justify-center rounded-lg border text-base transition-colors duration-150 select-none focus-visible:ring-2 focus-visible:outline-none",
 											isSelected
 												? "border-foreground/30 bg-accent shadow-xs"
 												: "border-border bg-surface-subtle hover:border-foreground/15 hover:bg-muted",

@@ -160,6 +160,7 @@ export function DownloadSection() {
 					{/* Beat 1: Title */}
 					<h2
 						ref={titleRef}
+						aria-label={TITLE_TEXT}
 						className="text-foreground max-w-4xl text-4xl leading-[1.18] font-extrabold tracking-tight sm:text-6xl sm:leading-[1.14] lg:text-7xl"
 					>
 						{titleElements}
@@ -168,6 +169,7 @@ export function DownloadSection() {
 					{/* Beat 2: Description (Harmonious balanced spacing: 24px mobile, 28px desktop) */}
 					<p
 						ref={descRef}
+						aria-label={DESC_TEXT}
 						className="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed sm:mt-7 sm:text-lg lg:text-xl"
 					>
 						{descElements}
@@ -178,7 +180,7 @@ export function DownloadSection() {
 						<a
 							href={APP_INFO.urls.download}
 							title={`Download ${APP_INFO.name} Extension (.zip)`}
-							className="group bg-primary text-primary-foreground border-border/80 inline-block cursor-pointer rounded-full border px-10 py-4 text-[16px] font-semibold shadow-sm transition-all duration-200 ease-out select-none hover:opacity-90 hover:shadow-md active:scale-[0.98] sm:px-11 sm:py-4.5 sm:text-[17px]"
+							className="group bg-primary text-primary-foreground border-border/80 focus-visible:ring-ring inline-block cursor-pointer rounded-full border px-10 py-4 text-[16px] font-semibold shadow-sm transition-all duration-200 ease-out select-none hover:opacity-90 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] sm:px-11 sm:py-4.5 sm:text-[17px]"
 						>
 							Download {APP_INFO.name}
 						</a>

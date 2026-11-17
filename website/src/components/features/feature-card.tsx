@@ -34,7 +34,7 @@ export function FeatureCard({
 		>
 			{/* Card Header Strip */}
 			<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
-				<Icon className="text-muted-foreground size-3.5" />
+				<Icon aria-hidden="true" className="text-muted-foreground size-3.5" />
 				<span>{label}</span>
 			</div>
 

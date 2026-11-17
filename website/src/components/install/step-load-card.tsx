@@ -44,7 +44,7 @@ export const StepLoadCard = React.forwardRef<HTMLDivElement, StepLoadCardProps>(
 					ticks: 80,
 					origin: { x, y },
 					colors: ["#ffffff", "#e4e4e7", "#a1a1aa"],
-					disableForReducedMotion: false,
+					disableForReducedMotion: true,
 				});
 			}
 		};
@@ -114,9 +114,10 @@ export const StepLoadCard = React.forwardRef<HTMLDivElement, StepLoadCardProps>(
 								type="button"
 								onClick={handleTestLike}
 								aria-label="Test like sound effect and confetti"
-								className="group border-border bg-card text-foreground hover:bg-accent inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2.5 font-medium shadow-xs transition-transform duration-150 outline-none active:scale-[0.97]"
+								className="group border-border bg-card text-foreground hover:bg-accent focus-visible:ring-ring inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2.5 font-medium shadow-xs transition-transform duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.97]"
 							>
 								<HeartIcon
+									aria-hidden="true"
 									className={`size-4 transition-transform duration-200 ease-out ${
 										isBursting
 											? "scale-125 text-rose-500"
@@ -127,7 +128,7 @@ export const StepLoadCard = React.forwardRef<HTMLDivElement, StepLoadCardProps>(
 							</button>
 
 							<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[11px] tabular-nums">
-								<SparklesIcon className="text-muted-foreground size-3" />
+								<SparklesIcon aria-hidden="true" className="text-muted-foreground size-3" />
 								<span>Reactions tested: {testLikes}</span>
 							</div>
 						</div>

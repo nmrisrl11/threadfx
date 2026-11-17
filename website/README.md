@@ -17,6 +17,7 @@
 - **Juicer Milestones:** Procedural progression tiers & sensory ranks via `@data/milestones`
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
+- **Accessibility (A11Y):** WCAG 2.1/2.2 AA compliant with keyboard skip links, unified `:focus-visible` rings, reduced motion support, and semantic ARIA states
 - **Hosting:** Vercel (Hobby) with dual-domain fallback
 - **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution
 
