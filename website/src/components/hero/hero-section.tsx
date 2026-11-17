@@ -27,7 +27,7 @@ export function HeroSection() {
 			const leftX = (rect.left + rect.width * 0.12) / window.innerWidth;
 			const rightX = (rect.left + rect.width * 0.88) / window.innerWidth;
 
-			// Left flank: arcs up and outward to the left behind the logo
+			// Left flank: arcs up and outward to the left from the logo
 			confetti({
 				particleCount: 10,
 				angle: 125,
@@ -39,10 +39,10 @@ export function HeroSection() {
 				origin: { x: leftX, y },
 				colors: CONFETTI_PALETTES.monochrome.colors,
 				disableForReducedMotion: true,
-				zIndex: 1,
+				zIndex: 30,
 			});
 
-			// Right flank: arcs up and outward to the right behind the logo
+			// Right flank: arcs up and outward to the right from the logo
 			confetti({
 				particleCount: 10,
 				angle: 55,
@@ -54,7 +54,7 @@ export function HeroSection() {
 				origin: { x: rightX, y },
 				colors: CONFETTI_PALETTES.monochrome.colors,
 				disableForReducedMotion: true,
-				zIndex: 1,
+				zIndex: 30,
 			});
 		},
 		[soundIndex],
