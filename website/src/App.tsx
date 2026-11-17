@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { MilestonesSection } from "@/components/milestones/milestones-section";
 import { SimulatorSection } from "@/components/simulator/simulator-section";
+import { Analytics } from "@vercel/analytics/react";
 import { useEffect, useRef, useState } from "react";
 
 export default function App() {
@@ -62,6 +63,7 @@ export default function App() {
 				<DownloadSection />
 			</main>
 			<Footer ref={footerRef} />
+			<Analytics />
 		</div>
 	);
 }

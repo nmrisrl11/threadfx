@@ -19,7 +19,8 @@
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
 - **Typography:** SubsetFont Latin variable typography (`fonts.css`: Inter, Plus Jakarta Sans, Geist Mono)
 - **Accessibility (A11Y):** WCAG 2.1/2.2 AA compliant with keyboard skip links, unified `:focus-visible` rings, reduced motion support, descriptive alt/title attributes across all 23 images and 21 anchor links
-- **SEO & AI Discovery:** XML sitemap (`sitemap.xml`) with Google Images metadata, `robots.txt` with AI crawler directives (`GPTBot`, `ClaudeBot`, `PerplexityBot`), LLM context files (`llms.txt`, `llms-full.txt`), enhanced Schema.org JSON-LD graph (`SoftwareApplication`, `WebSite`, `FAQPage`), and dual webmanifests (`site.webmanifest`, `manifest.webmanifest`)
+- **SEO & AI Discovery:** XML sitemap (`sitemap.xml`) with Google Images metadata, Google Search Console verification, `robots.txt` with AI crawler directives (`GPTBot`, `ClaudeBot`, `PerplexityBot`), LLM context files (`llms.txt`, `llms-full.txt`), enhanced Schema.org JSON-LD graph (`SoftwareApplication`, `WebSite`, `FAQPage`), and dual webmanifests (`site.webmanifest`, `manifest.webmanifest`)
+- **Web Analytics:** Privacy-first [Vercel Web Analytics](https://vercel.com/analytics) via `@vercel/analytics/react`
 - **Code Quality & Canonical Styling:** OXC (`oxlint` + `oxfmt`) + `tailwind-lint` (strict canonical Tailwind v4 class enforcement)
 - **Hosting:** Vercel (Hobby) with dual-domain fallback
 - **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution

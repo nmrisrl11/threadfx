@@ -265,6 +265,7 @@ AI agents must ensure that all code remains compatible across all target desktop
 | **Audio Engine**        | ZzFX (MIT, procedural Web Audio)                                      |
 | **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`)                            |
 | **Website Hosting**     | Vercel (Hobby)                                                        |
+| **Web Analytics**       | Vercel Analytics (`@vercel/analytics/react`)                          |
 | **Zip Distribution**    | Cloudflare R2 (`/download` redirect)                                  |
 
 ---

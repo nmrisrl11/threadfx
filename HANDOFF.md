@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 17, 2026 (11:00 AM +08:00)  
+> **Last Synchronized:** November 17, 2026 (1:30 PM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Fixed curtain reveal footer and dynamic height docking implemented on the companion website. Staged `main` curtain container with Emil Kowalski downward elevation shadow and zero-border edge-to-edge separation; integrated autonomous `ResizeObserver` on `footerRef` dynamically calculating `marginBottom`; restored full light and dark mode adaptation via semantic tokens (`bg-background text-foreground`, `border-border`, `text-muted-foreground`); purged all top ambient gradient noise; upgraded `overflow-x: hidden` to modern `overflow-x: clip`. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
+> **Working Tree Status:** ThreadFX v1.0.0 official release infrastructure complete and live. Automated universal dual-zip packaging in WXT (`threadfx-1.0.0.zip` and `threadfx-latest.zip`), decoupled `/download` 307 redirect active to Cloudflare R2 releases bucket (`releases.nmrisrl.dev`), CORS headers configured for `/version.json` with verified 200 OK responses, Google Search Console verification meta tag configured, and Vercel Analytics integrated on the companion web portal. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings; `tailwind-lint` 0 issues), and production builds (`build:all`) passing cleanly.
 
 ---
 
