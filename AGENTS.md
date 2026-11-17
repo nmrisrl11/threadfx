@@ -224,8 +224,19 @@ To prevent code duplication, eliminate configuration drift, and ensure changes i
 To maintain complete human oversight and clean version history:
 
 - **NEVER** run `git commit` or `git push` autonomously or without explicit user instruction.
-- Always run all quality gates first (`npm run lint`, `npm run format`, `npm run build:all`).
+- Always run all quality gates first (`npm run lint`, `npm run lint:tailwind`, `npm run format:check`, `npm run build:all`).
 - Present the staged diff summary and proposed conventional commit title (`type(scope): description`), and **pause** for the user's explicit confirmation before running Git commands.
+
+### Rule 13: Canonical Tailwind CSS v4 Classes (Zero Non-Canonical Syntax)
+
+To uphold modern, idiomatic Tailwind CSS v4 standards and prevent IntelliSense `suggestCanonicalClasses` warnings:
+
+- **ALWAYS** write Tailwind utilities in their canonical form:
+  - Linear gradients: Use `bg-linear-to-*` instead of `bg-gradient-to-*`.
+  - Dimensions on standard scale: Use canonical numbers (`w-29.5`, `max-w-21.25`, `sm:min-w-75`, `gap-0.75`, `h-107.5`) instead of arbitrary pixel brackets (`w-[118px]`, `max-w-[85px]`, `sm:min-w-[300px]`, `gap-[3px]`, `h-[430px]`).
+  - Standard utilities: Use `stroke-3` instead of `stroke-[3]`, `focus:z-100` instead of `focus:z-[100]`, `-rotate-6` instead of `rotate-[-6deg]`, `data-active:` instead of `data-[active]:`.
+  - Arbitrary filter variables: Use `filter-(--var-name)` instead of `[filter:var(--var-name)]`.
+- **Enforcement & Auto-Fix:** Run `npm run lint:tailwind` to audit canonical class usage, and `npm run lint:tailwind:fix` to auto-fix diagnostics via `@tailwindcss/language-server`.
 
 ---
 
@@ -244,16 +255,17 @@ AI agents must ensure that all code remains compatible across all target desktop
 
 ## 4. Tech Stack Reference
 
-| Layer                   | Technology                                       |
-| :---------------------- | :----------------------------------------------- |
-| **Monorepo**            | npm Workspaces                                   |
-| **Extension Framework** | [WXT](https://wxt.dev/) (Vite-based)             |
-| **UI Framework**        | React 19 + TypeScript                            |
-| **Styling**             | Tailwind CSS v4 (`@tailwindcss/vite`) + Radix UI |
-| **Audio Engine**        | ZzFX (MIT, procedural Web Audio)                 |
-| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`)       |
-| **Website Hosting**     | Vercel (Hobby)                                   |
-| **Zip Distribution**    | Cloudflare R2 (`/download` redirect)             |
+| Layer                   | Technology                                                            |
+| :---------------------- | :-------------------------------------------------------------------- |
+| **Monorepo**            | npm Workspaces                                                        |
+| **Extension Framework** | [WXT](https://wxt.dev/) (Vite-based)                                  |
+| **UI Framework**        | React 19 + TypeScript                                                 |
+| **Styling**             | Tailwind CSS v4 (`@tailwindcss/vite`) + Radix UI                      |
+| **Linter & Formatter**  | OXC (`oxlint` + `oxfmt`) + `tailwind-lint` (Tailwind language server) |
+| **Audio Engine**        | ZzFX (MIT, procedural Web Audio)                                      |
+| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`)                            |
+| **Website Hosting**     | Vercel (Hobby)                                                        |
+| **Zip Distribution**    | Cloudflare R2 (`/download` redirect)                                  |
 
 ---
 
@@ -278,6 +290,17 @@ npm run build:web            # Builds static distribution for Vercel
 
 ```bash
 npm run build:all            # Compiles extension, zips it, and compiles website
+```
+
+### Quality & Verification
+
+```bash
+npm run lint                 # Runs oxlint with zero-warning threshold
+npm run lint:fix             # Auto-fixes fixable code issues via oxlint
+npm run lint:tailwind        # Verifies canonical Tailwind CSS v4 classes
+npm run lint:tailwind:fix    # Auto-fixes non-canonical Tailwind CSS classes
+npm run format               # Formats entire codebase using oxfmt
+npm run format:check         # Verifies formatting compliance without writing changes
 ```
 
 ---

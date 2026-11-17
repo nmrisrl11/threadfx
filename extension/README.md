@@ -18,6 +18,8 @@
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
 - **Interface:** Native Chrome Side Panel (`chrome.sidePanel`) with 3-tab layout (`Sound FX`, `Particles`, `Storage`), ambient `UpdateBanner`, and global `Alt+Shift+T` toggle shortcut
 - **Storage Telemetry & Versioning:** Real-time client quota and byte allocation metrics via React 19 `useSyncExternalStore`, and zero-overhead update tracking via `useUpdateCheck`
+- **Typography:** SubsetFont Latin variable typography (`fonts.css`: Inter, Plus Jakarta Sans, Geist Mono)
+- **Code Quality & Canonical Styling:** OXC (`oxlint` + `oxfmt`) + `tailwind-lint` (strict canonical Tailwind v4 class enforcement)
 
 ---
 
@@ -58,6 +60,17 @@ npm run build             # Compiles extension to .output/chrome-mv3
 npm run zip               # Packages output into threadfx-<version>-chrome.zip
 npm run dev:firefox       # Launches Firefox target (experimental)
 npm run build:firefox     # Compiles Firefox MV2/MV3 build
+npm run compile           # Runs TypeScript compilation check (tsc --noEmit)
+```
+
+### Monorepo Quality & Verification Commands (Run from Root)
+
+```bash
+npm run lint:tailwind     # Audits codebase for canonical Tailwind CSS v4 classes
+npm run lint:tailwind:fix # Auto-fixes non-canonical Tailwind CSS classes
+npm run lint              # High-performance Rust-based linting with oxlint
+npm run format            # Formats entire codebase with oxfmt
+npm run format:check      # Checks formatting compliance without writing changes
 ```
 
 ---

@@ -27,14 +27,21 @@ npm.cmd run lint
 ```
 *Criteria: Must report `Found 0 warnings and 0 errors`.*
 
-### Step 3: Full Monorepo Compilation & Packaging
+### Step 3: Canonical Tailwind CSS Linting Check
+Verify that all markup uses modern canonical Tailwind utility classes with zero warnings:
+```powershell
+npm.cmd run lint:tailwind
+```
+*Criteria: Must report `✔ No issues found`.*
+
+### Step 4: Full Monorepo Compilation & Packaging
 Verify that both the extension (WXT) and the landing page (Vite) build without compilation errors:
 ```powershell
 npm.cmd run build:all
 ```
 *Verify that `extension/.output/threadfx-<version>-chrome.zip` is generated.*
 
-### Step 4: Lockstep Version Check
+### Step 5: Lockstep Version Check
 Ensure `package.json`, `extension/package.json`, and `website/package.json` all share the exact same version string.
 
 ---
@@ -48,6 +55,7 @@ Present the results to the user using this concise status card:
 
 - **Code Formatting (`oxfmt`):** ✅ Passed (All files formatted)
 - **Code Linting (`oxlint`):** ✅ Passed (0 warnings, 0 errors)
+- **Tailwind Linting (`tailwind-lint`):** ✅ Passed (0 warnings, 0 errors)
 - **Extension Build (WXT):** ✅ Passed (`.output/chrome-mv3` compiled)
 - **Extension Archive (.zip):** ✅ Passed (`threadfx-1.0.0-chrome.zip` generated)
 - **Website Build (Vite):** ✅ Passed (`dist/` production assets ready)

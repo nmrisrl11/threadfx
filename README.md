@@ -38,22 +38,22 @@ _Zero-latency procedural audio, physics-driven particle bursts, and tactile micr
 
 ## 🛠️ Complete Tech Stack
 
-| Layer                   | Technology                                 | Details                                                                |
-| :---------------------- | :----------------------------------------- | :--------------------------------------------------------------------- |
-| **Monorepo**            | npm Workspaces                             | Unified package management across extension and website                |
-| **Extension Framework** | [WXT](https://wxt.dev/) (v0.21+)           | Modern Vite-powered browser extension framework                        |
-| **UI Framework**        | React 19 + TypeScript                      | High-performance component rendering                                   |
-| **Styling**             | Tailwind CSS v4 + shadcn CSS Variables     | Dual Light/Dark theming (`system` / `dark` / `light`) & zero-FOUC sync |
-| **UI Primitives**       | shadcn/ui + Radix UI (`radix-ui`, `cn`)    | Accessible components, custom variants, and button/slider/switch UIs   |
-| **Iconography**         | Lucide React                               | Standardized explicit `Icon` suffix convention (`*Icon`)               |
-| **Linter & Formatter**  | OXC (`oxlint` + `oxfmt`)                   | High-performance Rust-based JavaScript/TypeScript linter & formatter   |
-| **Audio Synthesis**     | ZzFX (< 1 KB Web Audio)                    | In-memory procedural sound synthesizer (MIT)                           |
-| **Visual FX**           | Canvas Confetti                            | Hardware-accelerated particle canvas                                   |
-| **Progression Engine**  | Procedural Juicer Milestones               | 7 sensory ranks, lifetime odometer, and victory fanfare audio          |
-| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar with global `Alt+Shift+T` toggle shortcut   |
-| **Landing Page**        | Vite + React 19 + Tailwind CSS v4          | Interactive Threads simulator & soundboard                             |
-| **Distribution**        | Cloudflare R2                              | Direct zip downloads with $0 egress fees via `/download`               |
-| **Hosting**             | Vercel                                     | Dual-domain fallback (`threadfx.nmrisrl.dev` ⇄ `threadfx.vercel.app`)  |
+| Layer                   | Technology                                 | Details                                                                                    |
+| :---------------------- | :----------------------------------------- | :----------------------------------------------------------------------------------------- |
+| **Monorepo**            | npm Workspaces                             | Unified package management across extension and website                                    |
+| **Extension Framework** | [WXT](https://wxt.dev/) (v0.21+)           | Modern Vite-powered browser extension framework                                            |
+| **UI Framework**        | React 19 + TypeScript                      | High-performance component rendering                                                       |
+| **Styling**             | Tailwind CSS v4 + shadcn CSS Variables     | Dual Light/Dark theming (`system` / `dark` / `light`) & zero-FOUC sync                     |
+| **UI Primitives**       | shadcn/ui + Radix UI (`radix-ui`, `cn`)    | Accessible components, custom variants, and button/slider/switch UIs                       |
+| **Iconography**         | Lucide React                               | Standardized explicit `Icon` suffix convention (`*Icon`)                                   |
+| **Linter & Formatter**  | OXC (`oxlint` + `oxfmt`) + `tailwind-lint` | High-performance Rust JS/TS tooling + `@tailwindcss/language-server` canonical classes CLI |
+| **Audio Synthesis**     | ZzFX (< 1 KB Web Audio)                    | In-memory procedural sound synthesizer (MIT)                                               |
+| **Visual FX**           | Canvas Confetti                            | Hardware-accelerated particle canvas                                                       |
+| **Progression Engine**  | Procedural Juicer Milestones               | 7 sensory ranks, lifetime odometer, and victory fanfare audio                              |
+| **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar with global `Alt+Shift+T` toggle shortcut                       |
+| **Landing Page**        | Vite + React 19 + Tailwind CSS v4          | Interactive Threads simulator & soundboard                                                 |
+| **Distribution**        | Cloudflare R2                              | Direct zip downloads with $0 egress fees via `/download`                                   |
+| **Hosting**             | Vercel                                     | Dual-domain fallback (`threadfx.nmrisrl.dev` ⇄ `threadfx.vercel.app`)                      |
 
 ---
 
@@ -116,16 +116,20 @@ npm install
 
 ### 2. Available npm Scripts
 
-| Command                 | Action                                                                       |
-| :---------------------- | :--------------------------------------------------------------------------- |
-| **`npm run dev:ext`**   | Launches Chrome with the extension loaded & live hot-reloading (HMR) enabled |
-| **`npm run dev:web`**   | Launches the local Vite development server for the landing page              |
-| **`npm run build:all`** | Compiles extension, zips it, and compiles the website in one command         |
-| **`npm run build:ext`** | Compiles the extension to `.output/chrome-mv3`                               |
-| **`npm run zip:ext`**   | Generates the unpacked distribution zip in `extension/.output/`              |
-| **`npm run build:web`** | Compiles the production landing page to `website/dist/`                      |
-| **`npm run lint`**      | Runs `oxlint` across codebase with zero-warning threshold                    |
-| **`npm run format`**    | Formats entire codebase using `oxfmt`                                        |
+| Command                         | Action                                                                       |
+| :------------------------------ | :--------------------------------------------------------------------------- |
+| **`npm run dev:ext`**           | Launches Chrome with the extension loaded & live hot-reloading (HMR) enabled |
+| **`npm run dev:web`**           | Launches the local Vite development server for the landing page              |
+| **`npm run build:all`**         | Compiles extension, zips it, and compiles the website in one command         |
+| **`npm run build:ext`**         | Compiles the extension to `.output/chrome-mv3`                               |
+| **`npm run zip:ext`**           | Generates the unpacked distribution zip in `extension/.output/`              |
+| **`npm run build:web`**         | Compiles the production landing page to `website/dist/`                      |
+| **`npm run lint`**              | Runs `oxlint` across codebase with zero-warning threshold                    |
+| **`npm run lint:fix`**          | Automatically fixes fixable code issues via `oxlint`                         |
+| **`npm run lint:tailwind`**     | Audits codebase for canonical Tailwind CSS v4 utility classes and conflicts  |
+| **`npm run lint:tailwind:fix`** | Auto-fixes non-canonical Tailwind CSS utility classes via language server    |
+| **`npm run format`**            | Formats entire codebase using `oxfmt`                                        |
+| **`npm run format:check`**      | Verifies formatting compliance without writing changes                       |
 
 ---
 
