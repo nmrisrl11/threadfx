@@ -54,7 +54,7 @@ function EmojiPickerEmoji({ emoji, className, ...props }: EmojiPickerListEmojiPr
 			type="button"
 			{...props}
 			className={cn(
-				"hover:bg-accent data-[active]:bg-accent flex size-7 cursor-pointer items-center justify-center rounded-md text-base transition-colors",
+				"hover:bg-accent data-active:bg-accent flex size-7 cursor-pointer items-center justify-center rounded-md text-base transition-colors",
 				className,
 			)}
 			data-slot="emoji-picker-emoji"

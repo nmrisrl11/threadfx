@@ -61,7 +61,7 @@ export const StepDeveloperCard = React.forwardRef<HTMLDivElement, StepDeveloperC
 								type="button"
 								onClick={handleCopyUrl}
 								aria-label="Copy extensions URL"
-								className="group border-border bg-surface-subtle hover:bg-accent text-foreground focus-visible:ring-ring inline-flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3 font-mono text-xs transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none sm:w-fit sm:min-w-[300px]"
+								className="group border-border bg-surface-subtle hover:bg-accent text-foreground focus-visible:ring-ring inline-flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3 font-mono text-xs transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none sm:w-fit sm:min-w-75"
 							>
 								<div className="flex items-center gap-2">
 									<span

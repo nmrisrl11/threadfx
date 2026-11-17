@@ -43,7 +43,7 @@ export function ThreadPostMock({
 								title={`${APP_INFO.name} profile emblem`}
 								width={40}
 								height={40}
-								className="size-full rounded-xl object-contain [filter:var(--drop-shadow-icon)]"
+								className="size-full rounded-xl object-contain filter-(--drop-shadow-icon)"
 							/>
 						</picture>
 					</div>
@@ -71,7 +71,7 @@ export function ThreadPostMock({
 					<button
 						type="button"
 						onClick={onLike}
-						className="group focus-visible:ring-ring -m-1 flex cursor-pointer items-center gap-2 rounded-lg p-1 transition-transform duration-150 ease-[var(--ease-spring)] select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.88]"
+						className="group focus-visible:ring-ring -m-1 flex cursor-pointer items-center gap-2 rounded-lg p-1 transition-transform duration-150 ease-(--ease-spring) select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.88]"
 						aria-label={isLiked ? "Unlike post" : "Like post"}
 						aria-pressed={isLiked}
 					>

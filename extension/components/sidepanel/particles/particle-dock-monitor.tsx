@@ -83,7 +83,7 @@ export const ParticleDockMonitor = memo(function ParticleDockMonitor({
 							</div>
 						) : (
 							<div className="flex min-w-0 items-center gap-1.5">
-								<span className="text-foreground max-w-[85px] truncate text-[11px] font-medium @[360px]/dock:max-w-[120px]">
+								<span className="text-foreground max-w-21.25 truncate text-[11px] font-medium @[360px]/dock:max-w-30">
 									{activePalette.name}
 								</span>
 

@@ -35,11 +35,14 @@
 		"build:all": "npm run build --workspace=extension && npm run zip --workspace=extension && npm run build --workspace=website",
 		"lint": "oxlint . --ignore-path=.oxlintignore",
 		"lint:fix": "oxlint . --fix --ignore-path=.oxlintignore",
+		"lint:tailwind": "tailwind-lint",
+		"lint:tailwind:fix": "tailwind-lint --fix",
 		"format": "oxfmt . --write --ignore-path=.oxfmtignore",
 		"format:check": "oxfmt . --check --ignore-path=.oxfmtignore"
 	},
 	"devDependencies": {
 		"oxfmt": "^0.78.0",
-		"oxlint": "^1.93.0"
+		"oxlint": "^1.93.0",
+		"tailwind-lint": "^0.17.0"
 	}
 }

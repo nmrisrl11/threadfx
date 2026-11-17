@@ -144,7 +144,7 @@ export function MilestonesPopover() {
 									</span>
 									{isUnlocked ? (
 										<span className="absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-emerald-500 text-white">
-											<CheckIcon className="h-2 w-2 stroke-[3]" />
+											<CheckIcon className="h-2 w-2 stroke-3" />
 										</span>
 									) : (
 										<span className="bg-muted text-muted-foreground absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full">

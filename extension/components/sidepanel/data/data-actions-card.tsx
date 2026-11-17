@@ -96,7 +96,7 @@ export const DataActionsCard = memo(function DataActionsCard({
 					</div>
 
 					{/* Fixed-width action container: Eliminates Layout Shifts (CLS = 0.00) */}
-					<div className="flex w-[118px] shrink-0 items-center justify-end gap-1.5">
+					<div className="flex w-29.5 shrink-0 items-center justify-end gap-1.5">
 						{historyClearedSuccess ? (
 							<div className="inline-flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 font-mono text-[10px] font-medium text-emerald-500 transition-colors duration-150">
 								<CheckIcon className="h-3 w-3" />
@@ -146,7 +146,7 @@ export const DataActionsCard = memo(function DataActionsCard({
 					</div>
 
 					{/* Fixed-width action container: Eliminates Layout Shifts (CLS = 0.00) */}
-					<div className="flex w-[118px] shrink-0 items-center justify-end gap-1.5">
+					<div className="flex w-29.5 shrink-0 items-center justify-end gap-1.5">
 						{settingsResetSuccess ? (
 							<div className="inline-flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 font-mono text-[10px] font-medium text-emerald-500 transition-colors duration-150">
 								<CheckIcon className="h-3 w-3" />
@@ -196,7 +196,7 @@ export const DataActionsCard = memo(function DataActionsCard({
 					</div>
 
 					{/* Fixed-width action container: Eliminates Layout Shifts (CLS = 0.00) */}
-					<div className="flex w-[118px] shrink-0 items-center justify-end gap-1.5">
+					<div className="flex w-29.5 shrink-0 items-center justify-end gap-1.5">
 						{odometerResetSuccess ? (
 							<div className="inline-flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 font-mono text-[10px] font-medium text-emerald-500 transition-colors duration-150">
 								<CheckIcon className="h-3 w-3" />

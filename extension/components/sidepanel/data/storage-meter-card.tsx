@@ -64,7 +64,7 @@ export const StorageMeterCard = memo(function StorageMeterCard({
 						Available Space
 					</span>
 					<div className="mt-0.5 flex flex-wrap items-baseline justify-end gap-x-1.5 gap-y-0.5">
-						<span className="text-foreground font-mono text-base font-bold text-emerald-600 dark:text-emerald-400">
+						<span className="font-mono text-base font-bold text-emerald-600 dark:text-emerald-400">
 							{loading ? "..." : formatBytes(remainingBytes)}
 						</span>
 						<span className="text-muted-foreground shrink-0 font-mono text-[10px]">free</span>
@@ -76,7 +76,7 @@ export const StorageMeterCard = memo(function StorageMeterCard({
 			<div className="mt-2.5">
 				<div className="bg-muted relative h-2 w-full overflow-hidden rounded-full">
 					<div
-						className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-300"
+						className="h-full rounded-full bg-linear-to-r from-emerald-500 to-teal-400 transition-all duration-300"
 						style={{ width: `${visualBarWidth}%` }}
 					/>
 				</div>

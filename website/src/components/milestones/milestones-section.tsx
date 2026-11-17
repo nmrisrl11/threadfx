@@ -78,7 +78,7 @@ export function MilestonesSection() {
 					aria-label="Juicer Milestone Medals Gallery"
 					onKeyDown={handleKeyDown}
 					onMouseLeave={() => clearTimeout(intent.current)}
-					className="flex w-full flex-col gap-2 md:h-[500px] md:flex-row md:gap-2.5"
+					className="flex w-full flex-col gap-2 md:h-125 md:flex-row md:gap-2.5"
 				>
 					{JUICER_MILESTONES.map((milestone) => (
 						<MilestonePanel

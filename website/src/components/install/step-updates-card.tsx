@@ -58,7 +58,7 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 								type="button"
 								onClick={handleSimulateReload}
 								aria-label="Simulate extension reload"
-								className="group border-border bg-card text-foreground hover:bg-accent focus-visible:ring-ring inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border px-4 py-3 text-xs font-semibold shadow-xs transition-transform duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] sm:w-fit sm:min-w-[190px]"
+								className="group border-border bg-card text-foreground hover:bg-accent focus-visible:ring-ring inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border px-4 py-3 text-xs font-semibold shadow-xs transition-transform duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] sm:w-fit sm:min-w-47.5"
 							>
 								<RefreshCwIcon
 									aria-hidden="true"

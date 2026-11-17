@@ -166,7 +166,7 @@ export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">
 						viewBox="0 0 1200 170"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						className="text-foreground/[0.07] hover:text-foreground/[0.13] h-auto w-full transition-colors duration-700"
+						className="text-foreground/[0.07] hover:text-foreground/13 h-auto w-full transition-colors duration-700"
 						aria-hidden="true"
 					>
 						<text

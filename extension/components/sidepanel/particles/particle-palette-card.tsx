@@ -48,7 +48,7 @@ export const ParticlePaletteCard = memo(function ParticlePaletteCard({
 				<div className="flex h-4 w-4 shrink-0 items-center justify-center">
 					{isSelected ? (
 						<span className="bg-foreground text-background flex h-4 w-4 items-center justify-center rounded-full">
-							<CheckIcon className="h-2.5 w-2.5 stroke-[3]" />
+							<CheckIcon className="h-2.5 w-2.5 stroke-3" />
 						</span>
 					) : (
 						<SparklesIcon className="text-muted-foreground group-hover:text-foreground h-3 w-3 opacity-60 transition-colors group-hover:opacity-100" />

@@ -79,7 +79,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 				"transition-[height,flex-grow,background-color] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none",
 				"md:h-auto md:min-w-0 md:basis-0",
 				isActive
-					? "bg-card/95 h-[430px] sm:h-[460px] md:grow-[4.75] lg:grow-[4.5]"
+					? "bg-card/95 h-107.5 sm:h-115 md:grow-[4.75] lg:grow-[4.5]"
 					: "bg-card/60 hover:bg-card/90 h-14 sm:h-16 md:grow",
 			)}
 		>
@@ -106,7 +106,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 				className={cn(
 					"pointer-events-none absolute inset-0 transition-opacity duration-500",
 					isActive
-						? "bg-gradient-to-t from-black/95 via-black/45 to-black/25"
+						? "bg-linear-to-t from-black/95 via-black/45 to-black/25"
 						: "bg-black/55 group-hover:bg-black/35",
 				)}
 			/>
@@ -227,7 +227,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 					/>
 
 					{/* 3D WebP Medal Asset */}
-					<picture className="relative size-24 shrink-0 transition-transform duration-300 ease-[var(--ease-out)] select-none sm:size-30">
+					<picture className="relative size-24 shrink-0 transition-transform duration-300 ease-out select-none sm:size-30">
 						<source srcSet={`/badges/${milestone.badgeFile}`} type="image/webp" />
 						<img
 							src={`/badges/${milestone.badgeFile}`}
@@ -235,7 +235,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 							title={`${milestone.title} 3D Achievement Medal (${milestone.threshold.toLocaleString()} Likes)`}
 							width={120}
 							height={120}
-							className="size-full object-contain [filter:drop-shadow(0_12px_24px_rgba(0,0,0,0.35))]"
+							className="size-full object-contain filter-[drop-shadow(0_12px_24px_rgba(0,0,0,0.35))]"
 							draggable={false}
 						/>
 					</picture>

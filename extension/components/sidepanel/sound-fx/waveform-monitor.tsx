@@ -144,7 +144,7 @@ export const WaveformMonitor = memo(function WaveformMonitor({
 				</div>
 
 				{/* Audio Visualizer Waveform Surface */}
-				<div className="relative flex h-8 w-full items-end justify-between gap-[3px] px-0.5">
+				<div className="relative flex h-8 w-full items-end justify-between gap-0.75 px-0.5">
 					{Array.from({ length: NUM_BARS }).map((_, idx) => {
 						const amp = dynamicAmplitudes[idx] ?? 0.25;
 						const barColor = getBarColor(idx, NUM_BARS);
