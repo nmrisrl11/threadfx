@@ -57,7 +57,7 @@ Run these from within the `extension/` directory (or use `npm run <script>:ext` 
 npm install               # Install dependencies
 npm run dev               # Launches Chrome with the extension pre-loaded & HMR active
 npm run build             # Compiles extension to .output/chrome-mv3
-npm run zip               # Packages output into threadfx-<version>-chrome.zip
+npm run zip               # Packages output into threadfx-<version>.zip & threadfx-latest.zip
 npm run dev:firefox       # Launches Firefox target (experimental)
 npm run build:firefox     # Compiles Firefox MV2/MV3 build
 npm run compile           # Runs TypeScript compilation check (tsc --noEmit)

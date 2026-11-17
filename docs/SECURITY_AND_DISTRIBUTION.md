@@ -25,7 +25,7 @@ When distributing desktop software or browser extensions outside of the Chrome W
 
 ```mermaid
 flowchart TD
-    A["User Downloads threadfx-1.0.0-chrome.zip"] --> B{"Is file downloaded from Chrome Web Store?"}
+    A["User Downloads threadfx-1.0.0.zip"] --> B{"Is file downloaded from Chrome Web Store?"}
     B -- Yes --> C["1-Click Install<br/>Zero Warnings (Google Signature Verified)"]
     B -- No (Direct Zip) --> D{"Reputation Scoring<br/>(SmartScreen / Safe Browsing)"}
     D -- New URL / Low Volume --> E["'Not commonly downloaded' Notice<br/>(Reputation Heuristic, Not a Virus)"]
@@ -81,13 +81,13 @@ Until official publication on the Chrome Web Store, ThreadFX is distributed dire
 Before installing any unpacked release:
 
 1. Navigate to [VirusTotal.com](https://www.virustotal.com/).
-2. Upload the downloaded `threadfx-<version>-chrome.zip`.
+2. Upload the downloaded `threadfx-<version>.zip`.
 3. Confirm the **0 / 70 Clean** detection status across all major antivirus engines (Microsoft Defender, Avast, BitDefender, Kaspersky, Sophos, etc.).
 4. **Shareable Reports:** VirusTotal generates a permanent, shareable URL for each analyzed file hash (e.g., `https://www.virustotal.com/gui/file/<sha256-hash>`). Maintainers should link this scan report directly in the GitHub Release notes.
 
 ### Safe Installation Instructions for Users
 
-1. Download `threadfx-1.0.0-chrome.zip` from [threadfx.nmrisrl.dev/download](https://threadfx.nmrisrl.dev/download) or GitHub Releases.
+1. Download `threadfx-1.0.0.zip` (or `threadfx-latest.zip`) from [threadfx.nmrisrl.dev/download](https://threadfx.nmrisrl.dev/download) or GitHub Releases.
 2. Extract the archive into a permanent folder (e.g., `Documents/ThreadFX/`).
 3. Open your browser and navigate to `chrome://extensions/` (or `edge://extensions/`, `brave://extensions/`).
 4. Enable the **Developer mode** toggle in the top-right corner.
@@ -99,7 +99,7 @@ Before installing any unpacked release:
 Because unpacked extensions run from a local directory path, updating to a new version does **not** require removing the extension or resetting user settings:
 
 1. **Keep a Fixed Installation Directory:** Store ThreadFX in a permanent directory (such as `Documents/ThreadFX/` or `extensions/threadfx/`).
-2. **Download & Overwrite:** When an update notification appears in the Side Panel header or Storage tab, download the latest `threadfx-<version>-chrome.zip` and extract its contents directly over your existing ThreadFX directory, replacing all files.
+2. **Download & Overwrite:** When an update notification appears in the Side Panel header or Storage tab, download the latest `threadfx-<version>.zip` (or `threadfx-latest.zip`) and extract its contents directly over your existing ThreadFX directory, replacing all files.
 3. **Reload in Extensions Manager:** Navigate to `chrome://extensions/` and click the circular **Reload icon (`↻`)** on the ThreadFX card.
 4. **100% Data Preservation:** All user volume settings, active sound presets, lifetime like counts, and unlocked 3D milestone badges are stored in Chrome's dedicated extension database (`chrome.storage.local`) and remain completely intact across file overwrites.
 
@@ -107,23 +107,22 @@ Because unpacked extensions run from a local directory path, updating to a new v
 
 ## 5. Extension Archive Naming Standard
 
-ThreadFX standardizes on **suffix-based browser target naming**:
+ThreadFX standardizes on **clean, universal archive naming** across all Chromium-based desktop browsers:
 
 ```text
-threadfx-<version>-<target>.zip
+threadfx-<version>.zip
 ```
 
 ### Examples:
 
-- `threadfx-1.0.0-chrome.zip` (Standard Chromium build: Chrome, Edge, Brave, Arc, Opera)
-- `threadfx-1.0.0-firefox.zip` (Mozilla Firefox MV2/MV3 build)
+- `threadfx-1.0.0.zip` (Universal Chromium release: Chrome, Brave, Edge, Arc, Opera)
 - `threadfx-latest.zip` (Direct convenience link on Cloudflare R2 for `/download` redirects)
+- `threadfx-1.0.0-firefox.zip` (Dedicated Firefox target if compiled with `-b firefox`)
 
-### Why Suffix Naming (`-chrome`) is the Best Practice:
+### Why Universal Naming (`threadfx-<version>.zip`) is the Best Practice:
 
-1. **Alphabetical Grouping:** When stored in a user's download directory or listed on a GitHub Release asset shelf, releases group naturally under the application name (`threadfx-1.0.0-chrome.zip`, `threadfx-1.0.0-firefox.zip`) rather than being fragmented under browser prefixes (`chrome-threadfx.zip`, `firefox-threadfx.zip`).
-2. **Framework Alignment:** WXT's built-in packaging pipeline (`wxt zip`, `wxt zip -b firefox`) natively generates this suffix format out of the box.
-3. **Clarity Across Browsers:** Users immediately know which archive corresponds to their active browser without guessing.
+1. **Broad User Inclusivity:** Extensions work identically across Chrome, Brave, Arc, Edge, and Opera. Dropping browser-specific tags eliminates confusion for non-Chrome users.
+2. **Automated Dual Packaging:** The build pipeline automatically produces both `threadfx-<version>.zip` and `threadfx-latest.zip` in one step with zero manual renaming.
 
 ---
 

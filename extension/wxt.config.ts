@@ -1,11 +1,25 @@
 import tailwindcss from "@tailwindcss/vite";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { defineConfig } from "wxt";
 import { APP_INFO } from "../data/app";
 
 // See https://wxt.dev/api/reference/wxt/interfaces/inlineconfig.html
 export default defineConfig({
 	modules: ["@wxt-dev/module-react"],
+	zip: {
+		artifactTemplate: "{{name}}-{{packageVersion}}.zip",
+	},
+	hooks: {
+		"zip:done": (_wxt, zipFiles) => {
+			for (const zipFile of zipFiles) {
+				if (!zipFile.includes("-sources")) {
+					const latestPath = path.resolve(path.dirname(zipFile), "threadfx-latest.zip");
+					fs.copyFileSync(zipFile, latestPath);
+				}
+			}
+		},
+	},
 	manifest: {
 		name: APP_INFO.fullName,
 		description: APP_INFO.shortDescription,

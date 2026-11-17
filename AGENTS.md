@@ -369,7 +369,7 @@ These built-in workflow skills automate standard development routines:
 
 - **`load-project-context`** (`.agents/skills/load-project-context/SKILL.md`): Review architecture, storage schema, constraints, and enforce asking for permission before committing or pushing.
 - **`commit-and-push`** (`.agents/skills/commit-and-push/SKILL.md`): Run formatting, linting, build checks, and format conventional commit titles with grouped responsibility descriptions.
-- **`release-extension`** (`.agents/skills/release-extension/SKILL.md`): Lockstep version bumping, packaging `threadfx-<version>-chrome.zip`, and preparing GitHub Release draft.
+- **`release-extension`** (`.agents/skills/release-extension/SKILL.md`): Lockstep version bumping, automated packaging of `threadfx-<version>.zip` and `threadfx-latest.zip`, and preparing GitHub Release draft.
 - **`create-changelog`** (`.agents/skills/create-changelog/SKILL.md`): Author consumer-facing, Apple-style release notes with sensory benefits and zero technical jargon.
 - **`sync-documentation`** (`.agents/skills/sync-documentation/SKILL.md`): Audit all project documentation against codebase state to eliminate drift.
 - **`verify-project`** (`.agents/skills/verify-project/SKILL.md`): Execute full health check (`oxfmt:check`, `oxlint`, `build:all`, version sync).

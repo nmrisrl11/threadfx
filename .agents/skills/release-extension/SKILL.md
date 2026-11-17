@@ -53,22 +53,12 @@ npm.cmd run build:all
 
 Verify the build output:
 1. **Extension Compilation:** `.output/chrome-mv3` contains the compiled extension files.
-2. **Zip Package Generation:** Verify `extension/.output/threadfx-<NEW_VERSION>-chrome.zip` was created.
+2. **Zip Package Generation:** Verify `extension/.output/threadfx-<NEW_VERSION>.zip` and `extension/.output/threadfx-latest.zip` were generated automatically.
 3. **Website Static Dist:** Verify `website/dist/` compiled cleanly.
 
 ---
 
-## Step 5: Refresh Local Fallback Archive
-
-Copy the newly built zip to `website/public/threadfx-latest.zip` as a local offline fallback (ensure it remains gitignored):
-
-```powershell
-Copy-Item "extension\.output\threadfx-<NEW_VERSION>-chrome.zip" "website\public\threadfx-latest.zip" -Force
-```
-
----
-
-## Step 6: Prepare GitHub Release Draft
+## Step 5: Prepare GitHub Release Draft
 
 Generate a pre-filled GitHub Release draft URL for the user:
 
@@ -79,7 +69,7 @@ https://github.com/nmrisrl11/threadfx/releases/new?tag=v<NEW_VERSION>&title=Thre
 Present this link to the user with the following release instructions:
 1. Click the link to open the pre-filled GitHub Release draft.
 2. Paste the user-facing changelog notes into the release description.
-3. Drag and drop `extension/.output/threadfx-<NEW_VERSION>-chrome.zip` into the "Attach binaries" area.
+3. Drag and drop `extension/.output/threadfx-<NEW_VERSION>.zip` into the "Attach binaries" area.
 4. Click **Publish release**.
 
 ---
@@ -88,5 +78,6 @@ Present this link to the user with the following release instructions:
 
 Remind the user:
 - The website download button links to `/download`, which resolves via `website/vercel.json` to the Cloudflare R2 bucket.
-- Upload `threadfx-<NEW_VERSION>-chrome.zip` (renamed to `threadfx-latest.zip`) to the Cloudflare R2 bucket for instant zero-egress public distribution.
-- Once Vercel deploys `main`, the website will immediately serve the updated release!
+- Upload `threadfx-latest.zip` (automatically generated in `extension/.output/`) directly to the Cloudflare R2 bucket for instant zero-egress public distribution.
+- **Zero Vercel Egress:** The zip archive is NEVER placed in `website/public/` or deployed through Vercel, protecting Vercel Hobby bandwidth limits.
+- Once Vercel deploys `main`, the website will immediately redirect downloaders to Cloudflare R2!

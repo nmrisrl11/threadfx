@@ -75,7 +75,7 @@ export const APP_INFO: AppInfo = {
 	appUrl: "threadfx.nmrisrl.dev",
 	version: "1.0.0",
 	versionTag: "v1.0.0",
-	releaseDate: "November 14, 2026",
+	releaseDate: "November 17, 2026",
 	license: "MIT",
 	licenseUrl: "https://github.com/nmrisrl11/threadfx/blob/main/LICENSE",
 	author: {
