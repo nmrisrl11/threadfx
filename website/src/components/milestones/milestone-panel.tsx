@@ -79,7 +79,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 				"transition-[height,flex-grow,background-color] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none",
 				"md:h-auto md:min-w-0 md:basis-0",
 				isActive
-					? "bg-card/95 h-[430px] sm:h-[460px] md:grow-[4.5]"
+					? "bg-card/95 h-[430px] sm:h-[460px] md:grow-[4.75] lg:grow-[4.5]"
 					: "bg-card/60 hover:bg-card/90 h-14 sm:h-16 md:grow",
 			)}
 		>
@@ -93,7 +93,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 				loading={milestone.level === 1 ? "eager" : "lazy"}
 				decoding="async"
 				className={cn(
-					"pointer-events-none absolute inset-0 size-full object-cover transition-all duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] select-none",
+					"pointer-events-none absolute inset-0 size-full object-cover object-center transition-all duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] select-none",
 					isActive
 						? "scale-105 opacity-85"
 						: "scale-100 opacity-40 group-hover:scale-105 group-hover:opacity-60",
@@ -121,13 +121,13 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 			{/* Collapsed Strip Presentation (Top Thumbnail + Bottom Rotated Label on Desktop; Horizontal row on Mobile) */}
 			<div
 				className={cn(
-					"pointer-events-none absolute inset-0 flex flex-row items-center justify-between px-4 transition-opacity md:flex-col md:p-5",
+					"pointer-events-none absolute inset-0 flex flex-row items-center justify-between px-4 transition-opacity md:flex-col md:px-0 md:py-5",
 					isActive ? "opacity-0 duration-150" : "opacity-100 delay-200 duration-500",
 				)}
 				aria-hidden={isActive}
 			>
 				{/* Top (Desktop) / Left (Mobile): Mini Badge & Level */}
-				<div className="flex items-center gap-2.5 md:flex-col md:gap-2">
+				<div className="flex items-center gap-2.5 md:w-full md:flex-col md:items-center md:justify-center md:gap-2">
 					<picture className="relative size-8 shrink-0 select-none">
 						<source srcSet={`/badges/${milestone.badgeFile}`} type="image/webp" />
 						<img
@@ -139,7 +139,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 							className="size-full object-contain opacity-80"
 						/>
 					</picture>
-					<span className="font-mono text-[11px] font-bold tracking-wider text-zinc-300">
+					<span className="text-center font-mono text-[11px] font-bold tracking-wider text-zinc-300">
 						0{milestone.level}
 					</span>
 					<span className="text-sm font-semibold text-zinc-200 md:hidden">{milestone.title}</span>
@@ -151,53 +151,67 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 				</div>
 
 				{/* Bottom: Editorial Rotated Label on Desktop */}
-				<div className="hidden py-4 md:flex md:flex-1 md:items-end md:justify-center">
+				<div className="hidden py-4 md:flex md:w-full md:flex-1 md:items-end md:justify-center">
 					<span className="rotate-180 font-mono text-xs font-bold tracking-widest whitespace-nowrap text-zinc-300 uppercase transition-colors duration-200 [writing-mode:vertical-rl] group-hover:text-white">
 						{milestone.rank}
 					</span>
 				</div>
 			</div>
 
-			{/* Expanded Panel Presentation (Fixed width container on desktop prevents text reflow during transition) */}
+			{/* Expanded Panel Presentation (Centered on all screen sizes: mobile, tablet, and desktop) */}
 			<div
 				className={cn(
-					"absolute inset-y-0 left-0 flex size-full flex-col justify-between p-5 transition-opacity sm:p-6 md:w-[460px] md:p-7",
+					"absolute inset-0 flex size-full flex-col justify-between p-4 transition-opacity sm:p-5 md:p-4 lg:p-6 xl:p-7",
 					reveal,
 				)}
 			>
 				{/* Top Bar: Eyebrow Tag + Compact Sound Pill */}
-				<div className="flex items-center justify-between gap-3">
-					<div className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-zinc-200 uppercase shadow-md backdrop-blur-md">
-						<TrophyIcon className="size-3 text-zinc-400" />
-						<span className="font-semibold text-white">Rank 0{milestone.level}</span>
-						<span className="text-zinc-500">/</span>
-						<span className="text-zinc-400">07</span>
+				<div className="flex w-full items-center justify-between gap-2">
+					<div
+						className={cn(
+							"inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium shadow-xs backdrop-blur-md sm:px-3 sm:text-xs",
+							tier.accentBadgeBg,
+						)}
+					>
+						<TrophyIcon className="size-3 opacity-80" />
+						<span className="font-semibold">Rank 0{milestone.level}</span>
+						<span className="hidden opacity-60 xl:inline">/ 07</span>
 					</div>
 
-					{/* Redesigned Minimal Audio Pill */}
+					{/* Sleek Tactile Fanfare Audio Pill */}
 					<button
 						ref={fanfareBtnRef}
 						type="button"
 						onClick={handleAuditionFanfare}
 						aria-label={`Audition ${milestone.title} celebration audio`}
 						className={cn(
-							"group/btn inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-3 py-1 font-mono text-[11px] font-medium text-zinc-200 shadow-md backdrop-blur-md transition-all duration-150 outline-none",
-							"hover:border-white/30 hover:bg-black/80 hover:text-white active:scale-95",
-							isPlayingAudio && "border-white/40 bg-white/20 text-white",
+							"group/btn inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[11px] font-medium text-zinc-200 shadow-xs backdrop-blur-md transition-all duration-150 outline-none select-none sm:px-3 sm:text-xs",
+							"hover:border-white/35 hover:bg-black/75 hover:text-white active:scale-95",
+							"focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:outline-none",
+							isPlayingAudio &&
+								"border-white/40 bg-white/20 text-white shadow-[0_0_12px_rgba(255,255,255,0.25)]",
 						)}
 					>
 						<Volume2Icon
 							className={cn(
-								"size-3 text-zinc-300 transition-colors group-hover/btn:text-white",
-								isPlayingAudio && "animate-pulse text-white",
+								"size-3 text-zinc-300 transition-transform duration-150 group-hover/btn:text-white",
+								isPlayingAudio ? "scale-110 text-white" : "group-hover/btn:scale-105",
 							)}
 						/>
-						<span>{isPlayingAudio ? "Playing Fanfare" : "Listen to Fanfare"}</span>
+						<span>
+							{isPlayingAudio ? (
+								"Playing"
+							) : (
+								<>
+									<span className="hidden xl:inline">Play </span>Fanfare
+								</>
+							)}
+						</span>
 					</button>
 				</div>
 
 				{/* Center Exhibit: 3D Floating Medal Showcase */}
-				<div className="relative my-auto flex flex-col items-center justify-center py-1 sm:py-2">
+				<div className="relative my-auto flex w-full flex-col items-center justify-center py-1 sm:py-2">
 					{/* Ambient Glow Aura */}
 					<div
 						className={cn(
