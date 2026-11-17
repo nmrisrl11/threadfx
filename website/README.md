@@ -54,7 +54,8 @@ npm run format:check      # Checks formatting compliance without writing changes
 
 - **Production URL:** `https://threadfx.nmrisrl.dev`
 - **Vercel Fallback:** `https://threadfx.vercel.app`
-- **Decoupled Downloads:** The landing page links to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket holding `threadfx-latest.zip`.
+- **R2 Releases Hub:** `https://releases.nmrisrl.dev`
+- **Decoupled Downloads:** The landing page links to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket holding `https://releases.nmrisrl.dev/threadfx-latest.zip`.
 
 ---
 

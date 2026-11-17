@@ -28,7 +28,7 @@ graph TD
 
     subgraph Infrastructure["Cloud & Hosting Infrastructure"]
         Vercel["Vercel Edge (threadfx.nmrisrl.dev)"]
-        R2["Cloudflare R2 Bucket (threadfx-latest.zip)"]
+        R2["Cloudflare R2 Bucket (releases.nmrisrl.dev/threadfx-latest.zip)"]
 
         Vercel -->|Redirects /download| R2
     end
@@ -196,7 +196,7 @@ https://threadfx.nmrisrl.dev (Public Branded URL)
           │
           ├──> / (Landing page, interactive audio demo)
           │
-          └──> /download ──(307 Redirect)──> Cloudflare R2 (threadfx-latest.zip)
+          └──> /download ──(307 Redirect)──> Cloudflare R2 (https://releases.nmrisrl.dev/threadfx-latest.zip)
 ```
 
 - **Resilience:** If `threadfx.nmrisrl.dev` DNS is ever altered or disconnected, `threadfx.vercel.app` automatically serves as the working primary site with zero downtime.

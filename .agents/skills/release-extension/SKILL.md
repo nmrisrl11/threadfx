@@ -77,7 +77,7 @@ Present this link to the user with the following release instructions:
 ## Step 6: Distribution Verification (Cloudflare R2 & Vercel)
 
 Remind the user:
-- The website download button links to `/download`, which resolves via `website/vercel.json` to the Cloudflare R2 bucket.
+- The website download button links to `/download`, which resolves via `website/vercel.json` to the Cloudflare R2 bucket (`https://releases.nmrisrl.dev/threadfx-latest.zip`).
 - Upload `threadfx-latest.zip` (automatically generated in `extension/.output/`) directly to the Cloudflare R2 bucket for instant zero-egress public distribution.
 - **Zero Vercel Egress:** The zip archive is NEVER placed in `website/public/` or deployed through Vercel, protecting Vercel Hobby bandwidth limits.
 - Once Vercel deploys `main`, the website will immediately redirect downloaders to Cloudflare R2!

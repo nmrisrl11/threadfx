@@ -133,7 +133,7 @@ Meta obfuscates and frequently changes class names (e.g. `.x1i10hfl`).
 ### Rule 5: Decoupled Domain & Storage
 
 - All landing page asset links must be **relative**.
-- The download button must link to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket.
+- The download button must link to `/download`, which resolves via `vercel.json` to the Cloudflare R2 bucket (`https://releases.nmrisrl.dev/threadfx-latest.zip`).
 - The public production URL is `https://threadfx.nmrisrl.dev`, with `https://threadfx.vercel.app` as the permanent fallback.
 
 ### Rule 6: Avoid Barrel Files (Direct Explicit Imports)

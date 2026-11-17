@@ -52,7 +52,7 @@ _Zero-latency procedural audio, physics-driven particle bursts, and tactile micr
 | **Progression Engine**  | Procedural Juicer Milestones               | 7 sensory ranks, lifetime odometer, and victory fanfare audio                              |
 | **Extension UI**        | Chrome Side Panel API (`chrome.sidePanel`) | Persistent browser sidebar with global `Alt+Shift+T` toggle shortcut                       |
 | **Landing Page**        | Vite + React 19 + Tailwind CSS v4          | Interactive Threads simulator & soundboard                                                 |
-| **Distribution**        | Cloudflare R2                              | Direct zip downloads with $0 egress fees via `/download`                                   |
+| **Distribution**        | Cloudflare R2                              | Direct zip downloads with $0 egress fees via `/download` (`releases.nmrisrl.dev`)          |
 | **Hosting**             | Vercel                                     | Dual-domain fallback (`threadfx.nmrisrl.dev` ⇄ `threadfx.vercel.app`)                      |
 
 ---

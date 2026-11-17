@@ -12,21 +12,21 @@
 
 ThreadFX is an open-source interactive effects, procedural audio, and tactile feedback suite for social feeds, launching with flagship desktop support for **Meta Threads** (`threads.com`).
 
-| Property                  | Value                                                                                                           |
-| :------------------------ | :-------------------------------------------------------------------------------------------------------------- |
-| **Monorepo Version**      | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`)                            |
-| **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                                  |
-| **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                                      |
-| **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                                              |
-| **Extension Bundle Size** | `.output/threadfx-1.0.0.zip` & `threadfx-latest.zip` (882 KB, includes 7 WebP badges, Frimousse emojis & fonts) |
-| **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Modularized landing architecture in `components/landing/`             |
-| **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**)                 |
-| **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (6 palettes + vector emoji reaction bursts)                      |
-| **Progression Engine**    | 7 Sensory ranks with 3D WebP achievement badges, lifetime odometer, and victory fanfares                        |
-| **Linter / Formatter**    | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings                                                           |
-| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`)                                 |
-| **Distribution**          | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`$0` egress)                                |
-| **Author / Maintainer**   | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License (Brand & Assets Reserved)                 |
+| Property                  | Value                                                                                                                   |
+| :------------------------ | :---------------------------------------------------------------------------------------------------------------------- |
+| **Monorepo Version**      | `v1.0.0` (Lockstep across `package.json`, `extension`, `website`, and `data/app.ts`)                                    |
+| **Flagship Target**       | [Threads](https://threads.com) (`threads.net` legacy fallback)                                                          |
+| **Extension Framework**   | [WXT](https://wxt.dev/) v0.21.5 (Vite 8.3.8) • Manifest V3                                                              |
+| **Extension UI**          | Chrome Side Panel API (`chrome.sidePanel`) • React 19 • TypeScript                                                      |
+| **Extension Bundle Size** | `.output/threadfx-1.0.0.zip` & `threadfx-latest.zip` (882 KB, includes 7 WebP badges, Frimousse emojis & fonts)         |
+| **Website**               | Vite 8.3.8 • React 19 • Tailwind CSS v4 • Modularized landing architecture in `components/landing/`                     |
+| **Audio Synthesis**       | Zero-latency procedural synthesis via **ZzFX** (MIT, Web Audio API, **0 external audio files**)                         |
+| **Particle Physics**      | Viewport canvas confetti via `canvas-confetti` (6 palettes + vector emoji reaction bursts)                              |
+| **Progression Engine**    | 7 Sensory ranks with 3D WebP achievement badges, lifetime odometer, and victory fanfares                                |
+| **Linter / Formatter**    | OXC (`oxlint` + `oxfmt`) — zero errors, zero warnings                                                                   |
+| **Public Production URL** | `https://threadfx.nmrisrl.dev` (Vercel fallback: `https://threadfx.vercel.app`)                                         |
+| **Distribution**          | `/download` 307 redirect via `vercel.json` to Cloudflare R2 bucket (`https://releases.nmrisrl.dev/threadfx-latest.zip`) |
+| **Author / Maintainer**   | Nomer Israel ([@nmrisrl](https://threads.com/@nmrisrl)) • MIT License (Brand & Assets Reserved)                         |
 
 ---
 
