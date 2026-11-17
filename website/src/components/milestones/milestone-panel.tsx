@@ -5,7 +5,7 @@ import { INTERACTION_SOUNDS, applyPitch } from "@data/presets";
 import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
 import { TrophyIcon, Volume2Icon } from "lucide-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface MilestonePanelProps {
 	milestone: JuicerMilestone;
@@ -18,13 +18,28 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 	const tier = getMilestoneTierConfig(milestone.level);
 	const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 	const fanfareBtnRef = useRef<HTMLButtonElement | null>(null);
+	const audioTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+	useEffect(() => {
+		return () => {
+			if (audioTimeoutRef.current) {
+				clearTimeout(audioTimeoutRef.current);
+			}
+		};
+	}, []);
 
 	const handleAuditionFanfare = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.stopPropagation();
 		if (isPlayingAudio) return;
 
 		setIsPlayingAudio(true);
-		setTimeout(() => setIsPlayingAudio(false), 900);
+		if (audioTimeoutRef.current) {
+			clearTimeout(audioTimeoutRef.current);
+		}
+		audioTimeoutRef.current = setTimeout(() => {
+			setIsPlayingAudio(false);
+			audioTimeoutRef.current = null;
+		}, 900);
 
 		// Procedural milestone victory fanfare playback
 		try {

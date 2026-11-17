@@ -16,7 +16,7 @@ import { INTERACTION_SOUNDS, SOUND_PACKS, SOUND_PACK_LIST, applyPitch } from "@d
 import { zzfx } from "@data/zzfx";
 import confetti from "canvas-confetti";
 import { Volume2Icon } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export function SimulatorSection() {
 	const [selectedPack, setSelectedPack] = useState<SoundPackId>("bubble");
@@ -31,6 +31,7 @@ export function SimulatorSection() {
 		useState<ConfettiPaletteId>(DEFAULT_CONFETTI_PALETTE);
 	const [selectedEmoji, setSelectedEmoji] = useState<string>(DEFAULT_EMOJI);
 	const [pressedKeyIndex, setPressedKeyIndex] = useState<number | null>(null);
+	const keyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	// Physical keyboard hotkeys [1-8] for instant sound auditioning & key depression
 	useEffect(() => {
@@ -51,7 +52,13 @@ export function SimulatorSection() {
 					e.preventDefault();
 					setSelectedPack(targetPack.id);
 					setPressedKeyIndex(num - 1);
-					setTimeout(() => setPressedKeyIndex(null), 150);
+					if (keyTimerRef.current) {
+						clearTimeout(keyTimerRef.current);
+					}
+					keyTimerRef.current = setTimeout(() => {
+						setPressedKeyIndex(null);
+						keyTimerRef.current = null;
+					}, 150);
 
 					const pitched = applyPitch(targetPack.params, pitch);
 					zzfx(volume, ...pitched);
@@ -61,7 +68,12 @@ export function SimulatorSection() {
 		};
 
 		window.addEventListener("keydown", handleKeyDown);
-		return () => window.removeEventListener("keydown", handleKeyDown);
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+			if (keyTimerRef.current) {
+				clearTimeout(keyTimerRef.current);
+			}
+		};
 	}, [volume, pitch]);
 
 	const handleSelectPack = (packId: SoundPackId) => {

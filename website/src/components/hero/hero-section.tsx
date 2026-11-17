@@ -87,6 +87,7 @@ export function HeroSection() {
 							draggable={false}
 							width={144}
 							height={144}
+							fetchPriority="high"
 							className="size-full -rotate-6 object-contain filter-(--drop-shadow-hero) transition-transform duration-300 ease-out select-none group-hover:scale-105 group-hover:rotate-0"
 						/>
 					</picture>

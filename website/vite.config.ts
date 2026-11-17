@@ -13,4 +13,21 @@ export default defineConfig({
 			"@data": path.resolve(import.meta.dirname, "../data"),
 		},
 	},
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks(id) {
+					if (id.includes("node_modules/gsap")) {
+						return "vendor-gsap";
+					}
+					if (id.includes("node_modules/canvas-confetti") || id.includes("node_modules/radix-ui")) {
+						return "vendor-ui";
+					}
+					if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/")) {
+						return "vendor-react";
+					}
+				},
+			},
+		},
+	},
 });

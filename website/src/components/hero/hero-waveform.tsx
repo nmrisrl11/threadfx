@@ -22,7 +22,7 @@ export function HeroWaveform() {
 
 	// Listen for live audio pulses triggered from logo interaction
 	useEffect(() => {
-		return subscribeAudioPulse((pack) => {
+		const unsubscribe = subscribeAudioPulse((pack) => {
 			const currentPack = pack ?? SOUND_PACKS.bubble;
 			setActivePack(currentPack);
 
@@ -53,6 +53,13 @@ export function HeroWaveform() {
 				setDynamicAmplitudes(BASE_CURVE.map((val) => val * 0.24));
 			}, 460);
 		});
+
+		return () => {
+			unsubscribe();
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current);
+			}
+		};
 	}, []);
 
 	return (

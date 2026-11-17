@@ -12,7 +12,11 @@
 
 ### Changed
 
+- **Optimized Landing Page Bundling & Preloading**: Configured manual vendor chunking for GSAP, React, and UI dependencies, splitting the monolithic bundle into cached parallel chunks, and preloaded the high-priority hero emblem for faster first-paint rendering.
+
 ### Fixed
+
+- **Cleaned Up Micro-Timer Lifecycles**: Bound transient audition and animation timers in the landing page waveform, simulator, and milestone panels to component lifecycles to prevent unmount retention.
 
 ### Removed
 
