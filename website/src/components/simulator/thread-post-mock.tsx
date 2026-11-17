@@ -39,7 +39,8 @@ export function ThreadPostMock({
 							<source srcSet="/icons/512.webp" type="image/webp" />
 							<img
 								src="/icons/128.png"
-								alt={APP_INFO.name}
+								alt={`${APP_INFO.name} profile emblem`}
+								title={`${APP_INFO.name} profile emblem`}
 								width={40}
 								height={40}
 								className="size-full rounded-xl object-contain [filter:var(--drop-shadow-icon)]"

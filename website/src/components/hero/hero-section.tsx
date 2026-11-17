@@ -82,7 +82,8 @@ export function HeroSection() {
 						<source srcSet="/icons/512.webp" type="image/webp" />
 						<img
 							src="/icons/512.png"
-							alt=""
+							alt="ThreadFX official 3D tactile icon emblem"
+							title="ThreadFX official 3D tactile icon emblem"
 							draggable={false}
 							width={144}
 							height={144}

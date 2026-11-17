@@ -17,7 +17,8 @@
 - **Juicer Milestones:** Procedural progression tiers & sensory ranks via `@data/milestones`
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)
-- **Accessibility (A11Y):** WCAG 2.1/2.2 AA compliant with keyboard skip links, unified `:focus-visible` rings, reduced motion support, and semantic ARIA states
+- **Accessibility (A11Y):** WCAG 2.1/2.2 AA compliant with keyboard skip links, unified `:focus-visible` rings, reduced motion support, descriptive alt/title attributes across all 23 images and 21 anchor links
+- **SEO & AI Discovery:** XML sitemap (`sitemap.xml`) with Google Images metadata, `robots.txt` with AI crawler directives (`GPTBot`, `ClaudeBot`, `PerplexityBot`), LLM context files (`llms.txt`, `llms-full.txt`), enhanced Schema.org JSON-LD graph (`SoftwareApplication`, `WebSite`, `FAQPage`), and dual webmanifests (`site.webmanifest`, `manifest.webmanifest`)
 - **Hosting:** Vercel (Hobby) with dual-domain fallback
 - **Storage:** Cloudflare R2 for unpacked extension `.zip` distribution
 

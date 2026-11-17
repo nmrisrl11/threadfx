@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+	<url>
+		<loc>https://threadfx.nmrisrl.dev/</loc>
+		<lastmod>2026-11-17</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+		<image:image>
+			<image:loc>https://threadfx.nmrisrl.dev/og-image.png</image:loc>
+			<image:title>ThreadFX — Tactile Effects &amp; Interaction Suite for Social Feeds</image:title>
+			<image:caption>Interactive procedural audio, visual particle physics, and tactile micro-motion for social threads.</image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://threadfx.nmrisrl.dev/icons/512.png</image:loc>
+			<image:title>ThreadFX 3D App Icon</image:title>
+			<image:caption>Official 3D tactile application emblem of ThreadFX.</image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://threadfx.nmrisrl.dev/badges/milestone-1.webp</image:loc>
+			<image:title>Curious Juicer Milestone Badge</image:title>
+			<image:caption>Achievement medal for first tactile reaction enhanced.</image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://threadfx.nmrisrl.dev/badges/milestone-7.webp</image:loc>
+			<image:title>Omni Deity Milestone Badge</image:title>
+			<image:caption>Peak master achievement medal for social feed interaction.</image:caption>
+		</image:image>
+	</url>
+</urlset>

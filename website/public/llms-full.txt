@@ -1,0 +1,113 @@
+# ThreadFX — Complete System Architecture & LLM Reference
+
+> Tactile micro-interactions, procedural audio synthesis, and visual particle physics suite for social feeds.
+
+ThreadFX is an open-source suite designed to enrich social web interactions with immediate physical, acoustic, and visual feedback.
+
+---
+
+## 1. System Architecture
+
+The monorepo is organized using native npm workspaces:
+
+```text
+threadfx/
+├── extension/          # Manifest V3 browser extension built with WXT
+│   ├── entrypoints/    # background service worker, content scripts, sidepanel app
+│   ├── components/     # UI primitives and domain coordinators (sound-fx, particles, data)
+│   ├── hooks/          # React hooks for chrome.storage and audio synthesis
+│   └── lib/            # Storage helpers and Threads DOM mutation observers
+├── website/            # Landing page and interactive simulator (Vite + React 19 + Tailwind v4)
+├── data/               # Centralized shared core (single source of truth for presets, palettes, metadata)
+└── docs/               # System architecture, brand guidelines, and roadmaps
+```
+
+---
+
+## 2. Audio Engine Specifications (ZzFX)
+
+ThreadFX enforces a strict "Zero External Audio Files" constraint. Sound effects are synthesized on demand using Frank Force's ZzFX procedural Web Audio engine.
+
+### Audio Presets Schema
+
+Presets are defined as compact numerical parameter arrays matching the ZzFX signature:
+`[volume, randomness, frequency, attack, sustain, release, shape, shapeCurve, slide, deltaSlide, pitchJump, pitchJumpTime, repeatTime, noise, modulation, bitCrush, delay, sustainVolume, decay, tremolo]`
+
+Pre-configured Sound Packs:
+- **Bubble**: Soft acoustic pop with resonant micro-pitch slide.
+- **Retro**: Nostalgic 8-bit game pickup chime.
+- **Hype**: Energetic, multi-tone fanfare celebrating milestones.
+- **Blip**: Minimal, crisp interface tick for high-cadence interactions.
+- **Wood**: Organic, tactile wooden block impact.
+- **Zap**: Futuristic laser strike with rapid exponential decay.
+- **Drop**: Sub-bass acoustic water droplet.
+- **Thump**: Punchy analog mechanical switch impulse.
+
+All presets support dynamic pitch scaling (0.5x to 2.0x) and master gain adjustment.
+
+---
+
+## 3. Storage Schema (`chrome.storage.local`)
+
+Synchronized state between the in-feed content script and the side panel:
+
+```typescript
+export interface ThreadFXSettings {
+  enabled: boolean;
+  volume: number;          // 0.0 to 1.0
+  soundPack: "bubble" | "retro" | "hype" | "blip" | "wood" | "zap" | "drop" | "thump";
+  pitch: number;           // 0.5 to 2.0
+  confettiEnabled: boolean;
+  likesJuicedCount: number;
+  confettiPalette: ConfettiPaletteId;
+  confettiCount: number;   // 10 to 60
+  confettiSpread: number;  // 30 to 90
+  burstMode: "palette" | "emoji";
+  selectedEmoji: string;
+  theme: "system" | "dark" | "light";
+}
+```
+
+A bounded LRU cache of up to 1,000 post permalink IDs prevents duplicate sound triggers on rapid re-renders:
+`Key: "threadfx_juiced_post_ids" => string[]`
+
+---
+
+## 4. Visual Particle Dynamics
+
+Particle effects utilize `canvas-confetti` rendering on an isolated, top-level fixed canvas overlay (`#threadfx-canvas-overlay`):
+- `pointer-events: none` guarantees zero disruption to user clicks or feed scrolling.
+- Dual burst modes:
+  1. **Palette Mode**: Curated high-contrast color palettes (Neon Rose, Cyber Neon, Solar Flare, Emerald Prism, Lavender Haze, Monochrome).
+  2. **Emoji Mode**: Canvas glyph bursts projecting scalable emojis.
+
+---
+
+## 5. Security & Privacy Posture
+
+- **Minimal Permissions**: Only `sidePanel` and `storage`.
+- **Zero Host Injection on Untrusted Domains**: Host permissions are strictly restricted to `https://*.threads.com/*` and `https://threads.com/*`.
+- **Zero Network Egress**: The extension never transmits user data, likes, post content, or browsing history to any external server or API.
+- **Zero Style Bleed**: The Side Panel is isolated inside its own iframe, and the feed overlay operates on a dedicated hardware-accelerated canvas.
+
+---
+
+## 6. Installation Guide (Chromium Browsers)
+
+ThreadFX runs on Google Chrome, Brave, Microsoft Edge, and Arc:
+
+1. Download the latest release `.zip` from https://threadfx.nmrisrl.dev/download.
+2. Unzip the archive to a permanent local folder.
+3. Open `chrome://extensions` in your browser.
+4. Toggle on **Developer mode** in the upper-right corner.
+5. Click **Load unpacked** and select the unzipped directory.
+6. Open Threads (`https://threads.com`) and click the heart icon on any post to experience procedural sound and particle feedback.
+
+---
+
+## 7. Open Source License & Attribution
+
+- **License**: MIT License (Free and open-source).
+- **Author**: Nomer Israel (@nmrisrl)
+- **Repository**: https://github.com/nmrisrl11/threadfx
+- **Upstream Libraries**: ZzFX by Frank Force (MIT), canvas-confetti by Kiril Vatev (ISC), Radix UI (MIT), Lucide Icons (ISC).

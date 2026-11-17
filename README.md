@@ -187,7 +187,11 @@ threadfx/
 │   │   ├── favicon.svg             # Razor-sharp vector tab icon
 │   │   ├── og-image.png            # 1200x630 Open Graph preview
 │   │   ├── site.webmanifest        # PWA application manifest
-│   │   ├── components.json         # shadcn/ui configuration
+│   │   ├── sitemap.xml             # XML sitemap with Google Image metadata
+│   │   ├── robots.txt              # Crawler & LLM agent directives
+│   │   ├── llms.txt                # LLM project context (llmstxt.org)
+│   │   └── llms-full.txt           # Full LLM architecture documentation
+│   ├── components.json             # shadcn/ui configuration
 │   ├── vercel.json                 # Decoupled /download redirect for Cloudflare R2
 │   └── package.json
 │

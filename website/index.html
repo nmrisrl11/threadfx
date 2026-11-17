@@ -31,7 +31,27 @@
 		<meta name="author" content="%APP_AUTHOR%" />
 		<meta name="creator" content="%APP_CREATOR%" />
 		<meta name="publisher" content="%APP_PUBLISHER%" />
+		<meta
+			name="robots"
+			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+		/>
+		<meta
+			name="googlebot"
+			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+		/>
+		<meta name="format-detection" content="telephone=no" />
 		<link rel="canonical" href="https://%APP_URL%/" />
+
+		<!-- Discoverability, Sitemaps & LLM Context -->
+		<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+		<link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Project Context" />
+
+		<!-- Web Application & Mobile Capabilities -->
+		<meta name="application-name" content="%APP_NAME%" />
+		<meta name="apple-mobile-web-app-title" content="%APP_NAME%" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="mobile-web-app-capable" content="yes" />
 
 		<!-- Icons & Webmanifest -->
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -62,32 +82,94 @@
 		<meta name="twitter:description" content="%APP_DESCRIPTION%" />
 		<meta name="twitter:image" content="https://%APP_URL%/og-image.png" />
 
-		<!-- Structured Data: Schema.org SoftwareApplication -->
+		<!-- Structured Data: Schema.org Graph -->
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
-				"@type": "SoftwareApplication",
-				"@id": "https://%APP_URL%/#software",
-				"name": "%APP_FULL_NAME%",
-				"url": "https://%APP_URL%/",
-				"image": "https://%APP_URL%/og-image.png",
-				"description": "%APP_SHORT_DESCRIPTION%",
-				"applicationCategory": "BrowserExtension",
-				"operatingSystem": "Chromium browsers (Google Chrome, Brave, Microsoft Edge, Arc)",
-				"softwareVersion": "%APP_VERSION%",
-				"offers": {
-					"@type": "Offer",
-					"price": "0.00",
-					"priceCurrency": "USD",
-					"availability": "https://schema.org/InStock"
-				},
-				"author": {
-					"@type": "Person",
-					"name": "%AUTHOR_NAME%",
-					"url": "%AUTHOR_URL%"
-				},
-				"downloadUrl": "https://%APP_URL%/download",
-				"license": "%LICENSE_URL%"
+				"@graph": [
+					{
+						"@type": "SoftwareApplication",
+						"@id": "https://%APP_URL%/#software",
+						"name": "%APP_FULL_NAME%",
+						"url": "https://%APP_URL%/",
+						"image": "https://%APP_URL%/og-image.png",
+						"description": "%APP_SHORT_DESCRIPTION%",
+						"applicationCategory": "BrowserExtension",
+						"operatingSystem": "Chromium browsers (Google Chrome, Brave, Microsoft Edge, Arc)",
+						"softwareVersion": "%APP_VERSION%",
+						"offers": {
+							"@type": "Offer",
+							"price": "0.00",
+							"priceCurrency": "USD",
+							"availability": "https://schema.org/InStock"
+						},
+						"author": {
+							"@type": "Person",
+							"name": "%AUTHOR_NAME%",
+							"url": "%AUTHOR_URL%"
+						},
+						"downloadUrl": "https://%APP_URL%/download",
+						"license": "%LICENSE_URL%"
+					},
+					{
+						"@type": "WebSite",
+						"@id": "https://%APP_URL%/#website",
+						"url": "https://%APP_URL%/",
+						"name": "%APP_NAME%",
+						"description": "%APP_DESCRIPTION%",
+						"publisher": {
+							"@type": "Person",
+							"name": "%AUTHOR_NAME%",
+							"url": "%AUTHOR_URL%"
+						}
+					},
+					{
+						"@type": "FAQPage",
+						"@id": "https://%APP_URL%/#faq",
+						"mainEntity": [
+							{
+								"@type": "Question",
+								"name": "What is ThreadFX?",
+								"acceptedAnswer": {
+									"@type": "Answer",
+									"text": "ThreadFX is an open-source browser extension that brings zero-latency procedural audio synthesis, visual particle bursts, and tactile micro-motion to social threads, launching with flagship support for Threads."
+								}
+							},
+							{
+								"@type": "Question",
+								"name": "Is ThreadFX free and open source?",
+								"acceptedAnswer": {
+									"@type": "Answer",
+									"text": "Yes, ThreadFX is 100% free and open source under the MIT License. The code is available on GitHub."
+								}
+							},
+							{
+								"@type": "Question",
+								"name": "Does ThreadFX download external sound files?",
+								"acceptedAnswer": {
+									"@type": "Answer",
+									"text": "No. ThreadFX strictly enforces a Zero External Audio Files policy. All sound effects are generated procedurally in-memory via the native browser Web Audio API and ZzFX."
+								}
+							},
+							{
+								"@type": "Question",
+								"name": "Does ThreadFX collect or track any user data?",
+								"acceptedAnswer": {
+									"@type": "Answer",
+									"text": "No. ThreadFX requires minimal permissions (sidePanel, storage) and operates entirely locally on your device with zero telemetry or network tracking."
+								}
+							},
+							{
+								"@type": "Question",
+								"name": "Which web browsers are supported by ThreadFX?",
+								"acceptedAnswer": {
+									"@type": "Answer",
+									"text": "ThreadFX supports all modern Chromium-based desktop browsers including Google Chrome, Brave, Microsoft Edge, and Arc."
+								}
+							}
+						]
+					}
+				]
 			}
 		</script>
 

@@ -1,0 +1,126 @@
+{
+	"id": "/?source=pwa",
+	"name": "ThreadFX — Tactile Social Effects Suite",
+	"short_name": "ThreadFX",
+	"description": "Tactile micro-interactions, procedural audio synthesis, and visual particle bursts for social threads.",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"display_override": ["standalone", "minimal-ui", "window-controls-overlay"],
+	"orientation": "any",
+	"background_color": "#080808",
+	"theme_color": "#080808",
+	"lang": "en",
+	"dir": "ltr",
+	"categories": ["utilities", "productivity", "social"],
+	"icons": [
+		{
+			"src": "/icons/16.png",
+			"sizes": "16x16",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/32.png",
+			"sizes": "32x32",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/48.png",
+			"sizes": "48x48",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/128.png",
+			"sizes": "128x128",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/180.png",
+			"sizes": "180x180",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/icons/512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	],
+	"shortcuts": [
+		{
+			"name": "Interactive Simulator",
+			"short_name": "Simulator",
+			"description": "Audition procedural audio and particle physics in real time",
+			"url": "/#simulator",
+			"icons": [
+				{
+					"src": "/icons/192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		},
+		{
+			"name": "Download Extension",
+			"short_name": "Download",
+			"description": "Download ThreadFX browser extension package (.zip)",
+			"url": "/download",
+			"icons": [
+				{
+					"src": "/icons/192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		},
+		{
+			"name": "Installation Guide",
+			"short_name": "Install",
+			"description": "Step-by-step developer mode installation instructions",
+			"url": "/#install-guide",
+			"icons": [
+				{
+					"src": "/icons/192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		},
+		{
+			"name": "Gamified Milestones",
+			"short_name": "Milestones",
+			"description": "View 7-tier juicer rankings and achievement badges",
+			"url": "/#milestones",
+			"icons": [
+				{
+					"src": "/icons/192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		}
+	]
+}

@@ -10,6 +10,15 @@
 
 ### Added
 
+- **Comprehensive SEO, PWA & LLM Discovery Architecture (`website/`)**:
+  - Authored a valid XML sitemap (`website/public/sitemap.xml`) with Google Image SEO metadata for app icons and 3D milestone achievement medals.
+  - Implemented crawler policies (`website/public/robots.txt`) explicitly welcoming standard search engines (Google, Bing, Apple) alongside dedicated AI Search and LLM crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Amazonbot`, `Applebot-Extended`, `meta-externalagent`).
+  - Added [llmstxt.org](https://llmstxt.org) standard documentation (`website/public/llms.txt` and `website/public/llms-full.txt`) providing AI agents and LLMs with clear architectural and procedural Web Audio specifications.
+  - Upgraded PWA web application manifests (`site.webmanifest` and `manifest.webmanifest`) with 16px to 512px responsive icons (both `any` and `maskable`), application categories, and quick shortcuts (Simulator, Download, Install Guide, Milestones).
+  - Enhanced `index.html` metadata with mobile app capabilities, `robots` indexing directives, discovery links, and a rich Schema.org JSON-LD `@graph` (`SoftwareApplication`, `WebSite`, and `FAQPage` rich snippets).
+  - Configured edge caching and MIME types for discovery files in `vercel.json`.
+  - Resolved 100% of SEO extension audit warnings across images and links: added descriptive, informative `alt` and `title` attributes to all 23 landing page images (0 without ALT, 0 without TITLE) and explicit `title` attributes to all 21 anchor links (0 without TITLE).
+
 - **Full A11Y & WCAG 2.1/2.2 Compliance Pass (`website/`)**:
   - Implemented an accessible keyboard skip link anchored directly to `<main id="main-content">`, enabling assistive-tech and keyboard users to bypass header navigation smoothly (WCAG 2.4.1 Level A).
   - Enforced `disableForReducedMotion: true` across all procedural confetti bursts and disabled scale/blur depth transforms in `ScrollStack` when `prefers-reduced-motion: reduce` is active, safeguarding users with vestibular motion sensitivity (WCAG 2.3.3 Level AAA).

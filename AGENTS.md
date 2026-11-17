@@ -61,7 +61,11 @@ threadfx/
 │   │   └── main.tsx                # Synchronous anti-FOUC theme initialization
 │   ├── public/
 │   │   ├── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
-│   │   └── icons/                  # PWA and responsive icons (16-512px)
+│   │   ├── icons/                  # PWA and responsive icons (16-512px)
+│   │   ├── sitemap.xml             # Search engine XML sitemap
+│   │   ├── robots.txt              # Standard & AI crawler directives
+│   │   ├── llms.txt                # LLM context & architecture spec
+│   │   └── site.webmanifest        # PWA webmanifest
 │   ├── components.json             # shadcn/ui config
 │   ├── vercel.json                 # /download redirect to Cloudflare R2
 │   └── package.json

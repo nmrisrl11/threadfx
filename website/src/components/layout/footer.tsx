@@ -71,6 +71,7 @@ export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">
 							</span>
 							<a
 								href={APP_INFO.author.url}
+								title={`${APP_INFO.author.name} on Threads (${APP_INFO.author.handle})`}
 								target="_blank"
 								rel="noreferrer noopener"
 								className="group text-foreground/80 hover:text-foreground focus-visible:ring-ring inline-flex items-center gap-1 rounded-md px-1 py-0.5 font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
@@ -99,6 +100,11 @@ export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">
 										<li key={link.label}>
 											<a
 												href={link.href}
+												title={
+													link.isExternal
+														? `${link.label} (opens external link in new tab)`
+														: `Navigate to ${link.label} section`
+												}
 												{...(link.isExternal
 													? { target: "_blank", rel: "noreferrer noopener" }
 													: {})}

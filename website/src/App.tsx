@@ -40,6 +40,7 @@ export default function App() {
 			{/* WCAG 2.4.1 Bypass Blocks: High-contrast keyboard skip link */}
 			<a
 				href="#main-content"
+				title="Skip directly to main content"
 				className="focus:bg-primary focus:text-primary-foreground focus:ring-ring sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:px-4 focus:py-2 focus:text-xs focus:font-semibold focus:shadow-lg focus:ring-2 focus:outline-none"
 			>
 				Skip to main content

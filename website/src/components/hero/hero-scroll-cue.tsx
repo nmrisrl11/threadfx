@@ -4,6 +4,7 @@ export function HeroScrollCue() {
 			<a
 				href="#simulator"
 				aria-label="Scroll to interactive simulator"
+				title="Scroll down to interactive simulator"
 				className="group text-muted-foreground hover:text-foreground focus-visible:ring-ring flex flex-col items-center gap-2 rounded-full p-2 transition-colors duration-200 select-none focus-visible:ring-2 focus-visible:outline-none"
 			>
 				<span className="text-muted-foreground group-hover:text-foreground font-mono text-[11px] tracking-wider uppercase transition-colors">

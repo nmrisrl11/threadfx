@@ -123,6 +123,7 @@ export function Navbar() {
 					{/* App Name Only (Points to domain root with smooth scroll) */}
 					<a
 						href="/"
+						title={`${APP_INFO.name} — Return to top`}
 						onClick={(e) => {
 							e.preventDefault();
 							window.scrollTo({ top: 0, behavior: "smooth" });
@@ -189,6 +190,7 @@ export function Navbar() {
 								<a
 									key={link.label}
 									href={link.href}
+									title={`Navigate to ${link.label} section`}
 									onClick={(e) => handleNavClick(e, link.href, link.id)}
 									aria-current={isActive ? "page" : undefined}
 									className={`focus-visible:ring-ring rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 select-none focus-visible:ring-2 focus-visible:outline-none ${
@@ -247,6 +249,7 @@ export function Navbar() {
 									<a
 										key={link.label}
 										href={link.href}
+										title={`Navigate to ${link.label} section`}
 										onClick={(e) => handleNavClick(e, link.href, link.id)}
 										aria-current={isActive ? "page" : undefined}
 										className={`focus-visible:ring-ring flex items-center justify-between rounded-xl px-2.5 py-2 text-xs transition-all select-none focus-visible:ring-2 focus-visible:outline-none ${

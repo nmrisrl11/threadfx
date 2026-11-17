@@ -86,7 +86,8 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 			{/* Atmospheric Gamified Environmental Background Image (Smooth scale on hover for collapsed card) */}
 			<img
 				src={tier.bgImage}
-				alt=""
+				alt={`${milestone.title} Level ${milestone.level} background artwork`}
+				title={`${milestone.title} - Level ${milestone.level} (${milestone.threshold.toLocaleString()} Likes)`}
 				aria-hidden="true"
 				width={1024}
 				height={1024}
@@ -132,7 +133,8 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 						<source srcSet={`/badges/${milestone.badgeFile}`} type="image/webp" />
 						<img
 							src={`/badges/${milestone.badgeFile}`}
-							alt=""
+							alt={`${milestone.title} mini badge icon`}
+							title={`${milestone.title} - Rank ${milestone.rank}`}
 							width={32}
 							height={32}
 							loading="lazy"
@@ -229,7 +231,8 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 						<source srcSet={`/badges/${milestone.badgeFile}`} type="image/webp" />
 						<img
 							src={`/badges/${milestone.badgeFile}`}
-							alt={`${milestone.title} 3D Medal`}
+							alt={`${milestone.title} 3D Achievement Medal`}
+							title={`${milestone.title} 3D Achievement Medal (${milestone.threshold.toLocaleString()} Likes)`}
 							width={120}
 							height={120}
 							className="size-full object-contain [filter:drop-shadow(0_12px_24px_rgba(0,0,0,0.35))]"

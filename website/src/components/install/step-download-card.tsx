@@ -42,6 +42,7 @@ export const StepDownloadCard = React.forwardRef<HTMLDivElement, StepDownloadCar
 						<div className="flex flex-col gap-2 pt-2">
 							<a
 								href={APP_INFO.urls.download}
+								title={`Download ${APP_INFO.name} Extension archive (.zip)`}
 								className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl px-5 py-3 text-sm font-semibold transition-transform duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] sm:w-fit"
 							>
 								<DownloadIcon aria-hidden="true" className="size-4" />

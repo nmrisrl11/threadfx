@@ -1,0 +1,39 @@
+# ThreadFX
+
+> Tactile micro-interactions, procedural audio synthesis, and visual particle physics for social feeds — starting with Threads.
+
+ThreadFX is an open-source browser extension and interaction suite that transforms silent social scrolling into a tactile, responsive experience. When users react to or like posts on social feeds, ThreadFX provides instantaneous zero-latency audio synthesis, hardware-accelerated particle physics, and progressive gamified milestones.
+
+## Core Capabilities
+
+- **Zero-Latency Procedural Audio Synthesis**: ThreadFX generates 100% of its sound effects procedurally in-memory using Frank Force's ZzFX engine and the native Web Audio API (`AudioContext`). No external `.mp3`, `.wav`, or `.ogg` files are ever downloaded or streamed.
+- **Hardware-Accelerated Particle Physics**: Canvas confetti bursts with customizable color palettes, particle density, velocity, gravity, and emoji glyph modes rendered onto an isolated overlay.
+- **Native Chrome Side Panel**: Seamless side panel interface built with React 19, TypeScript, and Tailwind CSS v4, allowing real-time sound preview, volume calibration, pitch adjustment, and palette selection without obstructing the feed.
+- **Privacy First & Local Storage**: Minimal Manifest V3 permissions (`sidePanel`, `storage`). All preferences, counters, and cached post IDs are stored strictly in `chrome.storage.local`. Zero telemetry, zero external network tracking, zero analytics scripts.
+- **Progressive Milestones**: 7-tier gamified progression system with custom 3D achievement badges celebrating interaction milestones (from Curious Juicer to Omni Deity).
+
+## Technical Architecture
+
+- **Extension Framework**: WXT (Next-gen browser extension framework built on Vite).
+- **Manifest Version**: Manifest V3 (MV3).
+- **UI Framework**: React 19 + TypeScript.
+- **Styling**: Tailwind CSS v4 + Radix UI primitives.
+- **Audio Synthesis**: Procedural ZzFX Web Audio parameter arrays.
+- **Visual Particles**: Canvas-confetti canvas overlays.
+- **Web App**: Vite + React 19 landing page with interactive simulator, acoustic waveform visualizer, and live soundboard.
+
+## Key Links & Resources
+
+- Official Website: https://threadfx.nmrisrl.dev
+- Fallback Mirror: https://threadfx.vercel.app
+- Download Archive: https://threadfx.nmrisrl.dev/download
+- GitHub Repository: https://github.com/nmrisrl11/threadfx
+- Issues & Support: https://github.com/nmrisrl11/threadfx/issues
+- Releases & Changelog: https://github.com/nmrisrl11/threadfx/releases
+- Open Source License: MIT License (https://github.com/nmrisrl11/threadfx/blob/main/LICENSE)
+- Author: Nomer Israel (https://threads.com/@nmrisrl)
+
+## Full Documentation
+
+For the complete technical specification, procedural audio parameter schemas, and installation guides, see:
+https://threadfx.nmrisrl.dev/llms-full.txt
