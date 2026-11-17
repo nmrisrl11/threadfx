@@ -29,13 +29,13 @@ export function SoundboardPanel({
 				once={false}
 				className="flex items-center justify-between px-1"
 			>
-				<div className="flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
-					<MusicIcon className="size-3.5 text-zinc-400" />
+				<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
+					<MusicIcon className="text-muted-foreground size-3.5" />
 					<span>Soundboard Keybed</span>
 				</div>
-				<div className="flex items-center gap-1.5 font-mono text-[10px] text-zinc-500">
+				<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[10px]">
 					<span>Tap keys</span>
-					<kbd className="rounded border border-white/10 bg-white/5 px-1 py-0.5 font-mono text-[9px] text-zinc-400">
+					<kbd className="border-border bg-muted text-muted-foreground rounded border px-1 py-0.5 font-mono text-[9px]">
 						1–8
 					</kbd>
 					<span>or click pads</span>
@@ -70,12 +70,12 @@ export function SoundboardPanel({
 								"group relative flex cursor-pointer flex-col justify-between rounded-xl border p-2.5 text-left transition-colors duration-150 outline-none select-none",
 								// Surface & border tones
 								isSelected
-									? "border-white/30 bg-[#17171d] text-white shadow-xs"
-									: "border-white/[0.07] bg-[#101014] text-zinc-300 hover:border-white/20 hover:bg-[#141419] hover:text-white",
-								// Tactile mouse-down feedback without scale or translation shift
-								"active:bg-[#1c1c23]",
+									? "border-foreground/30 bg-accent text-foreground shadow-xs"
+									: "border-border bg-card text-muted-foreground hover:border-foreground/20 hover:bg-accent/50 hover:text-foreground",
+								// Tactile mouse-down feedback
+								"active:bg-accent/80",
 								// Visual flash when pressed via keyboard shortcut
-								isPhysicallyPressed && "border-white/40 bg-[#22222a] text-white",
+								isPhysicallyPressed && "border-foreground/40 bg-accent text-foreground",
 							)}
 						>
 							{/* Keycap Top: Key number badge & acoustic frequency tag */}
@@ -84,13 +84,13 @@ export function SoundboardPanel({
 									className={cn(
 										"rounded border px-1.5 py-0.5 font-mono text-[9px] transition-colors duration-150",
 										isSelected
-											? "border-white/30 bg-white/15 font-bold text-white"
-											: "border-white/10 bg-white/5 text-zinc-400 group-hover:text-zinc-200",
+											? "border-foreground/30 bg-foreground/10 text-foreground font-bold"
+											: "border-border bg-muted/60 text-muted-foreground group-hover:text-foreground",
 									)}
 								>
 									{index + 1}
 								</kbd>
-								<span className="font-mono text-[9px] text-zinc-500">
+								<span className="text-muted-foreground font-mono text-[9px]">
 									{pack.frequency ? `${pack.frequency}Hz` : "FX"}
 								</span>
 							</div>
@@ -100,7 +100,9 @@ export function SoundboardPanel({
 								<span
 									className={cn(
 										"truncate text-xs font-semibold tracking-tight transition-colors duration-150",
-										isSelected ? "text-white" : "text-zinc-300 group-hover:text-white",
+										isSelected
+											? "text-foreground"
+											: "text-muted-foreground group-hover:text-foreground",
 									)}
 								>
 									{pack.name}
@@ -109,9 +111,7 @@ export function SoundboardPanel({
 								<span
 									className={cn(
 										"size-1.5 shrink-0 rounded-full transition-opacity duration-150",
-										isSelected
-											? "bg-white opacity-100 shadow-[0_0_6px_rgba(255,255,255,0.6)]"
-											: "opacity-0",
+										isSelected ? "bg-foreground opacity-100 shadow-xs" : "opacity-0",
 									)}
 								/>
 							</div>

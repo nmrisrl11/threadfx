@@ -27,15 +27,15 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 			<div
 				ref={ref}
 				id={id}
-				className={`overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c10] p-6 text-white shadow-2xl transition-colors duration-150 sm:p-8 ${className}`}
+				className={`border-border bg-card text-card-foreground shadow-card overflow-hidden rounded-2xl border p-6 transition-colors duration-150 sm:p-8 ${className}`}
 			>
 				{/* Top Card Header */}
-				<div className="flex items-center gap-2 border-b border-white/10 pb-4">
-					<span className="font-mono text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+				<div className="border-border flex items-center gap-2 border-b pb-4">
+					<span className="text-muted-foreground font-mono text-xs font-semibold tracking-wider uppercase">
 						Step 04
 					</span>
-					<span className="text-zinc-600">·</span>
-					<span className="text-xs text-zinc-300">Fast Updates</span>
+					<span className="text-muted-foreground/60">·</span>
+					<span className="text-foreground/90 text-xs font-medium">Fast Updates</span>
 				</div>
 
 				{/* Two-Column Interior */}
@@ -43,10 +43,10 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 					{/* Left: Action & Instructions */}
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col gap-2">
-							<h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+							<h3 className="text-foreground text-xl font-bold tracking-tight sm:text-2xl">
 								Updating takes 10 seconds
 							</h3>
-							<p className="text-sm leading-relaxed text-zinc-400">
+							<p className="text-muted-foreground text-sm leading-relaxed">
 								When an update drops, simply unzip the new version into your folder and click the
 								reload icon in your browser.
 							</p>
@@ -58,11 +58,13 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 								type="button"
 								onClick={handleSimulateReload}
 								aria-label="Simulate extension reload"
-								className="group inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-xs font-semibold text-zinc-200 transition-transform duration-150 hover:border-white/30 hover:bg-white/10 hover:text-white active:scale-[0.98] sm:w-fit sm:min-w-[190px]"
+								className="group border-border bg-card text-foreground hover:bg-accent inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border px-4 py-3 text-xs font-semibold shadow-xs transition-transform duration-150 active:scale-[0.98] sm:w-fit sm:min-w-[190px]"
 							>
 								<RefreshCwIcon
 									className={`size-3.5 shrink-0 transition-transform duration-700 ${
-										isReloading ? "animate-spin text-white" : "text-zinc-400"
+										isReloading
+											? "text-foreground animate-spin"
+											: "text-muted-foreground group-hover:text-foreground"
 									}`}
 								/>
 								<span className="truncate">
@@ -74,19 +76,19 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 								</span>
 							</button>
 
-							<span className="text-xs text-zinc-500">
+							<span className="text-muted-foreground text-xs">
 								Your sound settings and milestone medals stay saved automatically
 							</span>
 						</div>
 					</div>
 
 					{/* Right: What Stays Saved */}
-					<div className="rounded-xl border border-white/10 bg-black/60 p-5">
-						<div className="flex items-center justify-between border-b border-white/10 pb-3">
-							<span className="text-xs font-semibold text-white">Always Kept Safe</span>
+					<div className="border-border bg-surface-subtle rounded-xl border p-5">
+						<div className="border-border flex items-center justify-between border-b pb-3">
+							<span className="text-foreground text-xs font-semibold">Always Kept Safe</span>
 							<span
 								className={`font-mono text-[11px] transition-colors ${
-									reloadSuccess ? "font-bold text-emerald-400" : "text-zinc-500"
+									reloadSuccess ? "font-bold text-emerald-500" : "text-muted-foreground"
 								}`}
 							>
 								{reloadSuccess ? "SAVED & ACTIVE" : "ZERO DATA LOSS"}
@@ -94,28 +96,34 @@ export const StepUpdatesCard = React.forwardRef<HTMLDivElement, StepUpdatesCardP
 						</div>
 
 						<div className="mt-3.5 flex flex-col gap-2.5">
-							<div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] p-2.5 text-xs">
+							<div className="border-border bg-card/60 flex items-center justify-between rounded-lg border p-2.5 text-xs">
 								<div className="flex items-center gap-2">
-									<CheckCircle2Icon className="size-3.5 text-zinc-400" />
-									<span className="text-zinc-300">All unlocked milestone medals &amp; ranks</span>
+									<CheckCircle2Icon className="text-muted-foreground size-3.5" />
+									<span className="text-foreground/90">
+										All unlocked milestone medals &amp; ranks
+									</span>
 								</div>
-								<span className="font-mono text-[10px] text-zinc-500">Preserved</span>
+								<span className="text-muted-foreground font-mono text-[10px]">Preserved</span>
 							</div>
 
-							<div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] p-2.5 text-xs">
+							<div className="border-border bg-card/60 flex items-center justify-between rounded-lg border p-2.5 text-xs">
 								<div className="flex items-center gap-2">
-									<CheckCircle2Icon className="size-3.5 text-zinc-400" />
-									<span className="text-zinc-300">Selected sound pack, volume &amp; pitch</span>
+									<CheckCircle2Icon className="text-muted-foreground size-3.5" />
+									<span className="text-foreground/90">
+										Selected sound pack, volume &amp; pitch
+									</span>
 								</div>
-								<span className="font-mono text-[10px] text-zinc-500">Preserved</span>
+								<span className="text-muted-foreground font-mono text-[10px]">Preserved</span>
 							</div>
 
-							<div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] p-2.5 text-xs">
+							<div className="border-border bg-card/60 flex items-center justify-between rounded-lg border p-2.5 text-xs">
 								<div className="flex items-center gap-2">
-									<CheckCircle2Icon className="size-3.5 text-zinc-400" />
-									<span className="text-zinc-300">Confetti palettes &amp; reaction emojis</span>
+									<CheckCircle2Icon className="text-muted-foreground size-3.5" />
+									<span className="text-foreground/90">
+										Confetti palettes &amp; reaction emojis
+									</span>
 								</div>
-								<span className="font-mono text-[10px] text-zinc-500">Preserved</span>
+								<span className="text-muted-foreground font-mono text-[10px]">Preserved</span>
 							</div>
 						</div>
 					</div>

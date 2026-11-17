@@ -13,15 +13,15 @@ export const StepDownloadCard = React.forwardRef<HTMLDivElement, StepDownloadCar
 			<div
 				ref={ref}
 				id={id}
-				className={`overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c10] p-6 text-white shadow-2xl transition-colors duration-150 sm:p-8 ${className}`}
+				className={`border-border bg-card text-card-foreground shadow-card overflow-hidden rounded-2xl border p-6 transition-colors duration-150 sm:p-8 ${className}`}
 			>
 				{/* Top Card Header */}
-				<div className="flex items-center gap-2 border-b border-white/10 pb-4">
-					<span className="font-mono text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+				<div className="border-border flex items-center gap-2 border-b pb-4">
+					<span className="text-muted-foreground font-mono text-xs font-semibold tracking-wider uppercase">
 						Step 01
 					</span>
-					<span className="text-zinc-600">·</span>
-					<span className="text-xs text-zinc-300">Download &amp; Unzip</span>
+					<span className="text-muted-foreground/60">·</span>
+					<span className="text-foreground/90 text-xs font-medium">Download &amp; Unzip</span>
 				</div>
 
 				{/* Two-Column Interior */}
@@ -29,10 +29,10 @@ export const StepDownloadCard = React.forwardRef<HTMLDivElement, StepDownloadCar
 					{/* Left: Action & Copy */}
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col gap-2">
-							<h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+							<h3 className="text-foreground text-xl font-bold tracking-tight sm:text-2xl">
 								Download {APP_INFO.name}
 							</h3>
-							<p className="text-sm leading-relaxed text-zinc-400">
+							<p className="text-muted-foreground text-sm leading-relaxed">
 								Get the latest release archive. Once downloaded, double-click to unzip the folder
 								anywhere on your computer.
 							</p>
@@ -42,41 +42,45 @@ export const StepDownloadCard = React.forwardRef<HTMLDivElement, StepDownloadCar
 						<div className="flex flex-col gap-2 pt-2">
 							<a
 								href={APP_INFO.urls.download}
-								className="inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition-transform duration-150 hover:bg-zinc-200 active:scale-[0.98] sm:w-fit"
+								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl px-5 py-3 text-sm font-semibold transition-transform duration-150 active:scale-[0.98] sm:w-fit"
 							>
 								<DownloadIcon className="size-4" />
 								<span>Download {APP_INFO.name}</span>
 							</a>
 
-							<span className="text-xs text-zinc-500">
+							<span className="text-muted-foreground text-xs">
 								Free &amp; open source for Chrome, Brave, Edge, and Arc.
 							</span>
 						</div>
 					</div>
 
 					{/* Right: Unpacked Folder Guide */}
-					<div className="rounded-xl border border-white/10 bg-black/60 p-5">
-						<div className="flex items-center gap-3 border-b border-white/10 pb-3">
-							<div className="flex size-9 items-center justify-center rounded-lg border border-white/10 bg-white/5">
-								<FolderArchiveIcon className="size-4 text-zinc-300" />
+					<div className="border-border bg-surface-subtle rounded-xl border p-5">
+						<div className="border-border flex items-center gap-3 border-b pb-3">
+							<div className="border-border bg-muted/60 flex size-9 items-center justify-center rounded-lg border">
+								<FolderArchiveIcon className="text-foreground size-4" />
 							</div>
 							<div className="flex flex-col">
-								<span className="text-xs font-semibold text-white">{APP_INFO.name} Folder</span>
-								<span className="text-[11px] text-zinc-400">Extracted &amp; ready to load</span>
+								<span className="text-foreground text-xs font-semibold">
+									{APP_INFO.name} Folder
+								</span>
+								<span className="text-muted-foreground text-[11px]">
+									Extracted &amp; ready to load
+								</span>
 							</div>
 						</div>
 
-						<div className="mt-3.5 flex flex-col gap-2.5 text-xs text-zinc-300">
+						<div className="text-foreground/80 mt-3.5 flex flex-col gap-2.5 text-xs">
 							<div className="flex items-center gap-2.5">
-								<CheckIcon className="size-3.5 shrink-0 text-zinc-400" />
+								<CheckIcon className="text-muted-foreground size-3.5 shrink-0" />
 								<span>Save the extracted folder anywhere on your local drive</span>
 							</div>
 							<div className="flex items-center gap-2.5">
-								<CheckIcon className="size-3.5 shrink-0 text-zinc-400" />
+								<CheckIcon className="text-muted-foreground size-3.5 shrink-0" />
 								<span>No installer, admin rights, or extra software required</span>
 							</div>
 							<div className="flex items-center gap-2.5">
-								<CheckIcon className="size-3.5 shrink-0 text-zinc-400" />
+								<CheckIcon className="text-muted-foreground size-3.5 shrink-0" />
 								<span>Runs 100% locally in your browser with zero data collection</span>
 							</div>
 						</div>

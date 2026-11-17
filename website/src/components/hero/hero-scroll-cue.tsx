@@ -4,13 +4,13 @@ export function HeroScrollCue() {
 			<a
 				href="#simulator"
 				aria-label="Scroll to interactive simulator"
-				className="group flex flex-col items-center gap-2 text-white/50 transition-colors duration-200 select-none hover:text-white/90"
+				className="group text-muted-foreground hover:text-foreground flex flex-col items-center gap-2 transition-colors duration-200 select-none"
 			>
-				<span className="font-mono text-[11px] tracking-wider text-zinc-500 uppercase transition-colors group-hover:text-zinc-300">
+				<span className="text-muted-foreground group-hover:text-foreground font-mono text-[11px] tracking-wider uppercase transition-colors">
 					Try the Simulator
 				</span>
-				<div className="flex h-7 w-4.5 items-start justify-center rounded-full border border-white/20 p-1">
-					<span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/60" />
+				<div className="border-border flex h-7 w-4.5 items-start justify-center rounded-full border p-1">
+					<span className="bg-foreground/60 h-1.5 w-1.5 animate-bounce rounded-full" />
 				</div>
 			</a>
 		</div>

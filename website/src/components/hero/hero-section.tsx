@@ -87,7 +87,7 @@ export function HeroSection() {
 							draggable={false}
 							width={144}
 							height={144}
-							className="size-full rotate-[-6deg] object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out select-none group-hover:scale-105 group-hover:rotate-0"
+							className="size-full rotate-[-6deg] object-contain [filter:var(--drop-shadow-hero)] transition-transform duration-300 ease-out select-none group-hover:scale-105 group-hover:rotate-0"
 						/>
 					</picture>
 
@@ -96,24 +96,24 @@ export function HeroSection() {
 				</button>
 
 				{/* Title: Guaranteed 2-liner typography (Freely selectable) */}
-				<h1 className="mt-8 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl sm:leading-[1.1]">
+				<h1 className="text-foreground mt-8 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-6xl sm:leading-[1.1]">
 					Turn silent scrolling <br className="hidden sm:inline" />
 					into a tactile experience.
 				</h1>
 
 				{/* Description: Consumer-friendly future-proof 2-liner copywriting (Freely selectable) */}
-				<p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+				<p className="text-muted-foreground mx-auto mt-5 max-w-2xl text-base leading-relaxed sm:text-lg">
 					Procedural sound synthesis and particle dynamics for social feeds.{" "}
 					<br className="hidden sm:inline" />
 					Made for the social web, docked right in your browser.
 				</p>
 
-				{/* Single Primary CTA Button: Protected from text selection */}
+				{/* Single Primary CTA Button: Protected from text selection, automatically adapting high-contrast */}
 				<div className="mt-8 flex justify-center">
 					<a
 						href={APP_INFO.urls.download}
 						title={`Download ${APP_INFO.name} Extension (.zip)`}
-						className="group relative inline-block cursor-pointer overflow-hidden rounded-full border border-white/60 bg-gradient-to-b from-white via-[#fafafa] to-[#e8e8e8] px-10 py-4 text-[16px] font-semibold text-neutral-900 shadow-[0_12px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,1)] transition-all duration-300 ease-out select-none hover:from-white hover:to-[#f2f2f2] hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] active:scale-[0.98] sm:px-11 sm:py-4.5 sm:text-[17px]"
+						className="group bg-primary text-primary-foreground border-border/80 relative inline-block cursor-pointer overflow-hidden rounded-full border px-10 py-4 text-[16px] font-semibold shadow-sm transition-all duration-300 ease-out select-none hover:opacity-90 hover:shadow-md active:scale-[0.98] sm:px-11 sm:py-4.5 sm:text-[17px]"
 					>
 						Download {APP_INFO.name}
 					</a>

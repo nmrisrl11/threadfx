@@ -52,7 +52,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 		}
 	};
 
-	// Smooth reveal delay from gallery1.tsx: details fade in once panel has mostly opened
+	// Smooth reveal delay: details fade in once panel has mostly opened
 	const reveal = isActive
 		? "opacity-100 delay-300 duration-500"
 		: "opacity-0 pointer-events-none duration-150";
@@ -73,15 +73,14 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 			aria-expanded={isActive}
 			aria-label={`${milestone.title} (${milestone.threshold} likes)`}
 			className={cn(
-				// Zero border per specification
-				"group relative overflow-hidden rounded-2xl text-white outline-none select-none",
-				"focus-visible:ring-2 focus-visible:ring-white/40",
-				// Smooth height transition on mobile, smooth flex-grow transition on desktop (from gallery1.tsx)
+				"group border-border/50 relative overflow-hidden rounded-2xl border text-white outline-none select-none",
+				"focus-visible:ring-ring focus-visible:ring-2",
+				// Smooth height transition on mobile, smooth flex-grow transition on desktop
 				"transition-[height,flex-grow,background-color] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none",
 				"md:h-auto md:min-w-0 md:basis-0",
 				isActive
-					? "h-[430px] bg-[#09090c] shadow-2xl sm:h-[460px] md:grow-[4.5]"
-					: "h-14 bg-[#060608] hover:bg-[#0a0a0e] sm:h-16 md:grow",
+					? "bg-card/95 h-[430px] sm:h-[460px] md:grow-[4.5]"
+					: "bg-card/60 hover:bg-card/90 h-14 sm:h-16 md:grow",
 			)}
 		>
 			{/* Atmospheric Gamified Environmental Background Image (Smooth scale on hover for collapsed card) */}
@@ -137,7 +136,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 							width={32}
 							height={32}
 							loading="lazy"
-							className="size-full object-contain opacity-80 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+							className="size-full object-contain opacity-80"
 						/>
 					</picture>
 					<span className="font-mono text-[11px] font-bold tracking-wider text-zinc-300">
@@ -216,7 +215,7 @@ export function MilestonePanel({ milestone, isActive, onActivate, onHover }: Mil
 							alt={`${milestone.title} 3D Medal`}
 							width={120}
 							height={120}
-							className="size-full object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.7)]"
+							className="size-full object-contain [filter:drop-shadow(0_12px_24px_rgba(0,0,0,0.35))]"
 							draggable={false}
 						/>
 					</picture>

@@ -53,15 +53,15 @@ export const StepLoadCard = React.forwardRef<HTMLDivElement, StepLoadCardProps>(
 			<div
 				ref={ref}
 				id={id}
-				className={`overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c10] p-6 text-white shadow-2xl transition-colors duration-150 sm:p-8 ${className}`}
+				className={`border-border bg-card text-card-foreground shadow-card overflow-hidden rounded-2xl border p-6 transition-colors duration-150 sm:p-8 ${className}`}
 			>
 				{/* Top Card Header */}
-				<div className="flex items-center gap-2 border-b border-white/10 pb-4">
-					<span className="font-mono text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+				<div className="border-border flex items-center gap-2 border-b pb-4">
+					<span className="text-muted-foreground font-mono text-xs font-semibold tracking-wider uppercase">
 						Step 03
 					</span>
-					<span className="text-zinc-600">·</span>
-					<span className="text-xs text-zinc-300">Load &amp; Enjoy</span>
+					<span className="text-muted-foreground/60">·</span>
+					<span className="text-foreground/90 text-xs font-medium">Load &amp; Enjoy</span>
 				</div>
 
 				{/* Two-Column Interior */}
@@ -69,10 +69,10 @@ export const StepLoadCard = React.forwardRef<HTMLDivElement, StepLoadCardProps>(
 					{/* Left: Action & Instructions */}
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col gap-2">
-							<h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+							<h3 className="text-foreground text-xl font-bold tracking-tight sm:text-2xl">
 								Click Load unpacked
 							</h3>
-							<p className="text-sm leading-relaxed text-zinc-400">
+							<p className="text-muted-foreground text-sm leading-relaxed">
 								Click &quot;Load unpacked&quot; in the top-left toolbar, select your unzipped{" "}
 								{APP_INFO.name} folder, and open {APP_INFO.platform.name}. You&apos;re ready to
 								start juicing your feed!
@@ -81,28 +81,30 @@ export const StepLoadCard = React.forwardRef<HTMLDivElement, StepLoadCardProps>(
 
 						{/* Global Shortcut Hint */}
 						<div className="flex flex-col gap-2 pt-2">
-							<div className="inline-flex w-full items-center gap-2.5 rounded-xl border border-white/10 bg-black/60 px-4 py-3 text-xs text-zinc-300 sm:w-fit">
-								<kbd className="rounded border border-white/20 bg-white/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-white">
+							<div className="border-border bg-surface-subtle text-foreground/90 inline-flex w-full items-center gap-2.5 rounded-xl border px-4 py-3 text-xs sm:w-fit">
+								<kbd className="border-border bg-card text-foreground rounded border px-2 py-0.5 font-mono text-[11px] font-semibold shadow-xs">
 									Alt + Shift + T
 								</kbd>
 								<span>Shortcut to toggle the Side Panel anytime</span>
 							</div>
 
-							<span className="text-xs text-zinc-500">
+							<span className="text-muted-foreground text-xs">
 								You can also click the {APP_INFO.name} icon pinned in your browser toolbar
 							</span>
 						</div>
 					</div>
 
 					{/* Right: Interactive Live Feed Ignition Test Pad */}
-					<div className="rounded-xl border border-white/10 bg-black/60 p-5 text-center">
-						<div className="flex items-center justify-between border-b border-white/10 pb-3">
-							<span className="text-xs font-semibold text-white">Interactive Feed Preview</span>
-							<span className="text-[11px] text-zinc-400">Try before installing</span>
+					<div className="border-border bg-surface-subtle rounded-xl border p-5 text-center">
+						<div className="border-border flex items-center justify-between border-b pb-3">
+							<span className="text-foreground text-xs font-semibold">
+								Interactive Feed Preview
+							</span>
+							<span className="text-muted-foreground text-[11px]">Try before installing</span>
 						</div>
 
 						<div className="mt-4 flex flex-col items-center justify-center gap-3 py-2">
-							<span className="text-xs text-zinc-400">
+							<span className="text-muted-foreground text-xs">
 								Click the heart to preview procedural sound &amp; confetti:
 							</span>
 
@@ -112,18 +114,20 @@ export const StepLoadCard = React.forwardRef<HTMLDivElement, StepLoadCardProps>(
 								type="button"
 								onClick={handleTestLike}
 								aria-label="Test like sound effect and confetti"
-								className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 font-medium text-white shadow-xs transition-transform duration-150 outline-none hover:border-white/30 hover:bg-white/15 active:scale-[0.97]"
+								className="group border-border bg-card text-foreground hover:bg-accent inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2.5 font-medium shadow-xs transition-transform duration-150 outline-none active:scale-[0.97]"
 							>
 								<HeartIcon
 									className={`size-4 transition-transform duration-200 ease-out ${
-										isBursting ? "scale-125 text-rose-400" : "text-zinc-300 group-hover:scale-110"
+										isBursting
+											? "scale-125 text-rose-500"
+											: "text-muted-foreground group-hover:text-foreground group-hover:scale-110"
 									}`}
 								/>
 								<span className="text-xs font-semibold">Test Like Reaction</span>
 							</button>
 
-							<div className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-500 tabular-nums">
-								<SparklesIcon className="size-3 text-zinc-400" />
+							<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[11px] tabular-nums">
+								<SparklesIcon className="text-muted-foreground size-3" />
 								<span>Reactions tested: {testLikes}</span>
 							</div>
 						</div>

@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 17, 2026 (00:38 AM +08:00)  
-> **Active Branch:** `main` (commit `3f2c3b1`)  
-> **Working Tree Status:** Clean code state on `origin/main`. Complete landing page suite finalized and active: Hero Section, Interactive Spatial Simulator, Asymmetrical Feature Bento, Milestones Accordion Gallery, ReactBits ScrollStack Installation Showroom, Scroll-Revealed Download CTA Banner, Architectural Footer with Full-Width Wordmark, and Floating Capsule Navbar with real-time scroll spy and zero-shift mobile breadcrumb. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly. Ready for review or next features upon return.
+> **Last Synchronized:** November 17, 2026 (10:15 AM +08:00)  
+> **Active Branch:** `main`  
+> **Working Tree Status:** Full light and dark mode theming and Emil Kowalski layered shadow elevation implemented across the website repo. Semantic CSS variable tokens (`:root` / `.dark`), zero-FOUC synchronous initialization, 3-state `ThemeToggle` (`useTheme`), and calibrated layered shadows (`--shadow-chassis`, `--shadow-card`, `--drop-shadow-hero`, etc.) active. All sections (Hero, Simulator, Features, Milestones, Install, Download) and UI primitives standardized. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
 ---
 
@@ -76,6 +76,21 @@ export interface ThreadFXSettings {
 ---
 
 ## 4. Completed Milestones (Recent Session Recap)
+
+### 🌓 Website Light & Dark Mode Theming & Zero-FOUC Synchronization
+
+- **Reactive Theme Hook (`use-theme.ts`):** Created `useTheme` using `useSyncExternalStore` for persistent client theme synchronization (`system`, `dark`, `light`) matching the extension's theme architecture. Persists user preference under `threadfx_theme` in `localStorage`, listens for cross-tab storage changes, and handles OS media query events dynamically.
+- **Anti-FOUC Early DOM Initialization:** Integrated synchronous theme injection `<script>` in `index.html` and `initTheme()` in `main.tsx` prior to React hydration, completely eliminating theme flashing on page load. Added `<meta name="color-scheme" content="light dark" />` for native system UI elements.
+- **Semantic CSS Variable Architecture (`index.css`):** Configured `@custom-variant dark (&:is(.dark *));` and mapped semantic tokens (`--color-background`, `--color-foreground`, `--color-card`, `--color-border`, `--color-input`, etc.) via `@theme inline`. Clean light mode tokens (`:root`) and AMOLED dark tokens (`.dark` and `@media (prefers-color-scheme: dark)`) ensure seamless switching without repetitive `dark:` class overrides.
+- **3-State Theme Toggle Component (`theme-toggle.tsx`):** Designed an accessible radio-group switcher supporting System, Dark, and Light modes with `SunIcon`, `MoonIcon`, and `MonitorIcon` (strictly adhering to Rule 8). Integrated cleanly into the floating capsule navbar and architectural footer.
+- **Comprehensive Landing Page Section Adaptation:** Converted all sections (Hero, Simulator, Soundboard, Features, Milestones, Install, Download) and primitives (`slider.tsx`, `switch.tsx`) to semantic design tokens.
+
+### 📐 Emil Kowalski Layered Shadow & Elevation System (`website/`)
+
+- **Multi-Tier Layered Depth Tokens (`index.css`):** Replaced harsh, single-point shadows with Emil Kowalski-inspired layered shadow tokens (`--shadow-chassis`, `--shadow-card`, `--shadow-modal`, `--drop-shadow-hero`, `--drop-shadow-icon`), separating direct directional key light from soft ambient light diffusion.
+- **Calibrated Light/Dark Elevation:** In light mode, key light opacity is kept at 4–6% with ambient diffusion at 8–10%; in dark mode, shadows seamlessly soften into subtle edge definition and contrast boundaries.
+- **Selective Shadow Elimination:** Purged container shadows on flush showroom slats (`MilestonePanel`) to preserve accordion alignment; replaced heavy `drop-shadow-[0_16px_32px_rgba(0,0,0,0.55)]` on 3D hero emblems with responsive filter tokens.
+- **Stabilized Card Stacking:** Replaced generic `shadow-2xl` on `ScrollStack` install cards and bento feature cards with calibrated, layered depth tokens.
 
 ### 🔔 In-App Release Notification & Header Architecture Elevation
 

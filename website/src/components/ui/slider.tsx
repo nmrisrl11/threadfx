@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import * as React from "react";
 import { Slider as SliderPrimitive } from "radix-ui";
-import { cn } from "@/lib/utils";
 
 interface SliderProps extends React.ComponentProps<typeof SliderPrimitive.Root> {
 	rangeClassName?: string;
@@ -34,17 +34,17 @@ function Slider({
 		>
 			<SliderPrimitive.Track
 				data-slot="slider-track"
-				className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-white/10"
+				className="bg-input relative h-1.5 w-full grow overflow-hidden rounded-full"
 			>
 				<SliderPrimitive.Range
 					data-slot="slider-range"
-					className={cn("absolute h-full bg-white", rangeClassName)}
+					className={cn("bg-foreground absolute h-full rounded-full", rangeClassName)}
 				/>
 			</SliderPrimitive.Track>
 			<SliderPrimitive.Thumb
 				data-slot="slider-thumb"
 				className={cn(
-					"block size-4 rounded-full border border-white/80 bg-white shadow-md transition-transform focus-visible:outline-none active:scale-110 disabled:pointer-events-none disabled:opacity-50",
+					"bg-foreground border-border focus-visible:ring-ring block size-3.5 rounded-full border shadow-xs transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:pointer-events-none disabled:opacity-50",
 					thumbClassName,
 				)}
 			/>

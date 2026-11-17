@@ -6,10 +6,10 @@ export const buttonVariants = cva(
 		variants: {
 			variant: {
 				default: "bg-primary text-primary-foreground hover:opacity-90 shadow-md shadow-primary/20",
-				white: "bg-white text-zinc-950 hover:bg-zinc-200 shadow-xs font-semibold",
+				white: "bg-foreground text-background hover:bg-foreground/90 shadow-xs font-semibold",
 				outline: "border-border bg-transparent hover:bg-muted text-foreground",
 				glass:
-					"border border-white/12 bg-white/4 text-foreground hover:bg-white/8 hover:border-white/20",
+					"border border-border bg-surface-subtle text-foreground hover:bg-surface-muted hover:border-border",
 				secondary: "bg-secondary text-secondary-foreground hover:bg-accent",
 				ghost: "hover:bg-muted hover:text-foreground",
 				destructive: "bg-destructive/10 text-destructive hover:bg-destructive/20",

@@ -48,15 +48,15 @@ export function MilestonesSection() {
 			<div className="my-auto w-full max-w-6xl">
 				{/* Section Header (Symmetrical with Simulator & Feature Sections) */}
 				<div className="mb-10 text-center">
-					<div className="mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
-						<TrophyIcon className="size-3.5 text-zinc-400" />
+					<div className="text-muted-foreground mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
+						<TrophyIcon className="text-muted-foreground size-3.5" />
 						<span>Milestone Progression</span>
 					</div>
 
-					<h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+					<h2 className="text-foreground text-3xl font-extrabold tracking-tight sm:text-5xl">
 						Collect every milestone.
 					</h2>
-					<p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-balance text-zinc-400 sm:text-lg">
+					<p className="text-muted-foreground mx-auto mt-3 max-w-2xl text-base leading-relaxed text-balance sm:text-lg">
 						Every reaction you give builds toward rare 3D medals.
 						<br className="hidden sm:inline" />
 						Unlock celebratory fanfares and fireworks from 10 to 1,000 likes.

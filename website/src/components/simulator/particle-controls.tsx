@@ -26,11 +26,11 @@ export function ParticleControls({
 	onSelectEmoji,
 }: ParticleControlsProps) {
 	return (
-		<div className="w-full space-y-3.5 rounded-2xl border border-white/[0.06] bg-[#0e0e12]/75 p-4.5 backdrop-blur-md">
+		<div className="border-border bg-card/75 shadow-card w-full space-y-3.5 rounded-2xl border p-4.5 backdrop-blur-md">
 			{/* Pod Header */}
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-300 uppercase">
-					<SparklesIcon className="size-3.5 text-zinc-400" />
+				<div className="text-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
+					<SparklesIcon className="text-muted-foreground size-3.5" />
 					<span>Particles</span>
 				</div>
 				<Switch
@@ -43,15 +43,15 @@ export function ParticleControls({
 			{confettiActive ? (
 				<div className="space-y-3 pt-0.5">
 					{/* Mode Segmented Switcher */}
-					<div className="grid grid-cols-2 rounded-lg border border-white/[0.06] bg-black/40 p-0.5 text-xs">
+					<div className="border-border bg-muted/60 grid grid-cols-2 rounded-lg border p-0.5 text-xs">
 						<button
 							type="button"
 							onClick={() => onSelectBurstMode("palette")}
 							className={cn(
 								"cursor-pointer rounded-md py-1 text-center font-medium transition-colors duration-150 select-none",
 								burstMode === "palette"
-									? "bg-[#222228] text-white shadow-xs"
-									: "text-zinc-400 hover:text-white",
+									? "bg-card text-foreground font-semibold shadow-xs"
+									: "text-muted-foreground hover:text-foreground",
 							)}
 						>
 							Palettes
@@ -62,8 +62,8 @@ export function ParticleControls({
 							className={cn(
 								"cursor-pointer rounded-md py-1 text-center font-medium transition-colors duration-150 select-none",
 								burstMode === "emoji"
-									? "bg-[#222228] text-white shadow-xs"
-									: "text-zinc-400 hover:text-white",
+									? "bg-card text-foreground font-semibold shadow-xs"
+									: "text-muted-foreground hover:text-foreground",
 							)}
 						>
 							Emojis
@@ -83,9 +83,9 @@ export function ParticleControls({
 										className={cn(
 											"group flex cursor-pointer items-center justify-between rounded-lg border p-2 text-left transition-colors duration-150 outline-none select-none",
 											isSelected
-												? "border-white/30 bg-[#18181e] text-white shadow-xs"
-												: "border-white/[0.06] bg-white/[0.02] text-zinc-400 hover:border-white/15 hover:bg-white/[0.04] hover:text-zinc-200",
-											"active:bg-[#202028]",
+												? "border-foreground/30 bg-accent text-foreground shadow-xs"
+												: "border-border bg-surface-subtle text-muted-foreground hover:border-foreground/15 hover:bg-muted hover:text-foreground",
+											"active:bg-accent/80",
 										)}
 									>
 										<div className="flex min-w-0 items-center gap-1.5">
@@ -101,7 +101,9 @@ export function ParticleControls({
 											<span
 												className={cn(
 													"block truncate font-mono text-[10px] font-medium transition-colors duration-150",
-													isSelected ? "text-white" : "text-zinc-400 group-hover:text-zinc-200",
+													isSelected
+														? "text-foreground"
+														: "text-muted-foreground group-hover:text-foreground",
 												)}
 											>
 												{palette.name.replace(/ (Minimal|Neon|Aurora|Coral)/, "")}
@@ -112,9 +114,7 @@ export function ParticleControls({
 										<span
 											className={cn(
 												"size-1.5 shrink-0 rounded-full transition-opacity duration-150",
-												isSelected
-													? "bg-white opacity-100 shadow-[0_0_6px_rgba(255,255,255,0.6)]"
-													: "opacity-0",
+												isSelected ? "bg-foreground opacity-100 shadow-xs" : "opacity-0",
 											)}
 										/>
 									</button>
@@ -134,9 +134,9 @@ export function ParticleControls({
 										className={cn(
 											"flex h-8 cursor-pointer items-center justify-center rounded-lg border text-base transition-colors duration-150 outline-none select-none",
 											isSelected
-												? "border-white/30 bg-[#18181e] shadow-xs"
-												: "border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]",
-											"active:bg-[#202028]",
+												? "border-foreground/30 bg-accent shadow-xs"
+												: "border-border bg-surface-subtle hover:border-foreground/15 hover:bg-muted",
+											"active:bg-accent/80",
 										)}
 									>
 										{emoji}
@@ -147,7 +147,7 @@ export function ParticleControls({
 					)}
 				</div>
 			) : (
-				<div className="py-4 text-center font-mono text-[11px] text-zinc-500">
+				<div className="text-muted-foreground py-4 text-center font-mono text-[11px]">
 					Visual bursts disabled
 				</div>
 			)}

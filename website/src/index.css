@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @import "./fonts.css";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme inline {
 	--font-sans:
 		"Inter Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -10,19 +12,9 @@
 	--font-mono:
 		"Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-	--color-canvas: #080808;
-	--color-card: #121212;
-	--color-muted: #1c1c1c;
-	--color-subtle: #262626;
-	--color-strong: #383838;
-	--color-text-primary: #f3f5f7;
-	--color-text-muted: #8e8e93;
-	--color-neon: #ff2e93;
-	--color-violet: #7928ca;
-	--color-cyan: #00f5ff;
-
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
+	--color-card: var(--card);
 	--color-card-foreground: var(--card-foreground);
 	--color-popover: var(--popover);
 	--color-popover-foreground: var(--popover-foreground);
@@ -30,6 +22,7 @@
 	--color-primary-foreground: var(--primary-foreground);
 	--color-secondary: var(--secondary);
 	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
 	--color-muted-foreground: var(--muted-foreground);
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
@@ -38,49 +31,189 @@
 	--color-input: var(--input);
 	--color-ring: var(--ring);
 
+	--color-surface-subtle: var(--surface-subtle);
+	--color-surface-muted: var(--surface-muted);
+
+	--shadow-chassis: var(--shadow-chassis);
+	--shadow-card: var(--shadow-card);
+	--shadow-modal: var(--shadow-modal);
+
 	--radius-sm: calc(var(--radius) * 0.6);
 	--radius-md: calc(var(--radius) * 0.8);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) * 1.4);
 }
 
-:root,
-.dark {
+:root {
 	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 	--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 	--ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 
+	--background: #fbfbfd;
+	--foreground: #09090b;
+	--card: #ffffff;
+	--card-foreground: #09090b;
+	--popover: #ffffff;
+	--popover-foreground: #09090b;
+	--primary: #09090b;
+	--primary-foreground: #fafafa;
+	--secondary: #f4f4f5;
+	--secondary-foreground: #18181b;
+	--muted: #f4f4f5;
+	--muted-foreground: #71717a;
+	--accent: #f4f4f5;
+	--accent-foreground: #18181b;
+	--destructive: #ef4444;
+	--border: rgba(0, 0, 0, 0.08);
+	--input: rgba(0, 0, 0, 0.12);
+	--ring: rgba(0, 0, 0, 0.2);
+	--radius: 0.5rem;
+
+	--surface-subtle: rgba(0, 0, 0, 0.025);
+	--surface-muted: rgba(0, 0, 0, 0.05);
+
+	/* Emil Kowalski layered shadows: ambient + key light */
+	--shadow-chassis: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+	--shadow-card: 0 2px 10px -2px rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+	--shadow-modal: 0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+	--drop-shadow-hero: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.1));
+	--drop-shadow-icon: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.08));
+
+	color-scheme: light dark;
+
+	&:has(> head > meta[name="color-scheme"][content="dark"]) {
+		color-scheme: dark;
+	}
+	&:has(> head > meta[name="color-scheme"][content="light"]) {
+		color-scheme: light;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not(:has(> head > meta[name="color-scheme"][content="light"])):not(.light) {
+		--background: #080808;
+		--foreground: #f3f5f7;
+		--card: #111113;
+		--card-foreground: #f3f5f7;
+		--popover: #111113;
+		--popover-foreground: #f3f5f7;
+		--primary: #ffffff;
+		--primary-foreground: #080808;
+		--secondary: #18181b;
+		--secondary-foreground: #f3f5f7;
+		--muted: #18181b;
+		--muted-foreground: #8e8e93;
+		--accent: #1e1e22;
+		--accent-foreground: #f3f5f7;
+		--destructive: #ef4444;
+		--border: rgba(255, 255, 255, 0.08);
+		--input: rgba(255, 255, 255, 0.12);
+		--ring: #ff2e93;
+
+		--surface-subtle: rgba(255, 255, 255, 0.02);
+		--surface-muted: rgba(255, 255, 255, 0.04);
+
+		--shadow-chassis:
+			inset 0 1px 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4),
+			0 8px 24px -4px rgba(0, 0, 0, 0.5);
+		--shadow-card: 0 4px 20px -4px rgba(0, 0, 0, 0.35);
+		--shadow-modal: 0 16px 40px -8px rgba(0, 0, 0, 0.65);
+		--drop-shadow-hero: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.55));
+		--drop-shadow-icon: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+	}
+}
+
+:root.dark,
+:root[data-theme="dark"],
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
 	--background: #080808;
 	--foreground: #f3f5f7;
 	--card: #111113;
 	--card-foreground: #f3f5f7;
 	--popover: #111113;
 	--popover-foreground: #f3f5f7;
-	--primary: #ff2e93;
-	--primary-foreground: #ffffff;
+	--primary: #ffffff;
+	--primary-foreground: #080808;
 	--secondary: #18181b;
 	--secondary-foreground: #f3f5f7;
 	--muted: #18181b;
 	--muted-foreground: #8e8e93;
-	--accent: #222226;
+	--accent: #1e1e22;
 	--accent-foreground: #f3f5f7;
 	--destructive: #ef4444;
 	--border: rgba(255, 255, 255, 0.08);
 	--input: rgba(255, 255, 255, 0.12);
 	--ring: #ff2e93;
-	--radius: 0.5rem;
-	color-scheme: dark;
+
+	--surface-subtle: rgba(255, 255, 255, 0.02);
+	--surface-muted: rgba(255, 255, 255, 0.04);
+
+	--shadow-chassis:
+		inset 0 1px 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4),
+		0 8px 24px -4px rgba(0, 0, 0, 0.5);
+	--shadow-card: 0 4px 20px -4px rgba(0, 0, 0, 0.35);
+	--shadow-modal: 0 16px 40px -8px rgba(0, 0, 0, 0.65);
+	--drop-shadow-hero: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.55));
+	--drop-shadow-icon: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+}
+
+:root.light,
+:root[data-theme="light"],
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+	--background: #fbfbfd;
+	--foreground: #09090b;
+	--card: #ffffff;
+	--card-foreground: #09090b;
+	--popover: #ffffff;
+	--popover-foreground: #09090b;
+	--primary: #09090b;
+	--primary-foreground: #fafafa;
+	--secondary: #f4f4f5;
+	--secondary-foreground: #18181b;
+	--muted: #f4f4f5;
+	--muted-foreground: #71717a;
+	--accent: #f4f4f5;
+	--accent-foreground: #18181b;
+	--destructive: #ef4444;
+	--border: rgba(0, 0, 0, 0.08);
+	--input: rgba(0, 0, 0, 0.12);
+	--ring: rgba(0, 0, 0, 0.2);
+
+	--surface-subtle: rgba(0, 0, 0, 0.025);
+	--surface-muted: rgba(0, 0, 0, 0.05);
+
+	--shadow-chassis: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+	--shadow-card: 0 2px 10px -2px rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+	--shadow-modal: 0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+	--drop-shadow-hero: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.1));
+	--drop-shadow-icon: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.08));
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		margin: 0;
+		padding: 0;
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+		min-height: 100vh;
+		overflow-x: hidden;
+	}
 }
 
 /* Global Subtle Monochrome Text Selection (Soft Frosted Sheen) */
 ::selection {
-	background-color: rgba(255, 255, 255, 0.22);
-	color: #ffffff;
+	background-color: light-dark(rgba(0, 0, 0, 0.14), rgba(255, 255, 255, 0.22));
+	color: light-dark(#000000, #ffffff);
 }
 
 ::-moz-selection {
-	background-color: rgba(255, 255, 255, 0.22);
-	color: #ffffff;
+	background-color: light-dark(rgba(0, 0, 0, 0.14), rgba(255, 255, 255, 0.22));
+	color: light-dark(#000000, #ffffff);
 }
 
 /* Ensure interactive buttons and controls are never dragged into text selection */
@@ -92,17 +225,6 @@ button,
 
 html {
 	scroll-behavior: smooth;
-}
-
-body {
-	margin: 0;
-	padding: 0;
-	background-color: var(--background);
-	color: var(--foreground);
-	font-family: var(--font-sans);
-	-webkit-font-smoothing: antialiased;
-	min-height: 100vh;
-	overflow-x: hidden;
 }
 
 h1,
@@ -119,14 +241,14 @@ h6 {
 	width: 8px;
 }
 ::-webkit-scrollbar-track {
-	background: #080808;
+	background: light-dark(#f4f4f5, #080808);
 }
 ::-webkit-scrollbar-thumb {
-	background: #262626;
+	background: light-dark(#d4d4d8, #262626);
 	border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #383838;
+	background: light-dark(#a1a1aa, #383838);
 }
 
 /* ==========================================================================

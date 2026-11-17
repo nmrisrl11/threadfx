@@ -1,24 +1,27 @@
 <!doctype html>
-<html lang="en" class="dark scroll-smooth" style="color-scheme: dark; background-color: #080808">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="color-scheme" content="dark" />
+		<meta name="color-scheme" content="light dark" />
 		<meta name="theme-color" content="%APP_THEME_COLOR%" />
 
-		<!-- Anti-FOUC dark background guarantee -->
-		<style>
-			:root,
-			html,
-			body {
-				color-scheme: dark !important;
-				background-color: #080808 !important;
-				color: #f3f5f7 !important;
-			}
-		</style>
+		<!-- Synchronous Anti-FOUC Theme Initialization (Guarantees zero flash on load) -->
 		<script>
-			document.documentElement.classList.add("dark");
-			document.documentElement.style.colorScheme = "dark";
+			(function () {
+				try {
+					var stored = localStorage.getItem("threadfx_theme") || "dark";
+					var isSystemDark =
+						window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+					var isDark = stored === "dark" || (stored === "system" && isSystemDark);
+					var root = document.documentElement;
+					root.classList.toggle("dark", isDark);
+					root.classList.toggle("light", !isDark);
+					root.setAttribute("data-theme", isDark ? "dark" : "light");
+					var meta = document.querySelector('meta[name="color-scheme"]');
+					if (meta) meta.setAttribute("content", stored === "system" ? "light dark" : stored);
+				} catch (e) {}
+			})();
 		</script>
 
 		<!-- Primary SEO Metadata -->
@@ -91,10 +94,7 @@
 		%REACT_SCAN%
 	</head>
 
-	<body
-		class="dark"
-		style="color-scheme: dark; background-color: #080808; color: #f3f5f7; margin: 0"
-	>
+	<body class="bg-background text-foreground">
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
 	</body>

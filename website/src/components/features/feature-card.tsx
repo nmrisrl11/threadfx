@@ -27,14 +27,14 @@ export function FeatureCard({
 	return (
 		<div
 			className={cn(
-				"group flex flex-col justify-between rounded-2xl border border-white/[0.06] bg-[#0e0e12]/75 p-5 backdrop-blur-md transition-[border-color,background-color] duration-150 hover:border-white/15 hover:bg-[#121217]/90",
+				"group border-border bg-card/75 shadow-card hover:shadow-chassis hover:border-foreground/20 hover:bg-card/90 flex flex-col justify-between rounded-2xl border p-5 backdrop-blur-md transition-all duration-150",
 				colSpan === 2 ? "lg:col-span-2" : "lg:col-span-1",
 				className,
 			)}
 		>
 			{/* Card Header Strip */}
-			<div className="flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
-				<Icon className="size-3.5 text-zinc-400" />
+			<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
+				<Icon className="text-muted-foreground size-3.5" />
 				<span>{label}</span>
 			</div>
 
@@ -43,8 +43,10 @@ export function FeatureCard({
 
 			{/* Card Footer Copy */}
 			<div className="space-y-1">
-				<h3 className="text-base font-bold tracking-tight text-white">{title}</h3>
-				<p className="text-xs leading-relaxed text-zinc-400 sm:text-[13px]">{description}</p>
+				<h3 className="text-foreground text-base font-bold tracking-tight">{title}</h3>
+				<p className="text-muted-foreground text-xs leading-relaxed sm:text-[13px]">
+					{description}
+				</p>
 			</div>
 		</div>
 	);

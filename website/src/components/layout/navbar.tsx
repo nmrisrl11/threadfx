@@ -1,5 +1,7 @@
+import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { useTheme } from "@/hooks/use-theme";
 import { APP_INFO } from "@data/app";
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronDownIcon, MoonIcon, SunIcon } from "lucide-react";
 import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 
@@ -23,6 +25,7 @@ export function Navbar() {
 	const [isVisible, setIsVisible] = useState(false);
 	const [activeSection, setActiveSection] = useState<string>("");
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [, setTheme, isDark] = useTheme();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -107,7 +110,7 @@ export function Navbar() {
 				}`}
 			>
 				{/* Floating Capsule Bar */}
-				<div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-neutral-950/80 p-1.5 pl-3.5 shadow-[0_4px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:gap-2 sm:pl-5">
+				<div className="border-border bg-background/85 text-foreground shadow-chassis flex items-center gap-1.5 rounded-full border p-1.5 pl-3.5 backdrop-blur-xl sm:gap-2 sm:pl-5">
 					{/* App Name Only (Points to domain root with smooth scroll) */}
 					<a
 						href="/"
@@ -120,13 +123,13 @@ export function Navbar() {
 								window.history.replaceState(null, "", "/");
 							}
 						}}
-						className="text-xs font-extrabold tracking-tight text-white transition-opacity select-none hover:opacity-85 sm:text-sm"
+						className="text-foreground text-xs font-extrabold tracking-tight transition-opacity select-none hover:opacity-80 sm:text-sm"
 					>
 						{APP_INFO.name}
 					</a>
 
 					{/* Subtle Vertical Divider / Cutter (Shared across Mobile and Desktop) */}
-					<div className="h-3.5 w-px bg-white/10 sm:mx-0.5" />
+					<div className="bg-border h-3.5 w-px sm:mx-0.5" />
 
 					{/* Mobile Active Section Breadcrumb Dropdown Trigger (Option 2 - Zero Shift Grid Stacker) */}
 					<button
@@ -136,8 +139,8 @@ export function Navbar() {
 						aria-label="Toggle navigation sections"
 						className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-colors duration-150 select-none active:scale-[0.96] sm:hidden ${
 							isMobileMenuOpen
-								? "bg-white/16 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
-								: "bg-white/8 text-zinc-300 hover:bg-white/12 hover:text-white"
+								? "bg-accent text-foreground shadow-xs"
+								: "bg-surface-subtle text-muted-foreground hover:bg-accent/60 hover:text-foreground"
 						}`}
 					>
 						{/* Zero-Layout-Shift Grid Stacker: Parent takes width of widest child ("Milestones") permanently */}
@@ -161,8 +164,8 @@ export function Navbar() {
 						</span>
 
 						<ChevronDownIcon
-							className={`size-3 shrink-0 text-zinc-400 transition-transform duration-200 ${
-								isMobileMenuOpen ? "rotate-180 text-white" : ""
+							className={`text-muted-foreground size-3 shrink-0 transition-transform duration-200 ${
+								isMobileMenuOpen ? "text-foreground rotate-180" : ""
 							}`}
 						/>
 					</button>
@@ -179,8 +182,8 @@ export function Navbar() {
 									aria-current={isActive ? "page" : undefined}
 									className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 select-none ${
 										isActive
-											? "bg-white/12 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
-											: "text-zinc-400 hover:bg-white/6 hover:text-white"
+											? "bg-accent text-foreground shadow-xs"
+											: "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
 									}`}
 								>
 									{link.label}
@@ -189,11 +192,25 @@ export function Navbar() {
 						})}
 					</nav>
 
+					{/* Theme Switcher Segmented Pill (Desktop) */}
+					<ThemeToggle size="sm" className="hidden sm:inline-flex" />
+
+					{/* Quick Theme Cycle Button (Mobile) */}
+					<button
+						type="button"
+						onClick={() => setTheme(isDark ? "light" : "dark")}
+						aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+						title={isDark ? "Switch to light theme" : "Switch to dark theme"}
+						className="text-muted-foreground hover:text-foreground flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors active:scale-95 sm:hidden"
+					>
+						{isDark ? <SunIcon className="size-3.5" /> : <MoonIcon className="size-3.5" />}
+					</button>
+
 					{/* Primary Download Pill */}
 					<a
 						href={APP_INFO.urls.download}
 						title={`Download ${APP_INFO.name}`}
-						className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold text-neutral-900 transition-all duration-200 select-none hover:bg-zinc-200 active:scale-[0.97] sm:ml-1 sm:px-3.5"
+						className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 select-none active:scale-[0.97] sm:ml-0.5 sm:px-3.5"
 					>
 						Download
 					</a>
@@ -201,8 +218,8 @@ export function Navbar() {
 
 				{/* Mobile Dropdown Menu Card (Anchored directly below capsule) */}
 				{isMobileMenuOpen && (
-					<div className="mt-2 w-52 overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/95 p-1.5 shadow-[0_12px_36px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-all sm:hidden">
-						<div className="px-2.5 py-1 text-[10px] font-semibold tracking-wider text-zinc-400 uppercase">
+					<div className="border-border bg-card/95 text-card-foreground shadow-modal mt-2 w-56 overflow-hidden rounded-2xl border p-2 backdrop-blur-2xl transition-all sm:hidden">
+						<div className="text-muted-foreground px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase">
 							Sections
 						</div>
 						<nav className="flex flex-col gap-0.5">
@@ -216,18 +233,25 @@ export function Navbar() {
 										aria-current={isActive ? "page" : undefined}
 										className={`flex items-center justify-between rounded-xl px-2.5 py-2 text-xs transition-all select-none ${
 											isActive
-												? "bg-white/14 font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
-												: "font-medium text-zinc-400 hover:bg-white/6 hover:text-white"
+												? "bg-accent text-foreground font-semibold shadow-xs"
+												: "text-muted-foreground hover:bg-accent/50 hover:text-foreground font-medium"
 										}`}
 									>
 										<span>{link.label}</span>
-										{isActive && (
-											<span className="size-1.5 rounded-full bg-white shadow-[0_0_8px_white]" />
-										)}
+										{isActive && <span className="bg-foreground size-1.5 rounded-full shadow-xs" />}
 									</a>
 								);
 							})}
 						</nav>
+
+						{/* Theme Switcher in Mobile Drawer */}
+						<div className="bg-border my-1.5 h-px w-full" />
+						<div className="flex items-center justify-between px-2 pt-1 pb-0.5">
+							<span className="text-muted-foreground text-[10px] font-semibold tracking-wider uppercase">
+								Theme
+							</span>
+							<ThemeToggle size="sm" />
+						</div>
 					</div>
 				)}
 			</header>

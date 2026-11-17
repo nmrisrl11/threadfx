@@ -49,15 +49,16 @@ threadfx/
 │   │   │   ├── features/           # FeatureSection (feature-section, feature-card)
 │   │   │   ├── hero/               # HeroSection (hero-section.tsx, hero-waveform.tsx, hero-scroll-cue.tsx)
 │   │   │   ├── install/            # InstallSection (install-section.tsx, step-download-card.tsx, step-developer-card.tsx, step-load-card.tsx, step-updates-card.tsx)
-│   │   │   ├── layout/             # Chrome & page layout components (navbar, footer)
+│   │   │   ├── layout/             # Chrome & page layout components (navbar, footer, theme-toggle)
 │   │   │   ├── milestones/         # MilestonesSection (milestones-section.tsx, milestone-panel.tsx, milestone-theme.ts)
 │   │   │   ├── simulator/          # SimulatorSection (simulator-section, thread-post-mock, audio-sliders, particle-controls, soundboard-panel)
 │   │   │   └── ui/                 # Primitives (animated-content, badge, button, card, scroll-stack, slider, switch)
+│   │   ├── hooks/                  # useTheme (useSyncExternalStore reactive theme hook with anti-FOUC)
 │   │   ├── lib/                    # Shared utilities (cn, audio-events)
 │   │   ├── fonts.css               # SubsetFont Latin variable typography definitions
-│   │   ├── index.css               # AMOLED dark design tokens & frosted monochrome selection
+│   │   ├── index.css               # Tailwind v4 CSS variables, light/dark design tokens & layered shadows
 │   │   ├── App.tsx                 # Root layout & landing page coordinator
-│   │   └── main.tsx
+│   │   └── main.tsx                # Synchronous anti-FOUC theme initialization
 │   ├── public/
 │   │   ├── badges/                 # 7 transparent 3D WebP achievement badges (1-7)
 │   │   └── icons/                  # PWA and responsive icons (16-512px)

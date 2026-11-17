@@ -7,7 +7,8 @@
 ## 🛠️ Tech Stack
 
 - **Framework:** [Vite](https://vite.dev/) + React 19 + TypeScript
-- **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom AMOLED dark tokens
+- **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with semantic light/dark tokens (`system` / `dark` / `light`), layered shadow elevation (`emil-design-eng`), and zero-FOUC anti-flash initialization
+- **Theming:** Reactive `useSyncExternalStore` hook (`useTheme`) with `localStorage` (`threadfx_theme`) and system preference synchronization
 - **Audio Engine:** Shared in-memory procedural synthesizer via `@data/zzfx` & `@data/presets`
 - **Visual Effects:** `canvas-confetti` (particle bursts & celebratory reactions via `@data/particles`)
 - **Animation Engine:** [GSAP](https://gsap.com/) & ScrollTrigger (`AnimatedContent` staggered reveals & zoom effects)

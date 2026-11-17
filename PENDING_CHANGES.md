@@ -10,6 +10,19 @@
 
 ### Added
 
+- **Independent Appearance Theming & Zero-FOUC Initialization (`website/`)**:
+  - Implemented reactive `useTheme` hook using `useSyncExternalStore` for persistent client theme synchronization (`system`, `dark`, `light`) matching the extension's theme architecture.
+  - Added synchronous anti-FOUC `<script>` in `index.html` and `main.tsx` (`initTheme()`) ensuring instant, flicker-free rendering on initial load and theme switching.
+  - Standardized on semantic Tailwind v4 CSS variables (`--color-background`, `--color-foreground`, `--color-card`, `--color-border`, `--color-input`, etc.) mapped via `@theme inline` in `index.css`, replacing hardcoded dark-mode utility classes with theme-adaptive tokens.
+  - Created 3-state radio-group `ThemeToggle` component (`SunIcon`, `MoonIcon`, `MonitorIcon`) integrated seamlessly into both the floating capsule navbar and architectural footer.
+  - Converted all landing page sections (Hero, Simulator, Soundboard, Features, Milestones, Install, Download) to theme-adaptive semantic tokens without inlined `dark:` overrides.
+
+- **Layered Shadow & Elevation System (`emil-design-eng`)**:
+  - Established subtle multi-tier shadow tokens in `index.css` (`--shadow-chassis`, `--shadow-card`, `--shadow-modal`, `--drop-shadow-hero`, `--drop-shadow-icon`), separating direct directional key light from soft ambient light diffusion.
+  - Replaced harsh 55% opacity black drop shadows on 3D hero emblems and thread post icons with soft ambient filter variables that scale naturally across dark and light modes.
+  - Removed artificial container shadows on flush showroom slats (`MilestonePanel`) to preserve accordion alignment.
+  - Replaced generic `shadow-2xl` on `ScrollStack` install cards and bento feature cards with calibrated, layered depth tokens.
+
 - **Floating Capsule Navbar with Active Scroll-Spy & Zero-Shift Mobile Breadcrumb (`Navbar`)**: Designed and integrated a distinctive, minimalist floating capsule header for the landing page:
   - Center-docked floating capsule chassis (`fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center`) with a uniform 360-degree hairline border (`border border-white/10`), subtle diffused shadow (`shadow-[0_4px_24px_rgba(0,0,0,0.35)]`), and frosted obsidian glass (`backdrop-blur-xl bg-neutral-950/80`).
   - Invisible-by-default hero clearance: remains 100% hidden at the page top (`opacity-0 -translate-y-6 pointer-events-none`) so the hero section stays clean and unencumbered, smoothly sliding and fading in once scrolled past the hero threshold.

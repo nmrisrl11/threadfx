@@ -30,15 +30,15 @@ export const StepDeveloperCard = React.forwardRef<HTMLDivElement, StepDeveloperC
 			<div
 				ref={ref}
 				id={id}
-				className={`overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c10] p-6 text-white shadow-2xl transition-colors duration-150 sm:p-8 ${className}`}
+				className={`border-border bg-card text-card-foreground shadow-card overflow-hidden rounded-2xl border p-6 transition-colors duration-150 sm:p-8 ${className}`}
 			>
 				{/* Top Card Header */}
-				<div className="flex items-center gap-2 border-b border-white/10 pb-4">
-					<span className="font-mono text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+				<div className="border-border flex items-center gap-2 border-b pb-4">
+					<span className="text-muted-foreground font-mono text-xs font-semibold tracking-wider uppercase">
 						Step 02
 					</span>
-					<span className="text-zinc-600">·</span>
-					<span className="text-xs text-zinc-300">Browser Settings</span>
+					<span className="text-muted-foreground/60">·</span>
+					<span className="text-foreground/90 text-xs font-medium">Browser Settings</span>
 				</div>
 
 				{/* Two-Column Interior */}
@@ -46,10 +46,10 @@ export const StepDeveloperCard = React.forwardRef<HTMLDivElement, StepDeveloperC
 					{/* Left: Action & Instructions */}
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col gap-2">
-							<h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+							<h3 className="text-foreground text-xl font-bold tracking-tight sm:text-2xl">
 								Turn on Developer mode
 							</h3>
-							<p className="text-sm leading-relaxed text-zinc-400">
+							<p className="text-muted-foreground text-sm leading-relaxed">
 								Navigate to your browser extensions manager and switch on Developer mode in the
 								top-right corner.
 							</p>
@@ -61,21 +61,21 @@ export const StepDeveloperCard = React.forwardRef<HTMLDivElement, StepDeveloperC
 								type="button"
 								onClick={handleCopyUrl}
 								aria-label="Copy extensions URL"
-								className="group inline-flex w-full cursor-pointer items-center justify-between rounded-xl border border-white/15 bg-black/60 px-4 py-3 font-mono text-xs text-zinc-200 transition-colors duration-150 hover:border-white/30 hover:bg-black/80 hover:text-white sm:w-fit sm:min-w-[300px]"
+								className="group border-border bg-surface-subtle hover:bg-accent text-foreground inline-flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3 font-mono text-xs transition-colors duration-150 sm:w-fit sm:min-w-[300px]"
 							>
 								<div className="flex items-center gap-2">
-									<span className="size-2 rounded-full bg-zinc-600 group-hover:bg-zinc-400" />
-									<span className="font-semibold text-zinc-300">chrome://extensions</span>
+									<span className="bg-muted-foreground/60 group-hover:bg-muted-foreground size-2 rounded-full" />
+									<span className="text-foreground font-semibold">chrome://extensions</span>
 								</div>
 
 								<div className="inline-flex w-16 items-center justify-end font-sans text-xs">
 									{copied ? (
-										<span className="inline-flex items-center gap-1 font-medium text-emerald-400">
+										<span className="inline-flex items-center gap-1 font-medium text-emerald-500">
 											<CheckIcon className="size-3.5" />
 											<span>Copied</span>
 										</span>
 									) : (
-										<span className="inline-flex items-center gap-1 text-zinc-400 transition-colors group-hover:text-zinc-200">
+										<span className="text-muted-foreground group-hover:text-foreground inline-flex items-center gap-1 transition-colors">
 											<CopyIcon className="size-3.5" />
 											<span>Copy</span>
 										</span>
@@ -83,20 +83,20 @@ export const StepDeveloperCard = React.forwardRef<HTMLDivElement, StepDeveloperC
 								</div>
 							</button>
 
-							<span className="text-xs text-zinc-500">
+							<span className="text-muted-foreground text-xs">
 								Paste into your address bar and press Enter
 							</span>
 						</div>
 					</div>
 
 					{/* Right: Interactive Chrome Extensions Toolbar Simulator */}
-					<div className="rounded-xl border border-white/10 bg-black/60 p-5">
-						<div className="flex items-center justify-between border-b border-white/10 pb-3">
-							<span className="text-xs font-medium text-zinc-400">Extensions Manager</span>
+					<div className="border-border bg-surface-subtle rounded-xl border p-5">
+						<div className="border-border flex items-center justify-between border-b pb-3">
+							<span className="text-muted-foreground text-xs font-medium">Extensions Manager</span>
 
 							{/* Interactive Developer Mode Toggle using Standard Radix Switch */}
 							<div className="flex items-center gap-2.5">
-								<span className="text-xs font-semibold text-white">Developer mode</span>
+								<span className="text-foreground text-xs font-semibold">Developer mode</span>
 								<Switch
 									id="dev-mode-sim-switch"
 									checked={devModeActive}
@@ -106,18 +106,18 @@ export const StepDeveloperCard = React.forwardRef<HTMLDivElement, StepDeveloperC
 							</div>
 						</div>
 
-						<div className="mt-4 flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.03] p-3 text-xs">
+						<div className="border-border bg-card/60 mt-4 flex items-center justify-between rounded-lg border p-3 text-xs">
 							<div className="flex items-center gap-2">
 								<div
 									className={`size-2 rounded-full transition-colors ${
-										devModeActive ? "bg-emerald-400" : "bg-zinc-600"
+										devModeActive ? "bg-emerald-500" : "bg-muted-foreground/40"
 									}`}
 								/>
-								<span className="text-zinc-300">
+								<span className="text-foreground/90">
 									{devModeActive ? "Developer mode is ON" : "Click the toggle above to preview"}
 								</span>
 							</div>
-							<span className="font-mono text-[11px] text-zinc-500">
+							<span className="text-muted-foreground font-mono text-[11px]">
 								{devModeActive ? "Ready for Step 3" : "Toggle switch"}
 							</span>
 						</div>

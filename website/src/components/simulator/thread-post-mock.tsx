@@ -21,17 +21,17 @@ export function ThreadPostMock({
 		<div className="w-full max-w-lg select-none">
 			{/* Live Stage Label */}
 			<div className="mb-2.5 flex items-center justify-between px-1">
-				<span className="font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
+				<span className="text-muted-foreground font-mono text-[11px] tracking-wider uppercase">
 					Social Feed Preview
 				</span>
-				<div className="flex items-center gap-1.5 font-mono text-[10px] text-zinc-400">
+				<div className="text-muted-foreground flex items-center gap-1.5 font-mono text-[10px]">
 					<span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
 					<span>Interactive Stage</span>
 				</div>
 			</div>
 
 			{/* Centerpiece Post Card */}
-			<div className="relative rounded-2xl border border-white/[0.08] bg-[#0a0a0d]/90 p-5.5 backdrop-blur-md transition-all sm:p-6.5">
+			<div className="border-border bg-card/90 shadow-chassis relative rounded-2xl border p-5.5 backdrop-blur-md transition-all sm:p-6.5">
 				{/* Post Header with 3D Brand Emblem */}
 				<div className="flex items-center gap-3">
 					<div className="relative size-10 shrink-0 select-none">
@@ -42,28 +42,30 @@ export function ThreadPostMock({
 								alt={APP_INFO.name}
 								width={40}
 								height={40}
-								className="size-full rounded-xl object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+								className="size-full rounded-xl object-contain [filter:var(--drop-shadow-icon)]"
 							/>
 						</picture>
 					</div>
 					<div>
 						<div className="flex items-center gap-1.5">
-							<span className="text-sm font-bold tracking-tight text-white">{APP_INFO.name}</span>
-							<span className="text-xs text-zinc-500">•</span>
-							<span className="text-xs text-zinc-500">Just now</span>
+							<span className="text-foreground text-sm font-bold tracking-tight">
+								{APP_INFO.name}
+							</span>
+							<span className="text-muted-foreground text-xs">•</span>
+							<span className="text-muted-foreground text-xs">Just now</span>
 						</div>
-						<span className="font-mono text-xs text-zinc-500">@{APP_INFO.slug}</span>
+						<span className="text-muted-foreground font-mono text-xs">@{APP_INFO.slug}</span>
 					</div>
 				</div>
 
 				{/* Post Body: Engaging Human Copywriting */}
-				<p className="mt-4 text-sm leading-relaxed text-zinc-200 sm:text-[15px]">
+				<p className="text-foreground/90 mt-4 text-sm leading-relaxed sm:text-[15px]">
 					Most social feeds feel flat and silent. We built {APP_INFO.name} to bring tactile physical
 					clicks and celebratory bursts to every reaction. Tap the heart or repost to feel it!
 				</p>
 
 				{/* Action Bar */}
-				<div className="mt-5 flex items-center gap-6 border-t border-white/[0.08] pt-3.5">
+				<div className="border-border mt-5 flex items-center gap-6 border-t pt-3.5">
 					{/* Like Heart Button with Tactile Spring Micro-Motion */}
 					<button
 						type="button"
@@ -75,12 +77,12 @@ export function ThreadPostMock({
 							className={`size-5 transition-[color,fill,transform] duration-150 ${
 								isLiked
 									? "scale-110 fill-[#ff2e93] text-[#ff2e93]"
-									: "text-zinc-400 group-hover:text-white"
+									: "text-muted-foreground group-hover:text-foreground"
 							}`}
 						/>
 						<span
 							className={`font-mono text-xs font-semibold transition-colors ${
-								isLiked ? "text-[#ff2e93]" : "text-zinc-400 group-hover:text-white"
+								isLiked ? "text-[#ff2e93]" : "text-muted-foreground group-hover:text-foreground"
 							}`}
 						>
 							{likeCount}
@@ -88,7 +90,7 @@ export function ThreadPostMock({
 					</button>
 
 					{/* Reply Button */}
-					<div className="flex items-center gap-1.5 text-xs text-zinc-500 select-none">
+					<div className="text-muted-foreground flex items-center gap-1.5 text-xs select-none">
 						<MessageCircleIcon className="size-4" />
 						<span className="font-mono">18</span>
 					</div>
@@ -97,7 +99,7 @@ export function ThreadPostMock({
 					<button
 						type="button"
 						onClick={onRepost}
-						className="group flex cursor-pointer items-center gap-1.5 text-xs text-zinc-400 transition-colors duration-150 outline-none select-none hover:text-emerald-400 active:scale-[0.88]"
+						className="group text-muted-foreground flex cursor-pointer items-center gap-1.5 text-xs transition-colors duration-150 outline-none select-none hover:text-emerald-500 active:scale-[0.88]"
 						aria-label="Repost post"
 					>
 						<RepeatIcon className="size-4" />
@@ -105,15 +107,15 @@ export function ThreadPostMock({
 					</button>
 
 					{/* Share Button */}
-					<div className="flex items-center gap-1.5 text-xs text-zinc-500 select-none">
+					<div className="text-muted-foreground flex items-center gap-1.5 text-xs select-none">
 						<Share2Icon className="size-4" />
 						<span className="font-mono">12</span>
 					</div>
 				</div>
 
 				{/* Micro-Affordance Prompt */}
-				<div className="mt-4 border-t border-white/[0.04] pt-2.5 text-center font-mono text-[10px] text-zinc-500 select-none">
-					Tap the heart or repost to test your active sound & particle settings
+				<div className="border-border/60 text-muted-foreground mt-4 border-t pt-2.5 text-center font-mono text-[10px] select-none">
+					Tap the heart or repost to test your active sound &amp; particle settings
 				</div>
 			</div>
 		</div>

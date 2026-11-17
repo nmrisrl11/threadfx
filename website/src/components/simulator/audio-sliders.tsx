@@ -12,11 +12,11 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 	const isCustomized = pitch !== 1.0 || volume !== 0.5;
 
 	return (
-		<div className="w-full space-y-4 rounded-2xl border border-white/[0.06] bg-[#0e0e12]/75 p-4.5 backdrop-blur-md">
+		<div className="border-border bg-card/75 shadow-card w-full space-y-4 rounded-2xl border p-4.5 backdrop-blur-md">
 			{/* Pod Header */}
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-300 uppercase">
-					<SlidersIcon className="size-3.5 text-zinc-400" />
+				<div className="text-foreground flex items-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
+					<SlidersIcon className="text-muted-foreground size-3.5" />
 					<span>Acoustics</span>
 				</div>
 				{isCustomized && (
@@ -26,7 +26,7 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 							onVolumeChange(0.5);
 							onPitchChange(1.0);
 						}}
-						className="cursor-pointer font-mono text-[10px] text-zinc-500 transition-colors hover:text-white"
+						className="text-muted-foreground hover:text-foreground cursor-pointer font-mono text-[10px] transition-colors"
 						title="Reset to default acoustic values"
 					>
 						Reset
@@ -37,11 +37,11 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 			{/* Volume Control Strip */}
 			<div className="space-y-2">
 				<div className="flex items-center justify-between text-xs">
-					<div className="flex items-center gap-1.5 text-zinc-300">
-						<Volume2Icon className="size-3.5 text-zinc-400" />
-						<span className="font-medium text-zinc-300">Volume</span>
+					<div className="text-foreground/90 flex items-center gap-1.5">
+						<Volume2Icon className="text-muted-foreground size-3.5" />
+						<span className="text-foreground/90 font-medium">Volume</span>
 					</div>
-					<span className="font-mono text-[11px] font-semibold text-white">
+					<span className="text-foreground font-mono text-[11px] font-semibold">
 						{Math.round(volume * 100)}%
 					</span>
 				</div>
@@ -58,11 +58,11 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 			{/* Pitch Control Strip */}
 			<div className="space-y-2 pt-1">
 				<div className="flex items-center justify-between text-xs">
-					<div className="flex items-center gap-1.5 text-zinc-300">
-						<span className="font-mono text-[11px] font-semibold text-zinc-400">Hz</span>
-						<span className="font-medium text-zinc-300">Pitch Multiplier</span>
+					<div className="text-foreground/90 flex items-center gap-1.5">
+						<span className="text-muted-foreground font-mono text-[11px] font-semibold">Hz</span>
+						<span className="text-foreground/90 font-medium">Pitch Multiplier</span>
 					</div>
-					<span className="font-mono text-[11px] font-semibold text-white">
+					<span className="text-foreground font-mono text-[11px] font-semibold">
 						{pitch.toFixed(2)}x
 					</span>
 				</div>
@@ -74,7 +74,7 @@ export function AudioSliders({ volume, pitch, onVolumeChange, onPitchChange }: A
 					onValueChange={(vals: number[]) => onPitchChange(vals[0])}
 					className="w-full"
 				/>
-				<div className="flex justify-between font-mono text-[9px] text-zinc-600">
+				<div className="text-muted-foreground/80 flex justify-between font-mono text-[9px]">
 					<span>0.5x (Bass)</span>
 					<span>1.0x (True)</span>
 					<span>2.0x (Air)</span>

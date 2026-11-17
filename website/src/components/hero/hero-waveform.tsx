@@ -67,8 +67,8 @@ export function HeroWaveform() {
 							key={idx}
 							className={`flex-1 rounded-full transition-all duration-150 ease-out ${
 								isPulsing
-									? "bg-white opacity-95 shadow-[0_0_6px_rgba(255,255,255,0.7)]"
-									: "bg-zinc-700/60 opacity-40 group-hover:bg-zinc-500 group-hover:opacity-75"
+									? "bg-foreground opacity-95 shadow-xs"
+									: "bg-muted-foreground/30 group-hover:bg-muted-foreground/60 opacity-40 group-hover:opacity-75"
 							}`}
 							style={{
 								height: `${Math.round(amp * 100)}%`,
@@ -82,18 +82,18 @@ export function HeroWaveform() {
 			</div>
 
 			{/* Micro-Affordance Whisper: LED dot + Active Preset Name + Frequency */}
-			<div className="flex items-center gap-1.5 font-mono text-[10px] text-zinc-500 transition-colors duration-200 group-hover:text-zinc-300">
+			<div className="text-muted-foreground group-hover:text-foreground flex items-center gap-1.5 font-mono text-[10px] transition-colors duration-200">
 				<span className="relative flex h-1.5 w-1.5">
 					<span
 						className={`absolute inline-flex h-full w-full rounded-full transition-opacity duration-150 ${
-							isPulsing ? "animate-ping bg-white opacity-75" : "opacity-0"
+							isPulsing ? "bg-foreground animate-ping opacity-75" : "opacity-0"
 						}`}
 					/>
 					<span
 						className={`relative inline-flex h-1.5 w-1.5 rounded-full transition-all duration-200 ${
 							isPulsing
-								? "bg-white shadow-[0_0_6px_rgba(255,255,255,0.9)]"
-								: "bg-zinc-600 ring-1 ring-zinc-500/20 group-hover:bg-zinc-400"
+								? "bg-foreground shadow-xs"
+								: "bg-muted-foreground/60 ring-border group-hover:bg-muted-foreground ring-1"
 						}`}
 					/>
 				</span>

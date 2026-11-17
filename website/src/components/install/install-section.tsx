@@ -14,15 +14,15 @@ export function InstallSection() {
 			<div className="mx-auto w-full max-w-4xl">
 				{/* Section Header */}
 				<div className="mb-12 text-center sm:mb-16">
-					<div className="mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider text-zinc-400 uppercase">
-						<DownloadIcon className="size-3.5 text-zinc-400" />
+					<div className="text-muted-foreground mb-2.5 flex items-center justify-center gap-1.5 font-mono text-[11px] tracking-wider uppercase">
+						<DownloadIcon className="text-muted-foreground size-3.5" />
 						<span>Setup &amp; Installation</span>
 					</div>
 
-					<h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+					<h2 className="text-foreground text-3xl font-extrabold tracking-tight sm:text-5xl">
 						Install in under a minute.
 					</h2>
-					<p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-zinc-400 sm:max-w-3xl sm:text-lg">
+					<p className="text-muted-foreground mx-auto mt-3 max-w-2xl text-base leading-relaxed sm:max-w-3xl sm:text-lg">
 						Download the package, enable Developer mode, and select the folder.
 						<br className="hidden sm:inline" />
 						No store waiting, no accounts required, and ready in seconds.
