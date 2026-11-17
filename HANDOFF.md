@@ -2,9 +2,9 @@
 
 > **Purpose:** Read this document immediately when opening a fresh conversation session to resume ThreadFX development with 100% context parity, zero drift, and immediate situational awareness.
 >
-> **Last Synchronized:** November 17, 2026 (10:15 AM +08:00)  
+> **Last Synchronized:** November 17, 2026 (11:00 AM +08:00)  
 > **Active Branch:** `main`  
-> **Working Tree Status:** Full light and dark mode theming and Emil Kowalski layered shadow elevation implemented across the website repo. Semantic CSS variable tokens (`:root` / `.dark`), zero-FOUC synchronous initialization, 3-state `ThemeToggle` (`useTheme`), and calibrated layered shadows (`--shadow-chassis`, `--shadow-card`, `--drop-shadow-hero`, etc.) active. All sections (Hero, Simulator, Features, Milestones, Install, Download) and UI primitives standardized. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
+> **Working Tree Status:** Fixed curtain reveal footer and dynamic height docking implemented on the companion website. Staged `main` curtain container with Emil Kowalski downward elevation shadow and zero-border edge-to-edge separation; integrated autonomous `ResizeObserver` on `footerRef` dynamically calculating `marginBottom`; restored full light and dark mode adaptation via semantic tokens (`bg-background text-foreground`, `border-border`, `text-muted-foreground`); purged all top ambient gradient noise; upgraded `overflow-x: hidden` to modern `overflow-x: clip`. All formatting (`oxfmt`), linting (`oxlint` 0 errors, 0 warnings), and production builds (`build:all`) passing cleanly.
 
 ---
 
@@ -76,6 +76,15 @@ export interface ThreadFXSettings {
 ---
 
 ## 4. Completed Milestones (Recent Session Recap)
+
+### 🎭 Fixed Curtain Reveal Footer & Dynamic Height Docking (`website/`)
+
+- **Curtain Lift Staging (`App.tsx` & `main`):** Re-architected the main page content as a physical lifting curtain (`relative z-10 bg-background mb-[55vh] will-change-transform shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)] dark:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.65)]`) that rolls up smoothly at the end of the scroll to uncover the fixed footer underneath.
+- **Dynamic Height Synchronization (`ResizeObserver`):** Integrated an autonomous height listener on `footerRef` measuring the footer's exact rendered bounding box (`Math.round(rect.height)`), applying it dynamically to `main`'s `marginBottom` and preventing any content overflow or layout gaps across mobile through 4K displays.
+- **Clean Borderless Geometry:** Maintained flat, edge-to-edge curtain separation with zero artificial bottom borders or rounded corners, allowing the natural downward elevation shadow to define the physical lift.
+- **Full Semantic Theme Adaptation (`footer.tsx`):** Ensured the footer adapts to both light and dark themes using semantic design tokens (`bg-background text-foreground`, `border-border`, `text-muted-foreground`), retaining full compatibility with the reactive `useTheme` store and the embedded 3-state `<ThemeToggle />`.
+- **Zero Ambient Gradient Interference:** Purged all distracting gradient glows and top border sheens, maintaining a hardware-grade, clean architectural layout.
+- **Compositor Performance (`index.css`):** Replaced `overflow-x: hidden` with modern `overflow-x: clip` in `body`, eliminating unnecessary scroll containers while preserving hardware-accelerated compositor-thread scrolling.
 
 ### 🌓 Website Light & Dark Mode Theming & Zero-FOUC Synchronization
 

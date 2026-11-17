@@ -10,6 +10,12 @@
 
 ### Added
 
+- **Curtain Reveal Footer & Dynamic Height Docking (`website/`)**:
+  - Implemented an interactive curtain reveal layout where the main page content lifts away smoothly at the end of the scroll to uncover a fixed footer docked underneath.
+  - Integrated an autonomous `ResizeObserver` listener on the footer container that dynamically synchronizes `marginBottom` on `<main>`, guaranteeing seamless pixel alignment and preventing layout gaps across mobile, tablet, and desktop viewports.
+  - Maintained full light and dark mode adaptation across the footer using semantic design tokens (`bg-background`, `text-foreground`, `border-border`) paired with the embedded 3-state `ThemeToggle`.
+  - Kept a borderless, flat edge-to-edge curtain geometry with calibrated downward elevation shadow and zero ambient gradient visual noise.
+
 - **Independent Appearance Theming & Zero-FOUC Initialization (`website/`)**:
   - Implemented reactive `useTheme` hook using `useSyncExternalStore` for persistent client theme synchronization (`system`, `dark`, `light`) matching the extension's theme architecture.
   - Added synchronous anti-FOUC `<script>` in `index.html` and `main.tsx` (`initTheme()`) ensuring instant, flicker-free rendering on initial load and theme switching.

@@ -13,6 +13,7 @@
 - **Visual Effects:** `canvas-confetti` (particle bursts & celebratory reactions via `@data/particles`)
 - **Animation Engine:** [GSAP](https://gsap.com/) & ScrollTrigger (`AnimatedContent` staggered reveals & zoom effects)
 - **Interactive Stacking:** `ScrollStack` (ReactBits-inspired hardware-accelerated focal stacking cards)
+- **Curtain Reveal Footer:** Fixed scroll-uncovered footer docking with dynamic `ResizeObserver` height synchronization and theme-adaptive semantic tokens
 - **Juicer Milestones:** Procedural progression tiers & sensory ranks via `@data/milestones`
 - **UI Components:** shadcn/ui (`radix-ui`, `cn`)
 - **Iconography:** Lucide React (standardized explicit `*Icon` suffix convention)

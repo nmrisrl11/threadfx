@@ -1,6 +1,9 @@
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { cn } from "@/lib/utils";
 import { APP_INFO } from "@data/app";
 import { ArrowUpIcon, ArrowUpRightIcon } from "lucide-react";
+import type { ComponentPropsWithoutRef } from "react";
+import { forwardRef } from "react";
 
 interface FooterLink {
 	label: string;
@@ -35,12 +38,22 @@ const FOOTER_SECTIONS: FooterSection[] = [
 	},
 ];
 
-export function Footer() {
+export const Footer = forwardRef<HTMLElement, ComponentPropsWithoutRef<"footer">>(function Footer(
+	{ className, ...props },
+	ref,
+) {
 	return (
-		<footer className="border-border bg-background text-foreground border-t pt-16 pb-8 transition-colors sm:pt-20 lg:pt-24">
-			<div className="mx-auto max-w-6xl px-6 sm:px-8">
+		<footer
+			ref={ref}
+			className={cn(
+				"bg-background text-foreground fixed right-0 bottom-0 left-0 z-0 min-h-[55vh] w-full overflow-hidden transition-colors select-text",
+				className,
+			)}
+			{...props}
+		>
+			<div className="mx-auto flex h-full min-h-[55vh] max-w-6xl flex-col justify-between px-6 pt-10 pb-4 sm:px-8 sm:pt-12 sm:pb-6 lg:pt-14">
 				{/* Top Section: Brand Info on Left, 2-Column Product Navigation on Right */}
-				<div className="flex flex-col justify-between gap-12 lg:flex-row lg:gap-16">
+				<div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-16">
 					{/* Brand Column */}
 					<div className="flex max-w-sm flex-col gap-4">
 						<span className="text-foreground text-xl font-extrabold tracking-tight">
@@ -52,7 +65,7 @@ export function Footer() {
 							physics for social feeds and modern web platforms.
 						</p>
 
-						<div className="mt-2 flex flex-col gap-1 text-xs">
+						<div className="mt-1 flex flex-col gap-1 text-xs">
 							<span className="text-muted-foreground font-mono text-[11px] font-semibold tracking-wider uppercase">
 								Created by
 							</span>
@@ -99,7 +112,7 @@ export function Footer() {
 				</div>
 
 				{/* Middle Row: Metadata, Transparency, Theme Toggle & Back to Top */}
-				<div className="border-border text-muted-foreground mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-8 text-xs">
+				<div className="border-border text-muted-foreground mt-12 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs sm:mt-14">
 					<div className="flex flex-wrap items-center gap-2">
 						<span>{APP_INFO.name} © 2026</span>
 						<span className="text-border">•</span>
@@ -126,7 +139,7 @@ export function Footer() {
 				</div>
 
 				{/* Bottom Heroic Wordmark (Clean letter clearance, monochrome token) */}
-				<div className="mt-14 w-full overflow-hidden pt-4 pb-2 select-none sm:mt-18 lg:mt-20">
+				<div className="mt-8 w-full overflow-hidden pt-2 pb-1 select-none sm:mt-10 lg:mt-12">
 					<svg
 						viewBox="0 0 1200 170"
 						fill="none"
@@ -154,4 +167,4 @@ export function Footer() {
 			</div>
 		</footer>
 	);
-}
+});
