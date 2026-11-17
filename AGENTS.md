@@ -85,6 +85,7 @@ threadfx/
 │   ├── SECURITY_AND_DISTRIBUTION.md # Security posture, VirusTotal audits & distribution
 │   └── UNIVERSAL_FX_ROADMAP.md     # Multi-platform adapter roadmap
 │
+├── scripts/                        # Automation & security verification scripts (virustotal-scan.mjs)
 ├── AGENTS.md                       # Technical guidelines for AI agents
 ├── LICENSE                         # MIT License
 ├── PENDING_CHANGES.md              # Staging area for unreleased changes

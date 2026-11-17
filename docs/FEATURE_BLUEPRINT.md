@@ -16,6 +16,8 @@
 | **Progression Core** | 7 Sensory Juicer Ranks with 3D WebP Medals, Lifetime Odometer, and Fanfares (`@data/milestones`)   |
 | **UI Surface**       | Chrome Side Panel API (`sidepanel/` 3-Tab Chassis) + Companion Landing Page (`website/`)           |
 | **Data & Storage**   | Reactive On-Device Telemetry, Anti-Farming LRU Post Cache, and In-App Version Update Tracking      |
+| **Security & Trust** | 0/64 Clean VirusTotal Detection • Scoped Permissions • Automated Scan via `npm run scan:security`  |
+| **Distribution**     | Dual-target packaging (`threadfx-1.0.0.zip` & `threadfx-latest.zip`) • Cloudflare R2 ($0 egress)   |
 
 ---
 
@@ -107,27 +109,32 @@ Legend:
 - [x] 🟢 **Self-Hosted Variable Fonts:** SubsetFont Latin definitions for Plus Jakarta Sans, Inter, and Geist Mono.
 - [x] 🟢 **Ultra-Lean Package Footprint (882 KB):** 30% reduction from 1.26 MB to 882 KB via font subsetting and asset pruning.
 - [x] 🟢 **Edge Caching & Cloudflare R2:** Vercel edge headers with decoupled `/download` 307 redirect to Cloudflare R2 ($0 egress fees).
+- [x] 🟢 **Automated VirusTotal Security Scanning Pipeline:** Pre-flight and post-build security verification via `scripts/virustotal-scan.mjs` (`npm run scan:security`), generating live public cryptographic audit reports (0/64 clean detections).
+- [x] 🟢 **Universal Dual-Target Packaging Hook:** WXT `zip:done` build hook producing clean `threadfx-1.0.0.zip` and `threadfx-latest.zip` archives with zero redundant nested directories.
+- [x] 🟢 **CORS-Enabled Update Verification Endpoint:** Permissive CORS headers on `website/vercel.json` (`/version.json`) ensuring side panel update checks resolve cleanly without browser origin blocks.
+- [x] 🟢 **SEO, Search Verification & High-Res App Favicons:** Integrated Google Search Console verification meta tag, XML sitemaps, robots.txt AI crawler directives, and high-resolution icons (48px, 192px, 512px).
+- [x] 🟢 **Privacy-First Web Analytics:** Integrated cookieless Vercel Web Analytics (`@vercel/analytics/react`) on the landing page for real-time visitor insights without third-party tracking cookies.
 
 ---
 
-### Phase 2: Active Sprint — Companion Landing Page Elevation (`website/`)
+### Phase 2: Companion Landing Page & Web Hub (`website/` — Shipped in `v1.0.0`)
 
-Focus area for the immediate development sprint:
+Completed in `v1.0.0` release:
 
-- [ ] 🟢 **Interactive 7-Tier Sensory Milestone Showcase:**
+- [x] 🟢 **Interactive 7-Tier Sensory Milestone Showcase (`website/src/components/milestones/`):**
   - Interactive showcase on `website/` displaying the 7 transparent 3D WebP achievement medals (`Bronze`, `Silver`, `Gold`, `Diamond`, `Master`, `Grand`, `Mythic`).
-  - Rank inspection cards displaying required likes, rank titles, and unlocked milestone perks.
-- [ ] 🟡 **Companion Web Simulator Parity Polish (`website/src/components/SoundboardDemo.tsx`):**
-  - Verify complete feature parity with extension: 8 sound presets, pitch modulation slider (0.5x–2.0x), dual particle mode (palettes + emoji bursts), and keyboard hotkeys (`1`–`8`).
-  - Milestone unlock celebrations and victory fanfares playable directly in the web simulator.
-- [ ] 🟢 **Seamless Unpacked Installation & Upgrade Walkthrough:**
-  - Visual step-by-step installation card explaining 10-second unpacked sideloading in Chrome.
+  - Rank inspection cards displaying required likes, rank titles, unlocked milestone perks, and live victory fanfare auditions.
+- [x] 🟡 **Companion Web Simulator Full Parity (`website/src/components/simulator/`):**
+  - Complete feature parity with extension: 8 sound presets, pitch modulation slider (0.5x–2.0x), dual particle mode (palettes + emoji bursts), and keyboard hotkeys (`1`–`8`).
+  - Milestone unlock celebrations and victory fanfares playable directly in the web simulator with mock thread post interactions.
+- [x] 🟢 **Seamless Unpacked Installation & Upgrade Walkthrough (`website/src/components/install/`):**
+  - Visual 4-step installation cards explaining 10-second unpacked sideloading in Chrome (`step-download-card.tsx`, `step-developer-card.tsx`, `step-load-card.tsx`, `step-updates-card.tsx`).
   - Clear, reassuring upgrade guide demonstrating how to overwrite files and reload without losing on-device settings or milestones.
-- [ ] 🟢 **Visual Craft & Typography Polish:**
-  - Hardware-grade dark mode aesthetic aligned with `docs/BRAND.md`.
-  - Optimized hero copy and clean `/download` routing verification.
-- [ ] 🟢 **Mobile & Tablet Responsiveness Audit:**
-  - Fluid mobile layout for phone visitors exploring the soundboard and documentation.
+- [x] 🟢 **Visual Craft & Typography Polish (`website/src/`):**
+  - Hardware-grade dark mode aesthetic aligned with `docs/BRAND.md`, layered shadows (`emil-design-eng`), and physical curtain reveal footer.
+  - Interactive hero waveform visualizer, responsive scroll cues, and clean `/download` routing verification.
+- [x] 🟢 **Mobile & Tablet Responsiveness Audit:**
+  - Fluid mobile and tablet layout for phone and iPad visitors exploring the soundboard, milestone shelves, and documentation.
 
 ---
 
