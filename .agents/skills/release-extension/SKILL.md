@@ -58,7 +58,21 @@ Verify the build output:
 
 ---
 
-## Step 5: Prepare GitHub Release Draft
+## Step 5: Automated VirusTotal Security Verification
+
+Run the automated VirusTotal verification script:
+
+```powershell
+npm.cmd run scan:security
+```
+
+1. **Calculates SHA-256:** Computes the SHA-256 cryptographic hash of the compiled zip package.
+2. **VirusTotal API Query:** If `VIRUSTOTAL_API_KEY` is present in `.env`, automatically uploads the binary, polls the multi-engine antivirus scanners, and outputs the clean detection ratio.
+3. **Embed in Release:** Attach the permanent VirusTotal scan report link (`https://www.virustotal.com/gui/file/<sha256>`) in the GitHub Release description under a dedicated `### 🛡️ Security & Integrity` section for public transparency.
+
+---
+
+## Step 6: Prepare GitHub Release Draft
 
 Generate a pre-filled GitHub Release draft URL for the user:
 
@@ -68,13 +82,13 @@ https://github.com/nmrisrl11/threadfx/releases/new?tag=v<NEW_VERSION>&title=Thre
 
 Present this link to the user with the following release instructions:
 1. Click the link to open the pre-filled GitHub Release draft.
-2. Paste the user-facing changelog notes into the release description.
+2. Paste the user-facing changelog notes and the VirusTotal security report link into the release description.
 3. Drag and drop `extension/.output/threadfx-<NEW_VERSION>.zip` into the "Attach binaries" area.
 4. Click **Publish release**.
 
 ---
 
-## Step 6: Distribution Verification (Cloudflare R2 & Vercel)
+## Step 7: Distribution Verification (Cloudflare R2 & Vercel)
 
 Remind the user:
 - The website download button links to `/download`, which resolves via `website/vercel.json` to the Cloudflare R2 bucket (`https://releases.nmrisrl.dev/threadfx-latest.zip`).

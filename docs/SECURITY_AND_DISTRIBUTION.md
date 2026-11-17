@@ -8,7 +8,7 @@
 
 | Security Metric                 | ThreadFX Specification                                        | Industry Benchmark           |
 | :------------------------------ | :------------------------------------------------------------ | :--------------------------- |
-| **VirusTotal Detection Ratio**  | **0 / 70 Clean** (Zero malware, zero adware, zero heuristics) | < 1/70                       |
+| **VirusTotal Detection Ratio**  | **0 / 64 Clean** (Zero malware, zero adware, zero heuristics) | < 1/70                       |
 | **Manifest Version**            | **Manifest V3** (Strict W3C & Chromium Standard)              | Manifest V3                  |
 | **Extension Permissions**       | `["sidePanel", "storage"]` (Strictly minimal)                 | Typically 5–10 permissions   |
 | **Host Permissions**            | Scoped strictly to `threads.com` (and legacy `threads.net`)   | Often `<all_urls>`           |
@@ -78,12 +78,11 @@ Until official publication on the Chrome Web Store, ThreadFX is distributed dire
 
 ### Verifying with VirusTotal
 
-Before installing any unpacked release:
+Release packages are scanned and verified via the official VirusTotal API:
 
-1. Navigate to [VirusTotal.com](https://www.virustotal.com/).
-2. Upload the downloaded `threadfx-<version>.zip`.
-3. Confirm the **0 / 70 Clean** detection status across all major antivirus engines (Microsoft Defender, Avast, BitDefender, Kaspersky, Sophos, etc.).
-4. **Shareable Reports:** VirusTotal generates a permanent, shareable URL for each analyzed file hash (e.g., `https://www.virustotal.com/gui/file/<sha256-hash>`). Maintainers should link this scan report directly in the GitHub Release notes.
+1. **Automated Scanner:** Maintainers run `npm run scan:security`, which calculates the SHA-256 hash and uploads the binary to VirusTotal API v3.
+2. **0 / 64 Clean Status:** Confirmed zero detections across all 64 major security engines (Microsoft Defender, Avast, BitDefender, Kaspersky, Sophos, Google, etc.).
+3. **Public Inspection:** Users and developers can inspect the live cryptographic scan report directly at [virustotal.com/gui/file/d7978549959b...](https://www.virustotal.com/gui/file/d7978549959b4d3cc91d287cb0d9843a29997a08c1c57e4f88878a6c621cfa65). Maintainers link this report directly in every GitHub Release.
 
 ### Safe Installation Instructions for Users
 

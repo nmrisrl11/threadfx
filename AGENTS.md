@@ -296,6 +296,7 @@ npm run build:all            # Compiles extension, zips it, and compiles website
 ### Quality & Verification
 
 ```bash
+npm run scan:security        # Verifies release archive integrity and scans with VirusTotal API
 npm run lint                 # Runs oxlint with zero-warning threshold
 npm run lint:fix             # Auto-fixes fixable code issues via oxlint
 npm run lint:tailwind        # Verifies canonical Tailwind CSS v4 classes

@@ -33,6 +33,7 @@
 		"dev:web": "npm run dev --workspace=website",
 		"build:web": "npm run build --workspace=website",
 		"build:all": "npm run build --workspace=extension && npm run zip --workspace=extension && npm run build --workspace=website",
+		"scan:security": "node scripts/virustotal-scan.mjs",
 		"lint": "oxlint . --ignore-path=.oxlintignore",
 		"lint:fix": "oxlint . --fix --ignore-path=.oxlintignore",
 		"lint:tailwind": "tailwind-lint",

@@ -122,6 +122,7 @@ npm install
 | **`npm run dev:ext`**           | Launches Chrome with the extension loaded & live hot-reloading (HMR) enabled |
 | **`npm run dev:web`**           | Launches the local Vite development server for the landing page              |
 | **`npm run build:all`**         | Compiles extension, zips it, and compiles the website in one command         |
+| **`npm run scan:security`**     | Automatically verifies and scans release archive with VirusTotal API         |
 | **`npm run build:ext`**         | Compiles the extension to `.output/chrome-mv3`                               |
 | **`npm run zip:ext`**           | Generates the unpacked distribution zip in `extension/.output/`              |
 | **`npm run build:web`**         | Compiles the production landing page to `website/dist/`                      |
